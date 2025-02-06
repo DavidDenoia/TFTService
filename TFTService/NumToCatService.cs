@@ -15,6 +15,9 @@ namespace TFTService
 
         [OperationContract]
         PartesNumeros GetNumber(string value);
+
+        [OperationContract]
+        string CentenaresALetras(string numero);
     }
 
 

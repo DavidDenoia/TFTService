@@ -18,6 +18,9 @@ namespace TFTService
 
         [OperationContract]
         string CentenaresALetras(string numero);
+
+        [OperationContract]
+        string NumCompletoALetra(string numero);
     }
 
 

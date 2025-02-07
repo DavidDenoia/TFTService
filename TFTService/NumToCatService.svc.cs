@@ -153,5 +153,40 @@ namespace TFTService
             return resultado.ToString();
         }
 
+
+        public string NumCompletoALetra(string numero)
+        {
+            
+            int contadorSufijos = -1;
+            int contadorNumVeces = 0;
+            StringBuilder numCentena = new StringBuilder();
+            StringBuilder resultado = new StringBuilder();
+
+            string[] sufijos = { "", "mil", "milions", "bilions", "trilions", "quadrilions", "quintilions", "sextilions", "septilions", "octilions", "nonilions","decilions",
+                "undecilions", "duodecilions", "tredecilions", "quatourdecilions", "quindecilions", "sexdecilions", "septendecilions", "octodecilions", "novendecilions", 
+                "vigintilions" };
+
+            string[] sufijosEspeciales = { "", "milió", "bilió", "trilió", "quadrilió", "quintilió", "sextilió", "septilió", "octilió", "nonilió", "decilió", 
+                "undecilió", "duodecilió", "tredecilió", "quatuordecilió", "quindecilió", "sexdecilió", "septendecilió", "octodecilió", "novendecilió", "vigintilió" };
+
+            for (int i = numero.Length - 1; i >= 0; i--)
+            {
+                numCentena.Insert(0, numero[i]); 
+                contadorNumVeces++;
+
+                if (contadorNumVeces == 3)
+                {
+                    resultado.Insert(0, numCentena); 
+                    contadorNumVeces = 0;
+                    numCentena.Clear(); 
+                }
+            }
+            if (numCentena.Length > 0)
+            {
+                resultado.Insert(0, numCentena);
+            }
+            return resultado.ToString();
+        }
+
     }
 }

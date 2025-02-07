@@ -61,17 +61,12 @@ namespace TFTService
         public string CentenaresALetras(string numero)
         {
             StringBuilder resultado = new StringBuilder();
-
-            string[] unidades = {"zero","un", "dos", "tres", "quatre", "cinc", "sis", "set", "vuit", "nou"};
-
-            string[] decenas = {"deu","onze","dotze","tretze","catorze", "quinze","setze","disset","divuit","dinou",
-                "vint","vint-i-un","vint-i-dos","vint-i-tress","vint-i-quatre","vint-i-cinc", "vint-i-sis","vint-i-set","vint-i-vuit","vint-i-nou",
-                "trenta","qauranta","cinquanta","seixanta","setanta","vuitanta","noranta"};
-
+            string[] unidades = { "zero", "un", "dos", "tres", "quatre", "cinc", "sis", "set", "vuit", "nou" };
+            string[] decenas = {"trenta","qauranta","cinquanta","seixanta","setanta","vuitanta","noranta"};
             string[] centenas = { "cent ", "dos-cents ", "tres-cents ", "quatre-cents ", "cinc-cents ", "sis-cents ", "set-cents ", "vuit-cents ", "nou-cents " };
-
+            string[] decenasEspeciales = {"deu","onze","dotze","tretze","catorze", "quinze","setze","disset","divuit","dinou",
+                "vint","vint-i-un","vint-i-dos","vint-i-tress","vint-i-quatre","vint-i-cinc", "vint-i-sis","vint-i-set","vint-i-vuit","vint-i-nou"};
             int numInt = int.Parse(numero);
-
             if (numInt == 0)
             {
                 resultado.Append(unidades[0]);
@@ -80,81 +75,37 @@ namespace TFTService
             int numIntCent = numInt / 100;
             int numIntDec = (numInt % 100) / 10;
             int numIntUni = (numInt % 10);
+            int numIntDecUni = numInt % 100;
 
-            switch (numIntCent)
+            if (numIntCent > 0)
             {
-                case 0: break;
-                case 1: resultado.Append(centenas[0]); break;
-                case 2: resultado.Append(centenas[1]); break;
-                case 3: resultado.Append(centenas[2]); break;
-                case 4: resultado.Append(centenas[3]); break;
-                case 5: resultado.Append(centenas[4]); break;
-                case 6: resultado.Append(centenas[5]); break;
-                case 7: resultado.Append(centenas[6]); break;
-                case 8: resultado.Append(centenas[7]); break;
-                case 9: resultado.Append(centenas[8]); break;
+                resultado.Append(centenas[numIntCent - 1]);
             }
-
-            switch (numIntDec)
+            if(numIntDecUni >= 10 && numIntDecUni <= 29)
             {
-                case 0: break;
-                case 1:
-                    if (numIntUni == 0) { resultado.Append(decenas[0]); }
-                    else if (numIntUni == 1) { resultado.Append(decenas[1]); }
-                    else if (numIntUni == 2) { resultado.Append(decenas[2]); }
-                    else if (numIntUni == 3) { resultado.Append(decenas[3]); }
-                    else if (numIntUni == 4) { resultado.Append(decenas[4]); }
-                    else if (numIntUni == 5) { resultado.Append(decenas[5]); }
-                    else if (numIntUni == 6) { resultado.Append(decenas[6]); }
-                    else if (numIntUni == 7) { resultado.Append(decenas[7]); }
-                    else if (numIntUni == 8) { resultado.Append(decenas[8]); }
-                    else if (numIntUni == 9) { resultado.Append(decenas[9]); }
-                    break;
-                case 2:
-                    if (numIntUni == 0) { resultado.Append(decenas[10]); }
-                    else if (numIntUni == 1) {resultado.Append(decenas[11]); }
-                    else if (numIntUni == 2) { resultado.Append(decenas[12]); }
-                    else if (numIntUni == 3) { resultado.Append(decenas[13]); }
-                    else if (numIntUni == 4) { resultado.Append(decenas[14]); }
-                    else if (numIntUni == 5) { resultado.Append(decenas[15]); }
-                    else if (numIntUni == 6) { resultado.Append(decenas[16]); }
-                    else if (numIntUni == 7) { resultado.Append(decenas[17]); }
-                    else if (numIntUni == 8) { resultado.Append(decenas[18]); }
-                    else if (numIntUni == 9) { resultado.Append(decenas[19]); }
-                    break;
-                case 3: resultado.Append(decenas[20]); break;
-                case 4: resultado.Append(decenas[21]); break;
-                case 5: resultado.Append(decenas[22]); break;
-                case 6: resultado.Append(decenas[23]); break;
-                case 7: resultado.Append(decenas[24]); break;
-                case 8: resultado.Append(decenas[25]); break;
-                case 9: resultado.Append(decenas[26]); break;
-            }  
+                resultado.Append(decenasEspeciales[numIntDecUni - 10]);
+            }
+            else
+            {
+                if(numIntDec >= 3)
+                {
+                    resultado.Append(decenas[numIntDec-3]);
+                    if(numIntUni > 0)
+                    {
+                        resultado.Append("-");
+                    }
+                }
+                if (numIntUni > 0) 
+                {
+                    resultado.Append(unidades[numIntUni]);
+                }
+            }
+            return resultado.ToString().Trim();
             
-            if(numIntDec > 2 && numIntUni > 0)
-            {
-                resultado.Append("-");
-            }
-
-            switch (numIntUni)
-            {
-                case 0: break;
-                case 1: resultado.Append(unidades[1]); break;
-                case 2: resultado.Append(unidades[2]); break;
-                case 3: resultado.Append(unidades[3]); break;
-                case 4: resultado.Append(unidades[4]); break;
-                case 5: resultado.Append(unidades[5]); break;
-                case 6: resultado.Append(unidades[6]); break;
-                case 7: resultado.Append(unidades[7]); break;
-                case 8: resultado.Append(unidades[8]); break;
-                case 9: resultado.Append(unidades[9]); break;
-            }
-
-            return resultado.ToString();
         }
 
 
-        public string NumCompletoALetra(string numero)
+        /*public string NumCompletoALetra(string numero)
         {
             
             int contadorSufijos = -1;
@@ -166,7 +117,7 @@ namespace TFTService
                 "undecilions", "duodecilions", "tredecilions", "quatourdecilions", "quindecilions", "sexdecilions", "septendecilions", "octodecilions", "novendecilions", 
                 "vigintilions" };
 
-            string[] sufijosEspeciales = { "", "milió", "bilió", "trilió", "quadrilió", "quintilió", "sextilió", "septilió", "octilió", "nonilió", "decilió", 
+            string[] sufijosEspeciales = { "","", "milió", "bilió", "trilió", "quadrilió", "quintilió", "sextilió", "septilió", "octilió", "nonilió", "decilió", 
                 "undecilió", "duodecilió", "tredecilió", "quatuordecilió", "quindecilió", "sexdecilió", "septendecilió", "octodecilió", "novendecilió", "vigintilió" };
 
             for (int i = numero.Length - 1; i >= 0; i--)
@@ -174,18 +125,90 @@ namespace TFTService
                 numCentena.Insert(0, numero[i]); 
                 contadorNumVeces++;
 
-                if (contadorNumVeces == 3)
+                if (contadorNumVeces == 3 || i == 0)
                 {
-                    resultado.Insert(0, numCentena); 
+
+                    string numCentenaLetra = CentenaresALetras(numCentena.ToString());
+                    if (!string.IsNullOrEmpty(numCentenaLetra))
+                    {
+                        contadorSufijos++;
+
+                        if (contadorSufijos == 1 && numCentenaLetra == "un")
+                        {
+                            resultado.Insert(0, sufijos[contadorSufijos]);
+                        }
+                        else if (contadorSufijos > 1 && numCentenaLetra == "un")
+                        {
+                            resultado.Insert(0, sufijosEspeciales[contadorSufijos] + " ");
+                        }
+                        else
+                        {
+                            if (contadorSufijos > 0)
+                            {
+                                resultado.Insert(0, numCentenaLetra + " " + sufijos[contadorSufijos] + " ");
+                            }
+                            else
+                            {
+                                resultado.Insert(0, numCentenaLetra + " ");
+                            }
+                        }
+                    }
                     contadorNumVeces = 0;
-                    numCentena.Clear(); 
+                    numCentena.Clear();
+                    //resultado.Insert(0, numCentena); 
                 }
             }
-            if (numCentena.Length > 0)
+            /*if (numCentena.Length > 0)
             {
-                resultado.Insert(0, numCentena);
+                //resultado.Insert(0, numCentena);
             }
             return resultado.ToString();
+        }*/
+        public string NumCompletoALetra(string numero)
+        {
+            int contadorSufijos = 0;
+            int contadorNumVeces = 0;
+            StringBuilder numCentena = new StringBuilder();
+            StringBuilder resultado = new StringBuilder();
+
+            string[] sufijos = { "milions", "bilions", "trilions", "quadrilions", "quintilions", "sextilions", "septilions", "octilions", "nonilions", "decilions",
+        "undecilions", "duodecilions", "tredecilions", "quatourdecilions", "quindecilions", "sexdecilions", "septendecilions", "octodecilions", "novendecilions", "vigintilions" };
+
+            string[] sufijosEspeciales = { "milió", "bilió", "trilió", "quadrilió", "quintilió", "sextilió", "septilió", "octilió", "nonilió", "decilió",
+        "undecilió", "duodecilió", "tredecilió", "quatuordecilió", "quindecilió", "sexdecilió", "septendecilió", "octodecilió", "novendecilió", "vigintilió" };
+
+            for (int i = numero.Length - 1; i >= 0; i--)
+            {
+                numCentena.Insert(0, numero[i]);
+                contadorNumVeces++;
+
+                if (contadorNumVeces == 3 || i == 0)
+                {
+                    string numCentenaLetra = CentenaresALetras(numCentena.ToString());
+                    numCentena.Clear();
+                    contadorNumVeces = 0;
+
+                    if (!string.IsNullOrEmpty(numCentenaLetra))
+                    {
+                        if(contadorSufijos == 0)
+                        {
+                            resultado.Insert(0, numCentenaLetra+" ");
+                        }else if(contadorSufijos % 2 == 1)
+                        {
+                            resultado.Insert(0, numCentenaLetra + "mil ");
+                        }
+                        else
+                        {
+                            int sufijoIndice = (contadorSufijos / 2) - 1;
+                            resultado.Insert(0, numCentenaLetra + " " + sufijos[sufijoIndice] + " ");
+                        }
+
+                    }
+                    contadorSufijos++;
+                       
+                }
+            }
+            return resultado.ToString().Trim();
         }
 
     }

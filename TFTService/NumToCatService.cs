@@ -20,7 +20,10 @@ namespace TFTService
         string CentenaresALetras(string numero);
 
         [OperationContract]
-        string NumCompletoALetra(string numero);
+        string NumCompletoALetraCard(string numero);
+
+        [OperationContract]
+        string NumCompletoALetraOrd(string numero, string genero);
     }
 
 

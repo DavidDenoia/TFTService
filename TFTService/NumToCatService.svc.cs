@@ -10,7 +10,7 @@ namespace TFTService
 {
     // NOTA: puede usar el comando "Rename" del menú "Refactorizar" para cambiar el nombre de clase "Service1" en el código, en svc y en el archivo de configuración.
     // NOTE: para iniciar el Cliente de prueba WCF para probar este servicio, seleccione Service1.svc o Service1.svc.cs en el Explorador de soluciones e inicie la depuración.
-    public class TFTServicio : NumToCat
+    public class TFTServicio : INumToCat
     {
         public PartesNumeros GetNumber(string value)
         {
@@ -184,8 +184,7 @@ namespace TFTService
             }
             return resultado.ToString().Trim();
         }
-
-
+        
         public string NumCompletoALetraOrd(string numero, string genero)
         {
             int tamañoNumero = numero.Length;
@@ -252,6 +251,74 @@ namespace TFTService
                     resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "è" : numCard.Substring(0, numCard.Length - 1) + "ena");
                 }
             }
+            return resultado.ToString();
+        }
+
+        public string NumCompletoALetraFrac(string numero)
+        {
+            int tamañoNumero = numero.Length;
+            StringBuilder resultado = new StringBuilder();
+            if (tamañoNumero <= 2)
+            {
+                
+                int numeroInt = int.Parse(numero);
+                if(numeroInt == 0 || numeroInt == 1)
+                {
+                    resultado.Insert(0, "");
+                }
+                else if (numeroInt >= 2 && numeroInt <= 4 || numeroInt == 10)
+                {
+                    switch (numeroInt)
+                    {
+                        case 2: resultado.Insert(0, "meitat/mig"); break;
+                        case 3: resultado.Insert(0, "terç"); break;
+                        case 4: resultado.Insert(0, "quart"); break;
+                        case 10: resultado.Insert(0, "dècim"); break;
+                    }
+                }
+                else
+                {
+                    string numCard = NumCompletoALetraCard(numero);
+                    if (numCard.EndsWith("c"))
+                    {
+                        resultado.Insert(0, numCard.Substring(0, numCard.Length - 1));
+                    }
+                    else if (numCard.EndsWith("ou"))
+                    {
+                        resultado.Insert(0, numCard.Substring(0, numCard.Length - 1) + "vè");
+                    }
+                    else if (numCard.EndsWith("s") || numCard.EndsWith("t") || numCard.EndsWith("n"))
+                    {
+                        resultado.Insert(0, numCard + "è");
+                    }
+                    else if (numCard.EndsWith("a") || numCard.EndsWith("e"))
+                    {
+                        resultado.Insert(0, numCard.Substring(0, numCard.Length - 1) + "è");
+                    }
+
+                }
+            }
+            else
+            {
+                string numCard = NumCompletoALetraCard(numero);
+                if (numCard.EndsWith("c"))
+                {
+                    resultado.Insert(0, numCard.Substring(0, numCard.Length - 1));
+                }
+                else if (numCard.EndsWith("ou"))
+                {
+                    resultado.Insert(0, numCard.Substring(0, numCard.Length - 1) + "vè");
+                }
+                else if (numCard.EndsWith("s") || numCard.EndsWith("t") || numCard.EndsWith("n"))
+                {
+                    resultado.Insert(0, numCard + "è");
+                }
+                else if (numCard.EndsWith("a") || numCard.EndsWith("e"))
+                {
+                    resultado.Insert(0, numCard.Substring(0, numCard.Length - 1) + "è");
+                }
+            }
+
             return resultado.ToString();
         }
     }

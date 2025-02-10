@@ -68,7 +68,7 @@
     <Compile Include="NumToCatService.svc.cs">
       <DependentUpon>NumToCatService.svc</DependentUpon>
     </Compile>
-    <Compile Include="NumToCatService.cs" />
+    <Compile Include="INumToCatService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

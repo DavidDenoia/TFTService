@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
@@ -15,24 +16,24 @@ namespace TFTService
         public PartesNumeros GetNumber(string value)
         {
 
-            bool tieneComa=false;
+            bool tieneComa = false;
 
             if (String.IsNullOrEmpty(value))
             {
-                return new PartesNumeros { ParteEntera= "", ParteDecimal=""};
+                return new PartesNumeros { ParteEntera = "", ParteDecimal = "" };
             }
 
-            for(int i=0; i<value.Length; i++)
+            for (int i = 0; i < value.Length; i++)
             {
                 char caracter = value[i];
 
-                if(!char.IsDigit(caracter) && caracter != ',')
+                if (!char.IsDigit(caracter) && caracter != ',')
                 {
                     return new PartesNumeros { ParteEntera = "", ParteDecimal = "" };
 
                 }
 
-                if(caracter == ',')
+                if (caracter == ',')
                 {
                     tieneComa = true;
                 }
@@ -43,7 +44,8 @@ namespace TFTService
             {
                 string[] partes = value.Split(',');
 
-                if (partes.Length != 2) {
+                if (partes.Length != 2)
+                {
 
                     return new PartesNumeros { ParteEntera = "", ParteDecimal = "" };
                 }
@@ -55,14 +57,14 @@ namespace TFTService
 
             }
 
-            return new PartesNumeros { ParteEntera = value, ParteDecimal=""};
+            return new PartesNumeros { ParteEntera = value, ParteDecimal = "" };
         }
 
         public string CentenaresALetras(string numero)
         {
             StringBuilder resultado = new StringBuilder();
             string[] unidades = { "zero", "un", "dos", "tres", "quatre", "cinc", "sis", "set", "vuit", "nou" };
-            string[] decenas = {"trenta","qauranta","cinquanta","seixanta","setanta","vuitanta","noranta"};
+            string[] decenas = { "trenta", "qauranta", "cinquanta", "seixanta", "setanta", "vuitanta", "noranta" };
             string[] centenas = { "cent ", "dos-cents ", "tres-cents ", "quatre-cents ", "cinc-cents ", "sis-cents ", "set-cents ", "vuit-cents ", "nou-cents " };
             string[] decenasEspeciales = {"deu","onze","dotze","tretze","catorze", "quinze","setze","disset","divuit","dinou",
                 "vint","vint-i-un","vint-i-dos","vint-i-tres","vint-i-quatre","vint-i-cinc", "vint-i-sis","vint-i-set","vint-i-vuit","vint-i-nou"};
@@ -72,7 +74,7 @@ namespace TFTService
                 resultado.Append(unidades[0]);
             }
 
-            int numIntCent = numInt / 100; 
+            int numIntCent = numInt / 100;
             int numIntDec = (numInt % 100) / 10;
             int numIntUni = (numInt % 10);
             int numIntDecUni = numInt % 100;
@@ -81,27 +83,27 @@ namespace TFTService
             {
                 resultado.Append(centenas[numIntCent - 1]);
             }
-            if(numIntDecUni >= 10 && numIntDecUni <= 29)
+            if (numIntDecUni >= 10 && numIntDecUni <= 29)
             {
                 resultado.Append(decenasEspeciales[numIntDecUni - 10]);
             }
             else
             {
-                if(numIntDec >= 3)
+                if (numIntDec >= 3)
                 {
-                    resultado.Append(decenas[numIntDec-3]);
-                    if(numIntUni > 0)
+                    resultado.Append(decenas[numIntDec - 3]);
+                    if (numIntUni > 0)
                     {
                         resultado.Append("-");
                     }
                 }
-                if (numIntUni > 0) 
+                if (numIntUni > 0)
                 {
                     resultado.Append(unidades[numIntUni]);
                 }
             }
             return resultado.ToString().Trim();
-            
+
         }
 
         public string NumCompletoALetraCard(string numero)
@@ -130,10 +132,11 @@ namespace TFTService
 
                     if (!string.IsNullOrEmpty(numCentenaLetra) && !numCentenaLetra.Equals("zero"))
                     {
-                        if(contadorSufijos == 0)
+                        if (contadorSufijos == 0)
                         {
-                            resultado.Insert(0, numCentenaLetra+" ");
-                        }else if(contadorSufijos % 2 != 0)
+                            resultado.Insert(0, numCentenaLetra + " ");
+                        }
+                        else if (contadorSufijos % 2 != 0)
                         {
                             int sufijoIndice = (contadorSufijos / 2) - 1;
                             if (sufijoIndice >= 0)
@@ -144,13 +147,13 @@ namespace TFTService
                                 }
                                 else
                                 {
-                                    resultado.Insert(0," mil " + sufijos[sufijoIndice] + " ");
+                                    resultado.Insert(0, " mil " + sufijos[sufijoIndice] + " ");
                                 }
-                                
+
                             }
                             else
                             {
-                                if(numCentenaLetra!= "un")
+                                if (numCentenaLetra != "un")
                                 {
                                     resultado.Insert(0, numCentenaLetra + " mil ");
                                 }
@@ -158,11 +161,11 @@ namespace TFTService
                                 {
                                     resultado.Insert(0, " mil ");
                                 }
-                                
+
                             }
-                            
+
                         }
-                        else if(numCentenaLetra != "un")
+                        else if (numCentenaLetra != "un")
                         {
                             int sufijoIndice = (contadorSufijos / 2) - 1;
                             resultado.Insert(0, numCentenaLetra + " " + sufijos[sufijoIndice] + " ");
@@ -175,7 +178,7 @@ namespace TFTService
 
                     }
                     contadorSufijos++;
-                       
+
                 }
             }
             if (string.IsNullOrEmpty(resultado.ToString()))
@@ -184,7 +187,7 @@ namespace TFTService
             }
             return resultado.ToString().Trim();
         }
-        
+
         public string NumCompletoALetraOrd(string numero, string genero)
         {
             int tamañoNumero = numero.Length;
@@ -260,9 +263,9 @@ namespace TFTService
             StringBuilder resultado = new StringBuilder();
             if (tamañoNumero <= 2)
             {
-                
+
                 int numeroInt = int.Parse(numero);
-                if(numeroInt == 0 || numeroInt == 1)
+                if (numeroInt == 0 || numeroInt == 1)
                 {
                     resultado.Insert(0, "");
                 }
@@ -321,5 +324,137 @@ namespace TFTService
 
             return resultado.ToString();
         }
+
+        public string NumCompletoALetraMult(string numero)
+        {
+            int tamañoNumero = numero.Length;
+            StringBuilder resultado = new StringBuilder();
+            if (tamañoNumero <= 3)
+            {
+
+                int numeroInt = int.Parse(numero);
+                if (numeroInt == 0 || numeroInt == 1)
+                {
+                    resultado.Insert(0, "");
+                }
+                else if (numeroInt == 2 || numeroInt == 3)
+                {
+                    switch (numeroInt)
+                    {
+                        case 2: resultado.Insert(0, "Doble"); break;
+                        case 3: resultado.Insert(0, "Triple"); break;
+                    }
+                }
+                else if (numeroInt >= 4 && numeroInt <= 12)
+                {
+                    switch (numeroInt)
+                    {
+                        case 4: resultado.Insert(0, "Quàdruple"); break;
+                        case 5: resultado.Insert(0, "Quìntuple"); break;
+                        case 6: resultado.Insert(0, "Sèxtuple"); break;
+                        case 7: resultado.Insert(0, "Sèptuple"); break;
+                        case 8: resultado.Insert(0, "Òctuple"); break;
+                        case 9: resultado.Insert(0, "Nonùple"); break;
+                        case 10: resultado.Insert(0, "Dècuple"); break;
+                        case 11: resultado.Insert(0, "Undècuple"); break;
+                        case 12: resultado.Insert(0, "Duodècuple"); break;
+                    }
+                }
+                else if(numeroInt == 100)
+                {
+                    resultado.Insert(0, "Cèntuple");
+                }
+                else
+                {
+                    string NumCompletoCard = NumCompletoALetraCard(numero);
+                    resultado.Insert(0, NumCompletoCard + " vegades");
+                }
+
+            }
+            else
+            {
+                string NumCompletoCard = NumCompletoALetraCard(numero);
+                resultado.Insert(0, NumCompletoCard + " de vegades");
+            }
+            return resultado.ToString();
+        }
+
+        public string NumCompletoALetraCardDec(string numero)
+        {
+            
+            StringBuilder resultado = new StringBuilder();
+            StringBuilder numCentena = new StringBuilder();
+
+            Dictionary<int,string> sufijosDecimales = new Dictionary<int, string>
+                {
+                    { 1, "dècim" }, { 2, "centèsim" }, { 3, "mil·lèsim" }, { 6, "milionèsim" },
+                    { 12, "bilionèsim" }, { 18, "trilionèsim" }, { 24, "quadrilionèsim" },
+                    { 30, "quintilionèsim" }, { 36, "sextilionèsim" }, { 42, "septilionèsim" },
+                    { 48, "octilionèsim" }, { 54, "nonilionèsim" }, { 60, "decilionèsim" },
+                    { 66, "undecilionèsim" }, { 72, "duodecilionèsim" }, { 78, "tredecilionèsim" },
+                    { 84, "quatuordecilionèsim" }, { 90, "quindecilionèsim" }, {96 , "sexdecilionèsim" },
+                    { 102, "septendecilionèsim" }, { 108, "octodecilionèsim" }, { 114, "novendecilionèsim" },
+                    { 120, "vigintilionèsim" }
+                 };
+
+            int longitudNumero = numero.Length;
+            int claveSeleccionada = 1;
+
+            foreach (var key in sufijosDecimales.Keys)
+            {
+                if (key <= longitudNumero)
+                {
+                    claveSeleccionada = key;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            string sufijoBase = sufijosDecimales[claveSeleccionada];
+            StringBuilder sufijoFinal = new StringBuilder();    
+
+            int diferencia = longitudNumero - claveSeleccionada;    
+            if(diferencia % 6 == 1)
+            {
+                sufijoFinal.Append("deu ");
+            }
+            else if (diferencia % 6 == 2) // 5, 8, 14, etc.
+            {
+                sufijoFinal.Append("cent ");
+            }
+            else if (diferencia % 6 == 3) // 6, 9, 15, etc.
+            {
+                sufijoFinal.Append("mil ");
+            }
+            else if (diferencia % 6 == 4) // 10, 16, 22, etc.
+            {
+                sufijoFinal.Append("deu mil ");
+            }
+            else if (diferencia % 6 == 5) // 11, 17, 23, etc.
+            {
+                sufijoFinal.Append("cent mil ");
+            }
+
+            sufijoFinal.Append(sufijoBase);
+
+            string NumCompleCard = NumCompletoALetraCard(numero);
+            if(NumCompleCard == "un")
+            {
+                resultado.Insert(0, NumCompleCard + " " + sufijoFinal.ToString());
+            }
+            else
+            {
+                resultado.Insert(0, NumCompleCard + " "+sufijoFinal.ToString()+"es");
+            }
+          
+            //return resultado.ToString().Trim();
+            return resultado.ToString();
+        }
+
     }
+ 
+
+    
 }

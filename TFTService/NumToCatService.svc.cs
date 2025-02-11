@@ -416,23 +416,23 @@ namespace TFTService
             StringBuilder sufijoFinal = new StringBuilder();    
 
             int diferencia = longitudNumero - claveSeleccionada;    
-            if(diferencia % 6 == 1)
+            if(diferencia == 1)
             {
                 sufijoFinal.Append("deu ");
             }
-            else if (diferencia % 6 == 2) // 5, 8, 14, etc.
+            else if (diferencia == 2) // 5, 8, 14, etc.
             {
                 sufijoFinal.Append("cent ");
             }
-            else if (diferencia % 6 == 3) // 6, 9, 15, etc.
+            else if (diferencia == 3) // 6, 9, 15, etc.
             {
                 sufijoFinal.Append("mil ");
             }
-            else if (diferencia % 6 == 4) // 10, 16, 22, etc.
+            else if (diferencia == 4) // 10, 16, 22, etc.
             {
                 sufijoFinal.Append("deu mil ");
             }
-            else if (diferencia % 6 == 5) // 11, 17, 23, etc.
+            else if (diferencia == 5) // 11, 17, 23, etc.
             {
                 sufijoFinal.Append("cent mil ");
             }

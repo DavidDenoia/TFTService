@@ -9,7 +9,10 @@ using System.ServiceModel.Web;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Web;
 using TFTService;
+using System.Resources;
+
 
 namespace TFTService
 {
@@ -505,16 +508,26 @@ namespace TFTService
             string denominador = Fraccionario.ConvertirNumEnteroFrac(partes[1]);
             string numCompleto = numerador + " " + denominador;
 
-            resultado.Tipo = "Fraccion";
+            resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "FraccionTipo").ToString();
+            //resultado.Tipo = Resource.FraccionTipo;
+            resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();
             resultado.Notas = new List<string>();
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource","FraccionNota1").ToString());    
             resultado.Notas.Add("Nota 1 Ejemplo");
             resultado.Notas.Add("Nota 2 Ejemplo");
+            resultado.TitReferencias = HttpContext.GetGlobalResourceObject("Resource","ReferenciasTitulo").ToString();
+            resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
+            resultado.Ejemplos = new List<string>();
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionarioEjemplo1").ToString().Replace("...", numCompleto));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionarioEjemplo2").ToString().Replace("...", numCompleto));
             resultado.Respuestas = new List<string>();
             resultado.Respuestas.Add(numCompleto);
 
 
             return resultado;
         }
+
+        
     }
  
 

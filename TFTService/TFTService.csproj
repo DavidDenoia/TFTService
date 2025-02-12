@@ -65,6 +65,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cardinales.cs" />
+    <Compile Include="Fraccionario.cs" />
     <Compile Include="NumToCatService.svc.cs">
       <DependentUpon>NumToCatService.svc</DependentUpon>
     </Compile>

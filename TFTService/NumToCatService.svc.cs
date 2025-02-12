@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using TFTService;
 
 namespace TFTService
 {
@@ -453,6 +457,64 @@ namespace TFTService
             return resultado.ToString();
         }
 
+
+        private CultureInfo language;
+        List<Conversion> conversiones = new List<Conversion>();//Aqui vamos a meter todas las conversiones
+        public List<Conversion> MainTraducir(string value, string lenguaje)
+        {
+            if (lenguaje != null)
+            {
+                if (lenguaje.IndexOf("-") > -1) lenguaje = lenguaje.Substring(0, lenguaje.IndexOf("-"));
+                language = new CultureInfo(lenguaje);
+            }
+            else language = new CultureInfo("es");
+            Thread.CurrentThread.CurrentUICulture = language;
+
+            string numero = value.Trim();
+            int longitudNumero = numero.Length;
+            Boolean signo = false;
+            Boolean decima = false;
+            //Comprobacion de signo 
+           if (numero.StartsWith("-") && numero.Length > 1 && char.IsDigit(numero[1]))
+           {
+                signo = true;
+           }
+
+            //Comprobacion de si es decimal
+            if (Regex.IsMatch(numero, @"^([+-]?)\d+([.,])\d+$"))
+            {
+                decima = true;  
+            }
+
+            //Comprobacion de si es fraccionario
+            if(Regex.IsMatch(numero, @"^([+-]?)\d+([/])\d+$"))
+            {
+                conversiones.Add(ConversionFraccion(numero, signo));
+            }
+
+            return conversiones;
+        }
+
+        public Conversion ConversionFraccion(string numero, bool signo)
+        {
+            Thread.CurrentThread.CurrentUICulture = language;
+            Conversion resultado = new Conversion();
+
+            string[] partes = numero.Split('/');
+            string numerador = Cardinales.ConvertirNumEnteroCardinal(partes[0], signo);
+            string denominador = Fraccionario.ConvertirNumEnteroFrac(partes[1]);
+            string numCompleto = numerador + " " + denominador;
+
+            resultado.Tipo = "Fraccion";
+            resultado.Notas = new List<string>();
+            resultado.Notas.Add("Nota 1 Ejemplo");
+            resultado.Notas.Add("Nota 2 Ejemplo");
+            resultado.Respuestas = new List<string>();
+            resultado.Respuestas.Add(numCompleto);
+
+
+            return resultado;
+        }
     }
  
 

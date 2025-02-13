@@ -59,5 +59,95 @@ namespace Resources {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Decimal.
+        /// </summary>
+        internal static string DecimalTipo {
+            get {
+                return ResourceManager.GetString("DecimalTipo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ejemplos.
+        /// </summary>
+        internal static string EjemplosTitulo {
+            get {
+                return ResourceManager.GetString("EjemplosTitulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Quiero ... de chocolate. (Sustantivo).
+        /// </summary>
+        internal static string FraccionarioEjemplo1 {
+            get {
+                return ResourceManager.GetString("FraccionarioEjemplo1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La sequía afecta a ... de la región. (Adjetivo).
+        /// </summary>
+        internal static string FraccionarioEjemplo2 {
+            get {
+                return ResourceManager.GetString("FraccionarioEjemplo2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Las formas de los numerales fraccionarios coinciden con las del numerales ordinales con algunas excepciones: medio(2), cuarto(4), tercio(3) o décimo(10).
+        /// </summary>
+        internal static string FraccionNota1 {
+            get {
+                return ResourceManager.GetString("FraccionNota1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Los numerales fraccionarios correspondientes a ciento, mil, millón, billón, etc. se construyen con el sufijo -èsim..
+        /// </summary>
+        internal static string FraccionNota2 {
+            get {
+                return ResourceManager.GetString("FraccionNota2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Fracción.
+        /// </summary>
+        internal static string FraccionTipo {
+            get {
+                return ResourceManager.GetString("FraccionTipo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Notas.
+        /// </summary>
+        internal static string NotasTitulo {
+            get {
+                return ResourceManager.GetString("NotasTitulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Referencias.
+        /// </summary>
+        internal static string ReferenciasTitulo {
+            get {
+                return ResourceManager.GetString("ReferenciasTitulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ¿Cómo se escribe ... en letras en español?.
+        /// </summary>
+        internal static string ValorNumericoTitulo {
+            get {
+                return ResourceManager.GetString("ValorNumericoTitulo", resourceCulture);
+            }
+        }
     }
 }

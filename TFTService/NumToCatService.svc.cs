@@ -12,6 +12,8 @@ using System.Threading;
 using System.Web;
 using TFTService;
 using System.Resources;
+using System.Numerics;
+
 
 
 namespace TFTService
@@ -476,7 +478,7 @@ namespace TFTService
             string numero = value.Trim();
             int longitudNumero = numero.Length;
             Boolean signo = false;
-            Boolean decima = false;
+            //Boolean decima = false;
             //Comprobacion de signo 
            if (numero.StartsWith("-") && numero.Length > 1 && char.IsDigit(numero[1]))
            {
@@ -486,48 +488,111 @@ namespace TFTService
             //Comprobacion de si es decimal
             if (Regex.IsMatch(numero, @"^([+-]?)\d+([.,])\d+$"))
             {
-                decima = true;  
+                //decima = true;
+                conversiones.Add(ConversionDecimal(numero, signo, value));
             }
 
             //Comprobacion de si es fraccionario
             if(Regex.IsMatch(numero, @"^([+-]?)\d+([/])\d+$"))
             {
-                conversiones.Add(ConversionFraccion(numero, signo));
+                string[] partes = numero.Split('/');
+                string numerador = partes[0];
+                string denominador = partes[1];
+
+                conversiones.Add(ConversionFraccion(numerador,denominador, signo, value));
+                
+                BigInteger Inumerador = BigInteger.Parse(numerador);
+                BigInteger Idenominador = BigInteger.Parse(denominador);
+                if(Idenominador != 0)
+                {
+                    BigInteger parteEntera = Inumerador / Idenominador;
+                    BigInteger resto = Inumerador % Idenominador;
+                    if (resto == 0)
+                    {
+                        conversiones.Add(ConversionCardinal(parteEntera.ToString(), signo));
+                    }
+                    else
+                    {
+                        string numeroDecimal = parteEntera.ToString() + ".";
+                        int contadorDecimales = 0;
+
+                        while (resto != 0 && contadorDecimales < 15)
+                        {
+                            resto *= 10;
+                            BigInteger cociente = resto / Idenominador;
+                            numeroDecimal += cociente.ToString();
+                            resto %= Idenominador;
+                            contadorDecimales++;
+                        }
+                            
+                        System.Diagnostics.Debug.WriteLine("Valor de la parte entera: " + parteEntera.ToString());
+                        System.Diagnostics.Debug.WriteLine("Valor del resto: " + resto.ToString());
+                        System.Diagnostics.Debug.WriteLine("Numero decimal: " + numeroDecimal);
+
+                    }
+                }
+              
+                
+                
+
             }
 
             return conversiones;
         }
 
-        public Conversion ConversionFraccion(string numero, bool signo)
+        public Conversion ConversionFraccion(string pNumerador,string pDenominador, bool signo, string numeroOriginal)
         {
             Thread.CurrentThread.CurrentUICulture = language;
             Conversion resultado = new Conversion();
-
-            string[] partes = numero.Split('/');
-            string numerador = Cardinales.ConvertirNumEnteroCardinal(partes[0], signo);
-            string denominador = Fraccionario.ConvertirNumEnteroFrac(partes[1]);
-            string numCompleto = numerador + " " + denominador;
+       
+            string numerador = Cardinales.ConvertirNumEnteroCardinal(pNumerador, signo);
+            string denominador = Fraccionario.ConvertirNumEnteroFrac(pDenominador);
+            string numCompletoLetras = numerador + " " + denominador;
 
             resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "FraccionTipo").ToString();
             //resultado.Tipo = Resource.FraccionTipo;
             resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();
             resultado.Notas = new List<string>();
-            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource","FraccionNota1").ToString());    
-            resultado.Notas.Add("Nota 1 Ejemplo");
-            resultado.Notas.Add("Nota 2 Ejemplo");
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource","FraccionNota1").ToString());
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionNota2").ToString());
+            
             resultado.TitReferencias = HttpContext.GetGlobalResourceObject("Resource","ReferenciasTitulo").ToString();
             resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
             resultado.Ejemplos = new List<string>();
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionarioEjemplo1").ToString().Replace("...", numCompleto));
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionarioEjemplo2").ToString().Replace("...", numCompleto));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionarioEjemplo1").ToString().Replace("...", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionarioEjemplo2").ToString().Replace("...", numCompletoLetras));
             resultado.Respuestas = new List<string>();
-            resultado.Respuestas.Add(numCompleto);
+            resultado.Respuestas.Add(numCompletoLetras);
+            resultado.TitValorNumerico = HttpContext.GetGlobalResourceObject("Resource", "ValorNumericoTitulo").ToString().Replace("...", numeroOriginal);
 
 
             return resultado;
         }
 
+        public Conversion ConversionDecimal(string numero, bool signo, string numeroOriginal)
+        {
+            Thread.CurrentThread.CurrentUICulture = language;
+            Conversion resultado = new Conversion();
+
+            string[] partes = Regex.Split(numero, @"[.,]");
+            string parteEntera = Cardinales.ConvertirNumEnteroCardinal(partes[0], signo);
+            string parteDecimal = Cardinales.ConvertirNumDecimalCardinal(partes[1]);
+
+            string numCompletoLetras = parteEntera + " ambs " + parteDecimal;
+
+            resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "DecimalTipo").ToString();
+            resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();
+
+            return resultado;
+        }
         
+        public Conversion ConversionCardinal(string numero, bool signo)
+        {
+            Thread.CurrentThread.CurrentUICulture = language;
+            Conversion resultado = new Conversion();
+
+            return resultado;
+        }
     }
  
 

@@ -121,30 +121,30 @@
     <value>Decimal</value>
   </data>
   <data name="EjemplosTitulo" xml:space="preserve">
-    <value>Ejemplos</value>
+    <value>Exemples</value>
   </data>
   <data name="FraccionarioEjemplo1" xml:space="preserve">
-    <value>Quiero ... de chocolate. (Sustantivo)</value>
+    <value>Vull ... de xocolata. (Substantiu)</value>
   </data>
   <data name="FraccionarioEjemplo2" xml:space="preserve">
-    <value>La sequía afecta a ... de la región. (Adjetivo)</value>
+    <value>La sequera afecta a ... de la regió. (Adjectiu)</value>
   </data>
   <data name="FraccionNota1" xml:space="preserve">
-    <value>Las formas de los numerales fraccionarios coinciden con las del numerales ordinales con algunas excepciones: medio(2), cuarto(4), tercio(3) o décimo(10)</value>
+    <value>Les formes dels numerals fraccionaris coincideixen amb les del numerals ordinals amb algunes excepcions: mitjà(2), quart(4), terç(3) o dècim(10)</value>
   </data>
   <data name="FraccionNota2" xml:space="preserve">
-    <value>Los numerales fraccionarios correspondientes a ciento, mil, millón, billón, etc. se construyen con el sufijo -èsim.</value>
+    <value>Els numerals fraccionaris corresponents a cent, mil, milió, bilió, etc. es construeixen amb el sufix -èsim.</value>
   </data>
   <data name="FraccionTipo" xml:space="preserve">
-    <value>Fracción</value>
+    <value>Fracció</value>
   </data>
   <data name="NotasTitulo" xml:space="preserve">
-    <value>Notas</value>
+    <value>Notes</value>
   </data>
   <data name="ReferenciasTitulo" xml:space="preserve">
-    <value>Referencias</value>
+    <value>Referències</value>
   </data>
   <data name="ValorNumericoTitulo" xml:space="preserve">
-    <value>¿Cómo se escribe ... en letras en español?</value>
+    <value>Com s'escriu ... en lletres en espanyol?</value>
   </data>
 </root>

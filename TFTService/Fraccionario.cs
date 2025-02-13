@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace TFTService
@@ -12,13 +13,39 @@ namespace TFTService
         {
             int tamañoNumero = numero.Length;
             StringBuilder resultado = new StringBuilder();
+            if (Regex.IsMatch(numero, @"^10*$"))
+            {
+                string denominador = Cardinales.ConvertirNumEnteroCardinal(numero, false);
+                if(denominador == "deu")
+                {
+                    denominador = "dècim";
+                }
+                else if(denominador== "cent")
+                {
+                    denominador = "centèsim";
+
+                }else if(denominador == "mil")
+                {
+                    denominador = "mil·lèsim";
+                }
+                else
+                {
+                    denominador = Cardinales.ConvertirNumDecimalCardinal(numero);
+                }
+                resultado.Insert(0,denominador);
+                return resultado.ToString();
+            }
+
             if (tamañoNumero <= 2)
             {
 
                 int numeroInt = int.Parse(numero);
-                if (numeroInt == 0 || numeroInt == 1)
+                if (numeroInt == 0) 
                 {
-                    resultado.Insert(0, "");
+                    resultado.Insert(0, "partit per zero");
+                }else if(numeroInt == 1)
+                {
+                    resultado.Insert(0, "partit per un");
                 }
                 else if (numeroInt >= 2 && numeroInt <= 4 || numeroInt == 10)
                 {

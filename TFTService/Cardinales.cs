@@ -86,10 +86,10 @@ namespace TFTService
 
                 }
             }
-            if (string.IsNullOrEmpty(resultado.ToString()))
+            /*if (string.IsNullOrEmpty(resultado.ToString()))
             {
                 resultado.Insert(0, "zero");
-            }
+            }*/
 
             if(signo == true && resultado.ToString() != "zero")
             {

@@ -61,6 +61,51 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a La cantidad de agua es de … litros..
+        /// </summary>
+        internal static string CardinalEjemplo1 {
+            get {
+                return ResourceManager.GetString("CardinalEjemplo1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La distancia entre ambas ciudades es de … kilómetros..
+        /// </summary>
+        internal static string CardinalEjemplo2 {
+            get {
+                return ResourceManager.GetString("CardinalEjemplo2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cardinal.
+        /// </summary>
+        internal static string CardinalTipo {
+            get {
+                return ResourceManager.GetString("CardinalTipo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El peso del paquete es de … kilogramos..
+        /// </summary>
+        internal static string DecimalEjemplo1 {
+            get {
+                return ResourceManager.GetString("DecimalEjemplo1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El velocímetro marcaba … kilómetros por hora..
+        /// </summary>
+        internal static string DecimalEjemplo2 {
+            get {
+                return ResourceManager.GetString("DecimalEjemplo2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Decimal.
         /// </summary>
         internal static string DecimalTipo {
@@ -79,7 +124,25 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Quiero ... de chocolate. (Sustantivo).
+        ///   Busca una cadena traducida similar a Expresion.
+        /// </summary>
+        internal static string ExpresionTitulo {
+            get {
+                return ResourceManager.GetString("ExpresionTitulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Forma femenina.
+        /// </summary>
+        internal static string FormFem {
+            get {
+                return ResourceManager.GetString("FormFem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Quiero ... de chocolate. .
         /// </summary>
         internal static string FraccionarioEjemplo1 {
             get {
@@ -88,11 +151,20 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a La sequía afecta a ... de la región. (Adjetivo).
+        ///   Busca una cadena traducida similar a La sequía afecta a ... de la región. .
         /// </summary>
         internal static string FraccionarioEjemplo2 {
             get {
                 return ResourceManager.GetString("FraccionarioEjemplo2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Fraccionario.
+        /// </summary>
+        internal static string FraccionarioTipo {
+            get {
+                return ResourceManager.GetString("FraccionarioTipo", resourceCulture);
             }
         }
         
@@ -124,11 +196,47 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Mi cuenta bancaria quedó en … euros después de pagar las facturas..
+        /// </summary>
+        internal static string NegativoEjemplo1 {
+            get {
+                return ResourceManager.GetString("NegativoEjemplo1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La diferencia de potencial eléctrico fue de … voltios..
+        /// </summary>
+        internal static string NegativoEjemplo2 {
+            get {
+                return ResourceManager.GetString("NegativoEjemplo2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Negativo.
+        /// </summary>
+        internal static string NegativoTipo {
+            get {
+                return ResourceManager.GetString("NegativoTipo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Notas.
         /// </summary>
         internal static string NotasTitulo {
             get {
                 return ResourceManager.GetString("NotasTitulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ordinal.
+        /// </summary>
+        internal static string OrdinalTipo {
+            get {
+                return ResourceManager.GetString("OrdinalTipo", resourceCulture);
             }
         }
         
@@ -142,7 +250,25 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a ¿Cómo se escribe ... en letras en español?.
+        ///   Busca una cadena traducida similar a Sustantivo, adjetivo y pronombre.
+        /// </summary>
+        internal static string SusAdProTitulo {
+            get {
+                return ResourceManager.GetString("SusAdProTitulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Todas las opciones y funciones.
+        /// </summary>
+        internal static string TituloOpciones {
+            get {
+                return ResourceManager.GetString("TituloOpciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Valor numérico.
         /// </summary>
         internal static string ValorNumericoTitulo {
             get {

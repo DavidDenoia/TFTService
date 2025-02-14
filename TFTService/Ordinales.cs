@@ -8,7 +8,7 @@ namespace TFTService
 {
     public class Ordinales
     {
-        public string ConvertirNumEnteroOrdinal(string numero, string genero)
+        public static string ConvertirNumEnteroOrdinal(string numero, string genero)
         {
             int tamañoNumero = numero.Length;
             StringBuilder resultado = new StringBuilder();

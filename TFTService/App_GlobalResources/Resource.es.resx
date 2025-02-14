@@ -117,17 +117,41 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CardinalEjemplo1" xml:space="preserve">
+    <value>La cantidad de agua es de … litros.</value>
+  </data>
+  <data name="CardinalEjemplo2" xml:space="preserve">
+    <value>La distancia entre ambas ciudades es de … kilómetros.</value>
+  </data>
+  <data name="CardinalTipo" xml:space="preserve">
+    <value>Cardinal</value>
+  </data>
+  <data name="DecimalEjemplo1" xml:space="preserve">
+    <value>El peso del paquete es de … kilogramos.</value>
+  </data>
+  <data name="DecimalEjemplo2" xml:space="preserve">
+    <value>El velocímetro marcaba … kilómetros por hora.</value>
+  </data>
   <data name="DecimalTipo" xml:space="preserve">
     <value>Decimal</value>
   </data>
   <data name="EjemplosTitulo" xml:space="preserve">
     <value>Ejemplos</value>
   </data>
+  <data name="ExpresionTitulo" xml:space="preserve">
+    <value>Expresión</value>
+  </data>
+  <data name="FormFem" xml:space="preserve">
+    <value>Forma femenina</value>
+  </data>
   <data name="FraccionarioEjemplo1" xml:space="preserve">
-    <value>Quiero ... de chocolate. (Sustantivo)</value>
+    <value>Quiero ... de chocolate. </value>
   </data>
   <data name="FraccionarioEjemplo2" xml:space="preserve">
-    <value>La sequía afecta a ... de la región. (Adjetivo)</value>
+    <value>La sequía afecta a ... de la región. </value>
+  </data>
+  <data name="FraccionarioTipo" xml:space="preserve">
+    <value>Fraccionario</value>
   </data>
   <data name="FraccionNota1" xml:space="preserve">
     <value>Las formas de los numerales fraccionarios coinciden con las del numerales ordinales con algunas excepciones: medio(2), cuarto(4), tercio(3) o décimo(10)</value>
@@ -138,13 +162,32 @@
   <data name="FraccionTipo" xml:space="preserve">
     <value>Fracción</value>
   </data>
+  <data name="NegativoEjemplo1" xml:space="preserve">
+    <value>Mi cuenta bancaria quedó en … euros después de pagar las facturas.
+</value>
+  </data>
+  <data name="NegativoEjemplo2" xml:space="preserve">
+    <value>La diferencia de potencial eléctrico fue de … voltios.</value>
+  </data>
+  <data name="NegativoTipo" xml:space="preserve">
+    <value>Negativo</value>
+  </data>
   <data name="NotasTitulo" xml:space="preserve">
     <value>Notas</value>
+  </data>
+  <data name="OrdinalTipo" xml:space="preserve">
+    <value>Ordinal</value>
   </data>
   <data name="ReferenciasTitulo" xml:space="preserve">
     <value>Referencias</value>
   </data>
+  <data name="SusAdProTitulo" xml:space="preserve">
+    <value>Sustantivo, adjetivo y pronombre</value>
+  </data>
+  <data name="TituloOpciones" xml:space="preserve">
+    <value>Todas las opciones y funciones</value>
+  </data>
   <data name="ValorNumericoTitulo" xml:space="preserve">
-    <value>¿Cómo se escribe ... en letras en español?</value>
+    <value>Valor numérico</value>
   </data>
 </root>

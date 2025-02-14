@@ -117,17 +117,41 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CardinalEjemplo1" xml:space="preserve">
+    <value>La quantitat d'aigua és de … litres</value>
+  </data>
+  <data name="CardinalEjemplo2" xml:space="preserve">
+    <value>La distància entre totes dues ciutats és de … quilòmetres.</value>
+  </data>
+  <data name="CardinalTipo" xml:space="preserve">
+    <value>Cardinal</value>
+  </data>
+  <data name="DecimalEjemplo1" xml:space="preserve">
+    <value>El pes del paquet és de … quilograms.</value>
+  </data>
+  <data name="DecimalEjemplo2" xml:space="preserve">
+    <value>El velocímetre marcava … quilòmetres per hora.</value>
+  </data>
   <data name="DecimalTipo" xml:space="preserve">
     <value>Decimal</value>
   </data>
   <data name="EjemplosTitulo" xml:space="preserve">
     <value>Exemples</value>
   </data>
+  <data name="ExpresionTitulo" xml:space="preserve">
+    <value>Expressió</value>
+  </data>
+  <data name="FormFem" xml:space="preserve">
+    <value>Forma femenina</value>
+  </data>
   <data name="FraccionarioEjemplo1" xml:space="preserve">
-    <value>Vull ... de xocolata. (Substantiu)</value>
+    <value>Vull ... de xocolata. </value>
   </data>
   <data name="FraccionarioEjemplo2" xml:space="preserve">
-    <value>La sequera afecta a ... de la regió. (Adjectiu)</value>
+    <value>La sequera afecta a ... de la regió. </value>
+  </data>
+  <data name="FraccionarioTipo" xml:space="preserve">
+    <value>Fraccionari</value>
   </data>
   <data name="FraccionNota1" xml:space="preserve">
     <value>Les formes dels numerals fraccionaris coincideixen amb les del numerals ordinals amb algunes excepcions: mitjà(2), quart(4), terç(3) o dècim(10)</value>
@@ -138,13 +162,31 @@
   <data name="FraccionTipo" xml:space="preserve">
     <value>Fracció</value>
   </data>
+  <data name="NegativoEjemplo1" xml:space="preserve">
+    <value>El meu compte bancari va quedar en … euros després de pagar les factures.</value>
+  </data>
+  <data name="NegativoEjemplo2" xml:space="preserve">
+    <value>La diferència de potencial elèctric va ser de … volts.</value>
+  </data>
+  <data name="NegativoTipo" xml:space="preserve">
+    <value>Negatiu</value>
+  </data>
   <data name="NotasTitulo" xml:space="preserve">
     <value>Notes</value>
+  </data>
+  <data name="OrdinalTipo" xml:space="preserve">
+    <value>Ordinal</value>
   </data>
   <data name="ReferenciasTitulo" xml:space="preserve">
     <value>Referències</value>
   </data>
+  <data name="SusAdProTitulo" xml:space="preserve">
+    <value>Substantiu, adjectiu i pronom</value>
+  </data>
+  <data name="TituloOpciones" xml:space="preserve">
+    <value>Totes les opcions i funcions</value>
+  </data>
   <data name="ValorNumericoTitulo" xml:space="preserve">
-    <value>Com s'escriu ... en lletres en espanyol?</value>
+    <value>Valor numèric</value>
   </data>
 </root>

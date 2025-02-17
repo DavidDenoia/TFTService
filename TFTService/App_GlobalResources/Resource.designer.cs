@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Adjetivo.
+        /// </summary>
+        internal static string AdjetivoOpcion {
+            get {
+                return ResourceManager.GetString("AdjetivoOpcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a La cantidad de agua es de … litros..
         /// </summary>
         internal static string CardinalEjemplo1 {
@@ -135,9 +144,9 @@ namespace Resources {
         /// <summary>
         ///   Busca una cadena traducida similar a Forma femenina.
         /// </summary>
-        internal static string FormFem {
+        internal static string FormFemOpcion {
             get {
-                return ResourceManager.GetString("FormFem", resourceCulture);
+                return ResourceManager.GetString("FormFemOpcion", resourceCulture);
             }
         }
         
@@ -255,6 +264,15 @@ namespace Resources {
         internal static string SusAdProTitulo {
             get {
                 return ResourceManager.GetString("SusAdProTitulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sustantivo.
+        /// </summary>
+        internal static string SustantivoOpcion {
+            get {
+                return ResourceManager.GetString("SustantivoOpcion", resourceCulture);
             }
         }
         

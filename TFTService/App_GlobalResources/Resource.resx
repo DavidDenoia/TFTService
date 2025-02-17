@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AdjetivoOpcion" xml:space="preserve">
+    <value>Adjetivo</value>
+  </data>
   <data name="CardinalEjemplo1" xml:space="preserve">
     <value>La cantidad de agua es de … litros.</value>
   </data>
@@ -141,7 +144,7 @@
   <data name="ExpresionTitulo" xml:space="preserve">
     <value>Expresion</value>
   </data>
-  <data name="FormFem" xml:space="preserve">
+  <data name="FormFemOpcion" xml:space="preserve">
     <value>Forma femenina</value>
   </data>
   <data name="FraccionarioEjemplo1" xml:space="preserve">
@@ -182,6 +185,9 @@
   </data>
   <data name="SusAdProTitulo" xml:space="preserve">
     <value>Sustantivo, adjetivo y pronombre</value>
+  </data>
+  <data name="SustantivoOpcion" xml:space="preserve">
+    <value>Sustantivo</value>
   </data>
   <data name="TituloOpciones" xml:space="preserve">
     <value>Todas las opciones y funciones</value>

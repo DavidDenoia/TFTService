@@ -9,7 +9,7 @@ namespace TFTService
 {
     public class Fraccionario
     {
-        public static string ConvertirNumEnteroFracDenominador(string numero)
+        public static string ConvertirNumEnteroFracDenominador(string numero, string genero)
         {
             int tamañoNumero = numero.Length;
             StringBuilder resultado = new StringBuilder();
@@ -18,15 +18,15 @@ namespace TFTService
                 string denominador = Cardinales.ConvertirNumEnteroCardinal(numero, false);
                 if(denominador == "deu")
                 {
-                    denominador = "dècim";
+                    denominador = genero == "M" ? "dècim" : "dècima";
                 }
                 else if(denominador== "cent")
                 {
-                    denominador = "centèsim";
+                    denominador = genero == "M" ? "centèsim" : "centèsima";
 
                 }else if(denominador == "mil")
                 {
-                    denominador = "mil·lèsim";
+                    denominador = genero == "M" ? "mil·lèsim" : "mil·lèsima";
                 }
                 else
                 {
@@ -51,10 +51,10 @@ namespace TFTService
                 {
                     switch (numeroInt)
                     {
-                        case 2: resultado.Insert(0, "mig"); break;
-                        case 3: resultado.Insert(0, "terç"); break;
-                        case 4: resultado.Insert(0, "quart"); break;
-                        case 10: resultado.Insert(0, "dècim"); break;
+                        case 2: resultado.Insert(0, genero == "M" ? "mig" : "mitja"); break;
+                        case 3: resultado.Insert(0, genero == "M" ? "terç" : "tercera"); break;
+                        case 4: resultado.Insert(0, genero == "M" ? "quart" : "quarta"); break;
+                        case 10: resultado.Insert(0, genero == "M" ? "dècim" : "dècima"); break;
                     }
                 }
                 else
@@ -62,19 +62,19 @@ namespace TFTService
                     string numCard = Cardinales.ConvertirNumEnteroCardinal(numero,false);
                     if (numCard.EndsWith("c"))
                     {
-                        resultado.Insert(0, numCard.Substring(0, numCard.Length - 1));
+                        resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1)+"què" : numCard.Substring(0, numCard.Length - 1) + "quena");
                     }
                     else if (numCard.EndsWith("ou"))
                     {
-                        resultado.Insert(0, numCard.Substring(0, numCard.Length - 1) + "vè");
+                        resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "vè" : numCard.Substring(0, numCard.Length - 1) + "vena");
                     }
                     else if (numCard.EndsWith("s") || numCard.EndsWith("t") || numCard.EndsWith("n"))
                     {
-                        resultado.Insert(0, numCard + "è");
+                        resultado.Insert(0, genero == "M" ? numCard + "è" : numCard + "ena");
                     }
                     else if (numCard.EndsWith("a") || numCard.EndsWith("e"))
                     {
-                        resultado.Insert(0, numCard.Substring(0, numCard.Length - 1) + "è");
+                        resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "è" : numCard.Substring(0, numCard.Length - 1) + "ena");
                     }
 
                 }

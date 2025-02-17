@@ -141,7 +141,7 @@
   <data name="ExpresionTitulo" xml:space="preserve">
     <value>Expresión</value>
   </data>
-  <data name="FormFem" xml:space="preserve">
+  <data name="FormFemOpcion" xml:space="preserve">
     <value>Forma femenina</value>
   </data>
   <data name="FraccionarioEjemplo1" xml:space="preserve">
@@ -183,6 +183,9 @@
   </data>
   <data name="SusAdProTitulo" xml:space="preserve">
     <value>Sustantivo, adjetivo y pronombre</value>
+  </data>
+  <data name="SustantivoOpcion" xml:space="preserve">
+    <value>Sustantivo</value>
   </data>
   <data name="TituloOpciones" xml:space="preserve">
     <value>Todas las opciones y funciones</value>

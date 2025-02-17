@@ -599,8 +599,63 @@ namespace TFTService
             Conversion resultado = new Conversion();
        
             string numerador = Cardinales.ConvertirNumEnteroCardinal(pNumerador, signo);
-            string denominador = Fraccionario.ConvertirNumEnteroFracDenominador(pDenominador);
+            string denominador = Fraccionario.ConvertirNumEnteroFracDenominador(pDenominador, "M");
+
+            string denominadorAdj = "";
+            string numeradorAdj = "";
+            if(numerador == "un")
+            {
+                numeradorAdj = numerador + "a";
+            }else if (numerador == "dos")
+            {
+                numeradorAdj = "dues";
+                if(denominador == "terç")
+                {
+                    denominador = "tercos";
+                }else if(denominador.EndsWith("è"))
+                {
+                    denominador = denominador.Substring(0, denominador.Length - 1) + "ens";
+                }
+                else
+                {
+                    denominador = denominador + "s";
+                }    
+            }
+            else
+            {
+                numeradorAdj = numerador;
+                if (denominador == "terç")
+                {
+                    denominador = "tercos";
+                }
+                else if (denominador.EndsWith("è"))
+                {
+                    denominador = denominador.Substring(0, denominador.Length - 1) + "ens";
+                }
+                else
+                {
+                    denominador = denominador + "s";
+                }
+            }
+
+            if (numeradorAdj == "una")
+            {
+                denominadorAdj = Fraccionario.ConvertirNumEnteroFracDenominador(pDenominador, "F");
+            }
+            else
+            {
+                denominadorAdj = Fraccionario.ConvertirNumEnteroFracDenominador(pDenominador, "F");
+                if(denominadorAdj == "mitja")
+                {
+                    denominadorAdj = "mitges";
+                }else if (denominadorAdj.EndsWith("a"))
+                {
+                    denominadorAdj = denominadorAdj.Substring(0, denominadorAdj.Length - 1) + "es";
+                }
+            }
+
             string numCompletoLetras = numerador + " " + denominador;
+            string numCompletoAdj = numeradorAdj + " " + denominadorAdj;
 
             resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "FraccionTipo").ToString();
             resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();
@@ -617,7 +672,20 @@ namespace TFTService
             resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionarioEjemplo2").ToString().Replace("...", numCompletoLetras));
             resultado.Respuestas = new List<string>();
             resultado.Respuestas.Add(numCompletoLetras);
-           
+
+            resultado.TitOpciones = HttpContext.GetGlobalResourceObject("Resource", "TituloOpciones").ToString();
+            resultado.MasOpciones = new List<Opcion>();
+
+            Opcion Sustantivo = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "SustantivoOpcion").ToString());
+            Sustantivo.Opciones = new List<string>();
+            Sustantivo.Opciones.Add(numCompletoLetras);
+
+            Opcion Adjetivo = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "AdjetivoOpcion").ToString());
+            Adjetivo.Opciones = new List<string>();
+            Adjetivo.Opciones.Add(numCompletoAdj);
+
+            resultado.MasOpciones.Add(Sustantivo);
+            resultado.MasOpciones.Add(Adjetivo);
 
 
             return resultado;
@@ -761,7 +829,7 @@ namespace TFTService
             resultado.TitOpciones = HttpContext.GetGlobalResourceObject("Resource", "TituloOpciones").ToString();
             resultado.MasOpciones = new List<Opcion>();
 
-            Opcion FormFem = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormFem").ToString());
+            Opcion FormFem = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormFemOpcion").ToString());
             FormFem.Opciones = new List<string>();
             FormFem.Opciones.Add(Ordinales.ConvertirNumEnteroOrdinal(numero, "F"));
 

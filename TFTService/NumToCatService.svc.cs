@@ -615,6 +615,9 @@ namespace TFTService
                 }else if(denominador.EndsWith("è"))
                 {
                     denominador = denominador.Substring(0, denominador.Length - 1) + "ens";
+                }else if (denominador.EndsWith("n"))
+                {
+                    denominador = denominador + "ques";
                 }
                 else
                 {
@@ -631,6 +634,10 @@ namespace TFTService
                 else if (denominador.EndsWith("è"))
                 {
                     denominador = denominador.Substring(0, denominador.Length - 1) + "ens";
+                }
+                else if (denominador.EndsWith("n"))
+                {
+                    denominador = denominador + "ques";
                 }
                 else
                 {

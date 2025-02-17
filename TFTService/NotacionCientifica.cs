@@ -55,5 +55,51 @@ namespace TFTService
             return resultado;
 
         }
+
+        public static string ExpandirNotacionCientificaNegativa(string numero, int exponente)
+        {
+            string resultado = "";
+            bool comaEncontrada = false;
+            int posicionComa = -1;
+
+            
+            for (int i = 0; i < numero.Length; i++)
+            {
+                if (numero[i] == '.' || numero[i] == ',')
+                {
+                    comaEncontrada = true;
+                    posicionComa = resultado.Length;
+                    continue;
+                }
+                resultado += numero[i];
+               
+            }
+
+            
+            if (!comaEncontrada)
+            {
+                posicionComa = resultado.Length;
+            }
+
+            
+            int nuevaPosicionComa = posicionComa + exponente;
+
+            if (nuevaPosicionComa <= 0)
+            {
+                resultado = "0." + new string('0', Math.Abs(nuevaPosicionComa)) + resultado;
+
+            }
+            else
+            {
+                resultado = resultado.Insert(nuevaPosicionComa, ".");
+            }
+
+            resultado = resultado.TrimEnd('0').TrimEnd('.');
+
+            System.Diagnostics.Debug.WriteLine("RESULTADO FINAL: " + resultado);
+            return resultado;
+        }
+
+
     }
 }

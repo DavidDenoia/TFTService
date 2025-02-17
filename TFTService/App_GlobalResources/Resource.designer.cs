@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Adjetivo y pronombre femenino.
+        /// </summary>
+        internal static string AdjetivoPronombreFOpcion {
+            get {
+                return ResourceManager.GetString("AdjetivoPronombreFOpcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a La cantidad de agua es de … litros..
         /// </summary>
         internal static string CardinalEjemplo1 {
@@ -129,6 +138,15 @@ namespace Resources {
         internal static string EjemplosTitulo {
             get {
                 return ResourceManager.GetString("EjemplosTitulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Expresión con adjetivo.
+        /// </summary>
+        internal static string ExpresionAdjetivoOpcion {
+            get {
+                return ResourceManager.GetString("ExpresionAdjetivoOpcion", resourceCulture);
             }
         }
         
@@ -205,6 +223,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Multiplicativo.
+        /// </summary>
+        internal static string MultiplicativoTipo {
+            get {
+                return ResourceManager.GetString("MultiplicativoTipo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Mi cuenta bancaria quedó en … euros después de pagar las facturas..
         /// </summary>
         internal static string NegativoEjemplo1 {
@@ -264,6 +291,24 @@ namespace Resources {
         internal static string SusAdProTitulo {
             get {
                 return ResourceManager.GetString("SusAdProTitulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sustantivo femenino.
+        /// </summary>
+        internal static string SustantivoFOpcion {
+            get {
+                return ResourceManager.GetString("SustantivoFOpcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sustantivo masculino.
+        /// </summary>
+        internal static string SustantivoMOpcion {
+            get {
+                return ResourceManager.GetString("SustantivoMOpcion", resourceCulture);
             }
         }
         

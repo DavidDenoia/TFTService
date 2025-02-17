@@ -13,6 +13,8 @@ using System.Web;
 using TFTService;
 using System.Resources;
 using System.Numerics;
+using System.Web.Script.Serialization;
+using System.Diagnostics.Eventing.Reader;
 
 
 
@@ -570,24 +572,43 @@ namespace TFTService
                 else if (exponente >= 0)
                 {
                     string numeroExpandido = NotacionCientifica.ExpandirNotacionCientificaPositiva(baseNum, exponente);
-                    if (numeroExpandido.Contains('.')){
+                    if (numeroExpandido.Contains('.'))
+                    {
                         conversiones.Add(ConversionDecimal(numeroExpandido, signo, value, true));
                     }
-                    else if(signo == true)
+                    else if (signo == true)
                     {
                         conversiones.Add(ConversionNegativo(numeroExpandido, signo, value, true));
 
                     }
                     else
                     {
-                        conversiones.Add(ConversionCardinal(numeroExpandido,signo, value, true));
-                        conversiones.Add(ConversionOrdinal(numeroExpandido,signo, value, false));
+                        conversiones.Add(ConversionCardinal(numeroExpandido, signo, value, true));
+                        conversiones.Add(ConversionOrdinal(numeroExpandido, signo, value, false));
+                        conversiones.Add(ConversionFraccionario(numeroExpandido, signo, value, false));
+                        conversiones.Add(ConversionMultiplicativo(numeroExpandido, signo, value, false));
+                    }
+                }
+                else
+                {
+                    string numeroExpandido = NotacionCientifica.ExpandirNotacionCientificaNegativa(baseNum, exponente);
+                    if (numeroExpandido.Contains('.'))
+                    {
+                        conversiones.Add(ConversionDecimal(numeroExpandido, signo, value, true));
+                    }
+                    else if (signo == true)
+                    {
+                        conversiones.Add(ConversionNegativo(numeroExpandido, signo, value, true));
+                    }
+                    else
+                    {
+                        conversiones.Add(ConversionCardinal(numeroExpandido, signo, value, true));
+                        conversiones.Add(ConversionOrdinal(numeroExpandido, signo, value, false));
+                        conversiones.Add(ConversionFraccionario(numeroExpandido, signo, value, false));
+                        conversiones.Add(ConversionMultiplicativo(numeroExpandido, signo, value, false));
                     }
                 }
                
-                
-
-
             }
 
             return conversiones;
@@ -856,12 +877,67 @@ namespace TFTService
             resultado.TitReferencias = HttpContext.GetGlobalResourceObject("Resource", "ReferenciasTitulo").ToString();
             //AÑADIR REFERENCIAS BUENAS CUANDO ACABES!!!!!!!!!!!!!!!!!!
 
+
+            resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
+            resultado.Ejemplos = new List<string>();
+            //AÑADIR EJEMPLOS
             resultado.Respuestas = new List<string>();
             resultado.Respuestas.Add(numCompletoLetras);
+
+            resultado.TitOpciones = HttpContext.GetGlobalResourceObject("Resource", "TituloOpciones").ToString();
+            resultado.MasOpciones = new List<Opcion>();
+
+            Opcion SustantivoM = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "SustantivoMOpcion").ToString());
+            SustantivoM.Opciones = new List<string>();
+            SustantivoM.Opciones.Add(numCompletoLetras);
+
+            Opcion SustantivoF = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "SustantivoFOpcion").ToString());
+            SustantivoF.Opciones = new List<string>();
+            SustantivoF.Opciones.Add(Fraccionario.ConvertirNumEnteroFraccionario(numero, "F"));
+
+            Opcion AdjetivoPronF = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "AdjetivoPronombreFOpcion").ToString());
+            AdjetivoPronF.Opciones = new List<string>();
+            AdjetivoPronF.Opciones.Add(Fraccionario.ConvertirNumEnteroFraccionario(numero, "F"));
+
+            resultado.MasOpciones.Add(SustantivoM);
+            resultado.MasOpciones.Add(SustantivoF);
+            resultado.MasOpciones.Add(AdjetivoPronF);
 
             return resultado;
         }
         
+        public Conversion ConversionMultiplicativo(string numero, bool signo, string numeroOriginal, bool valorNum)
+        {
+            Thread.CurrentThread.CurrentUICulture = language;
+            Conversion resultado = new Conversion();
+
+            string numCompletoLetras = Multiplicativo.ConvertirNumEnteroMultiplicativo(numero);
+
+            resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "MultiplicativoTipo").ToString();
+            resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();
+            //AÑADIR NOTAS CUANDO ACABES BUENAS!!!!!!!!!!!!!!!
+            resultado.TitReferencias = HttpContext.GetGlobalResourceObject("Resource", "ReferenciasTitulo").ToString();
+            //AÑADIR REFERENCIAS BUENAS CUANDO ACABES!!!!!!!!!!!!!!!!!!
+
+
+            resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
+            resultado.Ejemplos = new List<string>();
+            //AÑADIR EJEMPLOS
+            resultado.Respuestas = new List<string>();
+            resultado.Respuestas.Add(numCompletoLetras);
+
+            resultado.TitOpciones = HttpContext.GetGlobalResourceObject("Resource", "TituloOpciones").ToString();
+            resultado.MasOpciones = new List<Opcion>();
+
+            Opcion ExpreAdj = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "ExpresionAdjetivoOpcion").ToString());
+            ExpreAdj.Opciones = new List<string>();
+            ExpreAdj.Opciones.Add(numCompletoLetras);
+
+
+            return resultado;
+
+        }
+
     }
  
 

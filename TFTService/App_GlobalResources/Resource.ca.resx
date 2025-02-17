@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AdjetivoPronombreFOpcion" xml:space="preserve">
+    <value>Adjectiu i pronom femení</value>
+  </data>
+  <data name="AdjetivoOpcion" xml:space="preserve">
+    <value>Adjectiu</value>
+  </data>
   <data name="CardinalEjemplo1" xml:space="preserve">
     <value>La quantitat d'aigua és de … litres</value>
   </data>
@@ -183,6 +189,12 @@
   <data name="SusAdProTitulo" xml:space="preserve">
     <value>Substantiu, adjectiu i pronom</value>
   </data>
+  <data name="SustantivoFOpcion" xml:space="preserve">
+    <value>Substantiu femení</value>
+  </data>
+  <data name="SustantivoMOpcion" xml:space="preserve">
+    <value>Substantiu masculí</value>
+  </data>
   <data name="SustantivoOpcion" xml:space="preserve">
     <value>Substantiu</value>
   </data>
@@ -191,5 +203,11 @@
   </data>
   <data name="ValorNumericoTitulo" xml:space="preserve">
     <value>Valor numèric</value>
+  </data>
+  <data name="MultiplicativoTipo" xml:space="preserve">
+    <value>Multiplicador</value>
+  </data>
+  <data name="ExpresionAdjetivoOpcion" xml:space="preserve">
+    <value>Expressió amb adjectiu</value>
   </data>
 </root>

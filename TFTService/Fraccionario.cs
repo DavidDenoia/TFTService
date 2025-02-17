@@ -141,10 +141,10 @@ namespace TFTService
                 {
                     switch (numeroInt)
                     {
-                        case 2: resultado.Insert(0, "mig"); break;
-                        case 3: resultado.Insert(0, "terç"); break;
-                        case 4: resultado.Insert(0, "quart"); break;
-                        //case 10: resultado.Insert(0, "dècim"); break;
+                        case 2: resultado.Insert(0, genero == "M" ? "mig" : "mitja"); break;
+                        case 3: resultado.Insert(0, genero == "M" ? "terç" : "tercera"); break;
+                        case 4: resultado.Insert(0, genero == "M" ? "quart" : "quarta"); break;
+                            //case 10: resultado.Insert(0, "dècim"); break;
                     }
                 }
                 else

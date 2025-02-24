@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="TFTServicio" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:65155/NumToCatService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:65155/NumToCatService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:65155/NumToCatService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/TFTService" />
+      <xsd:import schemaLocation="http://localhost:65155/NumToCatService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="INumToCat_MainTraducir_InputMessage">
+    <wsdl:part name="parameters" element="tns:MainTraducir" />
+  </wsdl:message>
+  <wsdl:message name="INumToCat_MainTraducir_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MainTraducirResponse" />
+  </wsdl:message>
+  <wsdl:message name="INumToCat_GetNumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNumber" />
+  </wsdl:message>
+  <wsdl:message name="INumToCat_GetNumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="INumToCat_CentenaresALetras_InputMessage">
+    <wsdl:part name="parameters" element="tns:CentenaresALetras" />
+  </wsdl:message>
+  <wsdl:message name="INumToCat_CentenaresALetras_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CentenaresALetrasResponse" />
+  </wsdl:message>
+  <wsdl:message name="INumToCat_NumCompletoALetraCard_InputMessage">
+    <wsdl:part name="parameters" element="tns:NumCompletoALetraCard" />
+  </wsdl:message>
+  <wsdl:message name="INumToCat_NumCompletoALetraCard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NumCompletoALetraCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="INumToCat_NumCompletoALetraCardDec_InputMessage">
+    <wsdl:part name="parameters" element="tns:NumCompletoALetraCardDec" />
+  </wsdl:message>
+  <wsdl:message name="INumToCat_NumCompletoALetraCardDec_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NumCompletoALetraCardDecResponse" />
+  </wsdl:message>
+  <wsdl:message name="INumToCat_NumCompletoALetraOrd_InputMessage">
+    <wsdl:part name="parameters" element="tns:NumCompletoALetraOrd" />
+  </wsdl:message>
+  <wsdl:message name="INumToCat_NumCompletoALetraOrd_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NumCompletoALetraOrdResponse" />
+  </wsdl:message>
+  <wsdl:message name="INumToCat_NumCompletoALetraFrac_InputMessage">
+    <wsdl:part name="parameters" element="tns:NumCompletoALetraFrac" />
+  </wsdl:message>
+  <wsdl:message name="INumToCat_NumCompletoALetraFrac_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NumCompletoALetraFracResponse" />
+  </wsdl:message>
+  <wsdl:message name="INumToCat_NumCompletoALetraMult_InputMessage">
+    <wsdl:part name="parameters" element="tns:NumCompletoALetraMult" />
+  </wsdl:message>
+  <wsdl:message name="INumToCat_NumCompletoALetraMult_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NumCompletoALetraMultResponse" />
+  </wsdl:message>
+  <wsdl:portType name="INumToCat">
+    <wsdl:operation name="MainTraducir">
+      <wsdl:input wsaw:Action="http://tempuri.org/INumToCat/MainTraducir" message="tns:INumToCat_MainTraducir_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INumToCat/MainTraducirResponse" message="tns:INumToCat_MainTraducir_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/INumToCat/GetNumber" message="tns:INumToCat_GetNumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INumToCat/GetNumberResponse" message="tns:INumToCat_GetNumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CentenaresALetras">
+      <wsdl:input wsaw:Action="http://tempuri.org/INumToCat/CentenaresALetras" message="tns:INumToCat_CentenaresALetras_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INumToCat/CentenaresALetrasResponse" message="tns:INumToCat_CentenaresALetras_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NumCompletoALetraCard">
+      <wsdl:input wsaw:Action="http://tempuri.org/INumToCat/NumCompletoALetraCard" message="tns:INumToCat_NumCompletoALetraCard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INumToCat/NumCompletoALetraCardResponse" message="tns:INumToCat_NumCompletoALetraCard_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NumCompletoALetraCardDec">
+      <wsdl:input wsaw:Action="http://tempuri.org/INumToCat/NumCompletoALetraCardDec" message="tns:INumToCat_NumCompletoALetraCardDec_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INumToCat/NumCompletoALetraCardDecResponse" message="tns:INumToCat_NumCompletoALetraCardDec_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NumCompletoALetraOrd">
+      <wsdl:input wsaw:Action="http://tempuri.org/INumToCat/NumCompletoALetraOrd" message="tns:INumToCat_NumCompletoALetraOrd_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INumToCat/NumCompletoALetraOrdResponse" message="tns:INumToCat_NumCompletoALetraOrd_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NumCompletoALetraFrac">
+      <wsdl:input wsaw:Action="http://tempuri.org/INumToCat/NumCompletoALetraFrac" message="tns:INumToCat_NumCompletoALetraFrac_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INumToCat/NumCompletoALetraFracResponse" message="tns:INumToCat_NumCompletoALetraFrac_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NumCompletoALetraMult">
+      <wsdl:input wsaw:Action="http://tempuri.org/INumToCat/NumCompletoALetraMult" message="tns:INumToCat_NumCompletoALetraMult_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INumToCat/NumCompletoALetraMultResponse" message="tns:INumToCat_NumCompletoALetraMult_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_INumToCat" type="tns:INumToCat">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="MainTraducir">
+      <soap:operation soapAction="http://tempuri.org/INumToCat/MainTraducir" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNumber">
+      <soap:operation soapAction="http://tempuri.org/INumToCat/GetNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CentenaresALetras">
+      <soap:operation soapAction="http://tempuri.org/INumToCat/CentenaresALetras" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NumCompletoALetraCard">
+      <soap:operation soapAction="http://tempuri.org/INumToCat/NumCompletoALetraCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NumCompletoALetraCardDec">
+      <soap:operation soapAction="http://tempuri.org/INumToCat/NumCompletoALetraCardDec" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NumCompletoALetraOrd">
+      <soap:operation soapAction="http://tempuri.org/INumToCat/NumCompletoALetraOrd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NumCompletoALetraFrac">
+      <soap:operation soapAction="http://tempuri.org/INumToCat/NumCompletoALetraFrac" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NumCompletoALetraMult">
+      <soap:operation soapAction="http://tempuri.org/INumToCat/NumCompletoALetraMult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TFTServicio">
+    <wsdl:port name="BasicHttpBinding_INumToCat" binding="tns:BasicHttpBinding_INumToCat">
+      <soap:address location="http://localhost:65155/NumToCatService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

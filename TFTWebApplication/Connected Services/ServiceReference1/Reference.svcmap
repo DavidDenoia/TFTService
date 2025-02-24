@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="d93d803f-dfbd-4faf-a145-270159bf8cd1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:65155/NumToCatService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="NumToCatService.xsd" MetadataType="Schema" ID="d21d5d2b-0cf9-4755-9cd1-975677673a9e" SourceId="1" SourceUrl="http://localhost:65155/NumToCatService.svc?xsd=xsd1" />
+    <MetadataFile FileName="TFTServicio.wsdl" MetadataType="Wsdl" ID="2a6fdfbd-e49e-4f37-8400-f4527f9d0fe7" SourceId="1" SourceUrl="http://localhost:65155/NumToCatService.svc?wsdl" />
+    <MetadataFile FileName="NumToCatService1.xsd" MetadataType="Schema" ID="9255c36c-3b97-4811-9f96-1c45a129bbda" SourceId="1" SourceUrl="http://localhost:65155/NumToCatService.svc?xsd=xsd3" />
+    <MetadataFile FileName="NumToCatService2.xsd" MetadataType="Schema" ID="cc9f126c-e6d7-4e24-a496-77f7aa783c3b" SourceId="1" SourceUrl="http://localhost:65155/NumToCatService.svc?xsd=xsd2" />
+    <MetadataFile FileName="NumToCatService.disco" MetadataType="Disco" ID="881d81d5-e8eb-43f2-b784-cb539f7090a1" SourceId="1" SourceUrl="http://localhost:65155/NumToCatService.svc?disco" />
+    <MetadataFile FileName="NumToCatService3.xsd" MetadataType="Schema" ID="01ecba26-0875-48d8-b8c5-6d61861ecc83" SourceId="1" SourceUrl="http://localhost:65155/NumToCatService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -746,14 +746,17 @@ namespace TFTService
             {
                 resultado.TitValorNumerico = HttpContext.GetGlobalResourceObject("Resource", "ValorNumericoTitulo").ToString();
                 resultado.ValorNumerico = numero;
-                resultado.TitOpciones = HttpContext.GetGlobalResourceObject("Resource", "TituloOpciones").ToString();
-                resultado.MasOpciones = new List<Opcion>();
-
-                Opcion Expresion = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "ExpresionTitulo").ToString());
-                Expresion.Opciones = new List<string>();
-                Expresion.Opciones.Add(numCompletoLetras);
-                Expresion.Opciones.Add(parteEntera + " [coma/i/amb] " + parteDecimal);
+               
             }
+            resultado.TitOpciones = HttpContext.GetGlobalResourceObject("Resource", "TituloOpciones").ToString();
+            resultado.MasOpciones = new List<Opcion>();
+
+            Opcion Expresion = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "ExpresionTitulo").ToString());
+            Expresion.Opciones = new List<string>();
+            Expresion.Opciones.Add(numCompletoLetras);
+            Expresion.Opciones.Add(parteEntera + " [coma/i/amb] " + parteDecimal);
+
+            resultado.MasOpciones.Add(Expresion);
 
             resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
             resultado.Ejemplos = new List<string>();

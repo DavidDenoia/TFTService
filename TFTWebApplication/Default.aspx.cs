@@ -98,5 +98,7 @@ namespace TFTWebApplication
 
             ClientScript.RegisterStartupScript(this.GetType(), "SpeechScript", script, false);
         }
+
+       
     }
 }

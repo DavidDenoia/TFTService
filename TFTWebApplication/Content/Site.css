@@ -19,3 +19,13 @@ textarea {
         padding: 0;
     }
 }
+
+h6 {
+    background-color: #f0f8ff; 
+    color: #000080; 
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    width: 100%;
+}

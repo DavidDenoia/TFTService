@@ -124,19 +124,19 @@
     <value>Adjetivo</value>
   </data>
   <data name="CardinalEjemplo1" xml:space="preserve">
-    <value>La cantidad de agua es de … litros.</value>
+    <value>La quantitat d'aigua és de … litres</value>
   </data>
   <data name="CardinalEjemplo2" xml:space="preserve">
-    <value>La distancia entre ambas ciudades es de … kilómetros.</value>
+    <value>La distància entre totes dues ciutats és de … quilòmetres.</value>
   </data>
   <data name="CardinalTipo" xml:space="preserve">
     <value>Cardinal</value>
   </data>
   <data name="DecimalEjemplo1" xml:space="preserve">
-    <value>El peso del paquete es de … kilogramos.</value>
+    <value>El pes del paquet és de … quilograms.</value>
   </data>
   <data name="DecimalEjemplo2" xml:space="preserve">
-    <value>El velocímetro marcaba … kilómetros por hora.</value>
+    <value>El velocímetre marcava … quilòmetres per hora.</value>
   </data>
   <data name="DecimalTipo" xml:space="preserve">
     <value>Decimal</value>
@@ -151,10 +151,10 @@
     <value>Forma femenina</value>
   </data>
   <data name="FraccionarioEjemplo1" xml:space="preserve">
-    <value>Quiero ... de chocolate. </value>
+    <value>Vull ... de xocolata. </value>
   </data>
   <data name="FraccionarioEjemplo2" xml:space="preserve">
-    <value>La sequía afecta a ... de la región. </value>
+    <value>La sequera afecta a ... de la regió. </value>
   </data>
   <data name="FraccionarioTipo" xml:space="preserve">
     <value>Fraccionario</value>
@@ -173,7 +173,7 @@
 </value>
   </data>
   <data name="NegativoEjemplo2" xml:space="preserve">
-    <value>La diferencia de potencial eléctrico fue de … voltios.</value>
+    <value>La diferència de potencial elèctric va ser de … volts.</value>
   </data>
   <data name="NegativoTipo" xml:space="preserve">
     <value>Negativo</value>

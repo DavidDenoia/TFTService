@@ -760,8 +760,8 @@ namespace TFTService
 
             resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
             resultado.Ejemplos = new List<string>();
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "DecimalEjemplo1").ToString().Replace("...", numCompletoLetras));
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "DecimalEjemplo2").ToString().Replace("...", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "DecimalEjemplo1").ToString().Replace("…", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "DecimalEjemplo2").ToString().Replace("…", numCompletoLetras));
 
             return resultado;
         }
@@ -791,8 +791,8 @@ namespace TFTService
 
             resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
             resultado.Ejemplos = new List<string>();
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalEjemplo1").ToString().Replace("...", numCompletoLetras));
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalEjemplo2").ToString().Replace("...", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalEjemplo1").ToString().Replace("…", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalEjemplo2").ToString().Replace("…", numCompletoLetras));
 
             if (valorNum == true)
             {
@@ -829,8 +829,8 @@ namespace TFTService
 
             resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
             resultado.Ejemplos = new List<string>();
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "NegativoEjemplo1").ToString().Replace("...", numCompletoLetras));
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "NegativoEjemplo2").ToString().Replace("...", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "NegativoEjemplo1").ToString().Replace("…", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "NegativoEjemplo2").ToString().Replace("…", numCompletoLetras));
 
             if (valorNum == true)
             {

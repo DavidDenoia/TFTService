@@ -22,15 +22,29 @@
             <div class="card mt-3">
                 <div class="card-body">
                     <!--Titulo de la tarjeta-->
-                    <h5 class="card-title">
-                        <strong><%# Eval("Tipo") %></strong>
-                       <asp:LinkButton ID="botonExpandir" runat="server" CssClass="btn btn-link toggle-btn float-right">
-                            <i class="bi bi-chevron-down"></i>
-                       </asp:LinkButton>
+                   
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">
+                            <strong><%# Eval("Tipo") %></strong>
+                        </h5>
 
+                        <!--Botones derecha-->
+                        <div class="d-flex align-items-center gap-0">
+                            <asp:LinkButton ID="botonNotas" runat="server" CssClass="btn btn-link" data-bs-toggle="tooltip" 
+                                data-bs-placement="top" title='<%# Eval("TitNotas") %>'>
+                                <i class="bi bi-clipboard"></i>
+                            </asp:LinkButton>
+                            <asp:LinkButton ID="botonReferencias" runat="server" CssClass="btn btn-link"  data-bs-toggle="tooltip" 
+                                data-bs-placement="top" title='<%# Eval("TitReferencias") %>'>
+                                 <i class="bi bi-file-earmark-text"></i>
+                            </asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-link toggle-btn"
+                                OnClientClick='<%# "Expandir(\"content" + Container.ItemIndex + "\", this); return false;" %>'>
+                                 <i class="bi bi-chevron-down"></i>
+                            </asp:LinkButton>
+                        </div> 
+                    </div>
 
-
-                    </h5>
 
                     <!--Respuesta inicial-->
                     <p class="card-text">
@@ -55,18 +69,17 @@
 
 
                         <!-- Valor Numérico -->
-                        <%# !string.IsNullOrEmpty((string)Eval("ValorNumerico")) ? $"<p><strong>{Eval("TitValorNumerico")}</strong>: {Eval("ValorNumerico")}</p>" : "" %>
+                        <%# !string.IsNullOrEmpty((string)Eval("ValorNumerico")) ? $"<h6 class=\"text-primary\"><strong>{Eval("TitValorNumerico")}</strong>: {Eval("ValorNumerico")}</h6>" : "" %>
 
                         <!--Opciones adicionales-->
-                        <h6><%# Eval("TitOpciones") %></h6>
+                        <h6 class="text-primary"><%# Eval("TitOpciones") %></h6>
                         <ul>
-                                <%# string.Join("", ((TFTWebApplication.ServiceReference1.Opcion[])Eval("MasOpciones"))
-                                .SelectMany(o => o.Opciones)
-                                .Select(opcion => $"<li>{opcion}</li>")) %>
+                            <%# string.Join("", ((TFTWebApplication.ServiceReference1.Opcion[])Eval("MasOpciones"))
+        .Select(o => $"<strong>{o.Titulo}:</strong><ul>{string.Join("", o.Opciones.Select(op => $"<li>{op}</li>"))}</ul>")) %>
                         </ul>
 
                         <!--Ejemplos-->
-                        <h6><%# Eval("TitEjemplos") %></h6>
+                        <h6 class="text-primary"><%# Eval("TitEjemplos") %></h6>
                         <ul>
                            <%# string.Join("", ((string[])Eval("Ejemplos")).Select(ejemplo => $"<li>{ejemplo}</li>")) %>
                         </ul>

@@ -20,8 +20,8 @@ namespace TFTWebApplication
             {
                 rptResultados.DataSource = null;
                 rptResultados.DataBind();
-
                 
+
             }
 
         }
@@ -49,10 +49,13 @@ namespace TFTWebApplication
                         rptResultados.DataBind();
                         lblResultado.Text = "Conversion hecha";
 
+                        lblTitulo.Text = $"¿Cómo se escribe {numero} en letras en catalan?";
+
                     }
                     else
                     {
                         lblResultado.Text = "No se encontraron conversiones";
+                        lblTitulo.Text = "";
                     }
                 }
             }

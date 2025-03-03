@@ -4,14 +4,37 @@
 
     <h1>Conversor de Números</h1>
 
-    <div class="form-group">
-        <label for="txtNumero">Introduce un número:</label>
-        <asp:TextBox ID="txtNumero" CssClass="form-control" runat="server"></asp:TextBox>
+    <div class="container mt-3">
+    <!-- Título -->
+        <div class="text-center border rounded-top py-2 bg-light">
+            <strong class="text-primary">
+                <asp:Label ID="lblTitulo" runat="server" Text="Números a letras. Números a texto"></asp:Label>
+            </strong>
+        </div>
+
+        <!-- Campo de búsqueda -->
+        <div class="border rounded-bottom p-3 bg-white">
+            <div class="input-group">
+           
+                    <asp:TextBox ID="txtNumero" CssClass="form-control flex-grow-1" MaxLength="130" 
+                        placeholder="Escriba un número con cifras o un número romano" runat="server"></asp:TextBox>
+            
+                
+                <button type="button" class="btn btn-link text-primary" onclick="limpiarTexto()">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+
+                
+                <asp:LinkButton ID="btnBuscar" runat="server" CssClass="btn btn-link text-primary"
+                    OnClick="Traducir_Click">
+                        <i class="bi bi-search"></i>
+                </asp:LinkButton>
+            </div>
+        </div>
     </div>
 
-    <div class="form-group">
-        <asp:Button ID="Button1" runat="server" Height="28px" OnClick="Traducir_Click" Text="Traducir" Width="118px" />
-    </div>
+
+
 
     <br />
 
@@ -79,7 +102,7 @@
                         </ul>
 
                         <!--Ejemplos-->
-                        <h6 class="text-primary"><%# Eval("TitEjemplos") %></h6>
+                        <h5 class="text-primary"><%# Eval("TitEjemplos") %></h5>
                         <ul>
                       
                              <%# (Eval("Ejemplos") as string[] ?? new string[0]).Length > 0 

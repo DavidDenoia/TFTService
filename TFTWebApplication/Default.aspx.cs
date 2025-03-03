@@ -66,11 +66,6 @@ namespace TFTWebApplication
         {
             LinkButton btn = (LinkButton)sender;
             string texto = btn.CommandArgument;
-            Leer_Texto(texto);
-        }
-
-        protected void Leer_Texto(string texto)
-        {
             string script = $@"
             <script>
                 let speech = new SpeechSynthesisUtterance('{HttpUtility.JavaScriptStringEncode(texto)}');
@@ -81,15 +76,11 @@ namespace TFTWebApplication
             ClientScript.RegisterStartupScript(this.GetType(), "SpeechScript", script, false);
         }
 
+     
         protected void Copiar_Click(object sender, EventArgs e)
         {
             LinkButton btn = (LinkButton)sender;
             string texto = btn.CommandArgument;
-            Copiar_Texto(texto);
-        }
-
-        protected void Copiar_Texto(string texto)
-        {
             string script = $@"
             <script>
                 navigator.clipboard.writeText('{HttpUtility.JavaScriptStringEncode(texto)}');
@@ -98,6 +89,8 @@ namespace TFTWebApplication
 
             ClientScript.RegisterStartupScript(this.GetType(), "SpeechScript", script, false);
         }
+
+       
 
        
     }

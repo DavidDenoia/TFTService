@@ -69,7 +69,7 @@
 
 
                         <!-- Valor Numérico -->
-                        <%# !string.IsNullOrEmpty((string)Eval("ValorNumerico")) ? $"<h6 class=\"text-primary\"><strong>{Eval("TitValorNumerico")}</strong>: {Eval("ValorNumerico")}</h6>" : "" %>
+                        <%# !string.IsNullOrEmpty((string)Eval("ValorNumerico")) ? $"<h6 class=\"text-primary\">{Eval("TitValorNumerico")}: {Eval("ValorNumerico")}</h6>" : "" %>
 
                         <!--Opciones adicionales-->
                         <h6 class="text-primary"><%# Eval("TitOpciones") %></h6>

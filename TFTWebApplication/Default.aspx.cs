@@ -74,9 +74,8 @@ namespace TFTWebApplication
             </script>";
 
             ClientScript.RegisterStartupScript(this.GetType(), "SpeechScript", script, false);
-        }
+        } 
 
-     
         protected void Copiar_Click(object sender, EventArgs e)
         {
             LinkButton btn = (LinkButton)sender;

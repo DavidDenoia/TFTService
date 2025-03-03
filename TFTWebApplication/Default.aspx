@@ -30,12 +30,12 @@
 
                         <!--Botones derecha-->
                         <div class="d-flex align-items-center gap-0">
-                            <asp:LinkButton ID="botonNotas" runat="server" CssClass="btn btn-link" data-bs-toggle="tooltip" 
-                                data-bs-placement="top" title='<%# Eval("TitNotas") %>'>
+                            <asp:LinkButton ID="botonNotas" runat="server" CssClass="btn btn-link" data-bs-toggle="modal" 
+                                data-bs-target='<%# "#notasModal" + Container.ItemIndex %>' title='<%# Eval("TitNotas") %>'>
                                 <i class="bi bi-clipboard"></i>
                             </asp:LinkButton>
-                            <asp:LinkButton ID="botonReferencias" runat="server" CssClass="btn btn-link"  data-bs-toggle="tooltip" 
-                                data-bs-placement="top" title='<%# Eval("TitReferencias") %>'>
+                            <asp:LinkButton ID="botonReferencias" runat="server" CssClass="btn btn-link"  data-bs-toggle="modal" 
+                                data-bs-target='<%# "#referenciasModal" + Container.ItemIndex %>' title='<%# Eval("TitReferencias") %>'>
                                  <i class="bi bi-file-earmark-text"></i>
                             </asp:LinkButton>
                             <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-link toggle-btn"
@@ -81,10 +81,52 @@
                         <!--Ejemplos-->
                         <h6 class="text-primary"><%# Eval("TitEjemplos") %></h6>
                         <ul>
-                           <%# string.Join("", ((string[])Eval("Ejemplos")).Select(ejemplo => $"<li>{ejemplo}</li>")) %>
+                      
+                             <%# (Eval("Ejemplos") as string[] ?? new string[0]).Length > 0 
+                                    ? string.Join("", (Eval("Ejemplos") as string[]).Select(ejemplo => $"<li>{ejemplo}</li>"))
+                                        : "<li>No hay ejemplos disponibles.</li>" %>
                         </ul>
                     </div>
                 </div>
+
+                <!--Notas-->
+                <div class="modal" id='<%# "notasModal" + Container.ItemIndex %>' tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-primary"><%# Eval("TitNotas") %></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" arial-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <ul>
+                                    <%# (Eval("Notas") as string[] ?? new string[0]).Length > 0 
+                                            ? string.Join("", (Eval("Notas") as string[]).Select(nota => $"<li>{nota}</li>"))
+                                            : "<li>No hay notas disponibles.</li>" %>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Referencias-->
+                <div class="modal" id='<%# "referenciasModal" + Container.ItemIndex %>' tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-primary"><%# Eval("TitReferencias") %></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" arial-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <ul>
+                                     <%# (Eval("Referencias") as string[] ?? new string[0]).Length > 0 
+                                            ? string.Join("", (Eval("Referencias") as string[]).Select(referencia => $"<li>{referencia}</li>"))
+                                            : "<li>No hay referencias disponibles.</li>" %>
+                                </ul>
+                            </divc>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </ItemTemplate>
     </asp:Repeater>

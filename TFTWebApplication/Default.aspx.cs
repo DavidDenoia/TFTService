@@ -92,7 +92,10 @@ namespace TFTWebApplication
             ClientScript.RegisterStartupScript(this.GetType(), "SpeechScript", script, false);
         }
 
-       
+        protected void Limpiar_Click(object sender, EventArgs e)
+        {
+            txtNumero.Text = "";
+        }
 
        
     }

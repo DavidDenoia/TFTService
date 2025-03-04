@@ -21,12 +21,11 @@
                 <asp:TextBox ID="txtNumero" CssClass="form-control flex-grow-1" MaxLength="130" 
                     placeholder="Escriba un número con cifras o un número romano" runat="server"></asp:TextBox>
 
-                <button type="button" class="btn btn-link text-primary" onclick="limpiarTexto()">
+                <asp:LinkButton ID="botonLimpiar" runat="server" CssClass="btn btn-link text-primary" OnClick="Limpiar_Click">
                     <i class="bi bi-x-lg"></i>
-                </button>
+                </asp:LinkButton>
 
-                <asp:LinkButton ID="botonTraducir" runat="server" CssClass="btn btn-link text-primary"
-                    OnClick="Traducir_Click">
+                <asp:LinkButton ID="botonTraducir" runat="server" CssClass="btn btn-link text-primary" OnClick="Traducir_Click">
                     <i class="bi bi-search"></i>
                 </asp:LinkButton>
             </div>
@@ -104,7 +103,7 @@
                         </ul>
 
                         <!--Ejemplos-->
-                        <h5 class="text-primary"><%# Eval("TitEjemplos") %></h5>
+                        <h6 class="text-primary"><%# Eval("TitEjemplos") %></h6>
                         <ul>
                       
                              <%# (Eval("Ejemplos") as string[] ?? new string[0]).Length > 0 
@@ -147,7 +146,7 @@
                                             ? string.Join("", (Eval("Referencias") as string[]).Select(referencia => $"<li>{referencia}</li>"))
                                             : "<li>No hay referencias disponibles.</li>" %>
                                 </ul>
-                            </divc>
+                            </div>
                         </div>
                     </div>
                 </div>

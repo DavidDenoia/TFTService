@@ -10,7 +10,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    /*max-width: 280px;*/
 }
 
 /* Responsive: Portrait tablets and up */

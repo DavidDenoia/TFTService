@@ -36,6 +36,8 @@ namespace TFTWebApplication
                 if (string.IsNullOrEmpty(numero))
                 {
                     lblResultado.Text = "Introducir numero valido";
+                    panelError.Visible = true;
+                    rptResultados.Visible = false;
                     return;
                 }
 
@@ -50,18 +52,24 @@ namespace TFTWebApplication
                         lblResultado.Text = "Conversion hecha";
 
                         lblTitulo.Text = $"¿Cómo se escribe {numero} en letras en catalan?";
+                        panelError.Visible = false;
+                        rptResultados.Visible = true;
 
                     }
                     else
                     {
                         lblResultado.Text = "No se encontraron conversiones";
                         lblTitulo.Text = "";
+                        panelError.Visible = true; 
+                        rptResultados.Visible = false;
                     }
                 }
             }
             catch (Exception ex)
             {
                 lblResultado.Text = "Error: " + ex.Message;
+                panelError.Visible = true;
+                rptResultados.Visible = false;
             }
         }
 

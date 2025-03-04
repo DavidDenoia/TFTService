@@ -155,4 +155,26 @@
         </ItemTemplate>
     </asp:Repeater>
 
+    <asp:Panel ID="panelError" runat="server" CssClass="border border-danger rounded-top" Visible="false">
+
+        <div class="panel-heading bg-light py-3 text-center">
+             <strong class="text-danger">ERROR -</strong> <span class="text-danger">Los formatos admitidos para el catalán son los siguientes:</span>
+        </div>
+            
+    <ul>
+        <li><strong>Los símbolos de monedas (£, ¥, etc.) no están admitidos para este idioma.</strong></li>
+        <li><strong>Puede que el número, el exponente o la parte decimal sea demasiado grande.</strong></li>
+        <li><strong>NO escriba el número con letras, excepto si es un número romano.</strong></li>
+        <li>Escriba un número sin coma ni punto para los miles o millones: <code>13289</code> <code>53625999567</code> <code>-345676</code></li>
+        <li>Los miles o millones se pueden separar con un espacio en blanco: <code>13 289</code> <code>53 625 999 567</code> <code>-345 676</code></li>
+        <li>En los decimales puede usar un punto o una coma: <code>12.58</code> <code>45,78997</code> <code>-47.2</code> <code>-98,712</code></li>
+        <li>Para escribir fracciones use la barra: <code>3/4</code> <code>78/125</code> <code>-3/4</code> <code>78/-125</code></li>
+        <li>Para escribir en notación científica use la <code>E</code> sin espacios: <code>2,4E10</code> <code>5E-3</code> <code>-2,4E10</code> <code>-5.23E-3</code></li>
+        <li>Si es un número romano, escríbalo en mayúscula: <code>DLVI</code> <code>IX</code> <code>XXXVI</code></li>
+        <li>Escriba cantidades en <strong>euros</strong> con el símbolo <code>€</code> o la palabra <code>euros</code>: <code>45€</code> <code>23,78€</code> <code>10 euros</code></li>
+        <li>Escriba cantidades en <strong>pesos</strong> con el símbolo <code>$</code> o la palabra <code>pesos</code>: <code>$1000</code> <code>123,02$</code> <code>345 pesos</code></li>
+        <li>Escriba cantidades en <strong>dólares</strong> con el símbolo <code>$</code> o la palabra <code>dólares</code>: <code>428$</code> <code>$897.30</code> <code>63 dólares</code></li>
+    </ul>
+    </asp:Panel>
+
 </asp:Content>

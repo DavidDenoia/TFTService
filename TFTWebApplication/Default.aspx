@@ -4,8 +4,11 @@
 
     <h1>Conversor de Números</h1>
 
+   
+
+    <asp:Panel ID="Panel1" runat="server" DefaultButton="botonTraducir">
     <div class="container mt-3">
-    <!-- Título -->
+        <!-- Título -->
         <div class="text-center border rounded-top py-2 bg-light">
             <strong class="text-primary">
                 <asp:Label ID="lblTitulo" runat="server" Text="Números a letras. Números a texto"></asp:Label>
@@ -15,23 +18,22 @@
         <!-- Campo de búsqueda -->
         <div class="border rounded-bottom p-3 bg-white">
             <div class="input-group">
-           
-                    <asp:TextBox ID="txtNumero" CssClass="form-control flex-grow-1" MaxLength="130" 
-                        placeholder="Escriba un número con cifras o un número romano" runat="server"></asp:TextBox>
-            
-                
+                <asp:TextBox ID="txtNumero" CssClass="form-control flex-grow-1" MaxLength="130" 
+                    placeholder="Escriba un número con cifras o un número romano" runat="server"></asp:TextBox>
+
                 <button type="button" class="btn btn-link text-primary" onclick="limpiarTexto()">
                     <i class="bi bi-x-lg"></i>
                 </button>
 
-                
-                <asp:LinkButton ID="btnBuscar" runat="server" CssClass="btn btn-link text-primary"
+                <asp:LinkButton ID="botonTraducir" runat="server" CssClass="btn btn-link text-primary"
                     OnClick="Traducir_Click">
-                        <i class="bi bi-search"></i>
+                    <i class="bi bi-search"></i>
                 </asp:LinkButton>
             </div>
         </div>
     </div>
+</asp:Panel>
+
 
 
 

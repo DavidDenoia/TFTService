@@ -155,6 +155,8 @@
         </ItemTemplate>
     </asp:Repeater>
 
+    <!--Panel de error-->
+
     <asp:Panel ID="panelError" runat="server" CssClass="border border-danger rounded-top" Visible="false">
 
         <div class="panel-heading bg-light py-3 text-center">
@@ -175,6 +177,50 @@
         <li>Escriba cantidades en <strong>pesos</strong> con el símbolo <code>$</code> o la palabra <code>pesos</code>: <code>$1000</code> <code>123,02$</code> <code>345 pesos</code></li>
         <li>Escriba cantidades en <strong>dólares</strong> con el símbolo <code>$</code> o la palabra <code>dólares</code>: <code>428$</code> <code>$897.30</code> <code>63 dólares</code></li>
     </ul>
+    </asp:Panel>
+
+    <!--Panel de bienvenida-->
+    <asp:Panel ID="panelBienvenida" runat="server" Visible="false">
+        <p>Este conversor puede convertir números a letras en cardinal, números en letras ordinal, números en letras fraccionario o partitivo,
+            multiplicativo, decimal, romano, colectivo, número de sílabas, nombre de polígonos y poliedros, edades y nacido. 
+            El conversor ofrece información morfológica, ortográfica y gramatical de cada uno de los números convertidos a letras. 
+            Además, se incluyen ejemplos que ayudan a la comprensión y buen uso.</p>
+
+        <p>Escriba un número sin coma ni punto para los miles o millones. Los miles o millones se pueden separar con un espacio en blanco. 
+            En los decimales puede usar un punto o una coma. Para escribir fracciones use la barra inclinada "/". 
+            Para escribr en notación científica use la E sin espacios. Si es un número romano, escriba en mayúscula todos sus símbolos.</p>
+
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <h3 class="text-primary mb-3">Prueba los ejemplos</h3>
+            </div>
+             
+          <div class="d-flex flex-wrap justify-content-center gap-3">
+                <asp:Button ID="BotonEjemplo1" runat="server" Text="18759" OnClick="Ejemplo_Click" CommandArgument="18759"/>
+                <asp:Button ID="BotonEjemplo2" runat="server" Text="53625947867" OnClick="Ejemplo_Click" CommandArgument="53625947867" />
+                <asp:Button ID="BotonEjemplo3" runat="server" Text="-349996" OnClick="Ejemplo_Click" CommandArgument="-349996" />
+          </div>
+          <div class="d-flex flex-wrap justify-content-center gap-3">
+                <asp:Button ID="BotonEjemplo4" runat="server" Text="12 289" OnClick="Ejemplo_Click" CommandArgument="12 289" />
+                <asp:Button ID="BotonEjemplo5" runat="server" Text="76 879 345 567" OnClick="Ejemplo_Click" CommandArgument="76 879 345 567"/>
+                <asp:Button ID="BotonEjemplo6" runat="server" Text="-657 879" OnClick="Ejemplo_Click" CommandArgument="-657 879" />
+          </div>
+          <div class="d-flex flex-wrap justify-content-center gap-3">
+              <asp:Button ID="BotonEjemplo7" runat="server" Text="21.1949" OnClick="Ejemplo_Click" CommandArgument="21.1949"/>
+              <asp:Button ID="BotonEjemplo8" runat="server" Text="1956,1959" OnClick="Ejemplo_Click" CommandArgument="1956,1959" />
+              <asp:Button ID="BotonEjemplo9" runat="server" Text="-67.2465" OnClick="Ejemplo_Click" CommandArgument="-67.2465" />
+              <asp:Button ID="BotonEjemplo10" runat="server" Text="-57.9" OnClick="Ejemplo_Click" CommandArgument="-57.9" />
+          </div>
+          <div class="d-flex flex-wrap justify-content-center gap-3">
+              <asp:Button ID="BotonEjemplo11" runat="server" Text="3/5" OnClick="Ejemplo_Click" CommandArgument="3/5" />
+              <asp:Button ID="BotonEjemplo12" runat="server" Text="9874/23423" OnClick="Ejemplo_Click" CommandArgument="9874/23423" />
+              <asp:Button ID="BotonEjemplo13" runat="server" Text="-3/5" OnClick="Ejemplo_Click" CommandArgument="-3/5" />
+              <asp:Button ID="BotonEjemplo14" runat="server" Text="9874/-23423" OnClick="Ejemplo_Click" CommandArgument="9874/-23423" />
+          </div>
+
+
+        </div>
+       
     </asp:Panel>
 
 </asp:Content>

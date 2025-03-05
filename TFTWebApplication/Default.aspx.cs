@@ -21,6 +21,7 @@ namespace TFTWebApplication
                 rptResultados.DataSource = null;
                 rptResultados.DataBind();
                 
+                panelBienvenida.Visible = true;
 
             }
 
@@ -105,6 +106,12 @@ namespace TFTWebApplication
             txtNumero.Text = "";
         }
 
-       
+       protected void Ejemplo_Click(object sender, EventArgs e)
+        {
+            Button boton = (Button)sender;
+            txtNumero.Text = boton.CommandArgument;
+            Traducir_Click(sender, e);
+
+        }
     }
 }

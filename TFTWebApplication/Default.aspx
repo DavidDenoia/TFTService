@@ -72,19 +72,19 @@
 
                     <!--Respuesta inicial-->
                     <p class="card-text">
-                        <asp:LinkButton runat="server" CommandArgument='<%# string.Join(", ", (string[])Eval("Respuestas")) %>' 
+                        <asp:LinkButton runat="server" CommandArgument='<%# string.Join(", ", ((List<string>)Eval("Respuestas")).ToArray()) %>' 
                             OnClick="Leer_Click"
                             CssClass="btn btn-lg me-1">
                                 <i class="bi bi-volume-up"></i>
                         </asp:LinkButton>
 
-                        <asp:LinkButton runat="server" CommandArgument='<%# string.Join(", ", (string[])Eval("Respuestas")) %>'
+                        <asp:LinkButton runat="server" CommandArgument='<%# string.Join(", ", ((List<string>)Eval("Respuestas")).ToArray()) %>'
                             OnClick="Copiar_Click"
                             CssClass="btn btn-lg me-1">
                             <i class="bi bi-copy"></i>
                         </asp:LinkButton>
 
-                        <strong>Respuesta:</strong> <%# string.Join(", ", (string[])Eval("Respuestas")) %>
+                        <strong>Respuesta:</strong> <%# string.Join(", ", ((List<string>)Eval("Respuestas")).ToArray()) %>
 
                     </p>
 
@@ -98,8 +98,9 @@
                         <!--Opciones adicionales-->
                         <h6 class="text-primary"><%# Eval("TitOpciones") %></h6>
                         <ul>
-                            <%# string.Join("", ((TFTWebApplication.ServiceReference1.Opcion[])Eval("MasOpciones"))
-        .Select(o => $"<strong>{o.Titulo}:</strong><ul>{string.Join("", o.Opciones.Select(op => $"<li>{op}</li>"))}</ul>")) %>
+                            <%# string.Join("", ((List<TFTWebApplication.ServiceReference1.Opcion>)Eval("MasOpciones"))
+    .Select(o => $"<strong>{o.Titulo}:</strong><ul>{string.Join("", o.Opciones.Select(op => $"<li>{op}</li>"))}</ul>")) %>
+
                         </ul>
 
                         <!--Ejemplos-->

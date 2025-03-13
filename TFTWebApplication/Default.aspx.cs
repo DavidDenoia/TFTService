@@ -44,7 +44,7 @@ namespace TFTWebApplication
 
                 using (var cliente = new NumToCatClient())
                 {
-                    List<Conversion> resultados = cliente.MainTraducir(numero, lenguaje).ToList();
+                    List<Conversion> resultados = cliente.MainTraducir(numero, lenguaje);
                     
                     if (resultados != null && resultados.Count > 0)
                     {

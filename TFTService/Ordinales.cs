@@ -48,11 +48,16 @@ namespace TFTService
                     {
                         resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "è" : numCard.Substring(0, numCard.Length - 1) + "ena");
                     }
+                    else if (numCard.EndsWith("ns"))
+                    {
+                        resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "è" : numCard.Substring(0, numCard.Length - 1) + "ena");
+                    }
                 }
             }
             else
             {
                 string numCard = Cardinales.ConvertirNumEnteroCardinal(numero, false);
+                //System.Diagnostics.Debug.WriteLine("Numero CARDINAL: " + numCard);
                 if (numCard.EndsWith("c"))
                 {
                     resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "què" : numCard.Substring(0, numCard.Length - 1) + "quena");
@@ -60,6 +65,11 @@ namespace TFTService
                 else if (numCard.EndsWith("ou"))
                 {
                     resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "vè" : numCard.Substring(0, numCard.Length - 2) + "vena");
+                }
+                else if (numCard.EndsWith("ns"))
+                {
+                    //System.Diagnostics.Debug.WriteLine("Numero CARDINAL: " + numCard);
+                    resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "è" : numCard.Substring(0, numCard.Length - 1) + "ena");
                 }
                 else if (numCard.EndsWith("s") || numCard.EndsWith("t") || numCard.EndsWith("n"))
                 {
@@ -73,7 +83,9 @@ namespace TFTService
                 {
                     resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "è" : numCard.Substring(0, numCard.Length - 1) + "ena");
                 }
+               
             }
+            //System.Diagnostics.Debug.WriteLine("Numero ORDINAL: " + resultado.ToString());
             return resultado.ToString();
         }
     }

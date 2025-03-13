@@ -23,31 +23,31 @@ namespace TFTWebApplication.ServiceReference1 {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string[] EjemplosField;
+        private System.Collections.Generic.List<string> EjemplosField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string[] EjemplosMayusculaField;
+        private System.Collections.Generic.List<string> EjemplosMayusculaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool ErrorRomanoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private TFTWebApplication.ServiceReference1.Opcion[] MasOpcionesField;
+        private System.Collections.Generic.List<TFTWebApplication.ServiceReference1.Opcion> MasOpcionesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private TFTWebApplication.ServiceReference1.Opcion[] MasOpcionesMayusculaField;
+        private System.Collections.Generic.List<TFTWebApplication.ServiceReference1.Opcion> MasOpcionesMayusculaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string[] NotasField;
+        private System.Collections.Generic.List<string> NotasField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string[] ReferenciasField;
+        private System.Collections.Generic.List<string> ReferenciasField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string[] RespuestasField;
+        private System.Collections.Generic.List<string> RespuestasField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string[] RespuestasMayusculaField;
+        private System.Collections.Generic.List<string> RespuestasMayusculaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TipoField;
@@ -84,7 +84,7 @@ namespace TFTWebApplication.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string[] Ejemplos {
+        public System.Collections.Generic.List<string> Ejemplos {
             get {
                 return this.EjemplosField;
             }
@@ -97,7 +97,7 @@ namespace TFTWebApplication.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string[] EjemplosMayuscula {
+        public System.Collections.Generic.List<string> EjemplosMayuscula {
             get {
                 return this.EjemplosMayusculaField;
             }
@@ -123,7 +123,7 @@ namespace TFTWebApplication.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public TFTWebApplication.ServiceReference1.Opcion[] MasOpciones {
+        public System.Collections.Generic.List<TFTWebApplication.ServiceReference1.Opcion> MasOpciones {
             get {
                 return this.MasOpcionesField;
             }
@@ -136,7 +136,7 @@ namespace TFTWebApplication.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public TFTWebApplication.ServiceReference1.Opcion[] MasOpcionesMayuscula {
+        public System.Collections.Generic.List<TFTWebApplication.ServiceReference1.Opcion> MasOpcionesMayuscula {
             get {
                 return this.MasOpcionesMayusculaField;
             }
@@ -149,7 +149,7 @@ namespace TFTWebApplication.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string[] Notas {
+        public System.Collections.Generic.List<string> Notas {
             get {
                 return this.NotasField;
             }
@@ -162,7 +162,7 @@ namespace TFTWebApplication.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string[] Referencias {
+        public System.Collections.Generic.List<string> Referencias {
             get {
                 return this.ReferenciasField;
             }
@@ -175,7 +175,7 @@ namespace TFTWebApplication.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string[] Respuestas {
+        public System.Collections.Generic.List<string> Respuestas {
             get {
                 return this.RespuestasField;
             }
@@ -188,7 +188,7 @@ namespace TFTWebApplication.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string[] RespuestasMayuscula {
+        public System.Collections.Generic.List<string> RespuestasMayuscula {
             get {
                 return this.RespuestasMayusculaField;
             }
@@ -324,7 +324,7 @@ namespace TFTWebApplication.ServiceReference1 {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string[] OpcionesField;
+        private System.Collections.Generic.List<string> OpcionesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TituloField;
@@ -340,7 +340,7 @@ namespace TFTWebApplication.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string[] Opciones {
+        public System.Collections.Generic.List<string> Opciones {
             get {
                 return this.OpcionesField;
             }
@@ -441,10 +441,10 @@ namespace TFTWebApplication.ServiceReference1 {
     public interface INumToCat {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INumToCat/MainTraducir", ReplyAction="http://tempuri.org/INumToCat/MainTraducirResponse")]
-        TFTWebApplication.ServiceReference1.Conversion[] MainTraducir(string value, string lenguaje);
+        System.Collections.Generic.List<TFTWebApplication.ServiceReference1.Conversion> MainTraducir(string value, string lenguaje);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INumToCat/MainTraducir", ReplyAction="http://tempuri.org/INumToCat/MainTraducirResponse")]
-        System.Threading.Tasks.Task<TFTWebApplication.ServiceReference1.Conversion[]> MainTraducirAsync(string value, string lenguaje);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<TFTWebApplication.ServiceReference1.Conversion>> MainTraducirAsync(string value, string lenguaje);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INumToCat/GetNumber", ReplyAction="http://tempuri.org/INumToCat/GetNumberResponse")]
         TFTWebApplication.ServiceReference1.PartesNumeros GetNumber(string value);
@@ -516,11 +516,11 @@ namespace TFTWebApplication.ServiceReference1 {
                 base(binding, remoteAddress) {
         }
         
-        public TFTWebApplication.ServiceReference1.Conversion[] MainTraducir(string value, string lenguaje) {
+        public System.Collections.Generic.List<TFTWebApplication.ServiceReference1.Conversion> MainTraducir(string value, string lenguaje) {
             return base.Channel.MainTraducir(value, lenguaje);
         }
         
-        public System.Threading.Tasks.Task<TFTWebApplication.ServiceReference1.Conversion[]> MainTraducirAsync(string value, string lenguaje) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<TFTWebApplication.ServiceReference1.Conversion>> MainTraducirAsync(string value, string lenguaje) {
             return base.Channel.MainTraducirAsync(value, lenguaje);
         }
         

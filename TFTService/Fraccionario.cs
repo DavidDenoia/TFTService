@@ -159,6 +159,11 @@ namespace TFTService
                         
                         resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "vèsim" : numCard.Substring(0, numCard.Length - 1) + "vèsima");
                     }
+                    else if (numCard.EndsWith("ns"))
+                    {
+                        //System.Diagnostics.Debug.WriteLine("Numero CARDINAL: " + numCard);
+                        resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "èsim" : numCard.Substring(0, numCard.Length - 1) + "èsima");
+                    }
                     else if (numCard.EndsWith("s") || numCard.EndsWith("t") || numCard.EndsWith("n"))
                     {
                         resultado.Insert(0, genero == "M" ? numCard + "èsim" : numCard + "èsima");
@@ -180,6 +185,11 @@ namespace TFTService
                 else if (numCard.EndsWith("ou"))
                 {
                     resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "vèsim" : numCard.Substring(0, numCard.Length - 1) + "vèsima");
+                }
+                else if (numCard.EndsWith("ns"))
+                {
+                    //System.Diagnostics.Debug.WriteLine("Numero CARDINAL: " + numCard);
+                    resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "èsim" : numCard.Substring(0, numCard.Length - 1) + "èsima");
                 }
                 else if (numCard.EndsWith("s") || numCard.EndsWith("t") || numCard.EndsWith("n"))
                 {

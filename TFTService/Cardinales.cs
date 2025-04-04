@@ -188,15 +188,15 @@ namespace TFTService
             {
                 sufijoFinal.Append("deu ");
             }
-            else if (diferencia == 2) // 5, 8, 14, etc.
+            else if (diferencia == 2) // 5, 8, 14,......
             {
                 sufijoFinal.Append("cent ");
             }
-            else if (diferencia == 3) // 6, 9, 15, etc.
+            else if (diferencia == 3) // 6, 9, 15,.......
             {
                 sufijoFinal.Append("mil ");
             }
-            else if (diferencia == 4) // 10, 16, 22, etc.
+            else if (diferencia == 4) // 10, 16, 22,......
             {
                 sufijoFinal.Append("deu mil ");
             }

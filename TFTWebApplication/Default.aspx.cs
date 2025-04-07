@@ -26,6 +26,7 @@ namespace TFTWebApplication
             }
 
         }
+        
 
         protected void Traducir_Click(object sender, EventArgs e)
         {
@@ -55,6 +56,7 @@ namespace TFTWebApplication
                         lblTitulo.Text = $"¿Cómo se escribe {numero} en letras en catalan?";
                         panelError.Visible = false;
                         rptResultados.Visible = true;
+                        panelBienvenida.Visible = false;
 
                     }
                     else
@@ -63,6 +65,7 @@ namespace TFTWebApplication
                         lblTitulo.Text = "";
                         panelError.Visible = true; 
                         rptResultados.Visible = false;
+                        panelBienvenida.Visible = false;
                     }
                 }
             }
@@ -78,15 +81,20 @@ namespace TFTWebApplication
         {
             LinkButton btn = (LinkButton)sender;
             string texto = btn.CommandArgument;
+            
+
             string script = $@"
             <script>
                 let speech = new SpeechSynthesisUtterance('{HttpUtility.JavaScriptStringEncode(texto)}');
                 speech.lang = '{idioma}';
                 window.speechSynthesis.speak(speech);
+
+               
             </script>";
 
             ClientScript.RegisterStartupScript(this.GetType(), "SpeechScript", script, false);
-        } 
+        }
+
 
         protected void Copiar_Click(object sender, EventArgs e)
         {

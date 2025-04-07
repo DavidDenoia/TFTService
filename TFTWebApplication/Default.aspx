@@ -43,6 +43,7 @@
 
     <asp:Repeater ID="rptResultados" runat="server">
         <ItemTemplate>
+
             <div class="card mt-3">
                 <div class="card-body">
                     <!--Titulo de la tarjeta-->
@@ -62,21 +63,22 @@
                                 data-bs-target='<%# "#referenciasModal" + Container.ItemIndex %>' title='<%# Eval("TitReferencias") %>'>
                                  <i class="bi bi-file-earmark-text"></i>
                             </asp:LinkButton>
-                            <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-link toggle-btn"
-                                OnClientClick='<%# "Expandir(\"content" + Container.ItemIndex + "\", this); return false;" %>'>
-                                 <i class="bi bi-chevron-down"></i>
-                            </asp:LinkButton>
+                          <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-link toggle-btn"
+                            OnClientClick='<%# "Expandir(\"content" + Container.ItemIndex + "\", this); return false;" %>'>
+                            <i class="bi bi-chevron-down"></i>
+                          </asp:LinkButton>
+
                         </div> 
                     </div>
 
-
+                     
                     <!--Respuesta inicial-->
                     <p class="card-text">
-                        <asp:LinkButton runat="server" CommandArgument='<%# string.Join(", ", ((List<string>)Eval("Respuestas")).ToArray()) %>' 
-                            OnClick="Leer_Click"
-                            CssClass="btn btn-lg me-1">
-                                <i class="bi bi-volume-up"></i>
-                        </asp:LinkButton>
+                      <asp:LinkButton runat="server" ID="btnLeer"
+                        OnClientClick='<%# "Leer_Click(\"" + HttpUtility.JavaScriptStringEncode(string.Join(", ", (List<string>)Eval("Respuestas"))) + "\"); return false;" %>'
+                        CssClass="btn btn-lg me-1">
+                        <i class="bi bi-volume-up"></i>
+                      </asp:LinkButton>
 
                         <asp:LinkButton runat="server" CommandArgument='<%# string.Join(", ", ((List<string>)Eval("Respuestas")).ToArray()) %>'
                             OnClick="Copiar_Click"
@@ -89,8 +91,9 @@
                     </p>
 
                     <!--Contenido expansible-->
+                    
                      <div id='<%# "content" + Container.ItemIndex %>' class="collapse">
-
+                         
 
                         <!-- Valor Numérico -->
                         <%# !string.IsNullOrEmpty((string)Eval("ValorNumerico")) ? $"<h6 class=\"text-primary\">{Eval("TitValorNumerico")}: {Eval("ValorNumerico")}</h6>" : "" %>
@@ -113,6 +116,7 @@
                         </ul>
                     </div>
                 </div>
+              
 
                 <!--Notas-->
                 <div class="modal" id='<%# "notasModal" + Container.ItemIndex %>' tabindex="-1">
@@ -196,27 +200,27 @@
                 <h3 class="text-primary mb-3">Prueba los ejemplos</h3>
             </div>
              
-          <div class="d-flex flex-wrap justify-content-center gap-3">
-                <asp:Button ID="BotonEjemplo1" runat="server" Text="18759" OnClick="Ejemplo_Click" CommandArgument="18759"/>
-                <asp:Button ID="BotonEjemplo2" runat="server" Text="53625947867" OnClick="Ejemplo_Click" CommandArgument="53625947867" />
-                <asp:Button ID="BotonEjemplo3" runat="server" Text="-349996" OnClick="Ejemplo_Click" CommandArgument="-349996" />
+          <div class="d-flex flex-wrap justify-content-center gap-3 mb-2">
+                <asp:Button CssClass="btn btn-outline-primary btn-sm rounded text-dark" ID="BotonEjemplo1" runat="server" Text="18759" OnClick="Ejemplo_Click" CommandArgument="18759"/>
+                <asp:Button CssClass="btn btn-outline-primary btn-sm rounded text-dark" ID="BotonEjemplo2" runat="server" Text="53625947867" OnClick="Ejemplo_Click" CommandArgument="53625947867" />
+                <asp:Button CssClass="btn btn-outline-primary btn-sm rounded text-dark" ID="BotonEjemplo3" runat="server" Text="-349996" OnClick="Ejemplo_Click" CommandArgument="-349996" />
           </div>
-          <div class="d-flex flex-wrap justify-content-center gap-3">
-                <asp:Button ID="BotonEjemplo4" runat="server" Text="12 289" OnClick="Ejemplo_Click" CommandArgument="12 289" />
-                <asp:Button ID="BotonEjemplo5" runat="server" Text="76 879 345 567" OnClick="Ejemplo_Click" CommandArgument="76 879 345 567"/>
-                <asp:Button ID="BotonEjemplo6" runat="server" Text="-657 879" OnClick="Ejemplo_Click" CommandArgument="-657 879" />
+          <div class="d-flex flex-wrap justify-content-center gap-3 mb-2">
+                <asp:Button CssClass="btn btn-outline-primary btn-sm rounded text-dark" ID="BotonEjemplo4" runat="server" Text="12 289" OnClick="Ejemplo_Click" CommandArgument="12 289" />
+                <asp:Button CssClass="btn btn-outline-primary btn-sm rounded text-dark" ID="BotonEjemplo5" runat="server" Text="76 879 345 567" OnClick="Ejemplo_Click" CommandArgument="76 879 345 567"/>
+                <asp:Button CssClass="btn btn-outline-primary btn-sm rounded text-dark" ID="BotonEjemplo6" runat="server" Text="-657 879" OnClick="Ejemplo_Click" CommandArgument="-657 879" />
           </div>
-          <div class="d-flex flex-wrap justify-content-center gap-3">
-              <asp:Button ID="BotonEjemplo7" runat="server" Text="21.1949" OnClick="Ejemplo_Click" CommandArgument="21.1949"/>
-              <asp:Button ID="BotonEjemplo8" runat="server" Text="1956,1959" OnClick="Ejemplo_Click" CommandArgument="1956,1959" />
-              <asp:Button ID="BotonEjemplo9" runat="server" Text="-67.2465" OnClick="Ejemplo_Click" CommandArgument="-67.2465" />
-              <asp:Button ID="BotonEjemplo10" runat="server" Text="-57.9" OnClick="Ejemplo_Click" CommandArgument="-57.9" />
+          <div class="d-flex flex-wrap justify-content-center gap-3 mb-2">
+              <asp:Button CssClass="btn btn-outline-primary btn-sm rounded text-dark" ID="BotonEjemplo7" runat="server" Text="21.1949" OnClick="Ejemplo_Click" CommandArgument="21.1949"/>
+              <asp:Button CssClass="btn btn-outline-primary btn-sm rounded text-dark" ID="BotonEjemplo8" runat="server" Text="1956,1959" OnClick="Ejemplo_Click" CommandArgument="1956,1959" />
+              <asp:Button CssClass="btn btn-outline-primary btn-sm rounded text-dark" ID="BotonEjemplo9" runat="server" Text="-67.2465" OnClick="Ejemplo_Click" CommandArgument="-67.2465" />
+              <asp:Button CssClass="btn btn-outline-primary btn-sm rounded text-dark" ID="BotonEjemplo10" runat="server" Text="-57.9" OnClick="Ejemplo_Click" CommandArgument="-57.9" />
           </div>
-          <div class="d-flex flex-wrap justify-content-center gap-3">
-              <asp:Button ID="BotonEjemplo11" runat="server" Text="3/5" OnClick="Ejemplo_Click" CommandArgument="3/5" />
-              <asp:Button ID="BotonEjemplo12" runat="server" Text="9874/23423" OnClick="Ejemplo_Click" CommandArgument="9874/23423" />
-              <asp:Button ID="BotonEjemplo13" runat="server" Text="-3/5" OnClick="Ejemplo_Click" CommandArgument="-3/5" />
-              <asp:Button ID="BotonEjemplo14" runat="server" Text="9874/-23423" OnClick="Ejemplo_Click" CommandArgument="9874/-23423" />
+          <div class="d-flex flex-wrap justify-content-center gap-3 mb-2">
+              <asp:Button CssClass="btn btn-outline-primary btn-sm rounded text-dark" ID="BotonEjemplo11" runat="server" Text="3/5" OnClick="Ejemplo_Click" CommandArgument="3/5" />
+              <asp:Button CssClass="btn btn-outline-primary btn-sm rounded text-dark" ID="BotonEjemplo12" runat="server" Text="9874/23423" OnClick="Ejemplo_Click" CommandArgument="9874/23423" />
+              <asp:Button CssClass="btn btn-outline-primary btn-sm rounded text-dark" ID="BotonEjemplo13" runat="server" Text="-3/5" OnClick="Ejemplo_Click" CommandArgument="-3/5" />
+              <asp:Button CssClass="btn btn-outline-primary btn-sm rounded text-dark" ID="BotonEjemplo14" runat="server" Text="9874/-23423" OnClick="Ejemplo_Click" CommandArgument="9874/-23423" />
           </div>
 
 

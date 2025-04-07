@@ -210,4 +210,7 @@
   <data name="ExpresionAdjetivoOpcion" xml:space="preserve">
     <value>Expressió amb adjectiu</value>
   </data>
+  <data name="FormMasOpcion" xml:space="preserve">
+    <value>Forma masculina</value>
+  </data>
 </root>

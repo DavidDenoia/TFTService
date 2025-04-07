@@ -169,6 +169,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Forma masculina.
+        /// </summary>
+        internal static string FormMasOpcion {
+            get {
+                return ResourceManager.GetString("FormMasOpcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Quiero ... de chocolate. .
         /// </summary>
         internal static string FraccionarioEjemplo1 {

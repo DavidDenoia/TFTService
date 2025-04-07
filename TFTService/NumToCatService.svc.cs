@@ -572,6 +572,7 @@ namespace TFTService
                 else if (exponente >= 0)
                 {
                     string numeroExpandido = NotacionCientifica.ExpandirNotacionCientificaPositiva(baseNum, exponente);
+                    System.Diagnostics.Debug.WriteLine("NUMERO EXPANDIDO: " + numeroExpandido);
                     if (numeroExpandido.Contains('.'))
                     {
                         conversiones.Add(ConversionDecimal(numeroExpandido, signo, value, true));
@@ -772,6 +773,7 @@ namespace TFTService
             Conversion resultado = new Conversion();
 
             string numCompletoLetras = Cardinales.ConvertirNumEnteroCardinal(numero, signo);
+            //System.Diagnostics.Debug.WriteLine("NUMERO CARDINAL: " + numCompletoLetras);
 
             resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "CardinalTipo").ToString();
             resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();
@@ -847,12 +849,17 @@ namespace TFTService
             Conversion resultado = new Conversion();
 
             string numCompletoLetras = Ordinales.ConvertirNumEnteroOrdinal(numero, "M");
+            //System.Diagnostics.Debug.WriteLine("NUMERO ORDINAL: " + numCompletoLetras);
 
             resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "OrdinalTipo").ToString();
             resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();
             //AÑADIR NOTAS CUANDO ACABES BUENAS!!!!!!!!!!!!!!!
             resultado.TitReferencias = HttpContext.GetGlobalResourceObject("Resource", "ReferenciasTitulo").ToString();
             //AÑADIR REFERENCIAS BUENAS CUANDO ACABES!!!!!!!!!!!!!!!!!!
+
+            resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
+            resultado.Ejemplos = new List<string>();
+            //AÑADIR EJEMPLOS
 
             resultado.Respuestas = new List<string>();
             resultado.Respuestas.Add(numCompletoLetras);
@@ -864,6 +871,13 @@ namespace TFTService
             FormFem.Opciones = new List<string>();
             FormFem.Opciones.Add(Ordinales.ConvertirNumEnteroOrdinal(numero, "F"));
 
+            Opcion FormMas = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormmASOpcion").ToString());
+            FormMas.Opciones = new List<string>();
+            FormMas.Opciones.Add(numCompletoLetras);
+
+            resultado.MasOpciones.Add(FormFem);
+            resultado.MasOpciones.Add(FormMas);
+            //System.Diagnostics.Debug.WriteLine("NUMERO ORDINAL: FEMENINO " + Ordinales.ConvertirNumEnteroOrdinal(numero, "F"));
             return resultado;
         }
 
@@ -873,6 +887,7 @@ namespace TFTService
             Conversion resultado = new Conversion();
 
             string numCompletoLetras = Fraccionario.ConvertirNumEnteroFraccionario(numero, "M");
+            System.Diagnostics.Debug.WriteLine("NUMERO FRACCIONARIO: " + numCompletoLetras);
 
             resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "FraccionarioTipo").ToString();
             resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();
@@ -915,7 +930,7 @@ namespace TFTService
             Conversion resultado = new Conversion();
 
             string numCompletoLetras = Multiplicativo.ConvertirNumEnteroMultiplicativo(numero);
-
+            System.Diagnostics.Debug.WriteLine("NUMERO MULTIPLICATIVO: " + numCompletoLetras);
             resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "MultiplicativoTipo").ToString();
             resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();
             //AÑADIR NOTAS CUANDO ACABES BUENAS!!!!!!!!!!!!!!!

@@ -36,7 +36,7 @@ namespace TFTService
                     {
                         resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 2) + "vè" : numCard.Substring(0, numCard.Length - 2) + "vena");
                     }
-                    else if (numCard.EndsWith("s") || numCard.EndsWith("t") || numCard.EndsWith("n"))
+                    else if (numCard.EndsWith("s") || numCard.EndsWith("t") || numCard.EndsWith("n") || numCard.EndsWith("l"))
                     {
                         resultado.Insert(0, genero == "M" ? numCard + "è" : numCard + "ena");
                     }
@@ -71,7 +71,7 @@ namespace TFTService
                     //System.Diagnostics.Debug.WriteLine("Numero CARDINAL: " + numCard);
                     resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "è" : numCard.Substring(0, numCard.Length - 1) + "ena");
                 }
-                else if (numCard.EndsWith("s") || numCard.EndsWith("t") || numCard.EndsWith("n"))
+                else if (numCard.EndsWith("s") || numCard.EndsWith("t") || numCard.EndsWith("n") || numCard.EndsWith("l"))
                 {
                     resultado.Insert(0, genero == "M" ? numCard + "è" : numCard + "ena");
                 }
@@ -85,7 +85,7 @@ namespace TFTService
                 }
                
             }
-            //System.Diagnostics.Debug.WriteLine("Numero ORDINAL: " + resultado.ToString());
+            System.Diagnostics.Debug.WriteLine("Numero ORDINAL: " + resultado.ToString());
             return resultado.ToString();
         }
     }

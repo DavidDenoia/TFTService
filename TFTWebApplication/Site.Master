@@ -46,6 +46,7 @@
       <script type="text/javascript">
           function Expandir(id, btn) {
               var content = document.getElementById(id);
+
               if (content) {
                   if (content.classList.contains("show")) {
                       content.classList.remove("show");
@@ -61,6 +62,15 @@
               }
           }
       </script>
+        
+      <script>
+          function Leer_Click(texto) {
+              let speech = new SpeechSynthesisUtterance(texto);
+              speech.lang = 'ca-CA'; 
+              window.speechSynthesis.speak(speech);
+          }
+      </script> 
+
      
 
    

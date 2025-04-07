@@ -123,6 +123,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\imagenes\clariah.png" />
+    <Content Include="Content\imagenes\iatext-ulpgc.png" />
+    <Content Include="Content\imagenes\tulengua_logo.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />

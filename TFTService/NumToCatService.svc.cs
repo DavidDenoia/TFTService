@@ -486,6 +486,10 @@ namespace TFTService
            {
                 signo = true;
                 numero = numero.Substring(1);
+           }else if (numero.Contains("/-"))
+           {
+                signo = true;
+                numero = numero.Replace("/-", "/");
            }
 
             //Comprobacion de si es decimal
@@ -746,7 +750,8 @@ namespace TFTService
             if(valorNum == true)
             {
                 resultado.TitValorNumerico = HttpContext.GetGlobalResourceObject("Resource", "ValorNumericoTitulo").ToString();
-                resultado.ValorNumerico = numero;
+                string numeroFormateado = FormateoNumero.FormatearNumero(numero);
+                resultado.ValorNumerico = numeroFormateado;
                
             }
             resultado.TitOpciones = HttpContext.GetGlobalResourceObject("Resource", "TituloOpciones").ToString();
@@ -799,7 +804,8 @@ namespace TFTService
             if (valorNum == true)
             {
                 resultado.TitValorNumerico = HttpContext.GetGlobalResourceObject("Resource", "ValorNumericoTitulo").ToString();
-                resultado.ValorNumerico = numero;
+                string numeroFormateado = FormateoNumero.FormatearNumero(numero);
+                resultado.ValorNumerico = numeroFormateado;
             }
 
                 return resultado;
@@ -837,7 +843,8 @@ namespace TFTService
             if (valorNum == true)
             {
                 resultado.TitValorNumerico = HttpContext.GetGlobalResourceObject("Resource", "ValorNumericoTitulo").ToString();
-                resultado.ValorNumerico = numero;
+                string numeroFormateado = FormateoNumero.FormatearNumero(numero);
+                resultado.ValorNumerico = numeroFormateado;
             }
 
             return resultado;

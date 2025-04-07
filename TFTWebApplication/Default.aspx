@@ -2,9 +2,12 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h1>Conversor de Números</h1>
-
-   
+    <div class="text-center my-3">
+        <image src="Content/imagenes/iatext-ulpgc.png" alt="ULPGC IATEXT" style="max-height: 60px; margin-right: 20px;"/>
+        <img src="Content/imagenes/clariah.png" alt="CLARIAH-ES" style="max-height: 60px;" />
+    </div>
+    
+    <!--<h1 >Conversor de Cifras a Texto en Catalán</h1>-->
 
     <asp:Panel ID="Panel1" runat="server" DefaultButton="botonTraducir">
     <div class="container mt-3">

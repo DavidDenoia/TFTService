@@ -16,6 +16,7 @@ using System.Numerics;
 using System.Web.Script.Serialization;
 using System.Diagnostics.Eventing.Reader;
 using System.Runtime.InteropServices;
+using System.Security.Policy;
 
 
 
@@ -485,15 +486,16 @@ namespace TFTService
             Boolean signo = false;
             //Boolean decima = false;
             //Comprobacion de signo 
-           if (numero.StartsWith("-") && numero.Length > 1 && char.IsDigit(numero[1]) || numero.Contains("-"))
-           {
+            if (numero.StartsWith("-") && numero.Length > 1 && char.IsDigit(numero[1]))
+            {
                 signo = true;
-                numero = numero.Replace("-","");
-           }else if (numero.Contains("/-"))
-           {
+                numero = numero.Substring(1);
+            }
+            else if (numero.Contains("/-"))
+            {
                 signo = true;
                 numero = numero.Replace("/-", "/");
-           }
+            }
 
             //Comprobacion de si es decimal
             if (Regex.IsMatch(numero, @"^([+-]?)\d+([.,])\d+$"))
@@ -563,7 +565,9 @@ namespace TFTService
 
             //Comprobacion de si es numero con anotacion cientifica
             //Match match = Regex.Match(numero, @"^([+-]?\d+(?:[.,]\d+)?)[Ee]([+-]?\d+)$");
-            Match match = Regex.Match(numero, @"^([+-]?\d+[.,]?\d+)[Ee]([+-]?\d+)$");
+            //Match match = Regex.Match(numero, @"^([+-]?\d+[.,]?\d+)[Ee]([+-]?\d+)$");
+            Match match = Regex.Match(numero, @"^([+-]?\d+(?:[.,]?\d+)?)[Ee]([+-]?\d+)$");
+
             if (match.Success)
             {
                 string[] partes = numero.Split(new char[] { 'E', 'e' });
@@ -582,34 +586,36 @@ namespace TFTService
                     System.Diagnostics.Debug.WriteLine("NUMERO EXPANDIDO: " + numeroExpandido);
                     if (numeroExpandido.Contains('.'))
                     {
+                        cabecera = new Cabecera(numero, HttpContext.GetGlobalResourceObject("Resource", "NumeroFormateadoTitulo").ToString());
                         conversiones.Add(ConversionDecimal(numeroExpandido, signo, value, true));
                     }
                     else if (signo == true)
                     {
+                        cabecera = new Cabecera(numero, HttpContext.GetGlobalResourceObject("Resource", "NumeroFormateadoTitulo").ToString());
                         conversiones.Add(ConversionNegativo(numeroExpandido, signo, value, true));
 
                     }
                     else
                     {
+                        cabecera = new Cabecera(numero, HttpContext.GetGlobalResourceObject("Resource", "NumeroFormateadoTitulo").ToString());
                         conversiones.Add(ConversionCardinal(numeroExpandido, signo, value, true));
-                        string ordinal = Ordinales.ConvertirNumEnteroOrdinal(numeroExpandido, "M");
-                        if (!string.IsNullOrEmpty(ordinal))
+
+                        var conversionOrdinal = ConversionOrdinal(numeroExpandido, signo, value, false);
+                        if (conversionOrdinal != null)
                         {
-                            conversiones.Add(ConversionOrdinal(numeroExpandido, signo, value, false));
+                            conversiones.Add(conversionOrdinal);
                         }
 
-                        string fraccionario = Fraccionario.ConvertirNumEnteroFraccionario(numeroExpandido, "M");
-                        if (!string.IsNullOrEmpty(fraccionario))
+                        var conversionFraccionario = ConversionFraccionario(numeroExpandido, signo, value, false);
+                        if (conversionFraccionario != null)
                         {
-                            conversiones.Add(ConversionFraccionario(numeroExpandido, signo, value, false));
+                            conversiones.Add(conversionFraccionario);
                         }
-                        
 
-
-                        string multiplicativo = Multiplicativo.ConvertirNumEnteroMultiplicativo(numeroExpandido);
-                        if (!string.IsNullOrEmpty(multiplicativo))
+                        var conversionMultiplicativo = ConversionMultiplicativo(numeroExpandido, signo, value, false);
+                        if (conversionMultiplicativo != null)
                         {
-                            conversiones.Add(ConversionMultiplicativo(numeroExpandido, signo, value, false));
+                            conversiones.Add(conversionMultiplicativo);
                         }
                     }
                 }
@@ -618,31 +624,35 @@ namespace TFTService
                     string numeroExpandido = NotacionCientifica.ExpandirNotacionCientificaNegativa(baseNum, exponente);
                     if (numeroExpandido.Contains('.'))
                     {
+                        cabecera = new Cabecera(numero, HttpContext.GetGlobalResourceObject("Resource", "NumeroFormateadoTitulo").ToString());
                         conversiones.Add(ConversionDecimal(numeroExpandido, signo, value, true));
                     }
                     else if (signo == true)
                     {
+                        cabecera = new Cabecera(numero, HttpContext.GetGlobalResourceObject("Resource", "NumeroFormateadoTitulo").ToString());
                         conversiones.Add(ConversionNegativo(numeroExpandido, signo, value, true));
                     }
                     else
                     {
+                        cabecera = new Cabecera(numero, HttpContext.GetGlobalResourceObject("Resource", "NumeroFormateadoTitulo").ToString());
                         conversiones.Add(ConversionCardinal(numeroExpandido, signo, value, true));
-                        string ordinal = Ordinales.ConvertirNumEnteroOrdinal(numeroExpandido, "M");
-                        if (!string.IsNullOrEmpty(ordinal))
+
+                        var conversionOrdinal = ConversionOrdinal(numeroExpandido, signo, value, false);
+                        if (conversionOrdinal != null)
                         {
-                            conversiones.Add(ConversionOrdinal(numeroExpandido, signo, value, false));
+                            conversiones.Add(conversionOrdinal);
                         }
 
-                        string fraccionario = Fraccionario.ConvertirNumEnteroFraccionario(numeroExpandido, "M");
-                        if (!string.IsNullOrEmpty(fraccionario))
+                        var conversionFraccionario = ConversionFraccionario(numeroExpandido, signo, value, false);
+                        if (conversionFraccionario != null)
                         {
-                            conversiones.Add(ConversionFraccionario(numeroExpandido, signo, value, false));
+                            conversiones.Add(conversionFraccionario);
                         }
 
-                        string multiplicativo = Multiplicativo.ConvertirNumEnteroMultiplicativo(numeroExpandido);
-                        if (!string.IsNullOrEmpty(multiplicativo))
+                        var conversionMultiplicativo = ConversionMultiplicativo(numeroExpandido, signo, value, false);
+                        if (conversionMultiplicativo != null)
                         {
-                            conversiones.Add(ConversionMultiplicativo(numeroExpandido, signo, value, false));
+                            conversiones.Add(conversionMultiplicativo);
                         }
                     }
                 }
@@ -650,7 +660,7 @@ namespace TFTService
             }
 
             //Comprobacion de si el numero es €
-            if(Regex.IsMatch(numero, @"^(€)?\d+([.,]?\d{1,2})?(€)?$"))
+            if (Regex.IsMatch(numero, @"^(€\s?\d+([.,]?\d{1,2})?|[-+]?\d+([.,]?\d{1,2})?\s?€)$"))
             {
                 numero = numero.Replace("€", "");
                 string numeroFormateado = FormateoNumero.FormatearNumero(numero);
@@ -676,23 +686,26 @@ namespace TFTService
                 {
                     conversiones.Add(ConversionEuro(numero, signo, value, false));
                     conversiones.Add(ConversionCardinal(numero, signo, value, false));
-                    string ordinal = Ordinales.ConvertirNumEnteroOrdinal(numero, "M");
-                    if (!string.IsNullOrEmpty(ordinal))
+                   
+
+                    var conversionOrdinal = ConversionOrdinal(numero, signo, value, false);
+                    if(conversionOrdinal != null){
+                        conversiones.Add(conversionOrdinal);
+                    }
+
+                    var conversionFraccionario = ConversionFraccionario(numero, signo, value, false);
+                    if(conversionFraccionario != null)
                     {
-                        conversiones.Add(ConversionOrdinal(numero, signo, value, false));
+                        conversiones.Add(conversionFraccionario);
                     }
-
-                    string fraccionario = Fraccionario.ConvertirNumEnteroFraccionario(numero, "M");
-                    if (!string.IsNullOrEmpty(fraccionario)) {
-                        conversiones.Add(ConversionFraccionario(numero, signo, value, false));
-                    }
-
                     
-                    string multiplicativo = Multiplicativo.ConvertirNumEnteroMultiplicativo(numero);
-                    if (!string.IsNullOrEmpty(multiplicativo))
+
+                    var conversionMultiplicativo = ConversionMultiplicativo(numero, signo, value, false);      
+                    if(conversionMultiplicativo != null)
                     {
-                        conversiones.Add(ConversionMultiplicativo(numero, signo, value, false));
+                        conversiones.Add(conversionMultiplicativo);
                     }
+                   
                 }
                 
             }
@@ -818,6 +831,7 @@ namespace TFTService
             //System.Diagnostics.Debug.WriteLine("Valor de la parte decimal: " + parteDecimal.ToString());
 
             string numCompletoLetras = parteEntera + " ambs " + parteDecimal;
+           
             //System.Diagnostics.Debug.WriteLine("Numero decimal: " + numCompletoLetras);
 
             resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "DecimalTipo").ToString();
@@ -938,6 +952,11 @@ namespace TFTService
 
             string numCompletoLetras = Ordinales.ConvertirNumEnteroOrdinal(numero, "M");
             //System.Diagnostics.Debug.WriteLine("NUMERO ORDINAL: " + numCompletoLetras);
+            if (string.IsNullOrEmpty(numCompletoLetras))
+            {
+                return null;
+            }
+
 
             resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "OrdinalTipo").ToString();
             resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();
@@ -976,6 +995,10 @@ namespace TFTService
 
             string numCompletoLetras = Fraccionario.ConvertirNumEnteroFraccionario(numero, "M");
             System.Diagnostics.Debug.WriteLine("NUMERO FRACCIONARIO: " + numCompletoLetras);
+            if(string.IsNullOrEmpty(numCompletoLetras))
+            {
+                return null;
+            }
 
             resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "FraccionarioTipo").ToString();
             resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();
@@ -1018,6 +1041,10 @@ namespace TFTService
             Conversion resultado = new Conversion();
 
             string numCompletoLetras = Multiplicativo.ConvertirNumEnteroMultiplicativo(numero);
+            if (string.IsNullOrEmpty(numCompletoLetras))
+            {
+                return null;
+            }
             System.Diagnostics.Debug.WriteLine("NUMERO MULTIPLICATIVO: " + numCompletoLetras);
             resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "MultiplicativoTipo").ToString();
             resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();

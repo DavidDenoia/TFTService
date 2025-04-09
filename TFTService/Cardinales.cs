@@ -91,7 +91,7 @@ namespace TFTService
                 resultado.Insert(0, "zero");
             }
 
-            if(signo == true && resultado.ToString() != "zero")
+            if(signo == true)
             {
                 resultado.Insert(0, "Minus ");
             }

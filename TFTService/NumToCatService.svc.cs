@@ -15,6 +15,7 @@ using System.Resources;
 using System.Numerics;
 using System.Web.Script.Serialization;
 using System.Diagnostics.Eventing.Reader;
+using System.Runtime.InteropServices;
 
 
 
@@ -467,7 +468,9 @@ namespace TFTService
 
         private CultureInfo language;
         List<Conversion> conversiones = new List<Conversion>();//Aqui vamos a meter todas las conversiones
-        public List<Conversion> MainTraducir(string value, string lenguaje)
+        Cabecera cabecera;
+
+        public (Cabecera, List<Conversion>) MainTraducir(string value, string lenguaje)
         {
             if (lenguaje != null)
             {
@@ -482,10 +485,10 @@ namespace TFTService
             Boolean signo = false;
             //Boolean decima = false;
             //Comprobacion de signo 
-           if (numero.StartsWith("-") && numero.Length > 1 && char.IsDigit(numero[1]))
+           if (numero.StartsWith("-") && numero.Length > 1 && char.IsDigit(numero[1]) || numero.Contains("-"))
            {
                 signo = true;
-                numero = numero.Substring(1);
+                numero = numero.Replace("-","");
            }else if (numero.Contains("/-"))
            {
                 signo = true;
@@ -560,7 +563,7 @@ namespace TFTService
 
             //Comprobacion de si es numero con anotacion cientifica
             //Match match = Regex.Match(numero, @"^([+-]?\d+(?:[.,]\d+)?)[Ee]([+-]?\d+)$");
-            Match match = Regex.Match(numero, @"^([+-]?\d*[.,]?\d+)[Ee]([+-]?\d+)$");
+            Match match = Regex.Match(numero, @"^([+-]?\d+[.,]?\d+)[Ee]([+-]?\d+)$");
             if (match.Success)
             {
                 string[] partes = numero.Split(new char[] { 'E', 'e' });
@@ -589,9 +592,25 @@ namespace TFTService
                     else
                     {
                         conversiones.Add(ConversionCardinal(numeroExpandido, signo, value, true));
-                        conversiones.Add(ConversionOrdinal(numeroExpandido, signo, value, false));
-                        conversiones.Add(ConversionFraccionario(numeroExpandido, signo, value, false));
-                        conversiones.Add(ConversionMultiplicativo(numeroExpandido, signo, value, false));
+                        string ordinal = Ordinales.ConvertirNumEnteroOrdinal(numeroExpandido, "M");
+                        if (!string.IsNullOrEmpty(ordinal))
+                        {
+                            conversiones.Add(ConversionOrdinal(numeroExpandido, signo, value, false));
+                        }
+
+                        string fraccionario = Fraccionario.ConvertirNumEnteroFraccionario(numeroExpandido, "M");
+                        if (!string.IsNullOrEmpty(fraccionario))
+                        {
+                            conversiones.Add(ConversionFraccionario(numeroExpandido, signo, value, false));
+                        }
+                        
+
+
+                        string multiplicativo = Multiplicativo.ConvertirNumEnteroMultiplicativo(numeroExpandido);
+                        if (!string.IsNullOrEmpty(multiplicativo))
+                        {
+                            conversiones.Add(ConversionMultiplicativo(numeroExpandido, signo, value, false));
+                        }
                     }
                 }
                 else
@@ -608,15 +627,77 @@ namespace TFTService
                     else
                     {
                         conversiones.Add(ConversionCardinal(numeroExpandido, signo, value, true));
-                        conversiones.Add(ConversionOrdinal(numeroExpandido, signo, value, false));
-                        conversiones.Add(ConversionFraccionario(numeroExpandido, signo, value, false));
-                        conversiones.Add(ConversionMultiplicativo(numeroExpandido, signo, value, false));
+                        string ordinal = Ordinales.ConvertirNumEnteroOrdinal(numeroExpandido, "M");
+                        if (!string.IsNullOrEmpty(ordinal))
+                        {
+                            conversiones.Add(ConversionOrdinal(numeroExpandido, signo, value, false));
+                        }
+
+                        string fraccionario = Fraccionario.ConvertirNumEnteroFraccionario(numeroExpandido, "M");
+                        if (!string.IsNullOrEmpty(fraccionario))
+                        {
+                            conversiones.Add(ConversionFraccionario(numeroExpandido, signo, value, false));
+                        }
+
+                        string multiplicativo = Multiplicativo.ConvertirNumEnteroMultiplicativo(numeroExpandido);
+                        if (!string.IsNullOrEmpty(multiplicativo))
+                        {
+                            conversiones.Add(ConversionMultiplicativo(numeroExpandido, signo, value, false));
+                        }
                     }
                 }
                
             }
 
-            return conversiones;
+            //Comprobacion de si el numero es €
+            if(Regex.IsMatch(numero, @"^(€)?\d+([.,]?\d{1,2})?(€)?$"))
+            {
+                numero = numero.Replace("€", "");
+                string numeroFormateado = FormateoNumero.FormatearNumero(numero);
+                if (signo == true) {
+                    numeroFormateado = "-" + numeroFormateado;
+                }
+                numeroFormateado = numeroFormateado + "€";
+                cabecera = new Cabecera(numeroFormateado, HttpContext.GetGlobalResourceObject("Resource", "NumeroFormateadoTitulo").ToString());
+                //System.Diagnostics.Debug.WriteLine("SE CREO LA CABECERA!!!!!!!!!!!!");
+                //System.Diagnostics.Debug.WriteLine("FORMATEADO:"+cabecera.Formateado);
+                //System.Diagnostics.Debug.WriteLine("TITULO:" + cabecera.Titulo);
+                if(numero.Contains(".") || numero.Contains(","))
+                {
+                    conversiones.Add(ConversionEuro(numero, signo, value, false));
+                    conversiones.Add(ConversionDecimal(numero, signo, value, false));
+                }
+                else if(signo == true)
+                {
+                    conversiones.Add(ConversionEuro(numero, signo, value, false));
+                    conversiones.Add(ConversionNegativo(numero, signo, value, false));
+                }
+                else
+                {
+                    conversiones.Add(ConversionEuro(numero, signo, value, false));
+                    conversiones.Add(ConversionCardinal(numero, signo, value, false));
+                    string ordinal = Ordinales.ConvertirNumEnteroOrdinal(numero, "M");
+                    if (!string.IsNullOrEmpty(ordinal))
+                    {
+                        conversiones.Add(ConversionOrdinal(numero, signo, value, false));
+                    }
+
+                    string fraccionario = Fraccionario.ConvertirNumEnteroFraccionario(numero, "M");
+                    if (!string.IsNullOrEmpty(fraccionario)) {
+                        conversiones.Add(ConversionFraccionario(numero, signo, value, false));
+                    }
+
+                    
+                    string multiplicativo = Multiplicativo.ConvertirNumEnteroMultiplicativo(numero);
+                    if (!string.IsNullOrEmpty(multiplicativo))
+                    {
+                        conversiones.Add(ConversionMultiplicativo(numero, signo, value, false));
+                    }
+                }
+                
+            }
+
+            return (cabecera,conversiones);
         }
 
         public Conversion ConversionFraccion(string pNumerador,string pDenominador, bool signo, string numeroOriginal)
@@ -958,11 +1039,92 @@ namespace TFTService
             ExpreAdj.Opciones = new List<string>();
             ExpreAdj.Opciones.Add(numCompletoLetras);
 
+            resultado.MasOpciones.Add(ExpreAdj);
 
             return resultado;
 
         }
 
+        public Conversion ConversionEuro(string numero, bool signo, string numeroOriginal, bool valorNum)
+        {
+            Thread.CurrentThread.CurrentUICulture = language;
+            Conversion resultado = new Conversion();
+
+            string numCompletoLetras;
+            string numeroNoSimbolo = numero.Replace("€", "");
+            string[] partes = Regex.Split(numeroNoSimbolo, @"[.,]");
+            
+            string parteEuros = Cardinales.ConvertirNumEnteroCardinal(partes[0], signo);
+            string parteCentimos = "";
+            if (partes.Length > 1)
+            {
+                if (partes[1].Length == 1)
+                {
+                    partes[1] += "0";
+                }
+                else if (partes[1].Length > 2)
+                {
+                    partes[1] = partes[1].Substring(0, 2);
+                }
+                parteCentimos = Cardinales.ConvertirNumEnteroCardinal(partes[1], false);
+            }
+            if (partes[0] == "1")
+            {
+                numCompletoLetras = parteEuros + " " + HttpContext.GetGlobalResourceObject("Resource", "Euro").ToString();
+            }
+            else
+            {
+                numCompletoLetras = parteEuros + " " + HttpContext.GetGlobalResourceObject("Resource", "Euros").ToString();
+            }
+            if (!string.IsNullOrEmpty(parteCentimos))
+            {
+                if (partes[1] == "01")
+                {
+                    numCompletoLetras += " i " + parteCentimos + " "+ HttpContext.GetGlobalResourceObject("Resource", "Centimo").ToString();
+                }
+                else
+                {
+                    numCompletoLetras += " i " + parteCentimos + " " + HttpContext.GetGlobalResourceObject("Resource", "Centimos").ToString();
+                }
+            }
+
+            resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "EurosTipo").ToString();
+            resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();
+            //AÑADIR NOTAS CUANDO ACABES BUENAS!!!!!!!!!!!!!!!
+            resultado.TitReferencias = HttpContext.GetGlobalResourceObject("Resource", "ReferenciasTitulo").ToString();
+            //AÑADIR REFERENCIAS BUENAS CUANDO ACABES!!!!!!!!!!!!!!!!!!
+            resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
+            resultado.Ejemplos = new List<string>();
+            //AÑADIR EJEMPLOS
+            resultado.Respuestas = new List<string>();
+            resultado.Respuestas.Add(numCompletoLetras);
+
+
+            resultado.TitOpciones = HttpContext.GetGlobalResourceObject("Resource", "TituloOpciones").ToString();
+            resultado.MasOpciones = new List<Opcion>();
+
+            Opcion SintagmaNom = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "SintagmaNominalOpcion").ToString());
+            SintagmaNom.Opciones = new List<string>();
+            SintagmaNom.Opciones.Add(numCompletoLetras);
+            if(numero.Contains(".") || numero.Contains(","))
+            {
+                SintagmaNom.Opciones.Add(numCompletoLetras.Replace(" i ", " ambs "));
+            }
+            
+
+            Opcion NoApropiado = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "NoApropiadoOpcion").ToString());
+            NoApropiado.Opciones = new List<string>();
+            NoApropiado.Opciones.Add(numCompletoLetras.Replace(" i ", " punt "));
+
+            
+            resultado.MasOpciones.Add(SintagmaNom);
+            if (numero.Contains(".") || numero.Contains(","))
+            {
+                resultado.MasOpciones.Add(NoApropiado);
+            }
+            return resultado;
+        }
+        
     }
  
 

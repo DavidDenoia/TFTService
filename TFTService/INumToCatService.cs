@@ -14,7 +14,8 @@ namespace TFTService
     public interface INumToCat
     {
         [OperationContract]
-        List<Conversion> MainTraducir(string value, string lenguaje);
+        //List<Conversion> MainTraducir(string value, string lenguaje);
+        (Cabecera, List<Conversion>) MainTraducir(string value, string lenguaje);
 
         [OperationContract]
         PartesNumeros GetNumber(string value);

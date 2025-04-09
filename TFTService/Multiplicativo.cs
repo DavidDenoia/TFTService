@@ -18,7 +18,8 @@ namespace TFTService
                 int numeroInt = int.Parse(numero);
                 if (numeroInt == 0 || numeroInt == 1)
                 {
-                    resultado.Insert(0, "");
+                    //resultado.Insert(0, "");
+                    return null;
                 }
                 else if (numeroInt == 2 || numeroInt == 3)
                 {

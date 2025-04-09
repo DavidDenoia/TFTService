@@ -213,4 +213,28 @@
   <data name="FormMasOpcion" xml:space="preserve">
     <value>Forma masculina</value>
   </data>
+  <data name="Euros" xml:space="preserve">
+    <value>euros</value>
+  </data>
+  <data name="Euro" xml:space="preserve">
+    <value>euro</value>
+  </data>
+  <data name="Centimo" xml:space="preserve">
+    <value>cèntim</value>
+  </data>
+  <data name="Centimos" xml:space="preserve">
+    <value>cèntims</value>
+  </data>
+  <data name="EurosTipo" xml:space="preserve">
+    <value>Euros</value>
+  </data>
+  <data name="SintagmaNominalOpcion" xml:space="preserve">
+    <value>Sintagma nominal</value>
+  </data>
+  <data name="NoApropiadoOpcion" xml:space="preserve">
+    <value>Registre oral, no apropiat per a escriure</value>
+  </data>
+  <data name="NumeroFormateadoTitulo" xml:space="preserve">
+    <value>Número formatat</value>
+  </data>
 </root>

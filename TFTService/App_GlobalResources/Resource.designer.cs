@@ -106,6 +106,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a céntimo.
+        /// </summary>
+        internal static string Centimo {
+            get {
+                return ResourceManager.GetString("Centimo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a céntimos.
+        /// </summary>
+        internal static string Centimos {
+            get {
+                return ResourceManager.GetString("Centimos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a El peso del paquete es de … kilogramos..
         /// </summary>
         internal static string DecimalEjemplo1 {
@@ -138,6 +156,33 @@ namespace Resources {
         internal static string EjemplosTitulo {
             get {
                 return ResourceManager.GetString("EjemplosTitulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a euro.
+        /// </summary>
+        internal static string Euro {
+            get {
+                return ResourceManager.GetString("Euro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a euros.
+        /// </summary>
+        internal static string Euros {
+            get {
+                return ResourceManager.GetString("Euros", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Euros.
+        /// </summary>
+        internal static string EurosTipo {
+            get {
+                return ResourceManager.GetString("EurosTipo", resourceCulture);
             }
         }
         
@@ -268,11 +313,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Registro oral, no apropiado para escribir.
+        /// </summary>
+        internal static string NoApropiadoOpcion {
+            get {
+                return ResourceManager.GetString("NoApropiadoOpcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Notas.
         /// </summary>
         internal static string NotasTitulo {
             get {
                 return ResourceManager.GetString("NotasTitulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Número formateado.
+        /// </summary>
+        internal static string NumeroFormateadoTitulo {
+            get {
+                return ResourceManager.GetString("NumeroFormateadoTitulo", resourceCulture);
             }
         }
         
@@ -291,6 +354,15 @@ namespace Resources {
         internal static string ReferenciasTitulo {
             get {
                 return ResourceManager.GetString("ReferenciasTitulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sintagma nominal.
+        /// </summary>
+        internal static string SintagmaNominalOpcion {
+            get {
+                return ResourceManager.GetString("SintagmaNominalOpcion", resourceCulture);
             }
         }
         

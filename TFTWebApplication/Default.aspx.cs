@@ -45,13 +45,31 @@ namespace TFTWebApplication
 
                 using (var cliente = new NumToCatClient())
                 {
-                    List<Conversion> resultados = cliente.MainTraducir(numero, lenguaje);
-                    
+                    //List<Conversion> resultado = cliente.MainTraducir(numero, lenguaje);
+                    var resultado = cliente.MainTraducir(numero, lenguaje);
+                    //System.Diagnostics.Debug.WriteLine("RESULTADO RECIBIDO:" + resultado);
+                    var cabecera = resultado.Item1;
+
+                    var resultados = resultado.Item2;
+
+
+
+
                     if (resultados != null && resultados.Count > 0)
                     {
                         rptResultados.DataSource = resultados;
                         rptResultados.DataBind();
-                        lblResultado.Text = "Conversion hecha";
+                        //lblResultado.Text = "Conversion hecha";
+
+                        if (cabecera != null)
+                        {
+                            lblResultado.Text = cabecera.Titulo + ": " + cabecera.Formateado;
+                        }
+                        else
+                        {
+                            lblResultado.Text = "Conversion hecha";
+                        }
+                        
 
                         lblTitulo.Text = $"¿Cómo se escribe {numero} en letras en catalan?";
                         panelError.Visible = false;
@@ -61,12 +79,23 @@ namespace TFTWebApplication
                     }
                     else
                     {
-                        lblResultado.Text = "No se encontraron conversiones";
+                        if (cabecera != null)
+                        {
+                            lblResultado.Text = cabecera.Titulo + ": " + cabecera.Formateado;
+                        }
+                        else
+                        {
+                            lblResultado.Text = "No se encontraron conversiones";
+                        }
+                        //lblResultado.Text = "No se encontraron conversiones";
                         lblTitulo.Text = "";
                         panelError.Visible = true; 
                         rptResultados.Visible = false;
                         panelBienvenida.Visible = false;
                     }
+
+                    
+                    
                 }
             }
             catch (Exception ex)

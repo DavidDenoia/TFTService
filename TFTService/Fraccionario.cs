@@ -141,6 +141,8 @@ namespace TFTService
                 {
                     switch (numeroInt)
                     {
+                        case 0: return null;
+                        case 1: return null;
                         case 2: resultado.Insert(0, genero == "M" ? "mig" : "mitja"); break;
                         case 3: resultado.Insert(0, genero == "M" ? "terç" : "tercera"); break;
                         case 4: resultado.Insert(0, genero == "M" ? "quart" : "quarta"); break;

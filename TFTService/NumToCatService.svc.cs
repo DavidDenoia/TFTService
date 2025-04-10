@@ -1118,8 +1118,7 @@ namespace TFTService
             resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "EurosTipo").ToString();
             resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();
             //AÑADIR NOTAS CUANDO ACABES BUENAS!!!!!!!!!!!!!!!
-            resultado.TitReferencias = HttpContext.GetGlobalResourceObject("Resource", "ReferenciasTitulo").ToString();
-            //AÑADIR REFERENCIAS BUENAS CUANDO ACABES!!!!!!!!!!!!!!!!!!
+            
             resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
             resultado.Ejemplos = new List<string>();
             //AÑADIR EJEMPLOS

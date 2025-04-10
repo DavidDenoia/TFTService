@@ -63,7 +63,8 @@
                                 <i class="bi bi-clipboard"></i>
                             </asp:LinkButton>
                             <asp:LinkButton ID="botonReferencias" runat="server" CssClass="btn btn-link"  data-bs-toggle="modal" 
-                                data-bs-target='<%# "#referenciasModal" + Container.ItemIndex %>' title='<%# Eval("TitReferencias") %>'>
+                                data-bs-target='<%# "#referenciasModal" + Container.ItemIndex %>' title='<%# Eval("TitReferencias") %>'
+                                visible='<%# !string.IsNullOrEmpty(Eval("TitReferencias") as string) %>'>
                                  <i class="bi bi-file-earmark-text"></i>
                             </asp:LinkButton>
                           <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-link toggle-btn"

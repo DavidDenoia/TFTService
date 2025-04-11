@@ -106,6 +106,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a centavo.
+        /// </summary>
+        internal static string Centavo {
+            get {
+                return ResourceManager.GetString("Centavo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a centavos.
+        /// </summary>
+        internal static string Centavos {
+            get {
+                return ResourceManager.GetString("Centavos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a céntimo.
         /// </summary>
         internal static string Centimo {
@@ -147,6 +165,33 @@ namespace Resources {
         internal static string DecimalTipo {
             get {
                 return ResourceManager.GetString("DecimalTipo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a dolar.
+        /// </summary>
+        internal static string Dolar {
+            get {
+                return ResourceManager.GetString("Dolar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a dolares.
+        /// </summary>
+        internal static string Dolares {
+            get {
+                return ResourceManager.GetString("Dolares", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Dolar.
+        /// </summary>
+        internal static string DolarTipo {
+            get {
+                return ResourceManager.GetString("DolarTipo", resourceCulture);
             }
         }
         
@@ -345,6 +390,42 @@ namespace Resources {
         internal static string OrdinalTipo {
             get {
                 return ResourceManager.GetString("OrdinalTipo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Peso.
+        /// </summary>
+        internal static string Peso {
+            get {
+                return ResourceManager.GetString("Peso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Pesos.
+        /// </summary>
+        internal static string Pesos {
+            get {
+                return ResourceManager.GetString("Pesos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Peso.
+        /// </summary>
+        internal static string PesoTipo {
+            get {
+                return ResourceManager.GetString("PesoTipo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Poligono.
+        /// </summary>
+        internal static string PoligonoTipo {
+            get {
+                return ResourceManager.GetString("PoligonoTipo", resourceCulture);
             }
         }
         

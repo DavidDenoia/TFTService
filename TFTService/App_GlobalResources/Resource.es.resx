@@ -238,4 +238,31 @@
   <data name="NumeroFormateadoTitulo" xml:space="preserve">
     <value>Número formateado</value>
   </data>
+  <data name="Pesos" xml:space="preserve">
+    <value>pesos</value>
+  </data>
+  <data name="Peso" xml:space="preserve">
+    <value>peso</value>
+  </data>
+  <data name="Centavos" xml:space="preserve">
+    <value>centavos</value>
+  </data>
+  <data name="Centavo" xml:space="preserve">
+    <value>centavo</value>
+  </data>
+  <data name="PesoTipo" xml:space="preserve">
+    <value>Peso</value>
+  </data>
+  <data name="Dolar" xml:space="preserve">
+    <value>dólar</value>
+  </data>
+  <data name="Dolares" xml:space="preserve">
+    <value>dólares</value>
+  </data>
+  <data name="DolarTipo" xml:space="preserve">
+    <value>Dólar</value>
+  </data>
+  <data name="PoligonoTipo" xml:space="preserve">
+    <value>Polígono</value>
+  </data>
 </root>

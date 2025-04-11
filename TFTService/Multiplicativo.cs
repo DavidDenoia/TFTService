@@ -25,28 +25,28 @@ namespace TFTService
                 {
                     switch (numeroInt)
                     {
-                        case 2: resultado.Insert(0, "Doble"); break;
-                        case 3: resultado.Insert(0, "Triple"); break;
+                        case 2: resultado.Insert(0, "doble"); break;
+                        case 3: resultado.Insert(0, "triple"); break;
                     }
                 }
                 else if (numeroInt >= 4 && numeroInt <= 12)
                 {
                     switch (numeroInt)
                     {
-                        case 4: resultado.Insert(0, "Quàdruple"); break;
-                        case 5: resultado.Insert(0, "Quìntuple"); break;
-                        case 6: resultado.Insert(0, "Sèxtuple"); break;
-                        case 7: resultado.Insert(0, "Sèptuple"); break;
-                        case 8: resultado.Insert(0, "Òctuple"); break;
-                        case 9: resultado.Insert(0, "Nonùple"); break;
-                        case 10: resultado.Insert(0, "Dècuple"); break;
-                        case 11: resultado.Insert(0, "Undècuple"); break;
-                        case 12: resultado.Insert(0, "Duodècuple"); break;
+                        case 4: resultado.Insert(0, "quàdruple"); break;
+                        case 5: resultado.Insert(0, "quìntuple"); break;
+                        case 6: resultado.Insert(0, "sèxtuple"); break;
+                        case 7: resultado.Insert(0, "sèptuple"); break;
+                        case 8: resultado.Insert(0, "òctuple"); break;
+                        case 9: resultado.Insert(0, "nonùple"); break;
+                        case 10: resultado.Insert(0, "dècuple"); break;
+                        case 11: resultado.Insert(0, "undècuple"); break;
+                        case 12: resultado.Insert(0, "duodècuple"); break;
                     }
                 }
                 else if (numeroInt == 100)
                 {
-                    resultado.Insert(0, "Cèntuple");
+                    resultado.Insert(0, "cèntuple");
                 }
                 else
                 {

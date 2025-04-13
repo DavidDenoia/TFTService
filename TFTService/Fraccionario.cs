@@ -107,7 +107,7 @@ namespace TFTService
         {
             int tamañoNumero = numero.Length;
             StringBuilder resultado = new StringBuilder();
-            if (Regex.IsMatch(numero, @"^10*$"))
+            if (Regex.IsMatch(numero, @"^10+$"))
             {
                 string denominador = Cardinales.ConvertirNumEnteroCardinal(numero, false);
                 if (denominador == "deu")
@@ -137,12 +137,12 @@ namespace TFTService
 
                 int numeroInt = int.Parse(numero);
                 
-                if (numeroInt >= 2 && numeroInt <= 4 || numeroInt == 10)
+                if (numeroInt >= 0 && numeroInt <= 4)
                 {
                     switch (numeroInt)
                     {
                         case 0: return null;
-                        case 1: return null;
+                        case 1: resultado.Insert(0, genero == "M" ? "unitat" : "unitat"); break;
                         case 2: resultado.Insert(0, genero == "M" ? "mig" : "mitja"); break;
                         case 3: resultado.Insert(0, genero == "M" ? "terç" : "tercera"); break;
                         case 4: resultado.Insert(0, genero == "M" ? "quart" : "quarta"); break;

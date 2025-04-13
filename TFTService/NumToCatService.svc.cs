@@ -682,7 +682,7 @@ namespace TFTService
             }
 
             //Comprobacion de si el numero es €
-            if (Regex.IsMatch(numero, @"^(€\s?\d+([.,]?\d{1,2})?|[-+]?\d+([.,]?\d{1,2})?\s?€)$"))
+            if (Regex.IsMatch(numero, @"^(€\s?\d+([.,]?\d{1,2})?|[-+]?\d+([.,]?\d+)?\s?€)$"))
             {
                 numero = numero.Replace("€", "");
                 string numeroFormateado = FormateoNumero.FormatearNumero(numero);
@@ -729,12 +729,13 @@ namespace TFTService
                     }
                    
                 }
-                
+                numero += "€";
+
             }
 
 
             //Comprobacion de si el numero es $
-            if(Regex.IsMatch(numero, @"^(\$\s?\d+([.,]?\d{1,2})?|[-+]?\d+([.,]?\d{1,2})?\s?\$)$"))
+            if (Regex.IsMatch(numero, @"^(\$\s?\d+([.,]?\d{1,2})?|[-+]?\d+([.,]?\d+)?\s?\$)$"))
             {
                 numero = numero.Replace("$", "");
                 string numeroFormateado = FormateoNumero.FormatearNumero(numero);
@@ -786,7 +787,7 @@ namespace TFTService
                     }
 
                 }
-
+                numero += "$";
 
             }
 
@@ -1029,6 +1030,23 @@ namespace TFTService
                 resultado.ValorNumerico = numeroFormateado;
             }
 
+            resultado.MasOpciones.Add(SusAdPro);
+
+            if (numCompletoLetras == "un")
+            {
+                Opcion FormFem = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormFemOpcion").ToString());
+                FormFem.Opciones = new List<string>();
+                FormFem.Opciones.Add("una");
+                resultado.MasOpciones.Add(FormFem);
+            }
+            else if(numCompletoLetras == "dos")
+            {
+                Opcion FormFem = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormFemOpcion").ToString());
+                FormFem.Opciones = new List<string>();
+                FormFem.Opciones.Add("dues");
+                resultado.MasOpciones.Add(FormFem);
+            }
+
                 return resultado;
         }
 
@@ -1118,7 +1136,9 @@ namespace TFTService
         {
             Thread.CurrentThread.CurrentUICulture = language;
             Conversion resultado = new Conversion();
-
+            System.Diagnostics.Debug.WriteLine("NUMERO FRACCIONARIO ANTES DEL TRIM: " + numero);
+            numero = numero.TrimStart('0');
+            System.Diagnostics.Debug.WriteLine("NUMERO FRACCIONARIO DESPUES DEL TRIM: " + numero);
             string numCompletoLetras = Fraccionario.ConvertirNumEnteroFraccionario(numero, "M");
             System.Diagnostics.Debug.WriteLine("NUMERO FRACCIONARIO: " + numCompletoLetras);
             if(string.IsNullOrEmpty(numCompletoLetras))
@@ -1165,7 +1185,9 @@ namespace TFTService
         {
             Thread.CurrentThread.CurrentUICulture = language;
             Conversion resultado = new Conversion();
-
+            System.Diagnostics.Debug.WriteLine("NUMERO MULTIPLICATIVO ANTES DEL TRIM: " + numero);
+            numero = numero.TrimStart('0');
+            System.Diagnostics.Debug.WriteLine("NUMERO MULTIPLICATIVO DESPUES DEL TRIM: " + numero);
             string numCompletoLetras = Multiplicativo.ConvertirNumEnteroMultiplicativo(numero);
             if (string.IsNullOrEmpty(numCompletoLetras))
             {

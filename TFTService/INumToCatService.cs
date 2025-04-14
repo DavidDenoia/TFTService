@@ -17,26 +17,7 @@ namespace TFTService
         //List<Conversion> MainTraducir(string value, string lenguaje);
         (Cabecera, List<Conversion>) MainTraducir(string value, string lenguaje);
 
-        [OperationContract]
-        PartesNumeros GetNumber(string value);
-
-        [OperationContract]
-        string CentenaresALetras(string numero);
-
-        [OperationContract]
-        string NumCompletoALetraCard(string numero);
-
-        [OperationContract]
-        string NumCompletoALetraCardDec(string numero);
-
-        [OperationContract]
-        string NumCompletoALetraOrd(string numero, string genero);
-
-        [OperationContract]
-        string NumCompletoALetraFrac(string numero);
-
-        [OperationContract]
-        string NumCompletoALetraMult(string numero);
+       
     }
 
    

@@ -87,6 +87,7 @@
       <DependentUpon>Resource.es.resx</DependentUpon>
     </Compile>
     <Compile Include="Cardinales.cs" />
+    <Compile Include="Romano.cs" />
     <Compile Include="Poligno.cs" />
     <Compile Include="FormateoNumero.cs" />
     <Compile Include="Multiplicativo.cs" />

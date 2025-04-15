@@ -208,5 +208,101 @@ namespace TFTService
 
             return resultado.ToString();
         }
+
+        public static string ConvertirNumEnteroFracDenominadorVal(string numero, string genero)
+        {
+            int tamañoNumero = numero.Length;
+            StringBuilder resultado = new StringBuilder();
+            if (Regex.IsMatch(numero, @"^10*$"))
+            {
+                string denominador = Cardinales.ConvertirNumEnteroCardinalVal(numero, false);
+                if (denominador == "deu")
+                {
+                    denominador = genero == "M" ? "dècim" : "dècima";
+                }
+                else if (denominador == "cent")
+                {
+                    denominador = genero == "M" ? "centèsim" : "centèsima";
+
+                }
+                else if (denominador == "mil")
+                {
+                    denominador = genero == "M" ? "mil·lèsim" : "mil·lèsima";
+                }
+                else
+                {
+                    denominador = Cardinales.ConvertirNumDecimalCardinalVal(numero);
+                }
+                resultado.Insert(0, denominador);
+                return resultado.ToString();
+            }
+
+            if (tamañoNumero <= 2)
+            {
+
+                int numeroInt = int.Parse(numero);
+                if (numeroInt == 0)
+                {
+                    resultado.Insert(0, "partit per zero");
+                }
+                else if (numeroInt == 1)
+                {
+                    resultado.Insert(0, "partit per un");
+                }
+                else if (numeroInt >= 2 && numeroInt <= 4 || numeroInt == 10)
+                {
+                    switch (numeroInt)
+                    {
+                        case 2: resultado.Insert(0, genero == "M" ? "mig" : "mitja"); break;
+                        case 3: resultado.Insert(0, genero == "M" ? "terç" : "tercera"); break;
+                        case 4: resultado.Insert(0, genero == "M" ? "quart" : "quarta"); break;
+                        case 10: resultado.Insert(0, genero == "M" ? "dècim" : "dècima"); break;
+                    }
+                }
+                else
+                {
+                    string numCard = Cardinales.ConvertirNumEnteroCardinalVal(numero, false);
+                    if (numCard.EndsWith("c"))
+                    {
+                        resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "què" : numCard.Substring(0, numCard.Length - 1) + "quena");
+                    }
+                    else if (numCard.EndsWith("ou"))
+                    {
+                        resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "vè" : numCard.Substring(0, numCard.Length - 1) + "vena");
+                    }
+                    else if (numCard.EndsWith("s") || numCard.EndsWith("t") || numCard.EndsWith("n"))
+                    {
+                        resultado.Insert(0, genero == "M" ? numCard + "è" : numCard + "ena");
+                    }
+                    else if (numCard.EndsWith("a") || numCard.EndsWith("e"))
+                    {
+                        resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "è" : numCard.Substring(0, numCard.Length - 1) + "ena");
+                    }
+
+                }
+            }
+            else
+            {
+                string numCard = Cardinales.ConvertirNumEnteroCardinalVal(numero, false);
+                if (numCard.EndsWith("c"))
+                {
+                    resultado.Insert(0, numCard.Substring(0, numCard.Length - 1));
+                }
+                else if (numCard.EndsWith("ou"))
+                {
+                    resultado.Insert(0, numCard.Substring(0, numCard.Length - 1) + "vè");
+                }
+                else if (numCard.EndsWith("s") || numCard.EndsWith("t") || numCard.EndsWith("n"))
+                {
+                    resultado.Insert(0, numCard + "è");
+                }
+                else if (numCard.EndsWith("a") || numCard.EndsWith("e"))
+                {
+                    resultado.Insert(0, numCard.Substring(0, numCard.Length - 1) + "è");
+                }
+            }
+
+            return resultado.ToString();
+        }
     }
 }

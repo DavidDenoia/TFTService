@@ -27,6 +27,8 @@
                 <asp:LinkButton ID="botonLimpiar" runat="server" CssClass="btn btn-link text-primary" OnClick="Limpiar_Click">
                     <i class="bi bi-x-lg"></i>
                 </asp:LinkButton>
+                
+
 
                 <asp:LinkButton ID="botonTraducir" runat="server" CssClass="btn btn-link text-primary" OnClick="Traducir_Click">
                     <i class="bi bi-search"></i>
@@ -84,11 +86,13 @@
                         <i class="bi bi-volume-up"></i>
                       </asp:LinkButton>
 
-                        <asp:LinkButton runat="server" CommandArgument='<%# string.Join(", ", ((List<string>)Eval("Respuestas")).ToArray()) %>'
-                            OnClick="Copiar_Click"
-                            CssClass="btn btn-lg me-1">
-                            <i class="bi bi-copy"></i>
-                        </asp:LinkButton>
+                       <asp:LinkButton runat="server"
+                            CssClass="btn btn-lg me-1"
+                            Text='<i class="bi bi-copy"></i>'
+                            OnClientClick='<%# "copiarTexto(this); return false;" %>'
+                            data-texto='<%# HttpUtility.JavaScriptStringEncode(string.Join(", ", ((List<string>)Eval("Respuestas")).ToArray())) %>'>
+                      </asp:LinkButton>
+
 
                         <strong>Respuesta:</strong> <%# string.Join(", ", ((List<string>)Eval("Respuestas")).ToArray()) %>
 
@@ -114,9 +118,9 @@
                         <h6 class="text-primary"><%# Eval("TitEjemplos") %></h6>
                         <ul>
                       
-                             <%# (Eval("Ejemplos") as string[] ?? new string[0]).Length > 0 
-                                    ? string.Join("", (Eval("Ejemplos") as string[]).Select(ejemplo => $"<li>{ejemplo}</li>"))
-                                        : "<li>No hay ejemplos disponibles.</li>" %>
+                            <%# (Eval("Ejemplos") as List<string>)?.Count > 0 
+                                ? string.Join("", ((List<string>)Eval("Ejemplos")).Select(ejemplo => $"<li>{ejemplo}</li>"))
+                                : "<li>No hay ejemplos disponibles.</li>" %>
                         </ul>
                     </div>
                 </div>
@@ -132,9 +136,10 @@
                             </div>
                             <div class="modal-body">
                                 <ul>
-                                    <%# (Eval("Notas") as string[] ?? new string[0]).Length > 0 
-                                            ? string.Join("", (Eval("Notas") as string[]).Select(nota => $"<li>{nota}</li>"))
-                                            : "<li>No hay notas disponibles.</li>" %>
+                                    <%# (Eval("Notas") as List<string>)?.Count > 0 
+                                        ? string.Join("", ((List<string>)Eval("Notas")).Select(nota => $"<li>{nota}</li>")) 
+                                        : "<li>No hay notas disponibles.</li>" %>
+
                                 </ul>
                             </div>
                         </div>
@@ -151,9 +156,9 @@
                             </div>
                             <div class="modal-body">
                                 <ul>
-                                     <%# (Eval("Referencias") as string[] ?? new string[0]).Length > 0 
-                                            ? string.Join("", (Eval("Referencias") as string[]).Select(referencia => $"<li>{referencia}</li>"))
-                                            : "<li>No hay referencias disponibles.</li>" %>
+                                      <%# (Eval("Referencias") as List<string>)?.Count > 0 
+                                          ? string.Join("", ((List<string>)Eval("Referencias")).Select(referencia => $"<li>{referencia}</li>")) 
+                                          : "<li>No hay referencias disponibles.</li>" %>
                                 </ul>
                             </div>
                         </div>

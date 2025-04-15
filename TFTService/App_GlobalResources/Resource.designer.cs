@@ -106,6 +106,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Catalan.
+        /// </summary>
+        internal static string CatalanTipo {
+            get {
+                return ResourceManager.GetString("CatalanTipo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a centavo.
         /// </summary>
         internal static string Centavo {
@@ -156,6 +165,60 @@ namespace Resources {
         internal static string DecimalEjemplo2 {
             get {
                 return ResourceManager.GetString("DecimalEjemplo2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El termòmetre marcava ... graus Celsius..
+        /// </summary>
+        internal static string DecimalEjemplo3 {
+            get {
+                return ResourceManager.GetString("DecimalEjemplo3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La distància total era de ... quilòmetres..
+        /// </summary>
+        internal static string DecimalEjemplo4 {
+            get {
+                return ResourceManager.GetString("DecimalEjemplo4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Los números decimales se escriben siempre con cifras..
+        /// </summary>
+        internal static string DecimalNota1 {
+            get {
+                return ResourceManager.GetString("DecimalNota1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a en catalán las fracciones decimales se indican siempre con una coma.
+        /// </summary>
+        internal static string DecimalNota2 {
+            get {
+                return ResourceManager.GetString("DecimalNota2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cinquè. NUMERACIÓ. ELS NOMBRES DECIMALS!!!. https://sites.google.com/vedruna.cat/vedrunatona5/matem%C3%A0tiques/sistema-de-numeraci%C3%B3-decimal.
+        /// </summary>
+        internal static string DecimalReferencia1 {
+            get {
+                return ResourceManager.GetString("DecimalReferencia1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Universitat Pompeu Fabra Barcelona. Números decimals. https://www.upf.edu/web/llibre-estil/numeros-decimals.
+        /// </summary>
+        internal static string DecimalReferencia2 {
+            get {
+                return ResourceManager.GetString("DecimalReferencia2", resourceCulture);
             }
         }
         
@@ -286,6 +349,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Només hem utilitzat ... dels recursos disponibles..
+        /// </summary>
+        internal static string FraccionarioEjemplo3 {
+            get {
+                return ResourceManager.GetString("FraccionarioEjemplo3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Vaig llegir ... del llibre abans de dormir..
+        /// </summary>
+        internal static string FraccionarioEjemplo4 {
+            get {
+                return ResourceManager.GetString("FraccionarioEjemplo4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Fraccionario.
         /// </summary>
         internal static string FraccionarioTipo {
@@ -309,6 +390,33 @@ namespace Resources {
         internal static string FraccionNota2 {
             get {
                 return ResourceManager.GetString("FraccionNota2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Antoni Llàcer. Com llegim les fraccions? Escola d&apos;Adults de Canovelles, 2021. https://agora.xtec.cat/cfacanovelles/matematiques-i/com-llegim-les-fraccions/.
+        /// </summary>
+        internal static string FraccionReferencia1 {
+            get {
+                return ResourceManager.GetString("FraccionReferencia1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Institut d&apos;Estudis Catalans, Els numerals fraccionaris. Gramàtica essencial de la llengua catalana. https://geiec.iec.cat/text/12.3.2.
+        /// </summary>
+        internal static string FraccionReferencia2 {
+            get {
+                return ResourceManager.GetString("FraccionReferencia2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Consorci per a la Normalització Lingüística. 6 ELS NUMERALS. ELS PARTITIUS. https://www.cpnl.cat/gramatica/24/6-els-numerals.
+        /// </summary>
+        internal static string FraccionReferencia3 {
+            get {
+                return ResourceManager.GetString("FraccionReferencia3", resourceCulture);
             }
         }
         
@@ -489,6 +597,15 @@ namespace Resources {
         internal static string TituloOpciones {
             get {
                 return ResourceManager.GetString("TituloOpciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Valenciano: .
+        /// </summary>
+        internal static string ValencianoTipo {
+            get {
+                return ResourceManager.GetString("ValencianoTipo", resourceCulture);
             }
         }
         

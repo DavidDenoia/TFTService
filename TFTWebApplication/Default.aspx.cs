@@ -106,37 +106,6 @@ namespace TFTWebApplication
             }
         }
 
-        protected void Leer_Click(object sender, EventArgs e)
-        {
-            LinkButton btn = (LinkButton)sender;
-            string texto = btn.CommandArgument;
-            
-
-            string script = $@"
-            <script>
-                let speech = new SpeechSynthesisUtterance('{HttpUtility.JavaScriptStringEncode(texto)}');
-                speech.lang = '{idioma}';
-                window.speechSynthesis.speak(speech);
-
-               
-            </script>";
-
-            ClientScript.RegisterStartupScript(this.GetType(), "SpeechScript", script, false);
-        }
-
-
-        protected void Copiar_Click(object sender, EventArgs e)
-        {
-            LinkButton btn = (LinkButton)sender;
-            string texto = btn.CommandArgument;
-            string script = $@"
-            <script>
-                navigator.clipboard.writeText('{HttpUtility.JavaScriptStringEncode(texto)}');
-            </script>    
-            ";
-
-            ClientScript.RegisterStartupScript(this.GetType(), "SpeechScript", script, false);
-        }
 
         protected void Limpiar_Click(object sender, EventArgs e)
         {

@@ -264,4 +264,43 @@
   <data name="PoligonoTipo" xml:space="preserve">
     <value>Poligono</value>
   </data>
+  <data name="ValencianoTipo" xml:space="preserve">
+    <value>Valenciano: </value>
+  </data>
+  <data name="CatalanTipo" xml:space="preserve">
+    <value>Catalan</value>
+  </data>
+  <data name="FraccionReferencia1" xml:space="preserve">
+    <value>Antoni Llàcer. Com llegim les fraccions? Escola d'Adults de Canovelles, 2021. https://agora.xtec.cat/cfacanovelles/matematiques-i/com-llegim-les-fraccions/</value>
+  </data>
+  <data name="FraccionReferencia2" xml:space="preserve">
+    <value>Institut d'Estudis Catalans, Els numerals fraccionaris. Gramàtica essencial de la llengua catalana. https://geiec.iec.cat/text/12.3.2</value>
+  </data>
+  <data name="FraccionarioEjemplo3" xml:space="preserve">
+    <value>Només hem utilitzat ... dels recursos disponibles.</value>
+  </data>
+  <data name="FraccionarioEjemplo4" xml:space="preserve">
+    <value>Vaig llegir ... del llibre abans de dormir.</value>
+  </data>
+  <data name="FraccionReferencia3" xml:space="preserve">
+    <value>Consorci per a la Normalització Lingüística. 6 ELS NUMERALS. ELS PARTITIUS. https://www.cpnl.cat/gramatica/24/6-els-numerals</value>
+  </data>
+  <data name="DecimalEjemplo3" xml:space="preserve">
+    <value>El termòmetre marcava ... graus Celsius.</value>
+  </data>
+  <data name="DecimalEjemplo4" xml:space="preserve">
+    <value>La distància total era de ... quilòmetres.</value>
+  </data>
+  <data name="DecimalNota1" xml:space="preserve">
+    <value>Los números decimales se escriben siempre con cifras.</value>
+  </data>
+  <data name="DecimalNota2" xml:space="preserve">
+    <value>en catalán las fracciones decimales se indican siempre con una coma</value>
+  </data>
+  <data name="DecimalReferencia1" xml:space="preserve">
+    <value>Cinquè. NUMERACIÓ. ELS NOMBRES DECIMALS!!!. https://sites.google.com/vedruna.cat/vedrunatona5/matem%C3%A0tiques/sistema-de-numeraci%C3%B3-decimal</value>
+  </data>
+  <data name="DecimalReferencia2" xml:space="preserve">
+    <value>Universitat Pompeu Fabra Barcelona. Números decimals. https://www.upf.edu/web/llibre-estil/numeros-decimals</value>
+  </data>
 </root>

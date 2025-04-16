@@ -755,8 +755,21 @@ namespace TFTService
 
             resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "CardinalTipo").ToString();
             resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();
+            resultado.Notas = new List<string>();
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalNota1").ToString());
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalNota2").ToString());
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalNota3").ToString());
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalNota4").ToString());
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalNota5").ToString());
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalNota6").ToString());
+
             //AÑADIR NOTAS CUANDO ACABES BUENAS!!!!!!!!!!!!!!!
             resultado.TitReferencias = HttpContext.GetGlobalResourceObject("Resource", "ReferenciasTitulo").ToString();
+            resultado.Referencias = new List<string>();
+            resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalReferencia1").ToString());
+            resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalReferencia2").ToString());
+            resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalReferencia3").ToString());
+            resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalReferencia4").ToString());
             //AÑADIR REFERENCIAS BUENAS CUANDO ACABES!!!!!!!!!!!!!!!!!!
 
             resultado.Respuestas = new List<string>();
@@ -767,12 +780,16 @@ namespace TFTService
 
             Opcion SusAdPro = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "SusAdProTitulo").ToString());
             SusAdPro.Opciones = new List<string>();
-            SusAdPro.Opciones.Add(numCompletoLetras);
+            SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + numCompletoLetras);
+            SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + Cardinales.ConvertirNumEnteroCardinalVal(numero, signo));
 
             resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
             resultado.Ejemplos = new List<string>();
             resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalEjemplo1").ToString().Replace("…", numCompletoLetras));
             resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalEjemplo2").ToString().Replace("…", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalEjemplo3").ToString().Replace("…", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalEjemplo4").ToString().Replace("…", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalEjemplo5").ToString().Replace("…", numCompletoLetras));
 
             if (valorNum == true)
             {
@@ -787,14 +804,16 @@ namespace TFTService
             {
                 Opcion FormFem = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormFemOpcion").ToString());
                 FormFem.Opciones = new List<string>();
-                FormFem.Opciones.Add("una");
+                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + "una");
+                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + "una");
                 resultado.MasOpciones.Add(FormFem);
             }
             else if(numCompletoLetras == "dos")
             {
                 Opcion FormFem = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormFemOpcion").ToString());
                 FormFem.Opciones = new List<string>();
-                FormFem.Opciones.Add("dues");
+                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString()+"dues");
+                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + "dues");
                 resultado.MasOpciones.Add(FormFem);
             }
 

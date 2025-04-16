@@ -286,7 +286,7 @@
     <value>Consorci per a la Normalització Lingüística. 6 ELS NUMERALS. ELS PARTITIUS. https://www.cpnl.cat/gramatica/24/6-els-numerals</value>
   </data>
   <data name="DecimalEjemplo3" xml:space="preserve">
-    <value>El termòmetre marcava ... graus Celsius.</value>
+    <value>El termòmetre marcava … graus Celsius.</value>
   </data>
   <data name="DecimalEjemplo4" xml:space="preserve">
     <value>La distància total era de ... quilòmetres.</value>
@@ -302,5 +302,44 @@
   </data>
   <data name="DecimalReferencia2" xml:space="preserve">
     <value>Universitat Pompeu Fabra Barcelona. Números decimals. https://www.upf.edu/web/llibre-estil/numeros-decimals</value>
+  </data>
+  <data name="CardinalNota1" xml:space="preserve">
+    <value>Los numerales cardinales expresan la numeración natural.</value>
+  </data>
+  <data name="CardinalNota2" xml:space="preserve">
+    <value>Las formas del 17 al 19 están compuestas por el alomorfo di-, o de-, como simplificación de manantial. Las decenas a partir del 30 presentan la terminación -nta.</value>
+  </data>
+  <data name="CardinalNota3" xml:space="preserve">
+    <value> Las decenas a partir del 30 presentan la terminación -nta.</value>
+  </data>
+  <data name="CardinalNota4" xml:space="preserve">
+    <value>Del 21 al 29 van coordinados con la conjunción y: veintiuno, ..., veintinueve.</value>
+  </data>
+  <data name="CardinalNota5" xml:space="preserve">
+    <value>Del 31 al 99, y las centésimas (200 al 900), son yuxtapuestos con un guion: treinta y uno, ..., noventa y nueve, ..., doscientos, ..., novecientos.</value>
+  </data>
+  <data name="CardinalNota6" xml:space="preserve">
+    <value>En los otros casos no hay guion: ciento dos (102), dos mil (2.000), ciento veintidós (122), dos mil doscientos veintidós (2.222).</value>
+  </data>
+  <data name="CardinalReferencia1" xml:space="preserve">
+    <value>Viquipèdia l'Enciclopèdia Lliure. Numerals en català. Cardinals. https://ca.wikipedia.org/wiki/Numerals_en_catal%C3%A0</value>
+  </data>
+  <data name="CardinalReferencia2" xml:space="preserve">
+    <value>Consorci per a la Normalització Lingüística. 6 ELS NUMERALS. NUMERALS CARDINALS. https://www.cpnl.cat/gramatica/24/6-els-numerals</value>
+  </data>
+  <data name="CardinalReferencia3" xml:space="preserve">
+    <value>Omniglot. Numbers in Catalan. https://www.omniglot.com/language/numbers/catalan.htm?utm_source=chatgpt.com</value>
+  </data>
+  <data name="CardinalReferencia4" xml:space="preserve">
+    <value>Gerard Vilanova. Web de llengua catalana de Gerard Vilanova. Els determinants numerals, quantitatius i indefinits. https://gerardvilanova.jimdofree.com/nivell-1/unitat-6/gram%C3%A0tica/</value>
+  </data>
+  <data name="CardinalEjemplo3" xml:space="preserve">
+    <value>El peso total del paquete es de ... kilogramos.</value>
+  </data>
+  <data name="CardinalEjemplo4" xml:space="preserve">
+    <value>La temperatura actual en la ciudad es de ... grados.</value>
+  </data>
+  <data name="CardinalEjemplo5" xml:space="preserve">
+    <value>El temps estimat d'arribada és de ... minuts.</value>
   </data>
 </root>

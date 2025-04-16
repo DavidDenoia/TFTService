@@ -97,6 +97,123 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a El peso total del paquete es de ... kilogramos..
+        /// </summary>
+        internal static string CardinalEjemplo3 {
+            get {
+                return ResourceManager.GetString("CardinalEjemplo3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La temperatura actual en la ciudad es de ... grados..
+        /// </summary>
+        internal static string CardinalEjemplo4 {
+            get {
+                return ResourceManager.GetString("CardinalEjemplo4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El temps estimat d&apos;arribada és de ... minuts..
+        /// </summary>
+        internal static string CardinalEjemplo5 {
+            get {
+                return ResourceManager.GetString("CardinalEjemplo5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Los numerales cardinales expresan la numeración natural..
+        /// </summary>
+        internal static string CardinalNota1 {
+            get {
+                return ResourceManager.GetString("CardinalNota1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Las formas del 17 al 19 están compuestas por el alomorfo di-, o de-, como simplificación de manantial. Las decenas a partir del 30 presentan la terminación -nta..
+        /// </summary>
+        internal static string CardinalNota2 {
+            get {
+                return ResourceManager.GetString("CardinalNota2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a  Las decenas a partir del 30 presentan la terminación -nta..
+        /// </summary>
+        internal static string CardinalNota3 {
+            get {
+                return ResourceManager.GetString("CardinalNota3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Del 21 al 29 van coordinados con la conjunción y: veintiuno, ..., veintinueve..
+        /// </summary>
+        internal static string CardinalNota4 {
+            get {
+                return ResourceManager.GetString("CardinalNota4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Del 31 al 99, y las centésimas (200 al 900), son yuxtapuestos con un guion: treinta y uno, ..., noventa y nueve, ..., doscientos, ..., novecientos..
+        /// </summary>
+        internal static string CardinalNota5 {
+            get {
+                return ResourceManager.GetString("CardinalNota5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a En los otros casos no hay guion: ciento dos (102), dos mil (2.000), ciento veintidós (122), dos mil doscientos veintidós (2.222)..
+        /// </summary>
+        internal static string CardinalNota6 {
+            get {
+                return ResourceManager.GetString("CardinalNota6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Viquipèdia l&apos;Enciclopèdia Lliure. Numerals en català. Cardinals. https://ca.wikipedia.org/wiki/Numerals_en_catal%C3%A0.
+        /// </summary>
+        internal static string CardinalReferencia1 {
+            get {
+                return ResourceManager.GetString("CardinalReferencia1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Consorci per a la Normalització Lingüística. 6 ELS NUMERALS. NUMERALS CARDINALS. https://www.cpnl.cat/gramatica/24/6-els-numerals.
+        /// </summary>
+        internal static string CardinalReferencia2 {
+            get {
+                return ResourceManager.GetString("CardinalReferencia2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Omniglot. Numbers in Catalan. https://www.omniglot.com/language/numbers/catalan.htm?utm_source=chatgpt.com.
+        /// </summary>
+        internal static string CardinalReferencia3 {
+            get {
+                return ResourceManager.GetString("CardinalReferencia3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Gerard Vilanova. Web de llengua catalana de Gerard Vilanova. Els determinants numerals, quantitatius i indefinits. https://gerardvilanova.jimdofree.com/nivell-1/unitat-6/gram%C3%A0tica/.
+        /// </summary>
+        internal static string CardinalReferencia4 {
+            get {
+                return ResourceManager.GetString("CardinalReferencia4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Cardinal.
         /// </summary>
         internal static string CardinalTipo {
@@ -169,7 +286,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a El termòmetre marcava ... graus Celsius..
+        ///   Busca una cadena traducida similar a El termòmetre marcava … graus Celsius..
         /// </summary>
         internal static string DecimalEjemplo3 {
             get {

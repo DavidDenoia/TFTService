@@ -27,7 +27,7 @@ namespace TFTService
     // NOTE: para iniciar el Cliente de prueba WCF para probar este servicio, seleccione Service1.svc o Service1.svc.cs en el Explorador de soluciones e inicie la depuración.
     public class TFTServicio : INumToCat
     {
-        
+
         private CultureInfo language;
         List<Conversion> conversiones = new List<Conversion>();//Aqui vamos a meter todas las conversiones
         Cabecera cabecera;
@@ -42,7 +42,7 @@ namespace TFTService
             else language = new CultureInfo("es");
             Thread.CurrentThread.CurrentUICulture = language;
 
-            
+
             var cerrojo = new object();
             string numero = value.Trim();
             int longitudNumero = numero.Length;
@@ -68,34 +68,34 @@ namespace TFTService
             }
 
             //Comprobacion de si es fraccionario
-            if(Regex.IsMatch(numero, @"^([+-]?)\d+([/])\d+$"))
+            if (Regex.IsMatch(numero, @"^([+-]?)\d+([/])\d+$"))
             {
                 string[] partes = numero.Split('/');
                 string numerador = partes[0];
                 string denominador = partes[1];
 
-                conversiones.Add(ConversionFraccion(numerador,denominador, signo, value));
-                
+                conversiones.Add(ConversionFraccion(numerador, denominador, signo, value));
+
                 BigInteger.TryParse(numerador, out BigInteger Inumerador);
                 BigInteger.TryParse(denominador, out BigInteger Idenominador);
                 //BigInteger Inumerador = BigInteger.Parse(numerador);
                 //BigInteger Idenominador = BigInteger.Parse(denominador);
-                if(Idenominador != 0)
+                if (Idenominador != 0)
                 {
                     BigInteger parteEntera = Inumerador / Idenominador;
                     BigInteger resto = Inumerador % Idenominador;
                     if (resto == 0)
                     {
                         if (signo == false)
-                        {                            
+                        {
                             conversiones.Add(ConversionCardinal(parteEntera.ToString(), signo, value, true));
                         }
                         else
                         {
-                            string parteEnteraNoSigno = parteEntera.ToString().Replace("-","").Trim();
+                            string parteEnteraNoSigno = parteEntera.ToString().Replace("-", "").Trim();
                             conversiones.Add(ConversionNegativo(parteEnteraNoSigno, signo, value, true));
                         }
-                        
+
                     }
                     else
                     {
@@ -110,7 +110,7 @@ namespace TFTService
                             resto %= Idenominador;
                             contadorDecimales++;
                         }
-                            
+
                         //System.Diagnostics.Debug.WriteLine("Valor de la parte entera: " + parteEntera.ToString());
                         //System.Diagnostics.Debug.WriteLine("Valor del resto: " + resto.ToString());
                         //System.Diagnostics.Debug.WriteLine("Numero decimal: " + numeroDecimal);
@@ -119,9 +119,9 @@ namespace TFTService
 
                     }
                 }
-              
-                
-                
+
+
+
 
             }
 
@@ -174,12 +174,12 @@ namespace TFTService
                             () =>
                             {
                                 var conversionFraccionario = ConversionFraccionario(numeroExpandido, signo, value, false);
-                                if(conversionFraccionario != null) lock(cerrojo) conversiones.Add(conversionFraccionario);
+                                if (conversionFraccionario != null) lock (cerrojo) conversiones.Add(conversionFraccionario);
                             },
                             () =>
                             {
                                 var conversionMultiplicativo = ConversionMultiplicativo(numeroExpandido, signo, value, false);
-                                if(conversionMultiplicativo != null) lock(cerrojo) conversiones.Add(conversionMultiplicativo);
+                                if (conversionMultiplicativo != null) lock (cerrojo) conversiones.Add(conversionMultiplicativo);
                             },
                             () =>
                             {
@@ -187,7 +187,7 @@ namespace TFTService
                                 {
                                     System.Diagnostics.Debug.WriteLine(numeroExpandido + " :PARA NUMERO CIENTIFICO");
                                     var conversionPoligono = ConversionPoligono(numeroExpandido, signo, value, false);
-                                    if( conversionPoligono != null) lock(cerrojo) conversiones.Add(conversionPoligono);
+                                    if (conversionPoligono != null) lock (cerrojo) conversiones.Add(conversionPoligono);
                                 }
                             }
                         );
@@ -241,7 +241,7 @@ namespace TFTService
                         );
                     }
                 }
-               
+
             }
 
             //Comprobacion de si el numero es €
@@ -249,7 +249,8 @@ namespace TFTService
             {
                 numero = numero.Replace("€", "");
                 string numeroFormateado = FormateoNumero.FormatearNumero(numero);
-                if (signo == true) {
+                if (signo == true)
+                {
                     numeroFormateado = "-" + numeroFormateado;
                 }
                 numeroFormateado = numeroFormateado + "€";
@@ -257,30 +258,30 @@ namespace TFTService
                 //System.Diagnostics.Debug.WriteLine("SE CREO LA CABECERA!!!!!!!!!!!!");
                 //System.Diagnostics.Debug.WriteLine("FORMATEADO:"+cabecera.Formateado);
                 //System.Diagnostics.Debug.WriteLine("TITULO:" + cabecera.Titulo);
-                if(numero.Contains(".") || numero.Contains(","))
+                if (numero.Contains(".") || numero.Contains(","))
                 {
                     Parallel.Invoke(
                         () =>
                         {
-                            lock(cerrojo) conversiones.Add(ConversionEuro(numero, signo, value, false));
+                            lock (cerrojo) conversiones.Add(ConversionEuro(numero, signo, value, false));
                         },
-                        () => 
+                        () =>
                         {
-                        
-                            lock(cerrojo) conversiones.Add(ConversionDecimal(numero, signo, value, false));
+
+                            lock (cerrojo) conversiones.Add(ConversionDecimal(numero, signo, value, false));
                         }
                         );
                 }
-                else if(signo == true)
+                else if (signo == true)
                 {
                     Parallel.Invoke(
                         () =>
                         {
-                            lock(cerrojo) conversiones.Add(ConversionEuro(numero, signo, value, false));
+                            lock (cerrojo) conversiones.Add(ConversionEuro(numero, signo, value, false));
                         },
                         () =>
                         {
-                            lock(cerrojo) conversiones.Add(ConversionNegativo(numero, signo, value, false));
+                            lock (cerrojo) conversiones.Add(ConversionNegativo(numero, signo, value, false));
                         }
                     );
                 }
@@ -293,7 +294,7 @@ namespace TFTService
                         },
                         () =>
                         {
-                            lock(cerrojo) conversiones.Add(ConversionCardinal(numero, signo, value, false));
+                            lock (cerrojo) conversiones.Add(ConversionCardinal(numero, signo, value, false));
                         },
                         () =>
                         {
@@ -302,6 +303,7 @@ namespace TFTService
                         },
                         () =>
                         {
+                            System.Diagnostics.Debug.WriteLine("Valor de 'numero' antes del parse: '" + numero + "'");
                             var conversionFraccionario = ConversionFraccionario(numero, signo, value, false);
                             if (conversionFraccionario != null) lock (cerrojo) conversiones.Add(conversionFraccionario);
                         },
@@ -335,15 +337,15 @@ namespace TFTService
                     Parallel.Invoke(
                         () =>
                         {
-                            lock(cerrojo) conversiones.Add(ConversionPeso(numero, signo, value, false));
+                            lock (cerrojo) conversiones.Add(ConversionPeso(numero, signo, value, false));
                         },
                         () =>
                         {
-                            lock(cerrojo) conversiones.Add(ConversionDolar(numero, signo, value, false));
+                            lock (cerrojo) conversiones.Add(ConversionDolar(numero, signo, value, false));
                         },
                         () =>
                         {
-                            lock(cerrojo) conversiones.Add(ConversionDecimal(numero, signo, value, false));
+                            lock (cerrojo) conversiones.Add(ConversionDecimal(numero, signo, value, false));
                         }
                     );
                 }
@@ -360,7 +362,7 @@ namespace TFTService
                         },
                         () =>
                         {
-                            lock(cerrojo) conversiones.Add(ConversionNegativo(numero, signo, value, false));
+                            lock (cerrojo) conversiones.Add(ConversionNegativo(numero, signo, value, false));
                         }
                     );
                 }
@@ -383,7 +385,7 @@ namespace TFTService
                         () =>
                         {
                             var conversionOrdinal = ConversionOrdinal(numero, signo, value, false);
-                            if (conversionOrdinal != null) lock(cerrojo) conversiones.Add(conversionOrdinal);
+                            if (conversionOrdinal != null) lock (cerrojo) conversiones.Add(conversionOrdinal);
                         },
                         () =>
                         {
@@ -402,11 +404,11 @@ namespace TFTService
             }
 
             //Comprobacion numerica
-            if(Regex.IsMatch(numero, @"^\d+$"))
+            if (Regex.IsMatch(numero, @"^\d+$"))
             {
-                if(signo == true)
+                if (signo == true)
                 {
-                    string numeroFormateado = "-"+FormateoNumero.FormatearNumero(numero);
+                    string numeroFormateado = "-" + FormateoNumero.FormatearNumero(numero);
                     cabecera = new Cabecera(numeroFormateado, HttpContext.GetGlobalResourceObject("Resource", "NumeroFormateadoTitulo").ToString());
 
                     conversiones.Add(ConversionNegativo(numero, signo, value, false));
@@ -416,7 +418,7 @@ namespace TFTService
                     Parallel.Invoke(
                         () =>
                         {
-                            lock(cerrojo) conversiones.Add(ConversionCardinal(numero, signo, value, false));
+                            lock (cerrojo) conversiones.Add(ConversionCardinal(numero, signo, value, false));
                         },
                         () =>
                         {
@@ -426,12 +428,12 @@ namespace TFTService
                         () =>
                         {
                             var conversionFraccionario = ConversionFraccionario(numero, signo, value, false);
-                            if (conversionFraccionario != null) lock(cerrojo) conversiones.Add(conversionFraccionario);
+                            if (conversionFraccionario != null) lock (cerrojo) conversiones.Add(conversionFraccionario);
                         },
                         () =>
                         {
                             var conversionMultiplicativo = ConversionMultiplicativo(numero, signo, value, false);
-                            if (conversionMultiplicativo != null) lock(cerrojo) conversiones.Add(conversionMultiplicativo);
+                            if (conversionMultiplicativo != null) lock (cerrojo) conversiones.Add(conversionMultiplicativo);
                         },
                         () =>
                         {
@@ -442,16 +444,16 @@ namespace TFTService
                             }
                         }
 
-                    );                       
-                }     
+                    );
+                }
             }
 
             //Comprobacion de si es numero romano
-            if(Regex.IsMatch(numero, @"^[IVXLCDMivxlcdm]+$") && signo != true)
+            if (Regex.IsMatch(numero, @"^[IVXLCDMivxlcdm]+$") && signo != true)
             {
 
                 string numeroUpper = numero.ToUpper();
-                if(numeroUpper != numero)
+                if (numeroUpper != numero)
                 {
                     cabecera = new Cabecera(numeroUpper, HttpContext.GetGlobalResourceObject("Resource", "NumeroFormateadoTitulo").ToString());
                 }
@@ -461,22 +463,22 @@ namespace TFTService
                 Parallel.Invoke(
                     () =>
                     {
-                        lock(cerrojo) conversiones.Add(ConversionCardinal(numeroEntero, signo, value, false));
+                        lock (cerrojo) conversiones.Add(ConversionCardinal(numeroEntero, signo, value, false));
                     },
                     () =>
                     {
                         var conversionOrdinal = ConversionOrdinal(numeroEntero, signo, value, false);
-                        if (conversionOrdinal != null) lock(cerrojo) conversiones.Add(conversionOrdinal);
+                        if (conversionOrdinal != null) lock (cerrojo) conversiones.Add(conversionOrdinal);
                     },
                     () =>
                     {
                         var conversionFraccionario = ConversionFraccionario(numeroEntero, signo, value, false);
-                        if (conversionFraccionario != null) lock(cerrojo) conversiones.Add(conversionFraccionario);
+                        if (conversionFraccionario != null) lock (cerrojo) conversiones.Add(conversionFraccionario);
                     },
                     () =>
                     {
                         var conversionMultiplicativo = ConversionMultiplicativo(numeroEntero, signo, value, false);
-                        if (conversionMultiplicativo != null) lock(cerrojo) conversiones.Add(conversionMultiplicativo);
+                        if (conversionMultiplicativo != null) lock (cerrojo) conversiones.Add(conversionMultiplicativo);
                     },
                     () =>
                     {
@@ -490,39 +492,42 @@ namespace TFTService
             }
 
 
-            return (cabecera,conversiones);
+            return (cabecera, conversiones);
         }
 
-        public Conversion ConversionFraccion(string pNumerador,string pDenominador, bool signo, string numeroOriginal)
+        public Conversion ConversionFraccion(string pNumerador, string pDenominador, bool signo, string numeroOriginal)
         {
             Thread.CurrentThread.CurrentUICulture = language;
             Conversion resultado = new Conversion();
-       
+
             string numerador = Cardinales.ConvertirNumEnteroCardinal(pNumerador, signo);
             string denominador = Fraccionario.ConvertirNumEnteroFracDenominador(pDenominador, "M");
 
             string denominadorAdj = "";
             string numeradorAdj = "";
-            if(numerador == "un")
+            if (numerador == "un")
             {
                 numeradorAdj = numerador + "a";
-            }else if (numerador == "dos")
+            }
+            else if (numerador == "dos")
             {
                 numeradorAdj = "dues";
-                if(denominador == "terç")
+                if (denominador == "terç")
                 {
                     denominador = "tercos";
-                }else if(denominador.EndsWith("è"))
+                }
+                else if (denominador.EndsWith("è"))
                 {
                     denominador = denominador.Substring(0, denominador.Length - 1) + "ens";
-                }else if (denominador.EndsWith("n"))
+                }
+                else if (denominador.EndsWith("n"))
                 {
                     denominador = denominador + "ques";
                 }
                 else
                 {
                     denominador = denominador + "s";
-                }    
+                }
             }
             else
             {
@@ -552,10 +557,11 @@ namespace TFTService
             else
             {
                 denominadorAdj = Fraccionario.ConvertirNumEnteroFracDenominador(pDenominador, "F");
-                if(denominadorAdj == "mitja")
+                if (denominadorAdj == "mitja")
                 {
                     denominadorAdj = "mitges";
-                }else if (denominadorAdj.EndsWith("a"))
+                }
+                else if (denominadorAdj.EndsWith("a"))
                 {
                     denominadorAdj = denominadorAdj.Substring(0, denominadorAdj.Length - 1) + "es";
                 }
@@ -566,7 +572,7 @@ namespace TFTService
 
             string numeradorVal = Cardinales.ConvertirNumEnteroCardinalVal(pNumerador, signo);
             string denominadorVal = Fraccionario.ConvertirNumEnteroFracDenominadorVal(pDenominador, "M");
-           
+
 
             string denominadorAdjVal = "";
             string numeradorAdjVal = "";
@@ -636,27 +642,29 @@ namespace TFTService
             string numCompletoLetrasVal = numeradorVal + " " + denominadorVal;
             string numCompletoAdjVal = numeradorAdjVal + " " + denominadorAdjVal;
 
+
+
             resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "FraccionTipo").ToString();
             resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();
             resultado.Notas = new List<string>();
 
-            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource","FraccionNota1").ToString());
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionNota1").ToString());
             resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionNota2").ToString());
-            
-            
-            resultado.TitReferencias = HttpContext.GetGlobalResourceObject("Resource","ReferenciasTitulo").ToString();
+
+
+            resultado.TitReferencias = HttpContext.GetGlobalResourceObject("Resource", "ReferenciasTitulo").ToString();
             resultado.Referencias = new List<string>();
             resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionReferencia1").ToString());
             resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionReferencia2").ToString());
             resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionReferencia3").ToString());
 
-            
+
             resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
             resultado.Ejemplos = new List<string>();
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionarioEjemplo1").ToString().Replace("...", numCompletoLetras));
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionarioEjemplo2").ToString().Replace("...", numCompletoLetras));
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionarioEjemplo3").ToString().Replace("...", numCompletoLetras));
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionarioEjemplo4").ToString().Replace("...", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionEjemplo1").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionEjemplo2").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionEjemplo3").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionEjemplo4").ToString().Replace("|", numCompletoLetras));
 
             resultado.Respuestas = new List<string>();
             resultado.Respuestas.Add(numCompletoLetras);
@@ -707,21 +715,21 @@ namespace TFTService
             resultado.Notas = new List<string>();
             resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "DecimalNota1").ToString());
             resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "DecimalNota2").ToString());
-            
+
             resultado.TitReferencias = HttpContext.GetGlobalResourceObject("Resource", "ReferenciasTitulo").ToString();
             resultado.Referencias = new List<string>();
             resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "DecimalReferencia1").ToString());
             resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "DecimalReferencia2").ToString());
-            
+
 
             resultado.Respuestas = new List<string>();
             resultado.Respuestas.Add(numCompletoLetras);
-            if(valorNum == true)
+            if (valorNum == true)
             {
                 resultado.TitValorNumerico = HttpContext.GetGlobalResourceObject("Resource", "ValorNumericoTitulo").ToString();
                 string numeroFormateado = FormateoNumero.FormatearNumero(numero);
                 resultado.ValorNumerico = numeroFormateado;
-               
+
             }
             resultado.TitOpciones = HttpContext.GetGlobalResourceObject("Resource", "TituloOpciones").ToString();
             resultado.MasOpciones = new List<Opcion>();
@@ -737,14 +745,14 @@ namespace TFTService
 
             resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
             resultado.Ejemplos = new List<string>();
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "DecimalEjemplo1").ToString().Replace("…", numCompletoLetras));
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "DecimalEjemplo2").ToString().Replace("…", numCompletoLetras));
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "DecimalEjemplo3").ToString().Replace("…", numCompletoLetras));
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "DecimalEjemplo4").ToString().Replace("…", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "DecimalEjemplo1").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "DecimalEjemplo2").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "DecimalEjemplo3").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "DecimalEjemplo4").ToString().Replace("|", numCompletoLetras));
 
             return resultado;
         }
-        
+
         public Conversion ConversionCardinal(string numero, bool signo, string numeroOrignal, bool valorNum)
         {
             Thread.CurrentThread.CurrentUICulture = language;
@@ -763,14 +771,14 @@ namespace TFTService
             resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalNota5").ToString());
             resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalNota6").ToString());
 
-            
+
             resultado.TitReferencias = HttpContext.GetGlobalResourceObject("Resource", "ReferenciasTitulo").ToString();
             resultado.Referencias = new List<string>();
             resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalReferencia1").ToString());
             resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalReferencia2").ToString());
             resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalReferencia3").ToString());
             resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalReferencia4").ToString());
-            
+
 
             resultado.Respuestas = new List<string>();
             resultado.Respuestas.Add(numCompletoLetras);
@@ -785,11 +793,11 @@ namespace TFTService
 
             resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
             resultado.Ejemplos = new List<string>();
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalEjemplo1").ToString().Replace("…", numCompletoLetras));
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalEjemplo2").ToString().Replace("…", numCompletoLetras));
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalEjemplo3").ToString().Replace("…", numCompletoLetras));
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalEjemplo4").ToString().Replace("…", numCompletoLetras));
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalEjemplo5").ToString().Replace("…", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalEjemplo1").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalEjemplo2").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalEjemplo3").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalEjemplo4").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalEjemplo5").ToString().Replace("|", numCompletoLetras));
 
             if (valorNum == true)
             {
@@ -808,25 +816,28 @@ namespace TFTService
                 FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + "una");
                 resultado.MasOpciones.Add(FormFem);
             }
-            else if(numCompletoLetras == "dos")
+            else if (numCompletoLetras == "dos")
             {
                 Opcion FormFem = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormFemOpcion").ToString());
                 FormFem.Opciones = new List<string>();
-                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString()+"dues");
+                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + "dues");
                 FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + "dues");
                 resultado.MasOpciones.Add(FormFem);
-            }else if(numCompletoLetras == "disset")
+            }
+            else if (numCompletoLetras == "disset")
             {
                 SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "BalearTipo").ToString() + "desset");
-            }else if(numCompletoLetras == "divuit")
+            }
+            else if (numCompletoLetras == "divuit")
             {
                 SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "BalearTipo").ToString() + "devuit");
-            }else if(numCompletoLetras == "dinou")
+            }
+            else if (numCompletoLetras == "dinou")
             {
                 SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "BalearTipo").ToString() + "denou");
             }
 
-                return resultado;
+            return resultado;
         }
 
         public Conversion ConversionNegativo(string numero, bool signo, string numeroOrignal, bool valorNum)
@@ -834,14 +845,21 @@ namespace TFTService
             Thread.CurrentThread.CurrentUICulture = language;
             Conversion resultado = new Conversion();
             //System.Diagnostics.Debug.WriteLine("Numero negativo: " + numero);
-            
+
             string numCompletoLetras = Cardinales.ConvertirNumEnteroCardinal(numero, signo);
 
             resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "NegativoTipo").ToString();
             resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();
-            //AÑADIR NOTAS CUANDO ACABES BUENAS!!!!!!!!!!!!!!!
+            resultado.Notas = new List<string>();
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "NegativoNota1").ToString());
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "NegativoNota2").ToString());
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "NegativoNota3").ToString());
+
             resultado.TitReferencias = HttpContext.GetGlobalResourceObject("Resource", "ReferenciasTitulo").ToString();
-            //AÑADIR REFERENCIAS BUENAS CUANDO ACABES!!!!!!!!!!!!!!!!!!
+            resultado.Referencias = new List<string>();
+            resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "NegativoReferencia1").ToString());
+            resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "NegativoReferencia2").ToString());
+
 
             resultado.Respuestas = new List<string>();
             resultado.Respuestas.Add(numCompletoLetras);
@@ -851,18 +869,52 @@ namespace TFTService
 
             Opcion SusAdPro = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "SusAdProTitulo").ToString());
             SusAdPro.Opciones = new List<string>();
-            SusAdPro.Opciones.Add(numCompletoLetras);
+            SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + numCompletoLetras);
+            SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + Cardinales.ConvertirNumEnteroCardinalVal(numero, signo));
+
+            resultado.MasOpciones.Add(SusAdPro);
 
             resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
             resultado.Ejemplos = new List<string>();
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "NegativoEjemplo1").ToString().Replace("…", numCompletoLetras));
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "NegativoEjemplo2").ToString().Replace("…", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "NegativoEjemplo1").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "NegativoEjemplo2").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "NegativoEjemplo3").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "NegativoEjemplo4").ToString().Replace("|", numCompletoLetras));
 
             if (valorNum == true)
             {
                 resultado.TitValorNumerico = HttpContext.GetGlobalResourceObject("Resource", "ValorNumericoTitulo").ToString();
                 string numeroFormateado = FormateoNumero.FormatearNumero(numero);
                 resultado.ValorNumerico = numeroFormateado;
+            }
+
+            if (numCompletoLetras == "minus un")
+            {
+                Opcion FormFem = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormFemOpcion").ToString());
+                FormFem.Opciones = new List<string>();
+                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + "minus una");
+                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + "minus una");
+                resultado.MasOpciones.Add(FormFem);
+            }
+            else if (numCompletoLetras == "minus dos")
+            {
+                Opcion FormFem = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormFemOpcion").ToString());
+                FormFem.Opciones = new List<string>();
+                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + "minus dues");
+                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + "minus dues");
+                resultado.MasOpciones.Add(FormFem);
+            }
+            else if (numCompletoLetras == "minus disset")
+            {
+                SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "BalearTipo").ToString() + "minus desset");
+            }
+            else if (numCompletoLetras == "minus divuit")
+            {
+                SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "BalearTipo").ToString() + "minus devuit");
+            }
+            else if (numCompletoLetras == "minus dinou")
+            {
+                SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "BalearTipo").ToString() + "minus denou");
             }
 
             return resultado;
@@ -873,7 +925,7 @@ namespace TFTService
             Thread.CurrentThread.CurrentUICulture = language;
             Conversion resultado = new Conversion();
 
-            string numCompletoLetras = Ordinales.ConvertirNumEnteroOrdinal(numero, "M");
+            string numCompletoLetras = Ordinales.ConvertirNumEnteroOrdinal(numero, "M", false);
             //System.Diagnostics.Debug.WriteLine("NUMERO ORDINAL: " + numCompletoLetras);
             if (string.IsNullOrEmpty(numCompletoLetras))
             {
@@ -883,13 +935,26 @@ namespace TFTService
 
             resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "OrdinalTipo").ToString();
             resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();
-            //AÑADIR NOTAS CUANDO ACABES BUENAS!!!!!!!!!!!!!!!
+            resultado.Notas = new List<string>();
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "OrdinalNota1").ToString());
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "OrdinalNota2").ToString());
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "OrdinalNota3").ToString());
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "OrdinalNota4").ToString());
+
             resultado.TitReferencias = HttpContext.GetGlobalResourceObject("Resource", "ReferenciasTitulo").ToString();
-            //AÑADIR REFERENCIAS BUENAS CUANDO ACABES!!!!!!!!!!!!!!!!!!
+            resultado.Referencias = new List<string>();
+            resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "OrdinalReferencia1").ToString());
+            resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "OrdinalReferencia2").ToString());
+            resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "OrdinalReferencia3").ToString());
+
 
             resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
             resultado.Ejemplos = new List<string>();
             //AÑADIR EJEMPLOS
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "OrdinalEjemplo1").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "OrdinalEjemplo2").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "OrdinalEjemplo3").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "OrdinalEjemplo4").ToString().Replace("|", numCompletoLetras));
 
             resultado.Respuestas = new List<string>();
             resultado.Respuestas.Add(numCompletoLetras);
@@ -897,16 +962,31 @@ namespace TFTService
             resultado.TitOpciones = HttpContext.GetGlobalResourceObject("Resource", "TituloOpciones").ToString();
             resultado.MasOpciones = new List<Opcion>();
 
-            Opcion FormFem = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormFemOpcion").ToString());
-            FormFem.Opciones = new List<string>();
-            FormFem.Opciones.Add(Ordinales.ConvertirNumEnteroOrdinal(numero, "F"));
+            Opcion FormFemSin = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormFemSinOpcion").ToString());
+            FormFemSin.Opciones = new List<string>();
+            FormFemSin.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + Ordinales.ConvertirNumEnteroOrdinal(numero, "F", false));
+            FormFemSin.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + Ordinales.ConvertirNumEnteroOrdinalVal(numero, "F", false));
 
-            Opcion FormMas = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormmASOpcion").ToString());
-            FormMas.Opciones = new List<string>();
-            FormMas.Opciones.Add(numCompletoLetras);
+            Opcion FormMasSin = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormMasSinOpcion").ToString());
+            FormMasSin.Opciones = new List<string>();
+            FormMasSin.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + numCompletoLetras);
+            FormMasSin.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + Ordinales.ConvertirNumEnteroOrdinalVal(numero, "M", false));
 
-            resultado.MasOpciones.Add(FormFem);
-            resultado.MasOpciones.Add(FormMas);
+            Opcion FormMasPlu = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormMasPluOpcion").ToString());
+            FormMasPlu.Opciones = new List<string>();
+            FormMasPlu.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + Ordinales.ConvertirNumEnteroOrdinal(numero, "M", true));
+            FormMasPlu.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + Ordinales.ConvertirNumEnteroOrdinalVal(numero, "M", true));
+
+
+            Opcion FormFemPlu = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormFemPluOpcion").ToString());
+            FormFemPlu.Opciones = new List<string>();
+            FormFemPlu.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + Ordinales.ConvertirNumEnteroOrdinal(numero, "F", true));
+            FormFemPlu.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + Ordinales.ConvertirNumEnteroOrdinalVal(numero, "F", true));
+
+            resultado.MasOpciones.Add(FormFemSin);
+            resultado.MasOpciones.Add(FormMasSin);
+            resultado.MasOpciones.Add(FormMasPlu);
+            resultado.MasOpciones.Add(FormFemPlu);
             //System.Diagnostics.Debug.WriteLine("NUMERO ORDINAL: FEMENINO " + Ordinales.ConvertirNumEnteroOrdinal(numero, "F"));
             return resultado;
         }
@@ -917,24 +997,36 @@ namespace TFTService
             Conversion resultado = new Conversion();
             System.Diagnostics.Debug.WriteLine("NUMERO FRACCIONARIO ANTES DEL TRIM: " + numero);
             numero = numero.TrimStart('0');
+           
             System.Diagnostics.Debug.WriteLine("NUMERO FRACCIONARIO DESPUES DEL TRIM: " + numero);
+            if (string.IsNullOrEmpty(numero)) numero = "0";
             string numCompletoLetras = Fraccionario.ConvertirNumEnteroFraccionario(numero, "M");
             System.Diagnostics.Debug.WriteLine("NUMERO FRACCIONARIO: " + numCompletoLetras);
-            if(string.IsNullOrEmpty(numCompletoLetras))
+            if (string.IsNullOrEmpty(numCompletoLetras))
             {
                 return null;
             }
 
             resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "FraccionarioTipo").ToString();
             resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();
-            //AÑADIR NOTAS CUANDO ACABES BUENAS!!!!!!!!!!!!!!!
+            resultado.Notas = new List<string>();
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionarioNota1").ToString());
+
+
             resultado.TitReferencias = HttpContext.GetGlobalResourceObject("Resource", "ReferenciasTitulo").ToString();
-            //AÑADIR REFERENCIAS BUENAS CUANDO ACABES!!!!!!!!!!!!!!!!!!
+            resultado.Referencias = new List<string>();
+            resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionarioReferencia1").ToString());
+            resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionarioReferencia2").ToString());
+
 
 
             resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
             resultado.Ejemplos = new List<string>();
-            //AÑADIR EJEMPLOS
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionarioEjemplo1").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionarioEjemplo2").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionarioEjemplo3").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionarioEjemplo4").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "FraccionarioEjemplo5").ToString().Replace("|", numCompletoLetras));
             resultado.Respuestas = new List<string>();
             resultado.Respuestas.Add(numCompletoLetras);
 
@@ -943,15 +1035,17 @@ namespace TFTService
 
             Opcion SustantivoM = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "SustantivoMOpcion").ToString());
             SustantivoM.Opciones = new List<string>();
-            SustantivoM.Opciones.Add(numCompletoLetras);
+            SustantivoM.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + numCompletoLetras);
+            SustantivoM.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + Fraccionario.ConvertirNumEnteroFraccionarioVal(numero, "M"));
 
             Opcion SustantivoF = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "SustantivoFOpcion").ToString());
             SustantivoF.Opciones = new List<string>();
-            SustantivoF.Opciones.Add(Fraccionario.ConvertirNumEnteroFraccionario(numero, "F"));
+            SustantivoF.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + Fraccionario.ConvertirNumEnteroFraccionario(numero, "F"));
+            SustantivoF.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + Fraccionario.ConvertirNumEnteroFraccionarioVal(numero, "F"));
 
             Opcion AdjetivoPronF = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "AdjetivoPronombreFOpcion").ToString());
             AdjetivoPronF.Opciones = new List<string>();
-            AdjetivoPronF.Opciones.Add(Fraccionario.ConvertirNumEnteroFraccionario(numero, "F"));
+            AdjetivoPronF.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + Fraccionario.ConvertirNumEnteroFraccionario(numero, "F"));
 
             resultado.MasOpciones.Add(SustantivoM);
             resultado.MasOpciones.Add(SustantivoF);
@@ -959,7 +1053,7 @@ namespace TFTService
 
             return resultado;
         }
-        
+
         public Conversion ConversionMultiplicativo(string numero, bool signo, string numeroOriginal, bool valorNum)
         {
             Thread.CurrentThread.CurrentUICulture = language;
@@ -967,7 +1061,8 @@ namespace TFTService
             System.Diagnostics.Debug.WriteLine("NUMERO MULTIPLICATIVO ANTES DEL TRIM: " + numero);
             numero = numero.TrimStart('0');
             System.Diagnostics.Debug.WriteLine("NUMERO MULTIPLICATIVO DESPUES DEL TRIM: " + numero);
-            string numCompletoLetras = Multiplicativo.ConvertirNumEnteroMultiplicativo(numero);
+            if (string.IsNullOrEmpty(numero)) numero = "0";
+            string numCompletoLetras = Multiplicativo.ConvertirNumEnteroMultiplicativo(numero, "M");
             if (string.IsNullOrEmpty(numCompletoLetras))
             {
                 return null;
@@ -975,13 +1070,25 @@ namespace TFTService
             System.Diagnostics.Debug.WriteLine("NUMERO MULTIPLICATIVO: " + numCompletoLetras);
             resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "MultiplicativoTipo").ToString();
             resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();
+            resultado.Notas = new List<string>();
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "MultiplicativoNota1").ToString());
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "MultiplicativoNota2").ToString());
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "MultiplicativoNota3").ToString());
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "MultiplicativoNota4").ToString());
             //AÑADIR NOTAS CUANDO ACABES BUENAS!!!!!!!!!!!!!!!
             resultado.TitReferencias = HttpContext.GetGlobalResourceObject("Resource", "ReferenciasTitulo").ToString();
+            resultado.Referencias = new List<string>();
+            resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "MultiplicativoReferencia1").ToString());
+            resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "MultiplicativoReferencia2").ToString());
             //AÑADIR REFERENCIAS BUENAS CUANDO ACABES!!!!!!!!!!!!!!!!!!
 
 
             resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
             resultado.Ejemplos = new List<string>();
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "MultiplicativoEjemplo1").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "MultiplicativoEjemplo2").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "MultiplicativoEjemplo3").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "MultiplicativoEjemplo4").ToString().Replace("|", numCompletoLetras));
             //AÑADIR EJEMPLOS
             resultado.Respuestas = new List<string>();
             resultado.Respuestas.Add(numCompletoLetras);
@@ -991,9 +1098,25 @@ namespace TFTService
 
             Opcion ExpreAdj = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "ExpresionAdjetivoOpcion").ToString());
             ExpreAdj.Opciones = new List<string>();
-            ExpreAdj.Opciones.Add(numCompletoLetras);
+            ExpreAdj.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + numCompletoLetras);
+            ExpreAdj.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + Multiplicativo.ConvertirNumEnteroMultiplicativoVal(numero, "M"));
 
             resultado.MasOpciones.Add(ExpreAdj);
+
+            int tamañoNumero = numero.Length;
+            if (tamañoNumero <= 3)
+            {
+                int numeroInt = int.Parse(numero);
+                if (numeroInt >= 2 && numeroInt <= 12 || numeroInt == 100)
+                {
+                    Opcion FormFem = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormFemOpcion").ToString());
+                    FormFem.Opciones = new List<string>();
+                    FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + Multiplicativo.ConvertirNumEnteroMultiplicativo(numero, "F"));
+                    FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + Multiplicativo.ConvertirNumEnteroMultiplicativoVal(numero, "F"));
+
+                    resultado.MasOpciones.Add(FormFem);
+                }
+            }
 
             return resultado;
 
@@ -1005,11 +1128,14 @@ namespace TFTService
             Conversion resultado = new Conversion();
 
             string numCompletoLetras;
+            string numCompletoLetrasVal;
             string numeroNoSimbolo = numero.Replace("€", "");
             string[] partes = Regex.Split(numeroNoSimbolo, @"[.,]");
-            
+
             string parteEuros = Cardinales.ConvertirNumEnteroCardinal(partes[0], signo);
+            string parteEurosVal = Cardinales.ConvertirNumEnteroCardinalVal(partes[0], signo);
             string parteCentimos = "";
+            string parteCentimosVal = "";
             if (partes.Length > 1)
             {
                 if (partes[1].Length == 1)
@@ -1021,33 +1147,53 @@ namespace TFTService
                     partes[1] = partes[1].Substring(0, 2);
                 }
                 parteCentimos = Cardinales.ConvertirNumEnteroCardinal(partes[1], false);
+                parteCentimosVal = Cardinales.ConvertirNumEnteroCardinalVal(partes[1], false);
             }
             if (partes[0] == "1")
             {
                 numCompletoLetras = parteEuros + " " + HttpContext.GetGlobalResourceObject("Resource", "Euro").ToString();
+                numCompletoLetrasVal = parteEurosVal + " " + HttpContext.GetGlobalResourceObject("Resource", "Euro").ToString();
+            }
+            else if (partes[0].Length <= 6)
+            {
+                numCompletoLetras = parteEuros + " " + HttpContext.GetGlobalResourceObject("Resource", "Euros").ToString();
+                numCompletoLetrasVal = parteEurosVal + " " + HttpContext.GetGlobalResourceObject("Resource", "Euros").ToString();
             }
             else
             {
-                numCompletoLetras = parteEuros + " " + HttpContext.GetGlobalResourceObject("Resource", "Euros").ToString();
+                numCompletoLetras = parteEuros + " " + HttpContext.GetGlobalResourceObject("Resource", "DeEuros").ToString();
+                numCompletoLetrasVal = parteEurosVal + " " + HttpContext.GetGlobalResourceObject("Resource", "DeEuros").ToString();
             }
             if (!string.IsNullOrEmpty(parteCentimos))
             {
                 if (partes[1] == "01")
                 {
-                    numCompletoLetras += " i " + parteCentimos + " "+ HttpContext.GetGlobalResourceObject("Resource", "Centimo").ToString();
+                    numCompletoLetras += " i " + parteCentimos + " " + HttpContext.GetGlobalResourceObject("Resource", "Centimo").ToString();
+                    numCompletoLetrasVal += " i " + parteCentimosVal + " " + HttpContext.GetGlobalResourceObject("Resource", "Centimo").ToString();
                 }
                 else
                 {
                     numCompletoLetras += " i " + parteCentimos + " " + HttpContext.GetGlobalResourceObject("Resource", "Centimos").ToString();
+                    numCompletoLetrasVal += " i " + parteCentimosVal + " " + HttpContext.GetGlobalResourceObject("Resource", "Centimos").ToString();
                 }
             }
 
+
+
             resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "EurosTipo").ToString();
             resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();
+            resultado.Notas = new List<string>();
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "EuroNota1").ToString());
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "EuroNota2").ToString());
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "EuroNota3").ToString());
             //AÑADIR NOTAS CUANDO ACABES BUENAS!!!!!!!!!!!!!!!
-            
+
             resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
             resultado.Ejemplos = new List<string>();
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "EuroEjemplo1").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "EuroEjemplo2").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "EuroEjemplo3").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "EuroEjemplo4").ToString().Replace("|", numCompletoLetras));
             //AÑADIR EJEMPLOS
             resultado.Respuestas = new List<string>();
             resultado.Respuestas.Add(numCompletoLetras);
@@ -1058,21 +1204,29 @@ namespace TFTService
 
             Opcion SintagmaNom = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "SintagmaNominalOpcion").ToString());
             SintagmaNom.Opciones = new List<string>();
-            SintagmaNom.Opciones.Add(numCompletoLetras);
-            if(numero.Contains(".") || numero.Contains(","))
+            SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + numCompletoLetras);
+            SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + numCompletoLetrasVal);
+            if (numero.Contains(".") || numero.Contains(","))
             {
-                SintagmaNom.Opciones.Add(numCompletoLetras.Replace(" i ", " ambs "));
+                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + numCompletoLetras.Replace(" i ", " ambs "));
+                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + numCompletoLetrasVal.Replace(" i ", " ambs "));
             }
-            
 
-            Opcion NoApropiado = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "NoApropiadoOpcion").ToString());
+
+            /*Opcion NoApropiado = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "NoApropiadoOpcion").ToString());
             NoApropiado.Opciones = new List<string>();
-            NoApropiado.Opciones.Add(numCompletoLetras.Replace(" i ", " punt "));
+            NoApropiado.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString()+numCompletoLetras.Replace(" i ", " punt "));
+            NoApropiado.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValenacianoTipo").ToString() + numCompletoLetrasVal.Replace(" i ", " punt "));*/
 
-            
+
             resultado.MasOpciones.Add(SintagmaNom);
             if (numero.Contains(".") || numero.Contains(","))
             {
+                Opcion NoApropiado = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "NoApropiadoOpcion").ToString());
+                NoApropiado.Opciones = new List<string>();
+                NoApropiado.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + numCompletoLetras.Replace(" i ", " punt "));
+                NoApropiado.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + numCompletoLetrasVal.Replace(" i ", " punt "));
+
                 resultado.MasOpciones.Add(NoApropiado);
             }
             return resultado;
@@ -1084,11 +1238,14 @@ namespace TFTService
             Conversion resultado = new Conversion();
 
             string numCompletoLetras;
+            string numCompletoLetrasVal;
             string numeroNoSimbolo = numero.Replace("$", "");
             string[] partes = Regex.Split(numeroNoSimbolo, @"[.,]");
 
             string partePesos = Cardinales.ConvertirNumEnteroCardinal(partes[0], signo);
+            string partePesosVal = Cardinales.ConvertirNumEnteroCardinalVal(partes[0], signo);
             string parteCentavos = "";
+            string parteCentavosVal = "";
             if (partes.Length > 1)
             {
                 if (partes[1].Length == 1)
@@ -1100,34 +1257,52 @@ namespace TFTService
                     partes[1] = partes[1].Substring(0, 2);
                 }
                 parteCentavos = Cardinales.ConvertirNumEnteroCardinal(partes[1], false);
+                parteCentavosVal = Cardinales.ConvertirNumEnteroCardinalVal(partes[1], false);
             }
             if (partes[0] == "1")
             {
                 numCompletoLetras = partePesos + " " + HttpContext.GetGlobalResourceObject("Resource", "Peso").ToString();
+                numCompletoLetrasVal = partePesosVal + " " + HttpContext.GetGlobalResourceObject("Resource", "Peso").ToString();
             }
-            else
+            else if (partes[0].Length <= 6)
             {
                 numCompletoLetras = partePesos + " " + HttpContext.GetGlobalResourceObject("Resource", "Pesos").ToString();
+                numCompletoLetrasVal = partePesosVal + " " + HttpContext.GetGlobalResourceObject("Resource", "Pesos").ToString();
+            }
+            else 
+            {
+                numCompletoLetras = partePesos + " " + HttpContext.GetGlobalResourceObject("Resource", "DePesos").ToString();
+                numCompletoLetrasVal = partePesosVal + " " + HttpContext.GetGlobalResourceObject("Resource", "DePesos").ToString();
             }
             if (!string.IsNullOrEmpty(parteCentavos))
             {
                 if (partes[1] == "01")
                 {
                     numCompletoLetras += " i " + parteCentavos + " " + HttpContext.GetGlobalResourceObject("Resource", "Centavo").ToString();
+                    numCompletoLetrasVal += " i " + parteCentavosVal + " " + HttpContext.GetGlobalResourceObject("Resource", "Centavo").ToString();
                 }
                 else
                 {
                     numCompletoLetras += " i " + parteCentavos + " " + HttpContext.GetGlobalResourceObject("Resource", "Centavos").ToString();
+                    numCompletoLetrasVal += " i " + parteCentavosVal + " " + HttpContext.GetGlobalResourceObject("Resource", "Centavos").ToString();
                 }
             }
 
             resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "PesoTipo").ToString();
             resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();
+            resultado.Notas = new List<string>();
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "PesoNota1").ToString());
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "PesoNota2").ToString());
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "PesoNota3").ToString());
             //AÑADIR NOTAS CUANDO ACABES BUENAS!!!!!!!!!!!!!!!
 
             resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
             resultado.Ejemplos = new List<string>();
-            //AÑADIR EJEMPLOS
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "PesoEjemplo1").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "PesoEjemplo2").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "PesoEjemplo3").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "PesoEjemplo4").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "PesoEjemplo5").ToString().Replace("|", numCompletoLetras));
             resultado.Respuestas = new List<string>();
             resultado.Respuestas.Add(numCompletoLetras);
 
@@ -1137,21 +1312,29 @@ namespace TFTService
 
             Opcion SintagmaNom = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "SintagmaNominalOpcion").ToString());
             SintagmaNom.Opciones = new List<string>();
-            SintagmaNom.Opciones.Add(numCompletoLetras);
+            SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString()+numCompletoLetras);
+            SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + numCompletoLetrasVal);
+
             if (numero.Contains(".") || numero.Contains(","))
             {
-                SintagmaNom.Opciones.Add(numCompletoLetras.Replace(" i ", " ambs "));
+                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString()+numCompletoLetras.Replace(" i ", " ambs "));
+                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + numCompletoLetrasVal.Replace(" i ", " ambs "));
             }
 
 
-            Opcion NoApropiado = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "NoApropiadoOpcion").ToString());
+            /*Opcion NoApropiado = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "NoApropiadoOpcion").ToString());
             NoApropiado.Opciones = new List<string>();
-            NoApropiado.Opciones.Add(numCompletoLetras.Replace(" i ", " punt "));
+            NoApropiado.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString()+numCompletoLetras.Replace(" i ", " punt "));
+            NoApropiado.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + numCompletoLetrasVal.Replace(" i ", " punt "));*/
 
 
             resultado.MasOpciones.Add(SintagmaNom);
             if (numero.Contains(".") || numero.Contains(","))
             {
+                Opcion NoApropiado = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "NoApropiadoOpcion").ToString());
+                NoApropiado.Opciones = new List<string>();
+                NoApropiado.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + numCompletoLetras.Replace(" i ", " punt "));
+                NoApropiado.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + numCompletoLetrasVal.Replace(" i ", " punt "));
                 resultado.MasOpciones.Add(NoApropiado);
             }
             return resultado;

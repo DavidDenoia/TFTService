@@ -93,7 +93,7 @@ namespace TFTService
 
             if(signo == true)
             {
-                resultado.Insert(0, "Minus ");
+                resultado.Insert(0, "minus ");
             }
             return resultado.ToString().Trim();
         
@@ -304,7 +304,7 @@ namespace TFTService
 
             if (signo == true)
             {
-                resultado.Insert(0, "Minus ");
+                resultado.Insert(0, "minus ");
             }
             return resultado.ToString().Trim();
 

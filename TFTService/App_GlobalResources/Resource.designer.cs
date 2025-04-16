@@ -358,6 +358,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a de euros.
+        /// </summary>
+        internal static string DeEuros {
+            get {
+                return ResourceManager.GetString("DeEuros", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a de pesos.
+        /// </summary>
+        internal static string DePesos {
+            get {
+                return ResourceManager.GetString("DePesos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a dolar.
         /// </summary>
         internal static string Dolar {
@@ -399,6 +417,69 @@ namespace Resources {
         internal static string Euro {
             get {
                 return ResourceManager.GetString("Euro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El cost total del producte és de |..
+        /// </summary>
+        internal static string EuroEjemplo1 {
+            get {
+                return ResourceManager.GetString("EuroEjemplo1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ha rebut una multa de | per excés de velocitat..
+        /// </summary>
+        internal static string EuroEjemplo2 {
+            get {
+                return ResourceManager.GetString("EuroEjemplo2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ens van oferir un descompte de | en la compra..
+        /// </summary>
+        internal static string EuroEjemplo3 {
+            get {
+                return ResourceManager.GetString("EuroEjemplo3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Van gastar | durant les vacances..
+        /// </summary>
+        internal static string EuroEjemplo4 {
+            get {
+                return ResourceManager.GetString("EuroEjemplo4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El símbolo del euro es € y se escribe detrás del número..
+        /// </summary>
+        internal static string EuroNota1 {
+            get {
+                return ResourceManager.GetString("EuroNota1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La palabra euro se escribe habitualmente detrás de la parte entera en los números decimales: dos mil euros i deu cèntims..
+        /// </summary>
+        internal static string EuroNota2 {
+            get {
+                return ResourceManager.GetString("EuroNota2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Detrás de las palabras millón, billón, trillón, etc. y sus plurales se escribe &quot;de euros&quot;..
+        /// </summary>
+        internal static string EuroNota3 {
+            get {
+                return ResourceManager.GetString("EuroNota3", resourceCulture);
             }
         }
         
@@ -448,6 +529,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Forma femenina plural.
+        /// </summary>
+        internal static string FormFemPluOpcion {
+            get {
+                return ResourceManager.GetString("FormFemPluOpcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Forma femenina singular.
+        /// </summary>
+        internal static string FormFemSinOpcion {
+            get {
+                return ResourceManager.GetString("FormFemSinOpcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Forma masculina.
         /// </summary>
         internal static string FormMasOpcion {
@@ -457,7 +556,25 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Quiero ... de chocolate. .
+        ///   Busca una cadena traducida similar a Forma masculina plural.
+        /// </summary>
+        internal static string FormMasPluOpcion {
+            get {
+                return ResourceManager.GetString("FormMasPluOpcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Forma masculina singular.
+        /// </summary>
+        internal static string FormMasSinOpcion {
+            get {
+                return ResourceManager.GetString("FormMasSinOpcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Només hem utilitzat la | part del pressupost..
         /// </summary>
         internal static string FraccionarioEjemplo1 {
             get {
@@ -466,7 +583,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a La sequía afecta a ... de la región. .
+        ///   Busca una cadena traducida similar a Va menjar una | porció del pastís..
         /// </summary>
         internal static string FraccionarioEjemplo2 {
             get {
@@ -475,7 +592,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Només hem utilitzat ... dels recursos disponibles..
+        ///   Busca una cadena traducida similar a El pacient va rebre una | dosi del tractament..
         /// </summary>
         internal static string FraccionarioEjemplo3 {
             get {
@@ -484,11 +601,47 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Vaig llegir ... del llibre abans de dormir..
+        ///   Busca una cadena traducida similar a La mostra representa una | fracció de la població..
         /// </summary>
         internal static string FraccionarioEjemplo4 {
             get {
                 return ResourceManager.GetString("FraccionarioEjemplo4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El terreny es dividirà en | parts iguals..
+        /// </summary>
+        internal static string FraccionarioEjemplo5 {
+            get {
+                return ResourceManager.GetString("FraccionarioEjemplo5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Expresan fracciones de la unidad..
+        /// </summary>
+        internal static string FraccionarioNota1 {
+            get {
+                return ResourceManager.GetString("FraccionarioNota1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Viquipèdia l&apos;Enciclopèdia Lliure. Numerals en català. https://ca.wikipedia.org/wiki/Numerals_en_catal%C3%A0.
+        /// </summary>
+        internal static string FraccionarioReferencia1 {
+            get {
+                return ResourceManager.GetString("FraccionarioReferencia1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Gramàtica essencial de la llengua catalana. 12.3.2. Els numerals fraccionaris. https://geiec.iec.cat/text/12.3.2.
+        /// </summary>
+        internal static string FraccionarioReferencia2 {
+            get {
+                return ResourceManager.GetString("FraccionarioReferencia2", resourceCulture);
             }
         }
         
@@ -498,6 +651,42 @@ namespace Resources {
         internal static string FraccionarioTipo {
             get {
                 return ResourceManager.GetString("FraccionarioTipo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Quiero | de chocolate. .
+        /// </summary>
+        internal static string FraccionEjemplo1 {
+            get {
+                return ResourceManager.GetString("FraccionEjemplo1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La sequía afecta a ... de la región. .
+        /// </summary>
+        internal static string FraccionEjemplo2 {
+            get {
+                return ResourceManager.GetString("FraccionEjemplo2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Només hem utilitzat ... dels recursos disponibles..
+        /// </summary>
+        internal static string FraccionEjemplo3 {
+            get {
+                return ResourceManager.GetString("FraccionEjemplo3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Vaig llegir ... del llibre abans de dormir..
+        /// </summary>
+        internal static string FraccionEjemplo4 {
+            get {
+                return ResourceManager.GetString("FraccionEjemplo4", resourceCulture);
             }
         }
         
@@ -556,6 +745,96 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a L’impacte econòmic va ser | respecte a l’any anterior..
+        /// </summary>
+        internal static string MultiplicativoEjemplo1 {
+            get {
+                return ResourceManager.GetString("MultiplicativoEjemplo1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La velocitat del vehicle era | a la permesa..
+        /// </summary>
+        internal static string MultiplicativoEjemplo2 {
+            get {
+                return ResourceManager.GetString("MultiplicativoEjemplo2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El soroll era | que el nivell habitual..
+        /// </summary>
+        internal static string MultiplicativoEjemplo3 {
+            get {
+                return ResourceManager.GetString("MultiplicativoEjemplo3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Es va multiplicar el nombre d’usuaris fins a arribar a una xifra |..
+        /// </summary>
+        internal static string MultiplicativoEjemplo4 {
+            get {
+                return ResourceManager.GetString("MultiplicativoEjemplo4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Los numerales multiplicadores están formados por un radical latino y la terminación -uple, excepto doble y triple..
+        /// </summary>
+        internal static string MultiplicativoNota1 {
+            get {
+                return ResourceManager.GetString("MultiplicativoNota1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tienen flexión de género, excepto doble, pero son invariables cuando expresan el número de elementos,.
+        /// </summary>
+        internal static string MultiplicativoNota2 {
+            get {
+                return ResourceManager.GetString("MultiplicativoNota2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La forma femenina cuando se aplican a la expresión de magnitudes..
+        /// </summary>
+        internal static string MultiplicativoNota3 {
+            get {
+                return ResourceManager.GetString("MultiplicativoNota3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Las múltiplos son doble, triple, cuádruple, quìntuple, séxtuple, sèptuple, òctuple, nonùple, décuplo, undècuple, duodècuple..
+        /// </summary>
+        internal static string MultiplicativoNota4 {
+            get {
+                return ResourceManager.GetString("MultiplicativoNota4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Viquipèdia l&apos;Enciclopèdia Lliure. Numerals en català. https://ca.wikipedia.org/wiki/Numerals_en_catal%C3%A0.
+        /// </summary>
+        internal static string MultiplicativoReferencia1 {
+            get {
+                return ResourceManager.GetString("MultiplicativoReferencia1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sal.usu. Gramatic. Els numerals. https://salt.gva.es/auto/ajuda-salt/puntuacio/els_numerals.html.
+        /// </summary>
+        internal static string MultiplicativoReferencia2 {
+            get {
+                return ResourceManager.GetString("MultiplicativoReferencia2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Multiplicativo.
         /// </summary>
         internal static string MultiplicativoTipo {
@@ -579,6 +858,69 @@ namespace Resources {
         internal static string NegativoEjemplo2 {
             get {
                 return ResourceManager.GetString("NegativoEjemplo2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La pèrdua d&apos;energia va ser de ... juliols..
+        /// </summary>
+        internal static string NegativoEjemplo3 {
+            get {
+                return ResourceManager.GetString("NegativoEjemplo3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El saldo de la transacció va resultar ser de ... euros..
+        /// </summary>
+        internal static string NegativoEjemplo4 {
+            get {
+                return ResourceManager.GetString("NegativoEjemplo4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Un número negativo es un número que está por debajo de 0, es decir, que es menor que cero..
+        /// </summary>
+        internal static string NegativoNota1 {
+            get {
+                return ResourceManager.GetString("NegativoNota1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Los números negativos pueden ser números enteros o decimales..
+        /// </summary>
+        internal static string NegativoNota2 {
+            get {
+                return ResourceManager.GetString("NegativoNota2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Los números negativos van junto al signo -.
+        /// </summary>
+        internal static string NegativoNota3 {
+            get {
+                return ResourceManager.GetString("NegativoNota3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Viquipèdia l&apos;Enciclopèdia Lliure. Nombre negatiu. https://ca.wikipedia.org/wiki/Nombre_negatiu.
+        /// </summary>
+        internal static string NegativoReferencia1 {
+            get {
+                return ResourceManager.GetString("NegativoReferencia1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INS Reguissol. R1.1 Els nombres Racionals. https://educaciodigital.cat/iesreguissol/moodle/mod/book/view.php?id=98405.
+        /// </summary>
+        internal static string NegativoReferencia2 {
+            get {
+                return ResourceManager.GetString("NegativoReferencia2", resourceCulture);
             }
         }
         
@@ -619,6 +961,105 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Va quedar en la | posició del rànquing..
+        /// </summary>
+        internal static string OrdinalEjemplo1 {
+            get {
+                return ResourceManager.GetString("OrdinalEjemplo1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Van arribar en la | etapa de la cursa..
+        /// </summary>
+        internal static string OrdinalEjemplo2 {
+            get {
+                return ResourceManager.GetString("OrdinalEjemplo2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a És la | opció del menú..
+        /// </summary>
+        internal static string OrdinalEjemplo3 {
+            get {
+                return ResourceManager.GetString("OrdinalEjemplo3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ha quedat en el | lloc de la classificació..
+        /// </summary>
+        internal static string OrdinalEjemplo4 {
+            get {
+                return ResourceManager.GetString("OrdinalEjemplo4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Los ordinales son aquellos numerales que indican una relación de orden..
+        /// </summary>
+        internal static string OrdinalNota1 {
+            get {
+                return ResourceManager.GetString("OrdinalNota1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Los numerales ordinales (en masculino singular como adjetivos) presentan unas formas específicas para los cuatro primeros, y el resto se forman a partir del cardinal correspondiente con el sufijo -è, o -é en valenciano.
+        /// </summary>
+        internal static string OrdinalNota2 {
+            get {
+                return ResourceManager.GetString("OrdinalNota2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Los ordinales en formato adjetivo en femenino singular se forman añadiendo una -a al final de la forma masculina por los primeros cuatro numerales, y añadiendo -na a la forma masculina a todo el resto..
+        /// </summary>
+        internal static string OrdinalNota3 {
+            get {
+                return ResourceManager.GetString("OrdinalNota3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Como adjetivos, presentan variación de género y número: primero/primera/primeros/primeras, ..., undécimo/undécima/undécimos/undécimas..
+        /// </summary>
+        internal static string OrdinalNota4 {
+            get {
+                return ResourceManager.GetString("OrdinalNota4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Salt.usu. Gramatic. Els numerals. https://salt.gva.es/auto/ajuda-salt/puntuacio/els_numerals.html.
+        /// </summary>
+        internal static string OrdinalReferencia1 {
+            get {
+                return ResourceManager.GetString("OrdinalReferencia1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Viquipèdia l&apos;Enciclopèdia Lliure. Numerals en català. https://ca.wikipedia.org/wiki/Numerals_en_catal%C3%A0.
+        /// </summary>
+        internal static string OrdinalReferencia2 {
+            get {
+                return ResourceManager.GetString("OrdinalReferencia2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Gramàtica essencial de la llengua catalana. 12.3.5 Els numerals ordinals. https://geiec.iec.cat/text/12.3.5.
+        /// </summary>
+        internal static string OrdinalReferencia3 {
+            get {
+                return ResourceManager.GetString("OrdinalReferencia3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Ordinal.
         /// </summary>
         internal static string OrdinalTipo {
@@ -633,6 +1074,78 @@ namespace Resources {
         internal static string Peso {
             get {
                 return ResourceManager.GetString("Peso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Va pagar exactament | per aquella peça d&apos;art..
+        /// </summary>
+        internal static string PesoEjemplo1 {
+            get {
+                return ResourceManager.GetString("PesoEjemplo1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Només tenia | a la cartera..
+        /// </summary>
+        internal static string PesoEjemplo2 {
+            get {
+                return ResourceManager.GetString("PesoEjemplo2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a L&apos;import total de la factura és de |..
+        /// </summary>
+        internal static string PesoEjemplo3 {
+            get {
+                return ResourceManager.GetString("PesoEjemplo3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El premi era de |, una quantitat molt generosa..
+        /// </summary>
+        internal static string PesoEjemplo4 {
+            get {
+                return ResourceManager.GetString("PesoEjemplo4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ens van ingressar | a la compta del projecte..
+        /// </summary>
+        internal static string PesoEjemplo5 {
+            get {
+                return ResourceManager.GetString("PesoEjemplo5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El símbolo del peso es $ y se escribe delante del número..
+        /// </summary>
+        internal static string PesoNota1 {
+            get {
+                return ResourceManager.GetString("PesoNota1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La palabra peso se escribe habitualmente detrás de la parte entera en los números decimales: dos mil pesos y diez centavos..
+        /// </summary>
+        internal static string PesoNota2 {
+            get {
+                return ResourceManager.GetString("PesoNota2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Detrás de las palabras millón, billón, trillón, etc. y sus plurales se escribe de pesos..
+        /// </summary>
+        internal static string PesoNota3 {
+            get {
+                return ResourceManager.GetString("PesoNota3", resourceCulture);
             }
         }
         

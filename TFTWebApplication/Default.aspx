@@ -94,7 +94,7 @@
                       </asp:LinkButton>
 
 
-                        <strong>Respuesta:</strong> <%# string.Join(", ", ((List<string>)Eval("Respuestas")).ToArray()) %>
+                      <%# string.Join(", ", ((List<string>)Eval("Respuestas")).ToArray()) %>
 
                     </p>
 

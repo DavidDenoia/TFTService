@@ -342,4 +342,7 @@
   <data name="CardinalEjemplo5" xml:space="preserve">
     <value>El temps estimat d'arribada és de … minuts.</value>
   </data>
+  <data name="BalearTipo" xml:space="preserve">
+    <value>(Balear)</value>
+  </data>
 </root>

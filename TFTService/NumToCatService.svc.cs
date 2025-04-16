@@ -763,14 +763,14 @@ namespace TFTService
             resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalNota5").ToString());
             resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalNota6").ToString());
 
-            //AÑADIR NOTAS CUANDO ACABES BUENAS!!!!!!!!!!!!!!!
+            
             resultado.TitReferencias = HttpContext.GetGlobalResourceObject("Resource", "ReferenciasTitulo").ToString();
             resultado.Referencias = new List<string>();
             resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalReferencia1").ToString());
             resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalReferencia2").ToString());
             resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalReferencia3").ToString());
             resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "CardinalReferencia4").ToString());
-            //AÑADIR REFERENCIAS BUENAS CUANDO ACABES!!!!!!!!!!!!!!!!!!
+            
 
             resultado.Respuestas = new List<string>();
             resultado.Respuestas.Add(numCompletoLetras);
@@ -815,6 +815,15 @@ namespace TFTService
                 FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString()+"dues");
                 FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + "dues");
                 resultado.MasOpciones.Add(FormFem);
+            }else if(numCompletoLetras == "disset")
+            {
+                SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "BalearTipo").ToString() + "desset");
+            }else if(numCompletoLetras == "divuit")
+            {
+                SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "BalearTipo").ToString() + "devuit");
+            }else if(numCompletoLetras == "dinou")
+            {
+                SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "BalearTipo").ToString() + "denou");
             }
 
                 return resultado;

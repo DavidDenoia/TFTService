@@ -79,6 +79,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Balear.
+        /// </summary>
+        internal static string BalearTipo {
+            get {
+                return ResourceManager.GetString("BalearTipo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a La cantidad de agua es de … litros..
         /// </summary>
         internal static string CardinalEjemplo1 {

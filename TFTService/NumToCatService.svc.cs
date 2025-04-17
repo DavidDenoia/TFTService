@@ -44,7 +44,8 @@ namespace TFTService
 
 
             var cerrojo = new object();
-            string numero = value.Trim();
+            string numero = value.Replace(" ","").Trim();
+            //System.Diagnostics.Debug.WriteLine("DESPUES DEL TRIM: " + numero);
             int longitudNumero = numero.Length;
             Boolean signo = false;
             //Boolean decima = false;
@@ -950,7 +951,7 @@ namespace TFTService
 
             resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
             resultado.Ejemplos = new List<string>();
-            //AÑADIR EJEMPLOS
+            
             resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "OrdinalEjemplo1").ToString().Replace("|", numCompletoLetras));
             resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "OrdinalEjemplo2").ToString().Replace("|", numCompletoLetras));
             resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "OrdinalEjemplo3").ToString().Replace("|", numCompletoLetras));
@@ -1346,11 +1347,14 @@ namespace TFTService
             Conversion resultado = new Conversion();
 
             string numCompletoLetras;
+            string numCompletoLetrasVal;
             string numeroNoSimbolo = numero.Replace("$", "");
             string[] partes = Regex.Split(numeroNoSimbolo, @"[.,]");
 
             string parteDolar = Cardinales.ConvertirNumEnteroCardinal(partes[0], signo);
+            string parteDolarVal = Cardinales.ConvertirNumEnteroCardinalVal(partes[0], signo);
             string parteCentavos = "";
+            string parteCentavosVal = "";
             if (partes.Length > 1)
             {
                 if (partes[1].Length == 1)
@@ -1362,34 +1366,53 @@ namespace TFTService
                     partes[1] = partes[1].Substring(0, 2);
                 }
                 parteCentavos = Cardinales.ConvertirNumEnteroCardinal(partes[1], false);
+                parteCentavosVal = Cardinales.ConvertirNumEnteroCardinalVal(partes[1], false);
             }
             if (partes[0] == "1")
             {
                 numCompletoLetras = parteDolar + " " + HttpContext.GetGlobalResourceObject("Resource", "Dolar").ToString();
+                numCompletoLetrasVal = parteDolarVal + " " + HttpContext.GetGlobalResourceObject("Resource", "Dolar").ToString();
+            }
+            else if (partes[0].Length <= 6)
+            {
+                numCompletoLetras = parteDolar + " " + HttpContext.GetGlobalResourceObject("Resource", "Dolares").ToString();
+                numCompletoLetrasVal = parteDolarVal + " " + HttpContext.GetGlobalResourceObject("Resource", "Dolares").ToString();
             }
             else
             {
-                numCompletoLetras = parteDolar + " " + HttpContext.GetGlobalResourceObject("Resource", "Dolares").ToString();
+                numCompletoLetras = parteDolar + " " + HttpContext.GetGlobalResourceObject("Resource", "DeDolares").ToString();
+                numCompletoLetrasVal = parteDolarVal + " " + HttpContext.GetGlobalResourceObject("Resource", "DeDolares").ToString();
             }
             if (!string.IsNullOrEmpty(parteCentavos))
             {
                 if (partes[1] == "01")
                 {
                     numCompletoLetras += " i " + parteCentavos + " " + HttpContext.GetGlobalResourceObject("Resource", "Centavo").ToString();
+                    numCompletoLetrasVal += " i " + parteCentavosVal + " " + HttpContext.GetGlobalResourceObject("Resource", "Centavo").ToString();
                 }
                 else
                 {
                     numCompletoLetras += " i " + parteCentavos + " " + HttpContext.GetGlobalResourceObject("Resource", "Centavos").ToString();
+                    numCompletoLetrasVal += " i " + parteCentavosVal + " " + HttpContext.GetGlobalResourceObject("Resource", "Centavos").ToString();
                 }
             }
 
             resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "DolarTipo").ToString();
             resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();
-            //AÑADIR NOTAS CUANDO ACABES BUENAS!!!!!!!!!!!!!!!
+            resultado.Notas = new List<string>();
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "DolarNota1").ToString());
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "DolarNota2").ToString());
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "DolarNota3").ToString());
+            
 
             resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
             resultado.Ejemplos = new List<string>();
-            //AÑADIR EJEMPLOS
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "PesoEjemplo1").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "PesoEjemplo2").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "PesoEjemplo3").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "PesoEjemplo4").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "PesoEjemplo5").ToString().Replace("|", numCompletoLetras));
+           
             resultado.Respuestas = new List<string>();
             resultado.Respuestas.Add(numCompletoLetras);
 
@@ -1399,21 +1422,27 @@ namespace TFTService
 
             Opcion SintagmaNom = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "SintagmaNominalOpcion").ToString());
             SintagmaNom.Opciones = new List<string>();
-            SintagmaNom.Opciones.Add(numCompletoLetras);
+            SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString()+numCompletoLetras);
+            SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + numCompletoLetrasVal);
             if (numero.Contains(".") || numero.Contains(","))
             {
-                SintagmaNom.Opciones.Add(numCompletoLetras.Replace(" i ", " ambs "));
+                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString()+numCompletoLetras.Replace(" i ", " ambs "));
+                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + numCompletoLetrasVal.Replace(" i ", " ambs "));
             }
 
 
-            Opcion NoApropiado = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "NoApropiadoOpcion").ToString());
+            /*Opcion NoApropiado = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "NoApropiadoOpcion").ToString());
             NoApropiado.Opciones = new List<string>();
-            NoApropiado.Opciones.Add(numCompletoLetras.Replace(" i ", " punt "));
+            NoApropiado.Opciones.Add(numCompletoLetras.Replace(" i ", " punt "));*/
 
 
             resultado.MasOpciones.Add(SintagmaNom);
             if (numero.Contains(".") || numero.Contains(","))
             {
+                Opcion NoApropiado = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "NoApropiadoOpcion").ToString());
+                NoApropiado.Opciones = new List<string>();
+                NoApropiado.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString()+numCompletoLetras.Replace(" i ", " punt "));
+                NoApropiado.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + numCompletoLetrasVal.Replace(" i ", " punt "));
                 resultado.MasOpciones.Add(NoApropiado);
             }
             return resultado;
@@ -1433,19 +1462,36 @@ namespace TFTService
 
             resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "PoligonoTipo").ToString();
             resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();
-            //AÑADIR NOTAS CUANDO ACABES BUENAS!!!!!!!!!!!!!!!
+            resultado.Notas = new List<string>();
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "PoligonoNota1").ToString());
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "PoligonoNota2").ToString());
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "PoligonoNota3").ToString());
+            resultado.Notas.Add(HttpContext.GetGlobalResourceObject("Resource", "PoligonoNota4").ToString());
+            
 
             resultado.TitReferencias = HttpContext.GetGlobalResourceObject("Resource", "ReferenciasTitulo").ToString();
-            //AÑADIR REFERENCIAS BUENAS CUANDO ACABES!!!!!!!!!!!!!!!!!!
+            resultado.Referencias = new List<string>();
+            resultado.Referencias.Add(HttpContext.GetGlobalResourceObject("Resource", "PoligonoReferencia1").ToString());
+            
 
             resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
             resultado.Ejemplos = new List<string>();
-            //AÑADIR EJEMPLOS
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "PoligonoEjemplo1").ToString());
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "PoligonoEjemplo2").ToString());
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "PoligonoEjemplo3").ToString());
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "PoligonoEjemplo4").ToString());
+         
             resultado.Respuestas = new List<string>();
             resultado.Respuestas.Add(numCompletoLetras);
 
             resultado.TitOpciones = HttpContext.GetGlobalResourceObject("Resource", "TituloOpciones").ToString();
             resultado.MasOpciones = new List<Opcion>();
+
+            Opcion SustantivoAdjetivo = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "SustantivoAdjetivoOpcion").ToString());
+            SustantivoAdjetivo.Opciones = new List<string>();
+            SustantivoAdjetivo.Opciones.Add(numCompletoLetras);
+
+            resultado.MasOpciones.Add(SustantivoAdjetivo);
 
             return resultado;
         }

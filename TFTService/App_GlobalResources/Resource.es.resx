@@ -499,7 +499,7 @@
     <value>La palabra peso se escribe habitualmente detrás de la parte entera en los números decimales: dos mil pesos i deu cèntims.</value>
   </data>
   <data name="PesoNota3" xml:space="preserve">
-    <value>Detrás de las palabras millón, billón, trillón, etc. y sus plurales se escribe de pesos.</value>
+    <value>Detrás de las palabras millón, billón, trillón, etc. y sus plurales se escribe "de pesos".</value>
   </data>
   <data name="DePesos" xml:space="preserve">
     <value>de pesos</value>
@@ -518,5 +518,47 @@
   </data>
   <data name="PesoEjemplo5" xml:space="preserve">
     <value>Ens van ingressar | a la compta del projecte.</value>
+  </data>
+  <data name="DeDolares" xml:space="preserve">
+    <value>de dólares</value>
+  </data>
+  <data name="DolarNota1" xml:space="preserve">
+    <value>El símbolo del dólar es $ y se escribe delante del número.</value>
+  </data>
+  <data name="DolarNota2" xml:space="preserve">
+    <value>La palabra dólar se escribe habitualmente detrás de la parte entera en los números decimales: dos mil dòlars i deu cèntims.</value>
+  </data>
+  <data name="DolarNota3" xml:space="preserve">
+    <value>Detrás de las palabras millón, billón, trillón, etc. y sus plurales se escribe "de dolars".</value>
+  </data>
+  <data name="PoligonoNota1" xml:space="preserve">
+    <value>Un polígono es una figura plana formada por un número fenecido de segmentos lineales secuenciales.</value>
+  </data>
+  <data name="PoligonoNota2" xml:space="preserve">
+    <value>Los polígonos reciben un nombre concreto según su número de lados.</value>
+  </data>
+  <data name="PoligonoNota3" xml:space="preserve">
+    <value>Se combina un prefijo numérico derivado del griego con el sufijo -gon ('costat'), como, por ejemplo, pentàgon (cinco lados) o dodecàgon (doce lados). El triángulo y el cuadrilátero son excepciones a esta regla.</value>
+  </data>
+  <data name="PoligonoNota4" xml:space="preserve">
+    <value>Cuando se trata de polígonos de muchos lados, los matemáticos escriben el mismo numeral, como, por ejemplo, 63-gon.</value>
+  </data>
+  <data name="PoligonoReferencia1" xml:space="preserve">
+    <value>Viquipèdia l'Enciclopèdia Lliure. Polígon. Noms dels polígons. https://ca.wikipedia.org/wiki/Pol%C3%ADgon</value>
+  </data>
+  <data name="PoligonoEjemplo1" xml:space="preserve">
+    <value>Un | té tots els costats iguals.</value>
+  </data>
+  <data name="PoligonoEjemplo2" xml:space="preserve">
+    <value>Es pot construir un | amb regle i compàs.</value>
+  </data>
+  <data name="PoligonoEjemplo3" xml:space="preserve">
+    <value>El logotip de l'empresa està basat en un |.</value>
+  </data>
+  <data name="PoligonoEjemplo4" xml:space="preserve">
+    <value>A la classe de matemàtiques vam aprendre a calcular l'àrea d’un |.</value>
+  </data>
+  <data name="SustantivoAdjetivoOpcion" xml:space="preserve">
+    <value>Sustantivo y adjetivo</value>
   </data>
 </root>

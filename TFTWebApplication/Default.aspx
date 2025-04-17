@@ -188,9 +188,9 @@
         <li><asp:Literal runat="server" Text="<%$ Resources: Resource, ErrorLinea7%>"/> <code>3/4</code> <code>78/125</code> <code>-3/4</code> <code>78/-125</code></li>
         <li><asp:Literal runat="server" Text="<%$ Resources: Resource, ErrorLinea8.1%>"/><code>E</code><asp:Literal runat="server" Text="<%$ Resources: Resource, ErrorLinea8.2%>"/>  <code>2,4E10</code> <code>5E-3</code> <code>-2,4E10</code> <code>-5.23E-3</code></li>
         <li><asp:Literal runat="server" Text="<%$ Resources: Resource, ErrorLinea9%>"/> <code>DLVI</code> <code>IX</code> <code>XXXVI</code></li>
-        <li><asp:Literal runat="server" Text="<%$ Resources: Resource, EscribaCantidades%>"/><strong>euros</strong><asp:Literal runat="server" Text="<%$ Resources: Resource, ConSimbolo%>"/><code>€</code>: <code>45€</code> <code>23,78€</code></li>
-        <li><asp:Literal runat="server" Text="<%$ Resources: Resource, EscribaCantidades%>"/><strong>pesos</strong><asp:Literal runat="server" Text="<%$ Resources: Resource, ConSimbolo%>"/><code>$</code>: <code>$1000</code> <code>123,02$</code></li>
-        <li><asp:Literal runat="server" Text="<%$ Resources: Resource, EscribaCantidades%>"/><strong><asp:Literal runat="server" Text="<%$ Resources: Resource, Dolar%>"/></strong><asp:Literal runat="server" Text="<%$ Resources: Resource, ConSimbolo%>"/><code>$</code>: <code>428$</code> <code>$897.30</code></li>
+        <li><asp:Literal runat="server" Text="<%$ Resources: Resource, EscribaCantidades%>"/> <strong>euros</strong> <asp:Literal runat="server" Text="<%$ Resources: Resource, ConSimbolo%>"/><code>€</code>: <code>45€</code> <code>23,78€</code></li>
+        <li><asp:Literal runat="server" Text="<%$ Resources: Resource, EscribaCantidades%>"/> <strong>pesos</strong> <asp:Literal runat="server" Text="<%$ Resources: Resource, ConSimbolo%>"/><code>$</code>: <code>$1000</code> <code>123,02$</code></li>
+        <li><asp:Literal runat="server" Text="<%$ Resources: Resource, EscribaCantidades%>"/> <strong><asp:Literal runat="server" Text="<%$ Resources: Resource, Dolar%>"/> </strong><asp:Literal runat="server" Text="<%$ Resources: Resource, ConSimbolo%>"/><code>$</code>: <code>428$</code> <code>$897.30</code></li>
     </ul>
     </asp:Panel>
 

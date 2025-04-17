@@ -44,7 +44,8 @@ namespace TFTService
 
 
             var cerrojo = new object();
-            string numero = value.Trim();
+            string numero = value.Replace(" ","").Trim();
+            //System.Diagnostics.Debug.WriteLine("DESPUES DEL TRIM: " + numero);
             int longitudNumero = numero.Length;
             Boolean signo = false;
             //Boolean decima = false;

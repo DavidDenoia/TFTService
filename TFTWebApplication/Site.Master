@@ -93,47 +93,69 @@
       </script>
 
       
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary">
+    <div class="container d-flex justify-content-between align-items-center">
 
+       
+        <a class="navbar-brand d-flex align-items-center gap-2" runat="server" href="https://tulengua.iatext.ulpgc.es/" target="_blank">
+            <img src="Content/imagenes/tulengua_logo.png" alt="TuLengua" style="height:30px;" />
+            <span style="color: white; font-family: 'Segoe UI', cursive; font-size: 1.2em;">TuLengua</span>
+        </a>
+
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+        <div class="collapse navbar-collapse justify-content-between" id="mainNavbar">
+
+            
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-1" runat="server" href="~/" style="color: #f0f0f0;">
+                        <i class="bi bi-house-door-fill"></i><asp:Literal runat="server" Text="<%$ Resources: Resource, Inicio %>" />
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" runat="server" href="https://tulengua.iatext.ulpgc.es/es/nosotros.html" target="_blank" style="color: #f0f0f0;"><asp:Literal runat="server" Text="<%$ Resources: Resource, Nosotros %>" /></a>
+                </li>
+            </ul>
+
+            
+            <div class="d-flex align-items-center gap-2">
+               <asp:LinkButton runat="server" ID="btnEspanol" CssClass="btn btn-light btn-sm d-flex align-items-center gap-2" OnClick="btnEspanol_Click">
+                    <img src="Content/imagenes/bandera-españa.png" alt="Español" style="height:16px;" />
+                    <span>Español</span>
+                </asp:LinkButton>
+
+                <asp:LinkButton runat="server" ID="btnCatalan" CssClass="btn btn-light btn-sm d-flex align-items-center gap-2" OnClick="btnCatalan_Click">
+                    <img src="Content/imagenes/bandera-catalana.png" alt="Català" style="height:16px;" />
+                    <span>Català</span>
+                </asp:LinkButton>
+
+
+            </div>
+        </div>
+    </div>
+</nav>
 
      
+
 
    
 
        
 
 
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand d-flex align-items-center gap-2" runat="server" href="https://tulengua.iatext.ulpgc.es/" target="_blank">
-                    <img src="Content/imagenes/tulengua_logo.png" alt="TuLengua" style="height:30px;" />
-                    <span style="color: white; font-family: 'Segoe UI', cursive; font-size: 1.2em;">TuLengua</span>
-                </a>
-
-
-
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-1" runat="server" href="~/" style="color: #f0f0f0;">
-                                 <i class="bi bi-house-door-fill"></i>Inicio
-                            </a>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="https://tulengua.iatext.ulpgc.es/es/nosotros.html" target="_blank" style="color: #f0f0f0;">Nosotros</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+      
 
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Mi aplicación ASP.NET</p>
+                <p>&copy; <%: DateTime.Now.Year %> - David Sosa Santana</p>
             </footer>
         </div>
     </form>

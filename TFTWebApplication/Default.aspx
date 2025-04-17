@@ -14,7 +14,8 @@
         <!-- Título -->
         <div class="text-center border rounded-top py-2 bg-light">
             <strong class="text-primary">
-                <asp:Label ID="lblTitulo" runat="server" Text="Números a letras. Números a texto"></asp:Label>
+                <asp:Label ID="lblTitulo" runat="server" Text="<%$ Resources: Resource, TituloPrincipal %>"></asp:Label>
+
             </strong>
         </div>
 
@@ -22,7 +23,7 @@
         <div class="border rounded-bottom p-3 bg-white">
             <div class="input-group">
                 <asp:TextBox ID="txtNumero" CssClass="form-control flex-grow-1" MaxLength="130" 
-                    placeholder="Escriba un número con cifras o un número romano" runat="server"></asp:TextBox>
+                    placeholder="<%$ Resources: Resource, PlaceHolderNumero %>" runat="server"></asp:TextBox>
 
                 <asp:LinkButton ID="botonLimpiar" runat="server" CssClass="btn btn-link text-primary" OnClick="Limpiar_Click">
                     <i class="bi bi-x-lg"></i>
@@ -174,39 +175,40 @@
     <asp:Panel ID="panelError" runat="server" CssClass="border border-danger rounded-top" Visible="false">
 
         <div class="panel-heading bg-light py-3 text-center">
-             <strong class="text-danger">ERROR -</strong> <span class="text-danger">Los formatos admitidos para el catalán son los siguientes:</span>
+             <strong class="text-danger">ERROR -</strong> <span class="text-danger"><asp:Literal runat="server" Text="<%$ Resources: Resource, FormatosAdmitidos%>"/></span>
         </div>
             
     <ul>
-        <li><strong>Los símbolos de monedas (£, ¥, etc.) no están admitidos para este idioma.</strong></li>
-        <li><strong>Puede que el número, el exponente o la parte decimal sea demasiado grande.</strong></li>
-        <li><strong>NO escriba el número con letras, excepto si es un número romano.</strong></li>
-        <li>Escriba un número sin coma ni punto para los miles o millones: <code>13289</code> <code>53625999567</code> <code>-345676</code></li>
-        <li>Los miles o millones se pueden separar con un espacio en blanco: <code>13 289</code> <code>53 625 999 567</code> <code>-345 676</code></li>
-        <li>En los decimales puede usar un punto o una coma: <code>12.58</code> <code>45,78997</code> <code>-47.2</code> <code>-98,712</code></li>
-        <li>Para escribir fracciones use la barra: <code>3/4</code> <code>78/125</code> <code>-3/4</code> <code>78/-125</code></li>
-        <li>Para escribir en notación científica use la <code>E</code> sin espacios: <code>2,4E10</code> <code>5E-3</code> <code>-2,4E10</code> <code>-5.23E-3</code></li>
-        <li>Si es un número romano, escríbalo en mayúscula: <code>DLVI</code> <code>IX</code> <code>XXXVI</code></li>
-        <li>Escriba cantidades en <strong>euros</strong> con el símbolo <code>€</code> o la palabra <code>euros</code>: <code>45€</code> <code>23,78€</code> <code>10 euros</code></li>
-        <li>Escriba cantidades en <strong>pesos</strong> con el símbolo <code>$</code> o la palabra <code>pesos</code>: <code>$1000</code> <code>123,02$</code> <code>345 pesos</code></li>
-        <li>Escriba cantidades en <strong>dólares</strong> con el símbolo <code>$</code> o la palabra <code>dólares</code>: <code>428$</code> <code>$897.30</code> <code>63 dólares</code></li>
+        <li><strong><asp:Literal runat="server" Text="<%$ Resources: Resource, ErrorLinea1%>"/></strong></li>
+        <li><strong><asp:Literal runat="server" Text="<%$ Resources: Resource, ErrorLinea2%>"/></strong></li>
+        <li><strong><asp:Literal runat="server" Text="<%$ Resources: Resource, ErrorLinea3%>"/></strong></li>
+        <li><asp:Literal runat="server" Text="<%$ Resources: Resource, ErrorLinea4%>"/> <code>13289</code> <code>53625999567</code> <code>-345676</code></li>
+        <li><asp:Literal runat="server" Text="<%$ Resources: Resource, ErrorLinea5%>"/><code>13 289</code> <code>53 625 999 567</code> <code>-345 676</code></li>
+        <li><asp:Literal runat="server" Text="<%$ Resources: Resource, ErrorLinea6%>"/> <code>12.58</code> <code>45,78997</code> <code>-47.2</code> <code>-98,712</code></li>
+        <li><asp:Literal runat="server" Text="<%$ Resources: Resource, ErrorLinea7%>"/> <code>3/4</code> <code>78/125</code> <code>-3/4</code> <code>78/-125</code></li>
+        <li><asp:Literal runat="server" Text="<%$ Resources: Resource, ErrorLinea8.1%>"/><code>E</code><asp:Literal runat="server" Text="<%$ Resources: Resource, ErrorLinea8.2%>"/>  <code>2,4E10</code> <code>5E-3</code> <code>-2,4E10</code> <code>-5.23E-3</code></li>
+        <li><asp:Literal runat="server" Text="<%$ Resources: Resource, ErrorLinea9%>"/> <code>DLVI</code> <code>IX</code> <code>XXXVI</code></li>
+        <li><asp:Literal runat="server" Text="<%$ Resources: Resource, EscribaCantidades%>"/><strong>euros</strong><asp:Literal runat="server" Text="<%$ Resources: Resource, ConSimbolo%>"/><code>€</code>: <code>45€</code> <code>23,78€</code></li>
+        <li><asp:Literal runat="server" Text="<%$ Resources: Resource, EscribaCantidades%>"/><strong>pesos</strong><asp:Literal runat="server" Text="<%$ Resources: Resource, ConSimbolo%>"/><code>$</code>: <code>$1000</code> <code>123,02$</code></li>
+        <li><asp:Literal runat="server" Text="<%$ Resources: Resource, EscribaCantidades%>"/><strong><asp:Literal runat="server" Text="<%$ Resources: Resource, Dolar%>"/></strong><asp:Literal runat="server" Text="<%$ Resources: Resource, ConSimbolo%>"/><code>$</code>: <code>428$</code> <code>$897.30</code></li>
     </ul>
     </asp:Panel>
 
     <!--Panel de bienvenida-->
     <asp:Panel ID="panelBienvenida" runat="server" Visible="false">
-        <p>Este conversor puede convertir números a letras en cardinal, números en letras ordinal, números en letras fraccionario o partitivo,
-            multiplicativo, decimal, romano, colectivo, número de sílabas, nombre de polígonos y poliedros, edades y nacido. 
-            El conversor ofrece información morfológica, ortográfica y gramatical de cada uno de los números convertidos a letras. 
-            Además, se incluyen ejemplos que ayudan a la comprensión y buen uso.</p>
+        <p><asp:Literal runat="server" Text="<%$ Resources: Resource, Bienvenida1.1%>"/>
+           <asp:Literal runat="server" Text="<%$ Resources: Resource, Bienvenida1.2%>"/>
+           <asp:Literal runat="server" Text="<%$ Resources: Resource, Bienvenida1.3%>"/>
+            <asp:Literal runat="server" Text="<%$ Resources: Resource, Bienvenida1.4%>"/></p>
 
-        <p>Escriba un número sin coma ni punto para los miles o millones. Los miles o millones se pueden separar con un espacio en blanco. 
-            En los decimales puede usar un punto o una coma. Para escribir fracciones use la barra inclinada "/". 
-            Para escribr en notación científica use la E sin espacios. Si es un número romano, escriba en mayúscula todos sus símbolos.</p>
+        <p><asp:Literal runat="server" Text="<%$ Resources: Resource, Bienvenida2.1%>"/>
+            <asp:Literal runat="server" Text="<%$ Resources: Resource, Bienvenida2.2%>"/>
+            <asp:Literal runat="server" Text="<%$ Resources: Resource, Bienvenida2.3%>"/>
+        </p>
 
         <div class="container text-center">
             <div class="row justify-content-center">
-                <h3 class="text-primary mb-3">Prueba los ejemplos</h3>
+                <h3 class="text-primary mb-3"> <asp:Literal runat="server" Text="<%$ Resources: Resource, PruebaEjemplos%>"/></h3>
             </div>
              
           <div class="d-flex flex-wrap justify-content-center gap-3 mb-2">

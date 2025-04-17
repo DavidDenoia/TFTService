@@ -498,7 +498,7 @@
     <value>La paraula peso s'escriu habitualment darrere de la part entera en els nombres decimals: dos mil pesos i deu cèntims.</value>
   </data>
   <data name="PesoNota3" xml:space="preserve">
-    <value>Després de les paraules milió, bilió, trilió, etc. i els seus plurals s'escriu de pesos.</value>
+    <value>Després de les paraules milió, bilió, trilió, etc. i els seus plurals s'escriu "de pesos".</value>
   </data>
   <data name="DePesos" xml:space="preserve">
     <value>de pesos</value>
@@ -517,5 +517,47 @@
   </data>
   <data name="PesoEjemplo5" xml:space="preserve">
     <value>Ens van ingressar | a la compta del projecte.</value>
+  </data>
+  <data name="DeDolares" xml:space="preserve">
+    <value>de dòlars</value>
+  </data>
+  <data name="DolarNota1" xml:space="preserve">
+    <value>El símbol del dòlar és $ i s'escriu davant del número.</value>
+  </data>
+  <data name="DolarNota2" xml:space="preserve">
+    <value>La paraula dòlar s'escriu habitualment darrere de la part sencera en els nombres decimals: dos mil dòlars i deu cèntims.</value>
+  </data>
+  <data name="DolarNota3" xml:space="preserve">
+    <value>Després de les paraules milió, bilió, trilió, etc. i els seus plurals s'escriu "de dolars".</value>
+  </data>
+  <data name="PoligonoNota1" xml:space="preserve">
+    <value>Un polígon és una figura plana formada per un nombre finit de segments lineals seqüencials. </value>
+  </data>
+  <data name="PoligonoNota2" xml:space="preserve">
+    <value>Els polígons reben un nom concret segons el seu nombre de costats.</value>
+  </data>
+  <data name="PoligonoNota3" xml:space="preserve">
+    <value>Es combina un prefix numèric derivat del grec amb el sufix -gon ('costat'), com, per exemple, pentàgon (cinc costats) o dodecàgon (dotze costats). El triangle i el quadrilàter són excepcions a aquesta regla.</value>
+  </data>
+  <data name="PoligonoNota4" xml:space="preserve">
+    <value>Quan es tracta de polígons de molts costats, els matemàtics escriuen el mateix numeral, com, per exemple, 63-gon.</value>
+  </data>
+  <data name="PoligonoReferencia1" xml:space="preserve">
+    <value>Viquipèdia l'Enciclopèdia Lliure. Polígon. Noms dels polígons. https://ca.wikipedia.org/wiki/Pol%C3%ADgon</value>
+  </data>
+  <data name="PoligonoEjemplo1" xml:space="preserve">
+    <value>Un | té tots els costats iguals.</value>
+  </data>
+  <data name="PoligonoEjemplo2" xml:space="preserve">
+    <value>Es pot construir un | amb regle i compàs.</value>
+  </data>
+  <data name="PoligonoEjemplo3" xml:space="preserve">
+    <value>El logotip de l'empresa està basat en un |.</value>
+  </data>
+  <data name="PoligonoEjemplo4" xml:space="preserve">
+    <value>A la classe de matemàtiques vam aprendre a calcular l'àrea d’un |.</value>
+  </data>
+  <data name="SustantivoAdjetivoOpcion" xml:space="preserve">
+    <value>Substantiu i adjectiu</value>
   </data>
 </root>

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -10,30 +12,49 @@ namespace TFTWebApplication
 {
     public partial class _Default : Page
     {
-        private string idioma = "ca-CA";
+
+        private string idioma;
 
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            idioma = Session["idioma"] != null ? Session["idioma"].ToString() : "es-ES";
+
             if (!IsPostBack)
             {
+
+               
+
                 rptResultados.DataSource = null;
                 rptResultados.DataBind();
                 
                 panelBienvenida.Visible = true;
 
+                
+               
+
             }
 
         }
-        
+        protected override void InitializeCulture()
+        {
+            string idioma = Session["idioma"]?.ToString() ?? "es-ES";
+            CultureInfo cultura = new CultureInfo(idioma);
+            Thread.CurrentThread.CurrentCulture = cultura;
+            Thread.CurrentThread.CurrentUICulture = cultura;
+            base.InitializeCulture();
+        }
+
+
 
         protected void Traducir_Click(object sender, EventArgs e)
         {
             try
             {
                 string numero = txtNumero.Text;
-                string lenguaje = "ca-CA";
+                
+
 
                 if (string.IsNullOrEmpty(numero))
                 {
@@ -43,10 +64,12 @@ namespace TFTWebApplication
                     return;
                 }
 
+              
+
                 using (var cliente = new NumToCatClient())
                 {
                     //List<Conversion> resultado = cliente.MainTraducir(numero, lenguaje);
-                    var resultado = cliente.MainTraducir(numero, lenguaje);
+                    var resultado = cliente.MainTraducir(numero, idioma);
                     //System.Diagnostics.Debug.WriteLine("RESULTADO RECIBIDO:" + resultado);
                     var cabecera = resultado.Item1;
 
@@ -67,11 +90,27 @@ namespace TFTWebApplication
                         }
                         else
                         {
-                            lblResultado.Text = "Conversion hecha";
+                            if (idioma == "es-ES")
+                            {
+                                lblResultado.Text = "Conversion hecha";
+                            }
+                            else
+                            {
+                                lblResultado.Text = "Conversió feta";
+                            }
+                            
                         }
                         
+                        if(idioma == "es-ES")
+                        {
+                            lblTitulo.Text = $"¿Cómo se escribe {numero} en letras en catalan?";
+                        }
+                        else
+                        {
+                            lblTitulo.Text = $"Com s'escriu {numero} en lletres en catalan?";
+                        }
 
-                        lblTitulo.Text = $"¿Cómo se escribe {numero} en letras en catalan?";
+                        
                         panelError.Visible = false;
                         rptResultados.Visible = true;
                         panelBienvenida.Visible = false;
@@ -85,7 +124,14 @@ namespace TFTWebApplication
                         }
                         else
                         {
-                            lblResultado.Text = "No se encontraron conversiones";
+                            if (idioma == "es-ES")
+                            {
+                                lblResultado.Text = "No se encontraron conversiones";
+                            }
+                            else
+                            {
+                                lblResultado.Text = "No es van trobar conversions";
+                            }
                         }
                         //lblResultado.Text = "No se encontraron conversiones";
                         lblTitulo.Text = "";

@@ -358,6 +358,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a de dolares.
+        /// </summary>
+        internal static string DeDolares {
+            get {
+                return ResourceManager.GetString("DeDolares", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a de euros.
         /// </summary>
         internal static string DeEuros {
@@ -390,6 +399,33 @@ namespace Resources {
         internal static string Dolares {
             get {
                 return ResourceManager.GetString("Dolares", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El símbolo del dolar es $ y se escribe delante del número..
+        /// </summary>
+        internal static string DolarNota1 {
+            get {
+                return ResourceManager.GetString("DolarNota1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La palabra dólar se escribe habitualmente detrás de la parte entera en los números decimales: dos mil dòlars i deu cèntims..
+        /// </summary>
+        internal static string DolarNota2 {
+            get {
+                return ResourceManager.GetString("DolarNota2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Detrás de las palabras millón, billón, trillón, etc. y sus plurales se escribe &quot;de dolars&quot;..
+        /// </summary>
+        internal static string DolarNota3 {
+            get {
+                return ResourceManager.GetString("DolarNota3", resourceCulture);
             }
         }
         
@@ -1168,6 +1204,87 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Un | té tots els costats iguals..
+        /// </summary>
+        internal static string PoligonoEjemplo1 {
+            get {
+                return ResourceManager.GetString("PoligonoEjemplo1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Es pot construir un | amb regle i compàs..
+        /// </summary>
+        internal static string PoligonoEjemplo2 {
+            get {
+                return ResourceManager.GetString("PoligonoEjemplo2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El logotip de l&apos;empresa està basat en un |..
+        /// </summary>
+        internal static string PoligonoEjemplo3 {
+            get {
+                return ResourceManager.GetString("PoligonoEjemplo3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a A la classe de matemàtiques vam aprendre a calcular l&apos;àrea d’un |..
+        /// </summary>
+        internal static string PoligonoEjemplo4 {
+            get {
+                return ResourceManager.GetString("PoligonoEjemplo4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Un polígono es una figura plana formada por un número fenecido de segmentos lineales secuenciales..
+        /// </summary>
+        internal static string PoligonoNota1 {
+            get {
+                return ResourceManager.GetString("PoligonoNota1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Los polígonos reciben un nombre concreto según su número de lados..
+        /// </summary>
+        internal static string PoligonoNota2 {
+            get {
+                return ResourceManager.GetString("PoligonoNota2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Se combina un prefijo numérico derivado del griego con el sufijo -gon (&apos;costat&apos;), como, por ejemplo, pentàgon (cinco lados) o dodecàgon (doce lados). El triángulo y el cuadrilátero son excepciones a esta regla..
+        /// </summary>
+        internal static string PoligonoNota3 {
+            get {
+                return ResourceManager.GetString("PoligonoNota3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cuando se trata de polígonos de muchos lados, los matemáticos escriben el mismo numeral, como, por ejemplo, 63-gon..
+        /// </summary>
+        internal static string PoligonoNota4 {
+            get {
+                return ResourceManager.GetString("PoligonoNota4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Viquipèdia l&apos;Enciclopèdia Lliure. Polígon. Noms dels polígons. https://ca.wikipedia.org/wiki/Pol%C3%ADgon.
+        /// </summary>
+        internal static string PoligonoReferencia1 {
+            get {
+                return ResourceManager.GetString("PoligonoReferencia1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Poligono.
         /// </summary>
         internal static string PoligonoTipo {
@@ -1200,6 +1317,15 @@ namespace Resources {
         internal static string SusAdProTitulo {
             get {
                 return ResourceManager.GetString("SusAdProTitulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sustantivo y adjetivo.
+        /// </summary>
+        internal static string SustantivoAdjetivoOpcion {
+            get {
+                return ResourceManager.GetString("SustantivoAdjetivoOpcion", resourceCulture);
             }
         }
         

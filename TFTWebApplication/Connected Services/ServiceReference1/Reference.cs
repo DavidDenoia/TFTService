@@ -15,6 +15,67 @@ namespace TFTWebApplication.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Cabecera", Namespace="http://schemas.datacontract.org/2004/07/TFTService")]
+    [System.SerializableAttribute()]
+    public partial class Cabecera : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FormateadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TituloField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Formateado {
+            get {
+                return this.FormateadoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FormateadoField, value) != true)) {
+                    this.FormateadoField = value;
+                    this.RaisePropertyChanged("Formateado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Titulo {
+            get {
+                return this.TituloField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TituloField, value) != true)) {
+                    this.TituloField = value;
+                    this.RaisePropertyChanged("Titulo");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Conversion", Namespace="http://schemas.datacontract.org/2004/07/TFTService")]
     [System.SerializableAttribute()]
     public partial class Conversion : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -441,10 +502,10 @@ namespace TFTWebApplication.ServiceReference1 {
     public interface INumToCat {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INumToCat/MainTraducir", ReplyAction="http://tempuri.org/INumToCat/MainTraducirResponse")]
-        System.Collections.Generic.List<TFTWebApplication.ServiceReference1.Conversion> MainTraducir(string value, string lenguaje);
+        System.ValueTuple<TFTWebApplication.ServiceReference1.Cabecera, System.Collections.Generic.List<TFTWebApplication.ServiceReference1.Conversion>> MainTraducir(string value, string lenguaje);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INumToCat/MainTraducir", ReplyAction="http://tempuri.org/INumToCat/MainTraducirResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<TFTWebApplication.ServiceReference1.Conversion>> MainTraducirAsync(string value, string lenguaje);
+        System.Threading.Tasks.Task<System.ValueTuple<TFTWebApplication.ServiceReference1.Cabecera, System.Collections.Generic.List<TFTWebApplication.ServiceReference1.Conversion>>> MainTraducirAsync(string value, string lenguaje);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INumToCat/GetNumber", ReplyAction="http://tempuri.org/INumToCat/GetNumberResponse")]
         TFTWebApplication.ServiceReference1.PartesNumeros GetNumber(string value);
@@ -516,11 +577,11 @@ namespace TFTWebApplication.ServiceReference1 {
                 base(binding, remoteAddress) {
         }
         
-        public System.Collections.Generic.List<TFTWebApplication.ServiceReference1.Conversion> MainTraducir(string value, string lenguaje) {
+        public System.ValueTuple<TFTWebApplication.ServiceReference1.Cabecera, System.Collections.Generic.List<TFTWebApplication.ServiceReference1.Conversion>> MainTraducir(string value, string lenguaje) {
             return base.Channel.MainTraducir(value, lenguaje);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<TFTWebApplication.ServiceReference1.Conversion>> MainTraducirAsync(string value, string lenguaje) {
+        public System.Threading.Tasks.Task<System.ValueTuple<TFTWebApplication.ServiceReference1.Cabecera, System.Collections.Generic.List<TFTWebApplication.ServiceReference1.Conversion>>> MainTraducirAsync(string value, string lenguaje) {
             return base.Channel.MainTraducirAsync(value, lenguaje);
         }
         

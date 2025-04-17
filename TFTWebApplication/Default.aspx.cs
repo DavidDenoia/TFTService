@@ -26,6 +26,7 @@ namespace TFTWebApplication
             }
 
         }
+        
 
         protected void Traducir_Click(object sender, EventArgs e)
         {
@@ -44,26 +45,57 @@ namespace TFTWebApplication
 
                 using (var cliente = new NumToCatClient())
                 {
-                    List<Conversion> resultados = cliente.MainTraducir(numero, lenguaje);
-                    
+                    //List<Conversion> resultado = cliente.MainTraducir(numero, lenguaje);
+                    var resultado = cliente.MainTraducir(numero, lenguaje);
+                    //System.Diagnostics.Debug.WriteLine("RESULTADO RECIBIDO:" + resultado);
+                    var cabecera = resultado.Item1;
+
+                    var resultados = resultado.Item2;
+
+
+
+
                     if (resultados != null && resultados.Count > 0)
                     {
                         rptResultados.DataSource = resultados;
                         rptResultados.DataBind();
-                        lblResultado.Text = "Conversion hecha";
+                        //lblResultado.Text = "Conversion hecha";
+
+                        if (cabecera != null)
+                        {
+                            lblResultado.Text = cabecera.Titulo + ": " + cabecera.Formateado;
+                        }
+                        else
+                        {
+                            lblResultado.Text = "Conversion hecha";
+                        }
+                        
 
                         lblTitulo.Text = $"¿Cómo se escribe {numero} en letras en catalan?";
                         panelError.Visible = false;
                         rptResultados.Visible = true;
+                        panelBienvenida.Visible = false;
 
                     }
                     else
                     {
-                        lblResultado.Text = "No se encontraron conversiones";
+                        if (cabecera != null)
+                        {
+                            lblResultado.Text = cabecera.Titulo + ": " + cabecera.Formateado;
+                        }
+                        else
+                        {
+                            lblResultado.Text = "No se encontraron conversiones";
+                        }
+                        //lblResultado.Text = "No se encontraron conversiones";
                         lblTitulo.Text = "";
                         panelError.Visible = true; 
                         rptResultados.Visible = false;
+                        panelBienvenida.Visible = false;
                     }
+
+                    
+                    
                 }
             }
             catch (Exception ex)
@@ -74,32 +106,6 @@ namespace TFTWebApplication
             }
         }
 
-        protected void Leer_Click(object sender, EventArgs e)
-        {
-            LinkButton btn = (LinkButton)sender;
-            string texto = btn.CommandArgument;
-            string script = $@"
-            <script>
-                let speech = new SpeechSynthesisUtterance('{HttpUtility.JavaScriptStringEncode(texto)}');
-                speech.lang = '{idioma}';
-                window.speechSynthesis.speak(speech);
-            </script>";
-
-            ClientScript.RegisterStartupScript(this.GetType(), "SpeechScript", script, false);
-        } 
-
-        protected void Copiar_Click(object sender, EventArgs e)
-        {
-            LinkButton btn = (LinkButton)sender;
-            string texto = btn.CommandArgument;
-            string script = $@"
-            <script>
-                navigator.clipboard.writeText('{HttpUtility.JavaScriptStringEncode(texto)}');
-            </script>    
-            ";
-
-            ClientScript.RegisterStartupScript(this.GetType(), "SpeechScript", script, false);
-        }
 
         protected void Limpiar_Click(object sender, EventArgs e)
         {

@@ -150,10 +150,10 @@
   <data name="FormFemOpcion" xml:space="preserve">
     <value>Forma femenina</value>
   </data>
-  <data name="FraccionarioEjemplo1" xml:space="preserve">
-    <value>Quiero ... de chocolate. </value>
+  <data name="FraccionEjemplo1" xml:space="preserve">
+    <value>Quiero | de chocolate. </value>
   </data>
-  <data name="FraccionarioEjemplo2" xml:space="preserve">
+  <data name="FraccionEjemplo2" xml:space="preserve">
     <value>La sequía afecta a ... de la región. </value>
   </data>
   <data name="FraccionarioTipo" xml:space="preserve">
@@ -209,5 +209,311 @@
   </data>
   <data name="ExpresionAdjetivoOpcion" xml:space="preserve">
     <value>Expresión con adjetivo</value>
+  </data>
+  <data name="FormMasOpcion" xml:space="preserve">
+    <value>Forma masculina</value>
+  </data>
+  <data name="Euros" xml:space="preserve">
+    <value>euros</value>
+  </data>
+  <data name="Euro" xml:space="preserve">
+    <value>euro</value>
+  </data>
+  <data name="Centimo" xml:space="preserve">
+    <value>céntimo</value>
+  </data>
+  <data name="Centimos" xml:space="preserve">
+    <value>céntimos</value>
+  </data>
+  <data name="EurosTipo" xml:space="preserve">
+    <value>Euros</value>
+  </data>
+  <data name="SintagmaNominalOpcion" xml:space="preserve">
+    <value>Sintagma nominal</value>
+  </data>
+  <data name="NoApropiadoOpcion" xml:space="preserve">
+    <value>Registro oral, no apropiado para escribir</value>
+  </data>
+  <data name="NumeroFormateadoTitulo" xml:space="preserve">
+    <value>Número formateado</value>
+  </data>
+  <data name="Pesos" xml:space="preserve">
+    <value>Pesos</value>
+  </data>
+  <data name="Peso" xml:space="preserve">
+    <value>Peso</value>
+  </data>
+  <data name="Centavos" xml:space="preserve">
+    <value>centavos</value>
+  </data>
+  <data name="Centavo" xml:space="preserve">
+    <value>centavo</value>
+  </data>
+  <data name="PesoTipo" xml:space="preserve">
+    <value>Peso</value>
+  </data>
+  <data name="Dolar" xml:space="preserve">
+    <value>dolar</value>
+  </data>
+  <data name="Dolares" xml:space="preserve">
+    <value>dolares</value>
+  </data>
+  <data name="DolarTipo" xml:space="preserve">
+    <value>Dolar</value>
+  </data>
+  <data name="PoligonoTipo" xml:space="preserve">
+    <value>Poligono</value>
+  </data>
+  <data name="ValencianoTipo" xml:space="preserve">
+    <value>Valenciano: </value>
+  </data>
+  <data name="CatalanTipo" xml:space="preserve">
+    <value>Catalan</value>
+  </data>
+  <data name="FraccionReferencia1" xml:space="preserve">
+    <value>Antoni Llàcer. Com llegim les fraccions? Escola d'Adults de Canovelles, 2021. https://agora.xtec.cat/cfacanovelles/matematiques-i/com-llegim-les-fraccions/</value>
+  </data>
+  <data name="FraccionReferencia2" xml:space="preserve">
+    <value>Institut d'Estudis Catalans, Els numerals fraccionaris. Gramàtica essencial de la llengua catalana. https://geiec.iec.cat/text/12.3.2</value>
+  </data>
+  <data name="FraccionEjemplo3" xml:space="preserve">
+    <value>Només hem utilitzat ... dels recursos disponibles.</value>
+  </data>
+  <data name="FraccionEjemplo4" xml:space="preserve">
+    <value>Vaig llegir ... del llibre abans de dormir.</value>
+  </data>
+  <data name="FraccionReferencia3" xml:space="preserve">
+    <value>Consorci per a la Normalització Lingüística. 6 ELS NUMERALS. ELS PARTITIUS. https://www.cpnl.cat/gramatica/24/6-els-numerals</value>
+  </data>
+  <data name="DecimalEjemplo3" xml:space="preserve">
+    <value>El termòmetre marcava … graus Celsius.</value>
+  </data>
+  <data name="DecimalEjemplo4" xml:space="preserve">
+    <value>La distància total era de ... quilòmetres.</value>
+  </data>
+  <data name="DecimalNota1" xml:space="preserve">
+    <value>Los números decimales se escriben siempre con cifras.</value>
+  </data>
+  <data name="DecimalNota2" xml:space="preserve">
+    <value>en catalán las fracciones decimales se indican siempre con una coma</value>
+  </data>
+  <data name="DecimalReferencia1" xml:space="preserve">
+    <value>Cinquè. NUMERACIÓ. ELS NOMBRES DECIMALS!!!. https://sites.google.com/vedruna.cat/vedrunatona5/matem%C3%A0tiques/sistema-de-numeraci%C3%B3-decimal</value>
+  </data>
+  <data name="DecimalReferencia2" xml:space="preserve">
+    <value>Universitat Pompeu Fabra Barcelona. Números decimals. https://www.upf.edu/web/llibre-estil/numeros-decimals</value>
+  </data>
+  <data name="CardinalNota1" xml:space="preserve">
+    <value>Los numerales cardinales expresan la numeración natural.</value>
+  </data>
+  <data name="CardinalNota2" xml:space="preserve">
+    <value>Las formas del 17 al 19 están compuestas por el alomorfo di-, o de-, como simplificación de manantial. Las decenas a partir del 30 presentan la terminación -nta.</value>
+  </data>
+  <data name="CardinalNota3" xml:space="preserve">
+    <value> Las decenas a partir del 30 presentan la terminación -nta.</value>
+  </data>
+  <data name="CardinalNota4" xml:space="preserve">
+    <value>Del 21 al 29 van coordinados con la conjunción y: veintiuno, ..., veintinueve.</value>
+  </data>
+  <data name="CardinalNota5" xml:space="preserve">
+    <value>Del 31 al 99, y las centésimas (200 al 900), son yuxtapuestos con un guion: treinta y uno, ..., noventa y nueve, ..., doscientos, ..., novecientos.</value>
+  </data>
+  <data name="CardinalNota6" xml:space="preserve">
+    <value>En los otros casos no hay guion: ciento dos (102), dos mil (2.000), ciento veintidós (122), dos mil doscientos veintidós (2.222).</value>
+  </data>
+  <data name="CardinalReferencia1" xml:space="preserve">
+    <value>Viquipèdia l'Enciclopèdia Lliure. Numerals en català. Cardinals. https://ca.wikipedia.org/wiki/Numerals_en_catal%C3%A0</value>
+  </data>
+  <data name="CardinalReferencia2" xml:space="preserve">
+    <value>Consorci per a la Normalització Lingüística. 6 ELS NUMERALS. NUMERALS CARDINALS. https://www.cpnl.cat/gramatica/24/6-els-numerals</value>
+  </data>
+  <data name="CardinalReferencia3" xml:space="preserve">
+    <value>Omniglot. Numbers in Catalan. https://www.omniglot.com/language/numbers/catalan.htm?utm_source=chatgpt.com</value>
+  </data>
+  <data name="CardinalReferencia4" xml:space="preserve">
+    <value>Gerard Vilanova. Web de llengua catalana de Gerard Vilanova. Els determinants numerals, quantitatius i indefinits. https://gerardvilanova.jimdofree.com/nivell-1/unitat-6/gram%C3%A0tica/</value>
+  </data>
+  <data name="CardinalEjemplo3" xml:space="preserve">
+    <value>El peso total del paquete es de ... kilogramos.</value>
+  </data>
+  <data name="CardinalEjemplo4" xml:space="preserve">
+    <value>La temperatura actual en la ciudad es de ... grados.</value>
+  </data>
+  <data name="CardinalEjemplo5" xml:space="preserve">
+    <value>El temps estimat d'arribada és de ... minuts.</value>
+  </data>
+  <data name="BalearTipo" xml:space="preserve">
+    <value>Balear</value>
+  </data>
+  <data name="NegativoNota1" xml:space="preserve">
+    <value>Un número negativo es un número que está por debajo de 0, es decir, que es menor que cero.</value>
+  </data>
+  <data name="NegativoNota2" xml:space="preserve">
+    <value>Los números negativos pueden ser números enteros o decimales.</value>
+  </data>
+  <data name="NegativoNota3" xml:space="preserve">
+    <value>Los números negativos van junto al signo -</value>
+  </data>
+  <data name="NegativoReferencia1" xml:space="preserve">
+    <value>Viquipèdia l'Enciclopèdia Lliure. Nombre negatiu. https://ca.wikipedia.org/wiki/Nombre_negatiu</value>
+  </data>
+  <data name="NegativoReferencia2" xml:space="preserve">
+    <value>INS Reguissol. R1.1 Els nombres Racionals. https://educaciodigital.cat/iesreguissol/moodle/mod/book/view.php?id=98405</value>
+  </data>
+  <data name="NegativoEjemplo3" xml:space="preserve">
+    <value>La pèrdua d'energia va ser de ... juliols.</value>
+  </data>
+  <data name="NegativoEjemplo4" xml:space="preserve">
+    <value>El saldo de la transacció va resultar ser de ... euros.</value>
+  </data>
+  <data name="OrdinalNota1" xml:space="preserve">
+    <value>Los ordinales son aquellos numerales que indican una relación de orden.</value>
+  </data>
+  <data name="OrdinalNota2" xml:space="preserve">
+    <value>Los numerales ordinales (en masculino singular como adjetivos) presentan unas formas específicas para los cuatro primeros, y el resto se forman a partir del cardinal correspondiente con el sufijo -è, o -é en valenciano</value>
+  </data>
+  <data name="OrdinalNota3" xml:space="preserve">
+    <value>Los ordinales en formato adjetivo en femenino singular se forman añadiendo una -a al final de la forma masculina por los primeros cuatro numerales, y añadiendo -na a la forma masculina a todo el resto.</value>
+  </data>
+  <data name="FormFemSinOpcion" xml:space="preserve">
+    <value>Forma femenina singular</value>
+  </data>
+  <data name="FormMasSinOpcion" xml:space="preserve">
+    <value>Forma masculina singular</value>
+  </data>
+  <data name="FormFemPluOpcion" xml:space="preserve">
+    <value>Forma femenina plural</value>
+  </data>
+  <data name="FormMasPluOpcion" xml:space="preserve">
+    <value>Forma masculina plural</value>
+  </data>
+  <data name="OrdinalNota4" xml:space="preserve">
+    <value>Como adjetivos, presentan variación de género y número: primero/primera/primeros/primeras, ..., undécimo/undécima/undécimos/undécimas.</value>
+  </data>
+  <data name="OrdinalReferencia1" xml:space="preserve">
+    <value>Salt.usu. Gramatic. Els numerals. https://salt.gva.es/auto/ajuda-salt/puntuacio/els_numerals.html</value>
+  </data>
+  <data name="OrdinalReferencia2" xml:space="preserve">
+    <value>Viquipèdia l'Enciclopèdia Lliure. Numerals en català. https://ca.wikipedia.org/wiki/Numerals_en_catal%C3%A0</value>
+  </data>
+  <data name="OrdinalReferencia3" xml:space="preserve">
+    <value>Gramàtica essencial de la llengua catalana. 12.3.5 Els numerals ordinals. https://geiec.iec.cat/text/12.3.5</value>
+  </data>
+  <data name="OrdinalEjemplo1" xml:space="preserve">
+    <value>Va quedar en la | posició del rànquing.</value>
+  </data>
+  <data name="OrdinalEjemplo2" xml:space="preserve">
+    <value>Van arribar en la | etapa de la cursa.</value>
+  </data>
+  <data name="OrdinalEjemplo3" xml:space="preserve">
+    <value>És la | opció del menú.</value>
+  </data>
+  <data name="OrdinalEjemplo4" xml:space="preserve">
+    <value>Ha quedat en el | lloc de la classificació.</value>
+  </data>
+  <data name="FraccionarioNota1" xml:space="preserve">
+    <value>Expresan fracciones de la unidad.</value>
+  </data>
+  <data name="FraccionarioReferencia1" xml:space="preserve">
+    <value>Viquipèdia l'Enciclopèdia Lliure. Numerals en català. https://ca.wikipedia.org/wiki/Numerals_en_catal%C3%A0</value>
+  </data>
+  <data name="FraccionarioReferencia2" xml:space="preserve">
+    <value>Gramàtica essencial de la llengua catalana. 12.3.2. Els numerals fraccionaris. https://geiec.iec.cat/text/12.3.2</value>
+  </data>
+  <data name="FraccionarioEjemplo1" xml:space="preserve">
+    <value>Només hem utilitzat la | part del pressupost.</value>
+  </data>
+  <data name="FraccionarioEjemplo2" xml:space="preserve">
+    <value>Va menjar una | porció del pastís.</value>
+  </data>
+  <data name="FraccionarioEjemplo3" xml:space="preserve">
+    <value>El pacient va rebre una | dosi del tractament.</value>
+  </data>
+  <data name="FraccionarioEjemplo4" xml:space="preserve">
+    <value>La mostra representa una | fracció de la població.</value>
+  </data>
+  <data name="FraccionarioEjemplo5" xml:space="preserve">
+    <value>El terreny es dividirà en | parts iguals.</value>
+  </data>
+  <data name="MultiplicativoNota1" xml:space="preserve">
+    <value>Los numerales multiplicadores están formados por un radical latino y la terminación -uple, excepto doble y triple.</value>
+  </data>
+  <data name="MultiplicativoNota2" xml:space="preserve">
+    <value>Tienen flexión de género, excepto doble, pero son invariables cuando expresan el número de elementos,</value>
+  </data>
+  <data name="MultiplicativoNota3" xml:space="preserve">
+    <value>La forma femenina cuando se aplican a la expresión de magnitudes.</value>
+  </data>
+  <data name="MultiplicativoNota4" xml:space="preserve">
+    <value>Las múltiplos son doble, triple, cuádruple, quìntuple, séxtuple, sèptuple, òctuple, nonùple, décuplo, undècuple, duodècuple.</value>
+  </data>
+  <data name="MultiplicativoReferencia1" xml:space="preserve">
+    <value>Viquipèdia l'Enciclopèdia Lliure. Numerals en català. https://ca.wikipedia.org/wiki/Numerals_en_catal%C3%A0</value>
+  </data>
+  <data name="MultiplicativoReferencia2" xml:space="preserve">
+    <value>Sal.usu. Gramatic. Els numerals. https://salt.gva.es/auto/ajuda-salt/puntuacio/els_numerals.html</value>
+  </data>
+  <data name="MultiplicativoEjemplo1" xml:space="preserve">
+    <value>L’impacte econòmic va ser | respecte a l’any anterior.</value>
+  </data>
+  <data name="MultiplicativoEjemplo2" xml:space="preserve">
+    <value>La velocitat del vehicle era | a la permesa.</value>
+  </data>
+  <data name="MultiplicativoEjemplo3" xml:space="preserve">
+    <value>El soroll era | que el nivell habitual.</value>
+  </data>
+  <data name="MultiplicativoEjemplo4" xml:space="preserve">
+    <value>Es va multiplicar el nombre d’usuaris fins a arribar a una xifra |.</value>
+  </data>
+  <data name="DeEuros" xml:space="preserve">
+    <value>de euros</value>
+  </data>
+  <data name="EuroNota1" xml:space="preserve">
+    <value>El símbolo del euro es € y se escribe detrás del número.</value>
+  </data>
+  <data name="EuroNota2" xml:space="preserve">
+    <value>La palabra euro se escribe habitualmente detrás de la parte entera en los números decimales: dos mil euros i deu cèntims.</value>
+  </data>
+  <data name="EuroNota3" xml:space="preserve">
+    <value>Detrás de las palabras millón, billón, trillón, etc. y sus plurales se escribe "de euros".</value>
+  </data>
+  <data name="EuroEjemplo1" xml:space="preserve">
+    <value>El cost total del producte és de |.</value>
+  </data>
+  <data name="EuroEjemplo2" xml:space="preserve">
+    <value>Ha rebut una multa de | per excés de velocitat.</value>
+  </data>
+  <data name="EuroEjemplo3" xml:space="preserve">
+    <value>Ens van oferir un descompte de | en la compra.</value>
+  </data>
+  <data name="EuroEjemplo4" xml:space="preserve">
+    <value>Van gastar | durant les vacances.</value>
+  </data>
+  <data name="PesoNota1" xml:space="preserve">
+    <value>El símbolo del peso es $ y se escribe delante del número.</value>
+  </data>
+  <data name="PesoNota2" xml:space="preserve">
+    <value>La palabra peso se escribe habitualmente detrás de la parte entera en los números decimales: dos mil pesos y diez centavos.</value>
+  </data>
+  <data name="PesoNota3" xml:space="preserve">
+    <value>Detrás de las palabras millón, billón, trillón, etc. y sus plurales se escribe de pesos.</value>
+  </data>
+  <data name="DePesos" xml:space="preserve">
+    <value>de pesos</value>
+  </data>
+  <data name="PesoEjemplo1" xml:space="preserve">
+    <value>Va pagar exactament | per aquella peça d'art.</value>
+  </data>
+  <data name="PesoEjemplo2" xml:space="preserve">
+    <value>Només tenia | a la cartera.</value>
+  </data>
+  <data name="PesoEjemplo3" xml:space="preserve">
+    <value>L'import total de la factura és de |.</value>
+  </data>
+  <data name="PesoEjemplo4" xml:space="preserve">
+    <value>El premi era de |, una quantitat molt generosa.</value>
+  </data>
+  <data name="PesoEjemplo5" xml:space="preserve">
+    <value>Ens van ingressar | a la compta del projecte.</value>
   </data>
 </root>

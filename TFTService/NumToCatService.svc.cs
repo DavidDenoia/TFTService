@@ -1476,10 +1476,10 @@ namespace TFTService
 
             resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
             resultado.Ejemplos = new List<string>();
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "PoligonoEjemplo1").ToString());
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "PoligonoEjemplo2").ToString());
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "PoligonoEjemplo3").ToString());
-            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "PoligonoEjemplo4").ToString());
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "PoligonoEjemplo1").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "PoligonoEjemplo2").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "PoligonoEjemplo3").ToString().Replace("|", numCompletoLetras));
+            resultado.Ejemplos.Add(HttpContext.GetGlobalResourceObject("Resource", "PoligonoEjemplo4").ToString().Replace("|", numCompletoLetras));
          
             resultado.Respuestas = new List<string>();
             resultado.Respuestas.Add(numCompletoLetras);

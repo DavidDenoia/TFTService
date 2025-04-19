@@ -10,7 +10,7 @@ namespace TFTService
     {
         public static string ConvertirNumEnteroCardinal(string numero, bool signo)
         {
-            
+
 
             int contadorSufijos = 0;
             int contadorNumVeces = 0;
@@ -18,7 +18,7 @@ namespace TFTService
             StringBuilder resultado = new StringBuilder();
 
             string[] sufijos = { "milions", "bilions", "trilions", "quadrilions", "quintilions", "sextilions", "septilions", "octilions", "nonilions", "decilions",
-                "undecilions", "duodecilions", "tredecilions", "quatourdecilions", "quindecilions", "sexdecilions", "septendecilions", "octodecilions", "novendecilions", 
+                "undecilions", "duodecilions", "tredecilions", "quatourdecilions", "quindecilions", "sexdecilions", "septendecilions", "octodecilions", "novendecilions",
                 "vigintilions" };
 
             string[] sufijosEspeciales = { "milió", "bilió", "trilió", "quadrilió", "quintilió", "sextilió", "septilió", "octilió", "nonilió", "decilió",
@@ -91,16 +91,18 @@ namespace TFTService
                 resultado.Insert(0, "zero");
             }
 
-            if(signo == true)
+            if (signo == true)
             {
                 resultado.Insert(0, "minus ");
             }
             return resultado.ToString().Trim();
-        
 
 
-            
+
+
         }
+
+       
 
         public static string CentenaresALetras(string numero)
         {
@@ -431,5 +433,12 @@ namespace TFTService
             //return resultado.ToString().Trim();
             return resultado.ToString();
         }
+
+        
+
+        
+
+
+
     }
 }

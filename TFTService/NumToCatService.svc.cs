@@ -760,6 +760,11 @@ namespace TFTService
             Conversion resultado = new Conversion();
 
             string numCompletoLetras = Cardinales.ConvertirNumEnteroCardinal(numero, signo);
+            if (string.IsNullOrEmpty(numCompletoLetras))
+            {
+                return null;
+            }
+            
             //System.Diagnostics.Debug.WriteLine("NUMERO CARDINAL: " + numCompletoLetras);
 
             resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "CardinalTipo").ToString();
@@ -848,6 +853,10 @@ namespace TFTService
             //System.Diagnostics.Debug.WriteLine("Numero negativo: " + numero);
 
             string numCompletoLetras = Cardinales.ConvertirNumEnteroCardinal(numero, signo);
+            if (string.IsNullOrEmpty(numCompletoLetras))
+            {
+                return null;
+            }
 
             resultado.Tipo = HttpContext.GetGlobalResourceObject("Resource", "NegativoTipo").ToString();
             resultado.TitNotas = HttpContext.GetGlobalResourceObject("Resource", "NotasTitulo").ToString();

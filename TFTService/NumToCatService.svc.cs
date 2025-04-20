@@ -65,7 +65,9 @@ namespace TFTService
             if (Regex.IsMatch(numero, @"^([+-]?)\d+([.,])\d+$"))
             {
                 //decima = true;
-                conversiones.Add(ConversionDecimal(numero, signo, value, false));
+                //conversiones.Add(ConversionDecimal(numero, signo, value, false));
+                var conversionDecimal = ConversionDecimal(numero, signo, value, false);
+                if (conversionDecimal != null) conversiones.Add(conversionDecimal);
             }
 
             //Comprobacion de si es fraccionario
@@ -75,7 +77,9 @@ namespace TFTService
                 string numerador = partes[0];
                 string denominador = partes[1];
 
-                conversiones.Add(ConversionFraccion(numerador, denominador, signo, value));
+                //conversiones.Add(ConversionFraccion(numerador, denominador, signo, value));
+                var conversionFraccion = ConversionFraccion(numerador, denominador, signo, value);
+                if (conversionFraccion != null) conversiones.Add(conversionFraccion);
 
                 BigInteger.TryParse(numerador, out BigInteger Inumerador);
                 BigInteger.TryParse(denominador, out BigInteger Idenominador);
@@ -89,12 +93,16 @@ namespace TFTService
                     {
                         if (signo == false)
                         {
-                            conversiones.Add(ConversionCardinal(parteEntera.ToString(), signo, value, true));
+                            //conversiones.Add(ConversionCardinal(parteEntera.ToString(), signo, value, true));
+                            var conversionCardinal = ConversionCardinal(parteEntera.ToString(), signo, value, false);
+                            if (conversionCardinal != null) conversiones.Add(conversionCardinal);
                         }
                         else
                         {
                             string parteEnteraNoSigno = parteEntera.ToString().Replace("-", "").Trim();
-                            conversiones.Add(ConversionNegativo(parteEnteraNoSigno, signo, value, true));
+                            //conversiones.Add(ConversionNegativo(parteEnteraNoSigno, signo, value, true));
+                            var conversionNegativo = ConversionNegativo(parteEnteraNoSigno, signo, value, false);
+                            if (conversionNegativo != null) conversiones.Add(conversionNegativo);
                         }
 
                     }
@@ -116,7 +124,9 @@ namespace TFTService
                         //System.Diagnostics.Debug.WriteLine("Valor del resto: " + resto.ToString());
                         //System.Diagnostics.Debug.WriteLine("Numero decimal: " + numeroDecimal);
 
-                        conversiones.Add(ConversionDecimal(numeroDecimal, signo, value, true));
+                        //conversiones.Add(ConversionDecimal(numeroDecimal, signo, value, true));
+                        var conversionDecimal = ConversionDecimal(numeroDecimal, signo, value, true);
+                        if (conversionDecimal != null) conversiones.Add(conversionDecimal);
 
                     }
                 }
@@ -151,12 +161,16 @@ namespace TFTService
                     if (numeroExpandido.Contains('.'))
                     {
                         cabecera = new Cabecera(numero, HttpContext.GetGlobalResourceObject("Resource", "NumeroFormateadoTitulo").ToString());
-                        conversiones.Add(ConversionDecimal(numeroExpandido, signo, value, true));
+                        //conversiones.Add(ConversionDecimal(numeroExpandido, signo, value, true));
+                        var conversionDecimal = ConversionDecimal(numeroExpandido, signo, value, true);
+                        if (conversionDecimal != null) lock (cerrojo) conversiones.Add(conversionDecimal);
                     }
                     else if (signo == true)
                     {
                         cabecera = new Cabecera(numero, HttpContext.GetGlobalResourceObject("Resource", "NumeroFormateadoTitulo").ToString());
-                        conversiones.Add(ConversionNegativo(numeroExpandido, signo, value, true));
+                        //conversiones.Add(ConversionNegativo(numeroExpandido, signo, value, true));
+                        var conversionNegativo = ConversionNegativo(numeroExpandido, signo, value, true);
+                        if (conversionNegativo != null) lock (cerrojo) conversiones.Add(conversionNegativo);
 
                     }
                     else
@@ -165,7 +179,9 @@ namespace TFTService
                         Parallel.Invoke(
                             () =>
                             {
-                                lock (cerrojo) conversiones.Add(ConversionCardinal(numeroExpandido, signo, value, true));
+                                //lock (cerrojo) conversiones.Add(ConversionCardinal(numeroExpandido, signo, value, true));
+                                var conversionCardinal = ConversionCardinal(numeroExpandido, signo, value, true);
+                                if (conversionCardinal != null) lock (cerrojo) conversiones.Add(conversionCardinal);
                             },
                             () =>
                             {
@@ -200,12 +216,16 @@ namespace TFTService
                     if (numeroExpandido.Contains('.'))
                     {
                         cabecera = new Cabecera(numero, HttpContext.GetGlobalResourceObject("Resource", "NumeroFormateadoTitulo").ToString());
-                        conversiones.Add(ConversionDecimal(numeroExpandido, signo, value, true));
+                        //conversiones.Add(ConversionDecimal(numeroExpandido, signo, value, true));
+                        var conversionDecimal = ConversionDecimal(numero, signo, value, true);
+                        if (conversionDecimal != null) lock (cerrojo) conversiones.Add(conversionDecimal);
                     }
                     else if (signo == true)
                     {
                         cabecera = new Cabecera(numero, HttpContext.GetGlobalResourceObject("Resource", "NumeroFormateadoTitulo").ToString());
-                        conversiones.Add(ConversionNegativo(numeroExpandido, signo, value, true));
+                        //conversiones.Add(ConversionNegativo(numeroExpandido, signo, value, true));
+                        var conversionNegativo = ConversionNegativo(numero, signo, value, true);
+                        if (conversionNegativo != null) lock (cerrojo) conversiones.Add(conversionNegativo);
                     }
                     else
                     {
@@ -213,7 +233,9 @@ namespace TFTService
                         Parallel.Invoke(
                             () =>
                             {
-                                lock (cerrojo) conversiones.Add(ConversionCardinal(numeroExpandido, signo, value, true));
+                                //lock (cerrojo) conversiones.Add(ConversionCardinal(numeroExpandido, signo, value, true));
+                                var conversionCardinal = ConversionCardinal(numero, signo, value, true);
+                                if (conversionCardinal != null) lock (cerrojo) conversiones.Add(conversionCardinal);
                             },
                             () =>
                             {
@@ -264,12 +286,16 @@ namespace TFTService
                     Parallel.Invoke(
                         () =>
                         {
-                            lock (cerrojo) conversiones.Add(ConversionEuro(numero, signo, value, false));
+                            //lock (cerrojo) conversiones.Add(ConversionEuro(numero, signo, value, false));
+                            var conversionEuro = ConversionEuro(numero, signo, value, false);
+                            if (conversionEuro != null) lock (cerrojo) conversiones.Add(conversionEuro);
                         },
                         () =>
                         {
 
-                            lock (cerrojo) conversiones.Add(ConversionDecimal(numero, signo, value, false));
+                            //lock (cerrojo) conversiones.Add(ConversionDecimal(numero, signo, value, false));
+                            var conversionDecimal = ConversionDecimal(numero, signo, value, false);
+                            if (conversionDecimal != null) lock (cerrojo) conversiones.Add(conversionDecimal);
                         }
                         );
                 }
@@ -278,11 +304,15 @@ namespace TFTService
                     Parallel.Invoke(
                         () =>
                         {
-                            lock (cerrojo) conversiones.Add(ConversionEuro(numero, signo, value, false));
+                            //lock (cerrojo) conversiones.Add(ConversionEuro(numero, signo, value, false));
+                            var conversionEuro = ConversionEuro(numero, signo, value, false);
+                            if (conversionEuro != null) lock (cerrojo) conversiones.Add(conversionEuro);
                         },
                         () =>
                         {
-                            lock (cerrojo) conversiones.Add(ConversionNegativo(numero, signo, value, false));
+                            //lock (cerrojo) conversiones.Add(ConversionNegativo(numero, signo, value, false));
+                            var conversionNegativo = ConversionNegativo(numero, signo, value, false);
+                            if(conversionNegativo != null) lock (cerrojo) conversiones.Add(conversionNegativo);
                         }
                     );
                 }
@@ -291,11 +321,15 @@ namespace TFTService
                     Parallel.Invoke(
                         () =>
                         {
-                            lock (cerrojo) conversiones.Add(ConversionEuro(numero, signo, value, false));
+                            //lock (cerrojo) conversiones.Add(ConversionEuro(numero, signo, value, false));
+                            var conversionEuro= ConversionEuro(numero, signo, value, false);
+                            if (conversionEuro != null) lock (cerrojo) conversiones.Add(conversionEuro);
                         },
                         () =>
                         {
-                            lock (cerrojo) conversiones.Add(ConversionCardinal(numero, signo, value, false));
+                            //lock (cerrojo) conversiones.Add(ConversionCardinal(numero, signo, value, false));
+                            var conversionCardinal = ConversionCardinal(numero, signo, value, false);
+                            if (conversionCardinal != null) lock (cerrojo) conversiones.Add(conversionCardinal);
                         },
                         () =>
                         {
@@ -338,15 +372,21 @@ namespace TFTService
                     Parallel.Invoke(
                         () =>
                         {
-                            lock (cerrojo) conversiones.Add(ConversionPeso(numero, signo, value, false));
+                            //lock (cerrojo) conversiones.Add(ConversionPeso(numero, signo, value, false));
+                            var conversionPeso = ConversionPeso(numero, signo, value, false);
+                            if (conversionPeso != null) lock (cerrojo) conversiones.Add(conversionPeso);
                         },
                         () =>
                         {
-                            lock (cerrojo) conversiones.Add(ConversionDolar(numero, signo, value, false));
+                            //lock (cerrojo) conversiones.Add(ConversionDolar(numero, signo, value, false));
+                            var conversionDolar = ConversionDolar(numero, signo, value, false);
+                            if (conversionDolar != null) lock (cerrojo) conversiones.Add(conversionDolar);
                         },
                         () =>
                         {
-                            lock (cerrojo) conversiones.Add(ConversionDecimal(numero, signo, value, false));
+                            //lock (cerrojo) conversiones.Add(ConversionDecimal(numero, signo, value, false));
+                            var conversionDecimal = ConversionDecimal(numero, signo, value, false);
+                            if (conversionDecimal != null) lock (cerrojo) conversiones.Add(conversionDecimal);
                         }
                     );
                 }
@@ -355,15 +395,21 @@ namespace TFTService
                     Parallel.Invoke(
                          () =>
                          {
-                             lock (cerrojo) conversiones.Add(ConversionPeso(numero, signo, value, false));
+                             //lock (cerrojo) conversiones.Add(ConversionPeso(numero, signo, value, false));
+                             var conversionPeso = ConversionPeso(numero, signo, value, false);
+                             if (conversionPeso != null) lock (cerrojo) conversiones.Add(conversionPeso);
                          },
                         () =>
                         {
-                            lock (cerrojo) conversiones.Add(ConversionDolar(numero, signo, value, false));
+                            //lock (cerrojo) conversiones.Add(ConversionDolar(numero, signo, value, false));
+                            var conversionDolar = ConversionDolar(numero, signo, value, false);
+                            if (conversionDolar != null) lock (cerrojo) conversiones.Add(conversionDolar);
                         },
                         () =>
                         {
-                            lock (cerrojo) conversiones.Add(ConversionNegativo(numero, signo, value, false));
+                            //lock (cerrojo) conversiones.Add(ConversionNegativo(numero, signo, value, false));
+                            var conversionNegativo = ConversionNegativo(numero, signo, value, false);
+                            if (conversionNegativo != null) lock (cerrojo) conversiones.Add(conversionNegativo);
                         }
                     );
                 }
@@ -373,15 +419,21 @@ namespace TFTService
                     Parallel.Invoke(
                         () =>
                         {
-                            lock (cerrojo) conversiones.Add(ConversionPeso(numero, signo, value, false));
+                            //lock (cerrojo) conversiones.Add(ConversionPeso(numero, signo, value, false));
+                            var conversionPeso = ConversionPeso(numero, signo, value, false);
+                            if (conversionPeso != null) lock (cerrojo) conversiones.Add(conversionPeso);
                         },
                         () =>
                         {
-                            lock (cerrojo) conversiones.Add(ConversionDolar(numero, signo, value, false));
+                            //lock (cerrojo) conversiones.Add(ConversionDolar(numero, signo, value, false));
+                            var conversionDolar = ConversionDolar(numero, signo, value, false);
+                            if (conversionDolar != null) lock (cerrojo) conversiones.Add(conversionDolar);
                         },
                         () =>
                         {
-                            lock (cerrojo) conversiones.Add(ConversionCardinal(numero, signo, value, false));
+                            //lock (cerrojo) conversiones.Add(ConversionCardinal(numero, signo, value, false));
+                            var conversionCardinal = ConversionCardinal(numero, signo, value, false);
+                            if (conversionCardinal != null) lock (cerrojo) conversiones.Add(conversionCardinal);
                         },
                         () =>
                         {
@@ -412,14 +464,19 @@ namespace TFTService
                     string numeroFormateado = "-" + FormateoNumero.FormatearNumero(numero);
                     cabecera = new Cabecera(numeroFormateado, HttpContext.GetGlobalResourceObject("Resource", "NumeroFormateadoTitulo").ToString());
 
-                    conversiones.Add(ConversionNegativo(numero, signo, value, false));
+                    
+                    //conversiones.Add(ConversionNegativo(numero, signo, value, false));
+                    var conversionNegativo = ConversionNegativo(numero, signo, value, false);
+                    if (conversionNegativo != null) lock (cerrojo) conversiones.Add(conversionNegativo);
                 }
                 else
                 {
                     Parallel.Invoke(
                         () =>
                         {
-                            lock (cerrojo) conversiones.Add(ConversionCardinal(numero, signo, value, false));
+                            //lock (cerrojo) conversiones.Add(ConversionCardinal(numero, signo, value, false));
+                            var conversionCardinal = ConversionCardinal(numero, signo, value, false);
+                            if (conversionCardinal != null) lock (cerrojo) conversiones.Add(conversionCardinal);
                         },
                         () =>
                         {
@@ -464,7 +521,9 @@ namespace TFTService
                 Parallel.Invoke(
                     () =>
                     {
-                        lock (cerrojo) conversiones.Add(ConversionCardinal(numeroEntero, signo, value, false));
+                        var conversionCardinal = ConversionCardinal(numeroEntero, signo, value, false);
+                        if (conversionCardinal != null) lock (cerrojo) conversiones.Add(conversionCardinal);
+                        //lock (cerrojo) conversiones.Add(ConversionCardinal(numeroEntero, signo, value, false));
                     },
                     () =>
                     {
@@ -501,7 +560,11 @@ namespace TFTService
             Thread.CurrentThread.CurrentUICulture = language;
             Conversion resultado = new Conversion();
 
-            string numerador = Cardinales.ConvertirNumEnteroCardinal(pNumerador, signo);
+            string numerador = Cardinales.NuevoConvertirNumEnteroCardinal(pNumerador, signo);
+            if (string.IsNullOrEmpty(numerador))
+            {
+                return null;
+            }
             string denominador = Fraccionario.ConvertirNumEnteroFracDenominador(pDenominador, "M");
 
             string denominadorAdj = "";
@@ -571,7 +634,7 @@ namespace TFTService
             string numCompletoLetras = numerador + " " + denominador;
             string numCompletoAdj = numeradorAdj + " " + denominadorAdj;
 
-            string numeradorVal = Cardinales.ConvertirNumEnteroCardinalVal(pNumerador, signo);
+            string numeradorVal = Cardinales.NuevoConvertirNumEnteroCardinalVal(pNumerador, signo);
             string denominadorVal = Fraccionario.ConvertirNumEnteroFracDenominadorVal(pDenominador, "M");
 
 
@@ -696,7 +759,11 @@ namespace TFTService
             Conversion resultado = new Conversion();
 
             string[] partes = Regex.Split(numero, @"[.,]");
-            string parteEntera = Cardinales.ConvertirNumEnteroCardinal(partes[0], signo);
+            string parteEntera = Cardinales.NuevoConvertirNumEnteroCardinal(partes[0], signo);
+            if (string.IsNullOrEmpty(parteEntera))
+            {
+                return null;
+            }
             string parteDecimal = Cardinales.ConvertirNumDecimalCardinal(partes[1]);
 
             //System.Diagnostics.Debug.WriteLine("Valor de la parte entera: " + parteEntera.ToString());
@@ -704,7 +771,7 @@ namespace TFTService
 
             string numCompletoLetras = parteEntera + " ambs " + parteDecimal;
 
-            string parteEnteraVal = Cardinales.ConvertirNumEnteroCardinalVal(partes[0], signo);
+            string parteEnteraVal = Cardinales.NuevoConvertirNumEnteroCardinalVal(partes[0], signo);
             string parteDecimalVal = Cardinales.ConvertirNumDecimalCardinalVal(partes[1]);
 
             string numCompletoLetrasVal = parteEnteraVal + " ambs " + parteDecimalVal;
@@ -759,7 +826,7 @@ namespace TFTService
             Thread.CurrentThread.CurrentUICulture = language;
             Conversion resultado = new Conversion();
 
-            string numCompletoLetras = Cardinales.ConvertirNumEnteroCardinal(numero, signo);
+            string numCompletoLetras = Cardinales.NuevoConvertirNumEnteroCardinal(numero, signo);
             if (string.IsNullOrEmpty(numCompletoLetras))
             {
                 return null;
@@ -852,7 +919,7 @@ namespace TFTService
             Conversion resultado = new Conversion();
             //System.Diagnostics.Debug.WriteLine("Numero negativo: " + numero);
 
-            string numCompletoLetras = Cardinales.ConvertirNumEnteroCardinal(numero, signo);
+            string numCompletoLetras = Cardinales.NuevoConvertirNumEnteroCardinal(numero, signo);
             if (string.IsNullOrEmpty(numCompletoLetras))
             {
                 return null;
@@ -880,7 +947,7 @@ namespace TFTService
             Opcion SusAdPro = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "SusAdProTitulo").ToString());
             SusAdPro.Opciones = new List<string>();
             SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + numCompletoLetras);
-            SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + Cardinales.ConvertirNumEnteroCardinalVal(numero, signo));
+            SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + Cardinales.NuevoConvertirNumEnteroCardinalVal(numero, signo));
 
             resultado.MasOpciones.Add(SusAdPro);
 
@@ -1142,8 +1209,12 @@ namespace TFTService
             string numeroNoSimbolo = numero.Replace("€", "");
             string[] partes = Regex.Split(numeroNoSimbolo, @"[.,]");
 
-            string parteEuros = Cardinales.ConvertirNumEnteroCardinal(partes[0], signo);
-            string parteEurosVal = Cardinales.ConvertirNumEnteroCardinalVal(partes[0], signo);
+            string parteEuros = Cardinales.NuevoConvertirNumEnteroCardinal(partes[0], signo);
+            if (string.IsNullOrEmpty(parteEuros))
+            {
+                return null;
+            }
+            string parteEurosVal = Cardinales.NuevoConvertirNumEnteroCardinalVal(partes[0], signo);
             string parteCentimos = "";
             string parteCentimosVal = "";
             if (partes.Length > 1)
@@ -1156,8 +1227,8 @@ namespace TFTService
                 {
                     partes[1] = partes[1].Substring(0, 2);
                 }
-                parteCentimos = Cardinales.ConvertirNumEnteroCardinal(partes[1], false);
-                parteCentimosVal = Cardinales.ConvertirNumEnteroCardinalVal(partes[1], false);
+                parteCentimos = Cardinales.NuevoConvertirNumEnteroCardinal(partes[1], false);
+                parteCentimosVal = Cardinales.NuevoConvertirNumEnteroCardinalVal(partes[1], false);
             }
             if (partes[0] == "1")
             {
@@ -1252,8 +1323,12 @@ namespace TFTService
             string numeroNoSimbolo = numero.Replace("$", "");
             string[] partes = Regex.Split(numeroNoSimbolo, @"[.,]");
 
-            string partePesos = Cardinales.ConvertirNumEnteroCardinal(partes[0], signo);
-            string partePesosVal = Cardinales.ConvertirNumEnteroCardinalVal(partes[0], signo);
+            string partePesos = Cardinales.NuevoConvertirNumEnteroCardinal(partes[0], signo);
+            if (string.IsNullOrEmpty(partePesos))
+            {
+                return null;
+            }
+            string partePesosVal = Cardinales.NuevoConvertirNumEnteroCardinalVal(partes[0], signo);
             string parteCentavos = "";
             string parteCentavosVal = "";
             if (partes.Length > 1)
@@ -1266,8 +1341,8 @@ namespace TFTService
                 {
                     partes[1] = partes[1].Substring(0, 2);
                 }
-                parteCentavos = Cardinales.ConvertirNumEnteroCardinal(partes[1], false);
-                parteCentavosVal = Cardinales.ConvertirNumEnteroCardinalVal(partes[1], false);
+                parteCentavos = Cardinales.NuevoConvertirNumEnteroCardinal(partes[1], false);
+                parteCentavosVal = Cardinales.NuevoConvertirNumEnteroCardinalVal(partes[1], false);
             }
             if (partes[0] == "1")
             {
@@ -1360,8 +1435,12 @@ namespace TFTService
             string numeroNoSimbolo = numero.Replace("$", "");
             string[] partes = Regex.Split(numeroNoSimbolo, @"[.,]");
 
-            string parteDolar = Cardinales.ConvertirNumEnteroCardinal(partes[0], signo);
-            string parteDolarVal = Cardinales.ConvertirNumEnteroCardinalVal(partes[0], signo);
+            string parteDolar = Cardinales.NuevoConvertirNumEnteroCardinal(partes[0], signo);
+            if (string.IsNullOrEmpty(parteDolar))
+            {
+                return null;
+            }
+            string parteDolarVal = Cardinales.NuevoConvertirNumEnteroCardinalVal(partes[0], signo);
             string parteCentavos = "";
             string parteCentavosVal = "";
             if (partes.Length > 1)
@@ -1374,8 +1453,8 @@ namespace TFTService
                 {
                     partes[1] = partes[1].Substring(0, 2);
                 }
-                parteCentavos = Cardinales.ConvertirNumEnteroCardinal(partes[1], false);
-                parteCentavosVal = Cardinales.ConvertirNumEnteroCardinalVal(partes[1], false);
+                parteCentavos = Cardinales.NuevoConvertirNumEnteroCardinal(partes[1], false);
+                parteCentavosVal = Cardinales.NuevoConvertirNumEnteroCardinalVal(partes[1], false);
             }
             if (partes[0] == "1")
             {

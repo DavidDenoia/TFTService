@@ -15,7 +15,7 @@ namespace TFTService
             StringBuilder resultado = new StringBuilder();
             if (Regex.IsMatch(numero, @"^10*$"))
             {
-                string denominador = Cardinales.ConvertirNumEnteroCardinal(numero, false);
+                string denominador = Cardinales.NuevoConvertirNumEnteroCardinal(numero, false);
                 if(denominador == "deu")
                 {
                     denominador = genero == "M" ? "dècim" : "dècima";
@@ -59,7 +59,7 @@ namespace TFTService
                 }
                 else
                 {
-                    string numCard = Cardinales.ConvertirNumEnteroCardinal(numero,false);
+                    string numCard = Cardinales.NuevoConvertirNumEnteroCardinal(numero,false);
                     if (numCard.EndsWith("c"))
                     {
                         resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1)+"què" : numCard.Substring(0, numCard.Length - 1) + "quena");
@@ -81,7 +81,7 @@ namespace TFTService
             }
             else
             {
-                string numCard = Cardinales.ConvertirNumEnteroCardinal(numero, false);
+                string numCard = Cardinales.NuevoConvertirNumEnteroCardinal(numero, false);
                 if (numCard.EndsWith("c"))
                 {
                     resultado.Insert(0, numCard.Substring(0, numCard.Length - 1));
@@ -109,7 +109,7 @@ namespace TFTService
             StringBuilder resultado = new StringBuilder();
             if (Regex.IsMatch(numero, @"^10+$"))
             {
-                string denominador = Cardinales.ConvertirNumEnteroCardinal(numero, false);
+                string denominador = Cardinales.NuevoConvertirNumEnteroCardinal(numero, false);
                 if (denominador == "deu")
                 {
                     
@@ -151,7 +151,7 @@ namespace TFTService
                 }
                 else
                 {
-                    string numCard = Cardinales.ConvertirNumEnteroCardinal(numero, false);
+                    string numCard = Cardinales.NuevoConvertirNumEnteroCardinal(numero, false);
                     if (numCard.EndsWith("c"))
                     {
                         resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "quesim" : numCard.Substring(0, numCard.Length - 1) + "quesima");
@@ -179,8 +179,12 @@ namespace TFTService
             }
             else
             {
-                string numCard = Cardinales.ConvertirNumEnteroCardinal(numero, false);
-                if (numCard.EndsWith("c"))
+                string numCard = Cardinales.NuevoConvertirNumEnteroCardinal(numero, false);
+                if (string.IsNullOrEmpty(numCard))
+                {
+                    return null;
+                }
+                else if (numCard.EndsWith("c"))
                 {
                     resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "quesim" : numCard.Substring(0, numCard.Length - 1) + "quesima");
                 }
@@ -215,7 +219,7 @@ namespace TFTService
             StringBuilder resultado = new StringBuilder();
             if (Regex.IsMatch(numero, @"^10*$"))
             {
-                string denominador = Cardinales.ConvertirNumEnteroCardinalVal(numero, false);
+                string denominador = Cardinales.NuevoConvertirNumEnteroCardinalVal(numero, false);
                 if (denominador == "deu")
                 {
                     denominador = genero == "M" ? "dècim" : "dècima";
@@ -261,7 +265,7 @@ namespace TFTService
                 }
                 else
                 {
-                    string numCard = Cardinales.ConvertirNumEnteroCardinalVal(numero, false);
+                    string numCard = Cardinales.NuevoConvertirNumEnteroCardinalVal(numero, false);
                     if (numCard.EndsWith("c"))
                     {
                         resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "què" : numCard.Substring(0, numCard.Length - 1) + "quena");
@@ -283,7 +287,7 @@ namespace TFTService
             }
             else
             {
-                string numCard = Cardinales.ConvertirNumEnteroCardinalVal(numero, false);
+                string numCard = Cardinales.NuevoConvertirNumEnteroCardinalVal(numero, false);
                 if (numCard.EndsWith("c"))
                 {
                     resultado.Insert(0, numCard.Substring(0, numCard.Length - 1));
@@ -311,7 +315,7 @@ namespace TFTService
             StringBuilder resultado = new StringBuilder();
             if (Regex.IsMatch(numero, @"^10+$"))
             {
-                string denominador = Cardinales.ConvertirNumEnteroCardinalVal(numero, false);
+                string denominador = Cardinales.NuevoConvertirNumEnteroCardinalVal(numero, false);
                 if (denominador == "deu")
                 {
 
@@ -353,7 +357,7 @@ namespace TFTService
                 }
                 else
                 {
-                    string numCard = Cardinales.ConvertirNumEnteroCardinalVal(numero, false);
+                    string numCard = Cardinales.NuevoConvertirNumEnteroCardinalVal(numero, false);
                     if (numCard.EndsWith("c"))
                     {
                         resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "quesim" : numCard.Substring(0, numCard.Length - 1) + "quesima");
@@ -381,7 +385,7 @@ namespace TFTService
             }
             else
             {
-                string numCard = Cardinales.ConvertirNumEnteroCardinalVal(numero, false);
+                string numCard = Cardinales.NuevoConvertirNumEnteroCardinalVal(numero, false);
                 if (numCard.EndsWith("c"))
                 {
                     resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "quesim" : numCard.Substring(0, numCard.Length - 1) + "quesima");

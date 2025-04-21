@@ -60,7 +60,7 @@ namespace TFTService
                 }
                 else
                 {
-                    string numCard = Cardinales.ConvertirNumEnteroCardinal(numero, false);
+                    string numCard = Cardinales.NuevoConvertirNumEnteroCardinal(numero, false);
                     if (numCard.EndsWith("c"))
                     {
                         resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "què" : numCard.Substring(0, numCard.Length - 1) + "quena");
@@ -89,9 +89,13 @@ namespace TFTService
             }
             else
             {
-                string numCard = Cardinales.ConvertirNumEnteroCardinal(numero, false);
+                string numCard = Cardinales.NuevoConvertirNumEnteroCardinal(numero, false);
                 //System.Diagnostics.Debug.WriteLine("Numero CARDINAL: " + numCard);
-                if (numCard.EndsWith("c"))
+                if (string.IsNullOrEmpty(numCard))
+                {
+                    return null;
+                }
+                else if (numCard.EndsWith("c"))
                 {
                     resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "què" : numCard.Substring(0, numCard.Length - 1) + "quena");
                 }
@@ -185,7 +189,7 @@ namespace TFTService
                 }
                 else
                 {
-                    string numCard = Cardinales.ConvertirNumEnteroCardinalVal(numero, false);
+                    string numCard = Cardinales.NuevoConvertirNumEnteroCardinalVal(numero, false);
                     if (numCard.EndsWith("c"))
                     {
                         resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "qué" : numCard.Substring(0, numCard.Length - 1) + "quena");
@@ -214,7 +218,7 @@ namespace TFTService
             }
             else
             {
-                string numCard = Cardinales.ConvertirNumEnteroCardinalVal(numero, false);
+                string numCard = Cardinales.NuevoConvertirNumEnteroCardinalVal(numero, false);
                 //System.Diagnostics.Debug.WriteLine("Numero CARDINAL: " + numCard);
                 if (numCard.EndsWith("c"))
                 {

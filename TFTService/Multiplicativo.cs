@@ -50,14 +50,14 @@ namespace TFTService
                 }
                 else
                 {
-                    string NumCompletoCard = Cardinales.ConvertirNumEnteroCardinal(numero,false);
+                    string NumCompletoCard = Cardinales.NuevoConvertirNumEnteroCardinal(numero,false);
                     resultado.Insert(0, NumCompletoCard + " vegades mes");
-                }
+                }   
 
             }
             else
             {
-                string NumCompletoCard = Cardinales.ConvertirNumEnteroCardinal(numero, false);
+                string NumCompletoCard = Cardinales.NuevoConvertirNumEnteroCardinal(numero, false);
                 resultado.Insert(0, NumCompletoCard + " de vegades mes");
             }
             return resultado.ToString();
@@ -105,14 +105,14 @@ namespace TFTService
                 }
                 else
                 {
-                    string NumCompletoCard = Cardinales.ConvertirNumEnteroCardinalVal(numero, false);
+                    string NumCompletoCard = Cardinales.NuevoConvertirNumEnteroCardinalVal(numero, false);
                     resultado.Insert(0, NumCompletoCard + " vegades mes");
                 }
 
             }
             else
             {
-                string NumCompletoCard = Cardinales.ConvertirNumEnteroCardinalVal(numero, false);
+                string NumCompletoCard = Cardinales.NuevoConvertirNumEnteroCardinalVal(numero, false);
                 resultado.Insert(0, NumCompletoCard + " de vegades mes");
             }
             return resultado.ToString();

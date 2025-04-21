@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Linq;
 
 namespace TFTService
 {
     public class Cardinales
     {
-        public static string ConvertirNumEnteroCardinal(string numero, bool signo)
+        /*public static string ConvertirNumEnteroCardinal(string numero, bool signo)
         {
 
 
@@ -100,9 +101,9 @@ namespace TFTService
 
 
 
-        }
+        }*/
 
-       
+
 
         public static string CentenaresALetras(string numero)
         {
@@ -209,7 +210,7 @@ namespace TFTService
 
             sufijoFinal.Append(sufijoBase);
 
-            string NumCompleCard = ConvertirNumEnteroCardinal(numero, false);
+            string NumCompleCard = NuevoConvertirNumEnteroCardinal(numero, false);
             if (NumCompleCard == "un")
             {
                 resultado.Insert(0, NumCompleCard + " " + sufijoFinal.ToString());
@@ -223,7 +224,7 @@ namespace TFTService
             return resultado.ToString();
         }
 
-        public static string ConvertirNumEnteroCardinalVal(string numero, bool signo)
+        /*public static string ConvertirNumEnteroCardinalVal(string numero, bool signo)
         {
             int contadorSufijos = 0;
             int contadorNumVeces = 0;
@@ -313,7 +314,7 @@ namespace TFTService
 
 
 
-        }
+        }*/
 
         public static string CentenaresALetrasVal(string numero)
         {
@@ -420,7 +421,7 @@ namespace TFTService
 
             sufijoFinal.Append(sufijoBase);
 
-            string NumCompleCard = ConvertirNumEnteroCardinalVal(numero, false);
+            string NumCompleCard = NuevoConvertirNumEnteroCardinalVal(numero, false);
             if (NumCompleCard == "un")
             {
                 resultado.Insert(0, NumCompleCard + " " + sufijoFinal.ToString());
@@ -441,8 +442,9 @@ namespace TFTService
             int contadorNumVeces = 0;
             StringBuilder numCentena = new StringBuilder();
             StringBuilder resultado = new StringBuilder();
+            string ultimoSufijoZero = null;
 
-            if(numero.Length >= 127)
+            if (numero.Length >= 127)
             {
                 return null;
             }
@@ -480,27 +482,23 @@ namespace TFTService
 
                             if (contadorSufijos % 2 != 0)
                             {
-                                
                                 if (numCentenaLetra != "un")
                                 {
-                                    if (sufijoIndice > 0 && sufijos.ContainsKey(sufijoIndice))
-                                        resultado.Insert(0, numCentenaLetra + " mil " + sufijos[sufijoIndice].plural + " ");
-                                    else
-                                        resultado.Insert(0, numCentenaLetra + " mil ");
+                                    resultado.Insert(0, numCentenaLetra + " mil ");
                                 }
                                 else
                                 {
-                                    if (sufijoIndice > 0 && sufijos.ContainsKey(sufijoIndice))
-                                        resultado.Insert(0, " mil " + sufijos[sufijoIndice].plural + " ");
-                                    else
-                                        resultado.Insert(0, " mil ");
+                                    resultado.Insert(0, " mil ");
                                 }
                             }
                             else
                             {
                                 if (sufijos.ContainsKey(sufijoIndice))
                                 {
-                                    var sufijo = numCentenaLetra == "un" ? sufijos[sufijoIndice].singular : sufijos[sufijoIndice].plural;
+                                    var sufijo = numCentenaLetra == "un"
+                                        ? sufijos[sufijoIndice].singular
+                                        : sufijos[sufijoIndice].plural;
+
                                     resultado.Insert(0, numCentenaLetra + " " + sufijo + " ");
                                 }
                                 else
@@ -510,9 +508,35 @@ namespace TFTService
                             }
                         }
                     }
+                    else
+                    {
+                        
+                        int sufijoIndice = contadorSufijos / 2;
+                        if (sufijos.ContainsKey(sufijoIndice))
+                        {
+                            ultimoSufijoZero = sufijos[sufijoIndice].plural;
+                            System.Diagnostics.Debug.WriteLine($"Guardado sufijo por bloque zero: {ultimoSufijoZero}");
+                        }
+                    }
 
-                    contadorSufijos++;
+                    System.Diagnostics.Debug.WriteLine($"grupo: {numCentenaLetra}, Sufijo #: {contadorSufijos}, Resultado parcial: {resultado}");
+
+                    contadorSufijos++; 
                 }
+            }
+
+
+            System.Diagnostics.Debug.WriteLine($"ULTIMO SUFIJO: {ultimoSufijoZero}");
+
+            /*if (!string.IsNullOrEmpty(ultimoSufijoZero) && resultado.ToString().Trim() != "zero")
+            {
+                resultado.Append(" " + ultimoSufijoZero);
+            }*/
+            string last = resultado.ToString().Trim().Split(' ').LastOrDefault();
+            System.Diagnostics.Debug.WriteLine($"LAST: {last}");
+            if (!sufijos.Values.Any(s => s.plural == last || s.singular == last))
+            {
+                resultado.Append(" " + ultimoSufijoZero);
             }
 
             if (resultado.Length == 0)
@@ -530,6 +554,7 @@ namespace TFTService
             int contadorNumVeces = 0;
             StringBuilder numCentena = new StringBuilder();
             StringBuilder resultado = new StringBuilder();
+            string ultimoSufijoZero = null;
 
             if (numero.Length >= 127)
             {
@@ -569,27 +594,23 @@ namespace TFTService
 
                             if (contadorSufijos % 2 != 0)
                             {
-
                                 if (numCentenaLetra != "un")
                                 {
-                                    if (sufijoIndice > 0 && sufijos.ContainsKey(sufijoIndice))
-                                        resultado.Insert(0, numCentenaLetra + " mil " + sufijos[sufijoIndice].plural + " ");
-                                    else
-                                        resultado.Insert(0, numCentenaLetra + " mil ");
+                                    resultado.Insert(0, numCentenaLetra + " mil ");
                                 }
                                 else
                                 {
-                                    if (sufijoIndice > 0 && sufijos.ContainsKey(sufijoIndice))
-                                        resultado.Insert(0, " mil " + sufijos[sufijoIndice].plural + " ");
-                                    else
-                                        resultado.Insert(0, " mil ");
+                                    resultado.Insert(0, " mil ");
                                 }
                             }
                             else
                             {
                                 if (sufijos.ContainsKey(sufijoIndice))
                                 {
-                                    var sufijo = numCentenaLetra == "un" ? sufijos[sufijoIndice].singular : sufijos[sufijoIndice].plural;
+                                    var sufijo = numCentenaLetra == "un"
+                                        ? sufijos[sufijoIndice].singular
+                                        : sufijos[sufijoIndice].plural;
+
                                     resultado.Insert(0, numCentenaLetra + " " + sufijo + " ");
                                 }
                                 else
@@ -599,9 +620,35 @@ namespace TFTService
                             }
                         }
                     }
+                    else
+                    {
+
+                        int sufijoIndice = contadorSufijos / 2;
+                        if (sufijos.ContainsKey(sufijoIndice))
+                        {
+                            ultimoSufijoZero = sufijos[sufijoIndice].plural;
+                            System.Diagnostics.Debug.WriteLine($"Guardado sufijo por bloque zero: {ultimoSufijoZero}");
+                        }
+                    }
+
+                    System.Diagnostics.Debug.WriteLine($"grupo: {numCentenaLetra}, Sufijo #: {contadorSufijos}, Resultado parcial: {resultado}");
 
                     contadorSufijos++;
                 }
+            }
+
+
+            System.Diagnostics.Debug.WriteLine($"ULTIMO SUFIJO: {ultimoSufijoZero}");
+
+            /*if (!string.IsNullOrEmpty(ultimoSufijoZero) && resultado.ToString().Trim() != "zero")
+            {
+                resultado.Append(" " + ultimoSufijoZero);
+            }*/
+            string last = resultado.ToString().Trim().Split(' ').LastOrDefault();
+            System.Diagnostics.Debug.WriteLine($"LAST: {last}");
+            if (!sufijos.Values.Any(s => s.plural == last || s.singular == last))
+            {
+                resultado.Append(" " + ultimoSufijoZero);
             }
 
             if (resultado.Length == 0)
@@ -612,8 +659,6 @@ namespace TFTService
 
             return resultado.ToString().Trim();
         }
-
-
-
     }
+
 }

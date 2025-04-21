@@ -57,7 +57,7 @@ namespace TFTService
                 return decenas[d] + "kai" + unidades[u] + "gon";
             }
 
-            string numeroCardinal = Cardinales.ConvertirNumEnteroCardinal(numero, false);
+            string numeroCardinal = Cardinales.NuevoConvertirNumEnteroCardinal(numero, false);
 
             return resultado.Append("Polígon de " + numeroCardinal + " costats").ToString();
 

@@ -738,13 +738,13 @@ namespace TFTService
 
             Opcion Sustantivo = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "SustantivoOpcion").ToString());
             Sustantivo.Opciones = new List<string>();
-            Sustantivo.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + numCompletoLetras);
-            Sustantivo.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + numCompletoLetrasVal);
+            Sustantivo.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + numCompletoLetras);
+            Sustantivo.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + numCompletoLetrasVal);
 
             Opcion Adjetivo = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "AdjetivoOpcion").ToString());
             Adjetivo.Opciones = new List<string>();
-            Adjetivo.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + numCompletoAdj);
-            Adjetivo.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + numCompletoAdjVal);
+            Adjetivo.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + numCompletoAdj);
+            Adjetivo.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + numCompletoAdjVal);
 
             resultado.MasOpciones.Add(Sustantivo);
             resultado.MasOpciones.Add(Adjetivo);
@@ -804,10 +804,10 @@ namespace TFTService
 
             Opcion Expresion = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "ExpresionTitulo").ToString());
             Expresion.Opciones = new List<string>();
-            Expresion.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + numCompletoLetras);
-            Expresion.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + numCompletoLetrasVal);
-            Expresion.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + parteEntera + " [coma/i/amb] " + parteDecimal);
-            Expresion.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + parteEnteraVal + " [coma/i/amb] " + parteDecimalVal);
+            Expresion.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + numCompletoLetras);
+            Expresion.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + numCompletoLetrasVal);
+            Expresion.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + parteEntera + " [coma/i/amb] " + parteDecimal);
+            Expresion.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + parteEnteraVal + " [coma/i/amb] " + parteDecimalVal);
 
             resultado.MasOpciones.Add(Expresion);
 
@@ -861,8 +861,8 @@ namespace TFTService
 
             Opcion SusAdPro = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "SusAdProTitulo").ToString());
             SusAdPro.Opciones = new List<string>();
-            SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + numCompletoLetras);
-            SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + Cardinales.NuevoConvertirNumEnteroCardinalVal(numero, signo));
+            SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + numCompletoLetras);
+            SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + Cardinales.NuevoConvertirNumEnteroCardinalVal(numero, signo));
 
             resultado.TitEjemplos = HttpContext.GetGlobalResourceObject("Resource", "EjemplosTitulo").ToString();
             resultado.Ejemplos = new List<string>();
@@ -885,29 +885,29 @@ namespace TFTService
             {
                 Opcion FormFem = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormFemOpcion").ToString());
                 FormFem.Opciones = new List<string>();
-                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + "una");
-                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + "una");
+                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + "una");
+                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + "una");
                 resultado.MasOpciones.Add(FormFem);
             }
             else if (numCompletoLetras == "dos")
             {
                 Opcion FormFem = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormFemOpcion").ToString());
                 FormFem.Opciones = new List<string>();
-                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + "dues");
-                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + "dues");
+                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + "dues");
+                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + "dues");
                 resultado.MasOpciones.Add(FormFem);
             }
             else if (numCompletoLetras == "disset")
             {
-                SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "BalearTipo").ToString() + "desset");
+                SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "BalearTipo").ToString() + " " + "desset");
             }
             else if (numCompletoLetras == "divuit")
             {
-                SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "BalearTipo").ToString() + "devuit");
+                SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "BalearTipo").ToString() + " " + "devuit");
             }
             else if (numCompletoLetras == "dinou")
             {
-                SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "BalearTipo").ToString() + "denou");
+                SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "BalearTipo").ToString() + " " + "denou");
             }
 
             return resultado;
@@ -946,8 +946,8 @@ namespace TFTService
 
             Opcion SusAdPro = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "SusAdProTitulo").ToString());
             SusAdPro.Opciones = new List<string>();
-            SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + numCompletoLetras);
-            SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + Cardinales.NuevoConvertirNumEnteroCardinalVal(numero, signo));
+            SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + numCompletoLetras);
+            SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + Cardinales.NuevoConvertirNumEnteroCardinalVal(numero, signo));
 
             resultado.MasOpciones.Add(SusAdPro);
 
@@ -969,29 +969,29 @@ namespace TFTService
             {
                 Opcion FormFem = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormFemOpcion").ToString());
                 FormFem.Opciones = new List<string>();
-                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + "minus una");
-                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + "minus una");
+                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + "minus una");
+                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + "minus una");
                 resultado.MasOpciones.Add(FormFem);
             }
             else if (numCompletoLetras == "minus dos")
             {
                 Opcion FormFem = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormFemOpcion").ToString());
                 FormFem.Opciones = new List<string>();
-                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + "minus dues");
-                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + "minus dues");
+                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + "minus dues");
+                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + "minus dues");
                 resultado.MasOpciones.Add(FormFem);
             }
             else if (numCompletoLetras == "minus disset")
             {
-                SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "BalearTipo").ToString() + "minus desset");
+                SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "BalearTipo").ToString() + " " + "minus desset");
             }
             else if (numCompletoLetras == "minus divuit")
             {
-                SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "BalearTipo").ToString() + "minus devuit");
+                SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "BalearTipo").ToString() + " " + "minus devuit");
             }
             else if (numCompletoLetras == "minus dinou")
             {
-                SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "BalearTipo").ToString() + "minus denou");
+                SusAdPro.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "BalearTipo").ToString() + " " + "minus denou");
             }
 
             return resultado;
@@ -1041,24 +1041,24 @@ namespace TFTService
 
             Opcion FormFemSin = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormFemSinOpcion").ToString());
             FormFemSin.Opciones = new List<string>();
-            FormFemSin.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + Ordinales.ConvertirNumEnteroOrdinal(numero, "F", false));
-            FormFemSin.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + Ordinales.ConvertirNumEnteroOrdinalVal(numero, "F", false));
+            FormFemSin.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + Ordinales.ConvertirNumEnteroOrdinal(numero, "F", false));
+            FormFemSin.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + Ordinales.ConvertirNumEnteroOrdinalVal(numero, "F", false));
 
             Opcion FormMasSin = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormMasSinOpcion").ToString());
             FormMasSin.Opciones = new List<string>();
-            FormMasSin.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + numCompletoLetras);
-            FormMasSin.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + Ordinales.ConvertirNumEnteroOrdinalVal(numero, "M", false));
+            FormMasSin.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + numCompletoLetras);
+            FormMasSin.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + Ordinales.ConvertirNumEnteroOrdinalVal(numero, "M", false));
 
             Opcion FormMasPlu = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormMasPluOpcion").ToString());
             FormMasPlu.Opciones = new List<string>();
-            FormMasPlu.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + Ordinales.ConvertirNumEnteroOrdinal(numero, "M", true));
-            FormMasPlu.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + Ordinales.ConvertirNumEnteroOrdinalVal(numero, "M", true));
+            FormMasPlu.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + Ordinales.ConvertirNumEnteroOrdinal(numero, "M", true));
+            FormMasPlu.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + Ordinales.ConvertirNumEnteroOrdinalVal(numero, "M", true));
 
 
             Opcion FormFemPlu = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormFemPluOpcion").ToString());
             FormFemPlu.Opciones = new List<string>();
-            FormFemPlu.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + Ordinales.ConvertirNumEnteroOrdinal(numero, "F", true));
-            FormFemPlu.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + Ordinales.ConvertirNumEnteroOrdinalVal(numero, "F", true));
+            FormFemPlu.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + Ordinales.ConvertirNumEnteroOrdinal(numero, "F", true));
+            FormFemPlu.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + Ordinales.ConvertirNumEnteroOrdinalVal(numero, "F", true));
 
             resultado.MasOpciones.Add(FormFemSin);
             resultado.MasOpciones.Add(FormMasSin);
@@ -1112,17 +1112,17 @@ namespace TFTService
 
             Opcion SustantivoM = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "SustantivoMOpcion").ToString());
             SustantivoM.Opciones = new List<string>();
-            SustantivoM.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + numCompletoLetras);
-            SustantivoM.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + Fraccionario.ConvertirNumEnteroFraccionarioVal(numero, "M"));
+            SustantivoM.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + numCompletoLetras);
+            SustantivoM.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + Fraccionario.ConvertirNumEnteroFraccionarioVal(numero, "M"));
 
             Opcion SustantivoF = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "SustantivoFOpcion").ToString());
             SustantivoF.Opciones = new List<string>();
-            SustantivoF.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + Fraccionario.ConvertirNumEnteroFraccionario(numero, "F"));
-            SustantivoF.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + Fraccionario.ConvertirNumEnteroFraccionarioVal(numero, "F"));
+            SustantivoF.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + Fraccionario.ConvertirNumEnteroFraccionario(numero, "F"));
+            SustantivoF.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + Fraccionario.ConvertirNumEnteroFraccionarioVal(numero, "F"));
 
             Opcion AdjetivoPronF = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "AdjetivoPronombreFOpcion").ToString());
             AdjetivoPronF.Opciones = new List<string>();
-            AdjetivoPronF.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + Fraccionario.ConvertirNumEnteroFraccionario(numero, "F"));
+            AdjetivoPronF.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + Fraccionario.ConvertirNumEnteroFraccionario(numero, "F"));
 
             resultado.MasOpciones.Add(SustantivoM);
             resultado.MasOpciones.Add(SustantivoF);
@@ -1175,8 +1175,8 @@ namespace TFTService
 
             Opcion ExpreAdj = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "ExpresionAdjetivoOpcion").ToString());
             ExpreAdj.Opciones = new List<string>();
-            ExpreAdj.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + numCompletoLetras);
-            ExpreAdj.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + Multiplicativo.ConvertirNumEnteroMultiplicativoVal(numero, "M"));
+            ExpreAdj.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + numCompletoLetras);
+            ExpreAdj.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + Multiplicativo.ConvertirNumEnteroMultiplicativoVal(numero, "M"));
 
             resultado.MasOpciones.Add(ExpreAdj);
 
@@ -1188,8 +1188,8 @@ namespace TFTService
                 {
                     Opcion FormFem = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormFemOpcion").ToString());
                     FormFem.Opciones = new List<string>();
-                    FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + Multiplicativo.ConvertirNumEnteroMultiplicativo(numero, "F"));
-                    FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + Multiplicativo.ConvertirNumEnteroMultiplicativoVal(numero, "F"));
+                    FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + Multiplicativo.ConvertirNumEnteroMultiplicativo(numero, "F"));
+                    FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + Multiplicativo.ConvertirNumEnteroMultiplicativoVal(numero, "F"));
 
                     resultado.MasOpciones.Add(FormFem);
                 }
@@ -1285,12 +1285,12 @@ namespace TFTService
 
             Opcion SintagmaNom = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "SintagmaNominalOpcion").ToString());
             SintagmaNom.Opciones = new List<string>();
-            SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + numCompletoLetras);
-            SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + numCompletoLetrasVal);
+            SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + numCompletoLetras);
+            SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + numCompletoLetrasVal);
             if (numero.Contains(".") || numero.Contains(","))
             {
-                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + numCompletoLetras.Replace(" i ", " ambs "));
-                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + numCompletoLetrasVal.Replace(" i ", " ambs "));
+                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + numCompletoLetras.Replace(" i ", " ambs "));
+                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + numCompletoLetrasVal.Replace(" i ", " ambs "));
             }
 
 
@@ -1305,8 +1305,8 @@ namespace TFTService
             {
                 Opcion NoApropiado = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "NoApropiadoOpcion").ToString());
                 NoApropiado.Opciones = new List<string>();
-                NoApropiado.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + numCompletoLetras.Replace(" i ", " punt "));
-                NoApropiado.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + numCompletoLetrasVal.Replace(" i ", " punt "));
+                NoApropiado.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + numCompletoLetras.Replace(" i ", " punt "));
+                NoApropiado.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + numCompletoLetrasVal.Replace(" i ", " punt "));
 
                 resultado.MasOpciones.Add(NoApropiado);
             }
@@ -1397,13 +1397,13 @@ namespace TFTService
 
             Opcion SintagmaNom = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "SintagmaNominalOpcion").ToString());
             SintagmaNom.Opciones = new List<string>();
-            SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString()+numCompletoLetras);
-            SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + numCompletoLetrasVal);
+            SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString()+ " " + numCompletoLetras);
+            SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + numCompletoLetrasVal);
 
             if (numero.Contains(".") || numero.Contains(","))
             {
-                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString()+numCompletoLetras.Replace(" i ", " ambs "));
-                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + numCompletoLetrasVal.Replace(" i ", " ambs "));
+                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString()+ " " + numCompletoLetras.Replace(" i ", " ambs "));
+                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + numCompletoLetrasVal.Replace(" i ", " ambs "));
             }
 
 
@@ -1418,8 +1418,8 @@ namespace TFTService
             {
                 Opcion NoApropiado = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "NoApropiadoOpcion").ToString());
                 NoApropiado.Opciones = new List<string>();
-                NoApropiado.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + numCompletoLetras.Replace(" i ", " punt "));
-                NoApropiado.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + numCompletoLetrasVal.Replace(" i ", " punt "));
+                NoApropiado.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + numCompletoLetras.Replace(" i ", " punt "));
+                NoApropiado.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + numCompletoLetrasVal.Replace(" i ", " punt "));
                 resultado.MasOpciones.Add(NoApropiado);
             }
             return resultado;
@@ -1510,12 +1510,12 @@ namespace TFTService
 
             Opcion SintagmaNom = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "SintagmaNominalOpcion").ToString());
             SintagmaNom.Opciones = new List<string>();
-            SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString()+numCompletoLetras);
-            SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + numCompletoLetrasVal);
+            SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString()+ " " + numCompletoLetras);
+            SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + numCompletoLetrasVal);
             if (numero.Contains(".") || numero.Contains(","))
             {
-                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString()+numCompletoLetras.Replace(" i ", " ambs "));
-                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + numCompletoLetrasVal.Replace(" i ", " ambs "));
+                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString()+ " " + numCompletoLetras.Replace(" i ", " ambs "));
+                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + numCompletoLetrasVal.Replace(" i ", " ambs "));
             }
 
 
@@ -1529,8 +1529,8 @@ namespace TFTService
             {
                 Opcion NoApropiado = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "NoApropiadoOpcion").ToString());
                 NoApropiado.Opciones = new List<string>();
-                NoApropiado.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString()+numCompletoLetras.Replace(" i ", " punt "));
-                NoApropiado.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + numCompletoLetrasVal.Replace(" i ", " punt "));
+                NoApropiado.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString()+ " " + numCompletoLetras.Replace(" i ", " punt "));
+                NoApropiado.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + numCompletoLetrasVal.Replace(" i ", " punt "));
                 resultado.MasOpciones.Add(NoApropiado);
             }
             return resultado;

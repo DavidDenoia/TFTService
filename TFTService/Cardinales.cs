@@ -444,6 +444,7 @@ namespace TFTService
             StringBuilder numCentena = new StringBuilder();
             StringBuilder resultado = new StringBuilder();
             string ultimoSufijoZero = null;
+            bool haySufijoZero = false;
 
             if (numero.Length >= 127)
             {
@@ -485,11 +486,31 @@ namespace TFTService
                             {
                                 if (numCentenaLetra != "un")
                                 {
-                                    resultado.Insert(0, numCentenaLetra + " mil ");
+                                    //resultado.Insert(0, numCentenaLetra + " mil ");
+
+                                    if(haySufijoZero == true)
+                                    {
+                                        resultado.Insert(0, numCentenaLetra + " mil " + ultimoSufijoZero + " ");
+                                        haySufijoZero = false;
+                                    }
+                                    else
+                                    {
+                                        resultado.Insert(0, numCentenaLetra + " mil ");
+                                    }
                                 }
                                 else
                                 {
-                                    resultado.Insert(0, " mil ");
+                                    //resultado.Insert(0, " mil ");
+
+                                    if (haySufijoZero == true)
+                                    {
+                                        resultado.Insert(0, " mil " + ultimoSufijoZero + " ");
+                                        haySufijoZero = false;
+                                    }
+                                    else
+                                    {
+                                        resultado.Insert(0, " mil ");
+                                    }
                                 }
                             }
                             else
@@ -514,6 +535,7 @@ namespace TFTService
                         if (sufijos.ContainsKey(sufijoIndice))
                         {
                             ultimoSufijoZero = sufijos[sufijoIndice].plural;
+                            haySufijoZero = true;
                             System.Diagnostics.Debug.WriteLine($"Guardado sufijo por bloque zero: {ultimoSufijoZero}");
                         }
                     }
@@ -561,6 +583,7 @@ namespace TFTService
             StringBuilder numCentena = new StringBuilder();
             StringBuilder resultado = new StringBuilder();
             string ultimoSufijoZero = null;
+            bool haySufijoZero = false;
 
             if (numero.Length >= 127)
             {
@@ -602,20 +625,38 @@ namespace TFTService
                             {
                                 if (numCentenaLetra != "un")
                                 {
-                                    resultado.Insert(0, numCentenaLetra + " mil ");
+                                    //resultado.Insert(0, numCentenaLetra + " mil ");
+
+                                    if (haySufijoZero == true)
+                                    {
+                                        resultado.Insert(0, numCentenaLetra + " mil " + ultimoSufijoZero + " ");
+                                        haySufijoZero = false;
+                                    }
+                                    else
+                                    {
+                                        resultado.Insert(0, numCentenaLetra + " mil ");
+                                    }
                                 }
                                 else
                                 {
-                                    resultado.Insert(0, " mil ");
+                                    //resultado.Insert(0, " mil ");
+
+                                    if (haySufijoZero == true)
+                                    {
+                                        resultado.Insert(0, " mil " + ultimoSufijoZero + " ");
+                                        haySufijoZero = false;
+                                    }
+                                    else
+                                    {
+                                        resultado.Insert(0, " mil ");
+                                    }
                                 }
                             }
                             else
                             {
                                 if (sufijos.ContainsKey(sufijoIndice))
                                 {
-                                    var sufijo = numCentenaLetra == "un"
-                                        ? sufijos[sufijoIndice].singular
-                                        : sufijos[sufijoIndice].plural;
+                                    var sufijo = numCentenaLetra == "un" ? sufijos[sufijoIndice].singular : sufijos[sufijoIndice].plural;
 
                                     resultado.Insert(0, numCentenaLetra + " " + sufijo + " ");
                                 }
@@ -633,6 +674,7 @@ namespace TFTService
                         if (sufijos.ContainsKey(sufijoIndice))
                         {
                             ultimoSufijoZero = sufijos[sufijoIndice].plural;
+                            haySufijoZero = true;
                             System.Diagnostics.Debug.WriteLine($"Guardado sufijo por bloque zero: {ultimoSufijoZero}");
                         }
                     }
@@ -672,7 +714,7 @@ namespace TFTService
 
             return resultado.ToString().Trim();
         }
-        
+
 
 
     }

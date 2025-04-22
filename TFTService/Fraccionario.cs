@@ -172,7 +172,7 @@ namespace TFTService
                     }
                     else if (numCard.EndsWith("a") || numCard.EndsWith("e"))
                     {
-                        resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "vèsim" : numCard.Substring(0, numCard.Length - 1) + "vèsima");
+                        resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "èsim" : numCard.Substring(0, numCard.Length - 1) + "vèsima");
                     }
 
                 }
@@ -203,7 +203,7 @@ namespace TFTService
                 }
                 else if (numCard.EndsWith("a") || numCard.EndsWith("e"))
                 {
-                    resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "vèsim" : numCard.Substring(0, numCard.Length - 1) + "vèsima");
+                    resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "èsim" : numCard.Substring(0, numCard.Length - 1) + "vèsima");
                 }
                 else if (numCard.EndsWith("mil")){
                     resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "·lèsim" : numCard.Substring(0, numCard.Length - 1) + "·lèsima");

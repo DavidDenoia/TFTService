@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace TFTService
 {
@@ -495,9 +496,7 @@ namespace TFTService
                             {
                                 if (sufijos.ContainsKey(sufijoIndice))
                                 {
-                                    var sufijo = numCentenaLetra == "un"
-                                        ? sufijos[sufijoIndice].singular
-                                        : sufijos[sufijoIndice].plural;
+                                    var sufijo = numCentenaLetra == "un" ? sufijos[sufijoIndice].singular : sufijos[sufijoIndice].plural;
 
                                     resultado.Insert(0, numCentenaLetra + " " + sufijo + " ");
                                 }
@@ -532,9 +531,16 @@ namespace TFTService
             {
                 resultado.Append(" " + ultimoSufijoZero);
             }*/
+
+            int cerosFinales = 0;
+            for (int i = numero.Length - 1; i >= 0 && numero[i] == '0'; i--)
+            {
+                cerosFinales++;
+            }
+
             string last = resultado.ToString().Trim().Split(' ').LastOrDefault();
             System.Diagnostics.Debug.WriteLine($"LAST: {last}");
-            if (!sufijos.Values.Any(s => s.plural == last || s.singular == last))
+            if (!sufijos.Values.Any(s => s.plural == last || s.singular == last) && cerosFinales >=6)
             {
                 resultado.Append(" " + ultimoSufijoZero);
             }
@@ -644,9 +650,16 @@ namespace TFTService
             {
                 resultado.Append(" " + ultimoSufijoZero);
             }*/
+
+            int cerosFinales = 0;
+            for (int i = numero.Length - 1; i >= 0 && numero[i] == '0'; i--)
+            {
+                cerosFinales++;
+            }
+
             string last = resultado.ToString().Trim().Split(' ').LastOrDefault();
             System.Diagnostics.Debug.WriteLine($"LAST: {last}");
-            if (!sufijos.Values.Any(s => s.plural == last || s.singular == last))
+            if (!sufijos.Values.Any(s => s.plural == last || s.singular == last) && cerosFinales >= 6)
             {
                 resultado.Append(" " + ultimoSufijoZero);
             }
@@ -659,6 +672,8 @@ namespace TFTService
 
             return resultado.ToString().Trim();
         }
-    }
+        
 
+
+    }
 }

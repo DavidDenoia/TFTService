@@ -163,51 +163,65 @@ namespace TFTService
                         cabecera = new Cabecera(numero, HttpContext.GetGlobalResourceObject("Resource", "NumeroFormateadoTitulo").ToString());
                         //conversiones.Add(ConversionDecimal(numeroExpandido, signo, value, true));
                         var conversionDecimal = ConversionDecimal(numeroExpandido, signo, value, true);
-                        if (conversionDecimal != null) lock (cerrojo) conversiones.Add(conversionDecimal);
+                        if (conversionDecimal != null) conversiones.Add(conversionDecimal);
                     }
                     else if (signo == true)
                     {
                         cabecera = new Cabecera(numero, HttpContext.GetGlobalResourceObject("Resource", "NumeroFormateadoTitulo").ToString());
                         //conversiones.Add(ConversionNegativo(numeroExpandido, signo, value, true));
                         var conversionNegativo = ConversionNegativo(numeroExpandido, signo, value, true);
-                        if (conversionNegativo != null) lock (cerrojo) conversiones.Add(conversionNegativo);
+                        if (conversionNegativo != null) conversiones.Add(conversionNegativo);
 
                     }
                     else
                     {
+
+                        Conversion conversionCardinal = null;
+                        Conversion conversionOrdinal = null;
+                        Conversion conversionFraccionario = null;
+                        Conversion conversionMultiplicativo = null;
+                        Conversion conversionPoligono = null;
                         cabecera = new Cabecera(numero, HttpContext.GetGlobalResourceObject("Resource", "NumeroFormateadoTitulo").ToString());
                         Parallel.Invoke(
                             () =>
                             {
                                 //lock (cerrojo) conversiones.Add(ConversionCardinal(numeroExpandido, signo, value, true));
-                                var conversionCardinal = ConversionCardinal(numeroExpandido, signo, value, true);
-                                if (conversionCardinal != null) lock (cerrojo) conversiones.Add(conversionCardinal);
+                                conversionCardinal = ConversionCardinal(numeroExpandido, signo, value, true);
+                                //if (conversionCardinal != null) lock (cerrojo) conversiones.Add(conversionCardinal);
                             },
                             () =>
                             {
-                                var conversionOrdinal = ConversionOrdinal(numeroExpandido, signo, value, false);
-                                if (conversionOrdinal != null) lock (cerrojo) conversiones.Add(conversionOrdinal);
+                                conversionOrdinal = ConversionOrdinal(numeroExpandido, signo, value, false);
+                                //if (conversionOrdinal != null) lock (cerrojo) conversiones.Add(conversionOrdinal);
                             },
                             () =>
                             {
-                                var conversionFraccionario = ConversionFraccionario(numeroExpandido, signo, value, false);
-                                if (conversionFraccionario != null) lock (cerrojo) conversiones.Add(conversionFraccionario);
+                                conversionFraccionario = ConversionFraccionario(numeroExpandido, signo, value, false);
+                                //if (conversionFraccionario != null) lock (cerrojo) conversiones.Add(conversionFraccionario);
                             },
                             () =>
                             {
-                                var conversionMultiplicativo = ConversionMultiplicativo(numeroExpandido, signo, value, false);
-                                if (conversionMultiplicativo != null) lock (cerrojo) conversiones.Add(conversionMultiplicativo);
+                                conversionMultiplicativo = ConversionMultiplicativo(numeroExpandido, signo, value, false);
+                                //if (conversionMultiplicativo != null) lock (cerrojo) conversiones.Add(conversionMultiplicativo);
                             },
                             () =>
                             {
                                 if (numeroExpandido.Length <= 5)
                                 {
                                     System.Diagnostics.Debug.WriteLine(numeroExpandido + " :PARA NUMERO CIENTIFICO");
-                                    var conversionPoligono = ConversionPoligono(numeroExpandido, signo, value, false);
-                                    if (conversionPoligono != null) lock (cerrojo) conversiones.Add(conversionPoligono);
+                                    conversionPoligono = ConversionPoligono(numeroExpandido, signo, value, false);
+                                    //if (conversionPoligono != null) lock (cerrojo) conversiones.Add(conversionPoligono);
                                 }
                             }
                         );
+
+                        foreach(var conversion in new[] { conversionCardinal, conversionOrdinal, conversionFraccionario, conversionMultiplicativo,conversionPoligono})
+                        {
+                            if (conversion != null)
+                            {
+                                conversiones.Add(conversion);
+                            }
+                        }
                     }
                 }
                 else
@@ -218,50 +232,63 @@ namespace TFTService
                         cabecera = new Cabecera(numero, HttpContext.GetGlobalResourceObject("Resource", "NumeroFormateadoTitulo").ToString());
                         //conversiones.Add(ConversionDecimal(numeroExpandido, signo, value, true));
                         var conversionDecimal = ConversionDecimal(numero, signo, value, true);
-                        if (conversionDecimal != null) lock (cerrojo) conversiones.Add(conversionDecimal);
+                        if (conversionDecimal != null) conversiones.Add(conversionDecimal);
                     }
                     else if (signo == true)
                     {
                         cabecera = new Cabecera(numero, HttpContext.GetGlobalResourceObject("Resource", "NumeroFormateadoTitulo").ToString());
                         //conversiones.Add(ConversionNegativo(numeroExpandido, signo, value, true));
                         var conversionNegativo = ConversionNegativo(numero, signo, value, true);
-                        if (conversionNegativo != null) lock (cerrojo) conversiones.Add(conversionNegativo);
+                        if (conversionNegativo != null) conversiones.Add(conversionNegativo);
                     }
                     else
                     {
                         cabecera = new Cabecera(numero, HttpContext.GetGlobalResourceObject("Resource", "NumeroFormateadoTitulo").ToString());
+                        Conversion conversionCardinal = null;
+                        Conversion conversionOrdinal = null;
+                        Conversion conversionFraccionario = null;
+                        Conversion conversionMultiplicativo = null;
+                        Conversion conversionPoligono = null;
                         Parallel.Invoke(
                             () =>
                             {
                                 //lock (cerrojo) conversiones.Add(ConversionCardinal(numeroExpandido, signo, value, true));
-                                var conversionCardinal = ConversionCardinal(numero, signo, value, true);
-                                if (conversionCardinal != null) lock (cerrojo) conversiones.Add(conversionCardinal);
+                                conversionCardinal = ConversionCardinal(numero, signo, value, true);
+                                //if (conversionCardinal != null) lock (cerrojo) conversiones.Add(conversionCardinal);
                             },
                             () =>
                             {
-                                var conversionOrdinal = ConversionOrdinal(numeroExpandido, signo, value, false);
-                                if (conversionOrdinal != null) lock (cerrojo) conversiones.Add(conversionOrdinal);
+                                conversionOrdinal = ConversionOrdinal(numeroExpandido, signo, value, false);
+                                //if (conversionOrdinal != null) lock (cerrojo) conversiones.Add(conversionOrdinal);
                             },
                             () =>
                             {
-                                var conversionFraccionario = ConversionFraccionario(numeroExpandido, signo, value, false);
-                                if (conversionFraccionario != null) lock (cerrojo) conversiones.Add(conversionFraccionario);
+                                conversionFraccionario = ConversionFraccionario(numeroExpandido, signo, value, false);
+                                //if (conversionFraccionario != null) lock (cerrojo) conversiones.Add(conversionFraccionario);
                             },
                             () =>
                             {
-                                var conversionMultiplicativo = ConversionMultiplicativo(numeroExpandido, signo, value, false);
-                                if (conversionMultiplicativo != null) lock (cerrojo) conversiones.Add(conversionMultiplicativo);
+                                conversionMultiplicativo = ConversionMultiplicativo(numeroExpandido, signo, value, false);
+                                //if (conversionMultiplicativo != null) lock (cerrojo) conversiones.Add(conversionMultiplicativo);
                             },
                             () =>
                             {
                                 if (numeroExpandido.Length <= 5)
                                 {
                                     System.Diagnostics.Debug.WriteLine(numeroExpandido + " :PARA NUMERO CIENTIFICO");
-                                    var conversionPoligono = ConversionPoligono(numeroExpandido, signo, value, false);
-                                    if (conversionPoligono != null) lock (cerrojo) conversiones.Add(conversionPoligono);
+                                    conversionPoligono = ConversionPoligono(numeroExpandido, signo, value, false);
+                                    //if (conversionPoligono != null) lock (cerrojo) conversiones.Add(conversionPoligono);
                                 }
                             }
                         );
+
+                        foreach (var conversion in new[] { conversionCardinal, conversionOrdinal, conversionFraccionario, conversionMultiplicativo, conversionPoligono })
+                        {
+                            if (conversion != null)
+                            {
+                                conversiones.Add(conversion);
+                            }
+                        }
                     }
                 }
 
@@ -283,71 +310,101 @@ namespace TFTService
                 //System.Diagnostics.Debug.WriteLine("TITULO:" + cabecera.Titulo);
                 if (numero.Contains(".") || numero.Contains(","))
                 {
+                    Conversion conversionEuro = null;
+                    Conversion conversionDecimal = null;
                     Parallel.Invoke(
                         () =>
                         {
                             //lock (cerrojo) conversiones.Add(ConversionEuro(numero, signo, value, false));
-                            var conversionEuro = ConversionEuro(numero, signo, value, false);
-                            if (conversionEuro != null) lock (cerrojo) conversiones.Add(conversionEuro);
+                            conversionEuro = ConversionEuro(numero, signo, value, false);
+                            //if (conversionEuro != null) lock (cerrojo) conversiones.Add(conversionEuro);
                         },
                         () =>
                         {
 
                             //lock (cerrojo) conversiones.Add(ConversionDecimal(numero, signo, value, false));
-                            var conversionDecimal = ConversionDecimal(numero, signo, value, false);
-                            if (conversionDecimal != null) lock (cerrojo) conversiones.Add(conversionDecimal);
+                            conversionDecimal = ConversionDecimal(numero, signo, value, false);
+                            //if (conversionDecimal != null) lock (cerrojo) conversiones.Add(conversionDecimal);
                         }
                         );
+                    foreach (var conversion in new[] { conversionEuro, conversionDecimal})
+                    {
+                        if (conversion != null)
+                        {
+                            conversiones.Add(conversion);
+                        }
+                    }
                 }
                 else if (signo == true)
                 {
+                    Conversion conversionEuro = null;
+                    Conversion conversionNegativo = null;
                     Parallel.Invoke(
                         () =>
                         {
                             //lock (cerrojo) conversiones.Add(ConversionEuro(numero, signo, value, false));
-                            var conversionEuro = ConversionEuro(numero, signo, value, false);
-                            if (conversionEuro != null) lock (cerrojo) conversiones.Add(conversionEuro);
+                            conversionEuro = ConversionEuro(numero, signo, value, false);
+                            //if (conversionEuro != null) lock (cerrojo) conversiones.Add(conversionEuro);
                         },
                         () =>
                         {
                             //lock (cerrojo) conversiones.Add(ConversionNegativo(numero, signo, value, false));
-                            var conversionNegativo = ConversionNegativo(numero, signo, value, false);
-                            if(conversionNegativo != null) lock (cerrojo) conversiones.Add(conversionNegativo);
+                            conversionNegativo = ConversionNegativo(numero, signo, value, false);
+                            //if(conversionNegativo != null) lock (cerrojo) conversiones.Add(conversionNegativo);
                         }
                     );
+                    foreach (var conversion in new[] { conversionEuro, conversionNegativo })
+                    {
+                        if (conversion != null)
+                        {
+                            conversiones.Add(conversion);
+                        }
+                    }
                 }
                 else
                 {
+                    Conversion conversionEuro = null;
+                    Conversion conversionCardinal = null;
+                    Conversion conversionOrdinal = null;
+                    Conversion conversionFraccionario = null;
+                    Conversion conversionMultiplicativo = null;
                     Parallel.Invoke(
                         () =>
                         {
                             //lock (cerrojo) conversiones.Add(ConversionEuro(numero, signo, value, false));
-                            var conversionEuro= ConversionEuro(numero, signo, value, false);
-                            if (conversionEuro != null) lock (cerrojo) conversiones.Add(conversionEuro);
+                            conversionEuro= ConversionEuro(numero, signo, value, false);
+                            //if (conversionEuro != null) lock (cerrojo) conversiones.Add(conversionEuro);
                         },
                         () =>
                         {
                             //lock (cerrojo) conversiones.Add(ConversionCardinal(numero, signo, value, false));
-                            var conversionCardinal = ConversionCardinal(numero, signo, value, false);
-                            if (conversionCardinal != null) lock (cerrojo) conversiones.Add(conversionCardinal);
+                            conversionCardinal = ConversionCardinal(numero, signo, value, false);
+                            //if (conversionCardinal != null) lock (cerrojo) conversiones.Add(conversionCardinal);
                         },
                         () =>
                         {
-                            var conversionOrdinal = ConversionOrdinal(numero, signo, value, false);
-                            if (conversionOrdinal != null) lock (cerrojo) conversiones.Add(conversionOrdinal);
+                            conversionOrdinal = ConversionOrdinal(numero, signo, value, false);
+                            //if (conversionOrdinal != null) lock (cerrojo) conversiones.Add(conversionOrdinal);
                         },
                         () =>
                         {
                             System.Diagnostics.Debug.WriteLine("Valor de 'numero' antes del parse: '" + numero + "'");
-                            var conversionFraccionario = ConversionFraccionario(numero, signo, value, false);
-                            if (conversionFraccionario != null) lock (cerrojo) conversiones.Add(conversionFraccionario);
+                            conversionFraccionario = ConversionFraccionario(numero, signo, value, false);
+                            //if (conversionFraccionario != null) lock (cerrojo) conversiones.Add(conversionFraccionario);
                         },
                         () =>
                         {
-                            var conversionMultiplicativo = ConversionMultiplicativo(numero, signo, value, false);
-                            if (conversionMultiplicativo != null) lock (cerrojo) conversiones.Add(conversionMultiplicativo);
+                            conversionMultiplicativo = ConversionMultiplicativo(numero, signo, value, false);
+                            //if (conversionMultiplicativo != null) lock (cerrojo) conversiones.Add(conversionMultiplicativo);
                         }
                     );
+                    foreach (var conversion in new[] { conversionEuro, conversionCardinal, conversionOrdinal, conversionFraccionario, conversionMultiplicativo })
+                    {
+                        if (conversion != null)
+                        {
+                            conversiones.Add(conversion);
+                        }
+                    }
                 }
                 numero += "€";
             }
@@ -369,88 +426,120 @@ namespace TFTService
                 //System.Diagnostics.Debug.WriteLine("TITULO:" + cabecera.Titulo);
                 if (numero.Contains(".") || numero.Contains(","))
                 {
+                    Conversion conversionPeso = null;
+                    Conversion conversionDolar = null;
+                    Conversion conversionDecimal = null;
                     Parallel.Invoke(
                         () =>
                         {
                             //lock (cerrojo) conversiones.Add(ConversionPeso(numero, signo, value, false));
-                            var conversionPeso = ConversionPeso(numero, signo, value, false);
-                            if (conversionPeso != null) lock (cerrojo) conversiones.Add(conversionPeso);
+                            conversionPeso = ConversionPeso(numero, signo, value, false);
+                            //if (conversionPeso != null) lock (cerrojo) conversiones.Add(conversionPeso);
                         },
                         () =>
                         {
                             //lock (cerrojo) conversiones.Add(ConversionDolar(numero, signo, value, false));
-                            var conversionDolar = ConversionDolar(numero, signo, value, false);
-                            if (conversionDolar != null) lock (cerrojo) conversiones.Add(conversionDolar);
+                            conversionDolar = ConversionDolar(numero, signo, value, false);
+                            //if (conversionDolar != null) lock (cerrojo) conversiones.Add(conversionDolar);
                         },
                         () =>
                         {
                             //lock (cerrojo) conversiones.Add(ConversionDecimal(numero, signo, value, false));
-                            var conversionDecimal = ConversionDecimal(numero, signo, value, false);
-                            if (conversionDecimal != null) lock (cerrojo) conversiones.Add(conversionDecimal);
+                            conversionDecimal = ConversionDecimal(numero, signo, value, false);
+                            //if (conversionDecimal != null) lock (cerrojo) conversiones.Add(conversionDecimal);
                         }
                     );
+                    foreach(var conversion in new[] { conversionPeso,conversionDolar, conversionDecimal })
+                    {
+                        if (conversion != null)
+                        {
+                            conversiones.Add(conversion);
+                        }
+                    }
                 }
                 else if (signo == true)
                 {
+                    Conversion conversionPeso = null;
+                    Conversion conversionDolar = null;
+                    Conversion conversionNegativo = null;
                     Parallel.Invoke(
                          () =>
                          {
                              //lock (cerrojo) conversiones.Add(ConversionPeso(numero, signo, value, false));
-                             var conversionPeso = ConversionPeso(numero, signo, value, false);
-                             if (conversionPeso != null) lock (cerrojo) conversiones.Add(conversionPeso);
+                             conversionPeso = ConversionPeso(numero, signo, value, false);
+                             //if (conversionPeso != null) lock (cerrojo) conversiones.Add(conversionPeso);
                          },
                         () =>
                         {
                             //lock (cerrojo) conversiones.Add(ConversionDolar(numero, signo, value, false));
-                            var conversionDolar = ConversionDolar(numero, signo, value, false);
-                            if (conversionDolar != null) lock (cerrojo) conversiones.Add(conversionDolar);
+                            conversionDolar = ConversionDolar(numero, signo, value, false);
+                            //if (conversionDolar != null) lock (cerrojo) conversiones.Add(conversionDolar);
                         },
                         () =>
                         {
                             //lock (cerrojo) conversiones.Add(ConversionNegativo(numero, signo, value, false));
-                            var conversionNegativo = ConversionNegativo(numero, signo, value, false);
-                            if (conversionNegativo != null) lock (cerrojo) conversiones.Add(conversionNegativo);
+                            conversionNegativo = ConversionNegativo(numero, signo, value, false);
+                            //if (conversionNegativo != null) lock (cerrojo) conversiones.Add(conversionNegativo);
                         }
                     );
+                    foreach (var conversion in new[] { conversionPeso, conversionDolar, conversionNegativo })
+                    {
+                        if (conversion != null)
+                        {
+                            conversiones.Add(conversion);
+                        }
+                    }
                 }
                 else
                 {
-
+                    Conversion conversionPeso = null;
+                    Conversion conversionDolar = null;
+                    Conversion conversionCardinal = null;
+                    Conversion conversionOrdinal = null;
+                    Conversion conversionFraccionario = null;
+                    Conversion conversionMultiplicativo = null;
                     Parallel.Invoke(
                         () =>
                         {
                             //lock (cerrojo) conversiones.Add(ConversionPeso(numero, signo, value, false));
-                            var conversionPeso = ConversionPeso(numero, signo, value, false);
-                            if (conversionPeso != null) lock (cerrojo) conversiones.Add(conversionPeso);
+                            conversionPeso = ConversionPeso(numero, signo, value, false);
+                            //if (conversionPeso != null) lock (cerrojo) conversiones.Add(conversionPeso);
                         },
                         () =>
                         {
                             //lock (cerrojo) conversiones.Add(ConversionDolar(numero, signo, value, false));
-                            var conversionDolar = ConversionDolar(numero, signo, value, false);
-                            if (conversionDolar != null) lock (cerrojo) conversiones.Add(conversionDolar);
+                            conversionDolar = ConversionDolar(numero, signo, value, false);
+                            //if (conversionDolar != null) lock (cerrojo) conversiones.Add(conversionDolar);
                         },
                         () =>
                         {
                             //lock (cerrojo) conversiones.Add(ConversionCardinal(numero, signo, value, false));
-                            var conversionCardinal = ConversionCardinal(numero, signo, value, false);
-                            if (conversionCardinal != null) lock (cerrojo) conversiones.Add(conversionCardinal);
+                            conversionCardinal = ConversionCardinal(numero, signo, value, false);
+                            //if (conversionCardinal != null) lock (cerrojo) conversiones.Add(conversionCardinal);
                         },
                         () =>
                         {
-                            var conversionOrdinal = ConversionOrdinal(numero, signo, value, false);
-                            if (conversionOrdinal != null) lock (cerrojo) conversiones.Add(conversionOrdinal);
+                            conversionOrdinal = ConversionOrdinal(numero, signo, value, false);
+                            //if (conversionOrdinal != null) lock (cerrojo) conversiones.Add(conversionOrdinal);
                         },
                         () =>
                         {
-                            var conversionFraccionario = ConversionFraccionario(numero, signo, value, false);
-                            if (conversionFraccionario != null) lock (cerrojo) conversiones.Add(conversionFraccionario);
+                            conversionFraccionario = ConversionFraccionario(numero, signo, value, false);
+                            //if (conversionFraccionario != null) lock (cerrojo) conversiones.Add(conversionFraccionario);
                         },
                         () =>
                         {
-                            var conversionMultiplicativo = ConversionMultiplicativo(numero, signo, value, false);
-                            if (conversionMultiplicativo != null) lock (cerrojo) conversiones.Add(conversionMultiplicativo);
+                            conversionMultiplicativo = ConversionMultiplicativo(numero, signo, value, false);
+                            //if (conversionMultiplicativo != null) lock (cerrojo) conversiones.Add(conversionMultiplicativo);
                         }
                     );
+                    foreach (var conversion in new[] { conversionPeso, conversionDolar, conversionCardinal, conversionOrdinal, conversionFraccionario, conversionMultiplicativo })
+                    {
+                        if (conversion != null)
+                        {
+                            conversiones.Add(conversion);
+                        }
+                    }
                 }
                 numero += "$";
 
@@ -467,42 +556,54 @@ namespace TFTService
                     
                     //conversiones.Add(ConversionNegativo(numero, signo, value, false));
                     var conversionNegativo = ConversionNegativo(numero, signo, value, false);
-                    if (conversionNegativo != null) lock (cerrojo) conversiones.Add(conversionNegativo);
+                    if (conversionNegativo != null) conversiones.Add(conversionNegativo);
                 }
                 else
                 {
+                    Conversion conversionCardinal = null;
+                    Conversion conversionOrdinal = null;
+                    Conversion conversionFraccionario = null;
+                    Conversion conversionMultiplicativo = null;
+                    Conversion conversionPoligono = null;
                     Parallel.Invoke(
                         () =>
                         {
                             //lock (cerrojo) conversiones.Add(ConversionCardinal(numero, signo, value, false));
-                            var conversionCardinal = ConversionCardinal(numero, signo, value, false);
-                            if (conversionCardinal != null) lock (cerrojo) conversiones.Add(conversionCardinal);
+                            conversionCardinal = ConversionCardinal(numero, signo, value, false);
+                            //if (conversionCardinal != null) lock (cerrojo) conversiones.Add(conversionCardinal);
                         },
                         () =>
                         {
-                            var conversionOrdinal = ConversionOrdinal(numero, signo, value, false);
-                            if (conversionOrdinal != null) lock (cerrojo) conversiones.Add(conversionOrdinal);
+                            conversionOrdinal = ConversionOrdinal(numero, signo, value, false);
+                            //if (conversionOrdinal != null) lock (cerrojo) conversiones.Add(conversionOrdinal);
                         },
                         () =>
                         {
-                            var conversionFraccionario = ConversionFraccionario(numero, signo, value, false);
-                            if (conversionFraccionario != null) lock (cerrojo) conversiones.Add(conversionFraccionario);
+                            conversionFraccionario = ConversionFraccionario(numero, signo, value, false);
+                            //if (conversionFraccionario != null) lock (cerrojo) conversiones.Add(conversionFraccionario);
                         },
                         () =>
                         {
-                            var conversionMultiplicativo = ConversionMultiplicativo(numero, signo, value, false);
-                            if (conversionMultiplicativo != null) lock (cerrojo) conversiones.Add(conversionMultiplicativo);
+                            conversionMultiplicativo = ConversionMultiplicativo(numero, signo, value, false);
+                            //if (conversionMultiplicativo != null) lock (cerrojo) conversiones.Add(conversionMultiplicativo);
                         },
                         () =>
                         {
                             if (numero.Length <= 5)
                             {
-                                var conversionPoligono = ConversionPoligono(numero, signo, value, false);
-                                if (conversionPoligono != null) lock (cerrojo) conversiones.Add(conversionPoligono);
+                                conversionPoligono = ConversionPoligono(numero, signo, value, false);
+                                //if (conversionPoligono != null) lock (cerrojo) conversiones.Add(conversionPoligono);
                             }
                         }
 
                     );
+                    foreach (var conversion in new[] { conversionCardinal, conversionOrdinal, conversionFraccionario, conversionMultiplicativo, conversionPoligono })
+                    {
+                        if (conversion != null)
+                        {
+                            conversiones.Add(conversion);
+                        }
+                    }
                 }
             }
 
@@ -517,38 +618,49 @@ namespace TFTService
                 }
 
                 string numeroEntero = Romano.ConvertirNumRomanoEntero(numero);
-
+                Conversion conversionCardinal = null;
+                Conversion conversionOrdinal = null;
+                Conversion conversionFraccionario = null;
+                Conversion conversionMultiplicativo = null;
+                Conversion conversionPoligono = null;
                 Parallel.Invoke(
                     () =>
                     {
-                        var conversionCardinal = ConversionCardinal(numeroEntero, signo, value, false);
-                        if (conversionCardinal != null) lock (cerrojo) conversiones.Add(conversionCardinal);
+                        conversionCardinal = ConversionCardinal(numeroEntero, signo, value, false);
+                        //if (conversionCardinal != null) lock (cerrojo) conversiones.Add(conversionCardinal);
                         //lock (cerrojo) conversiones.Add(ConversionCardinal(numeroEntero, signo, value, false));
                     },
                     () =>
                     {
-                        var conversionOrdinal = ConversionOrdinal(numeroEntero, signo, value, false);
-                        if (conversionOrdinal != null) lock (cerrojo) conversiones.Add(conversionOrdinal);
+                        conversionOrdinal = ConversionOrdinal(numeroEntero, signo, value, false);
+                        //if (conversionOrdinal != null) lock (cerrojo) conversiones.Add(conversionOrdinal);
                     },
                     () =>
                     {
-                        var conversionFraccionario = ConversionFraccionario(numeroEntero, signo, value, false);
-                        if (conversionFraccionario != null) lock (cerrojo) conversiones.Add(conversionFraccionario);
+                        conversionFraccionario = ConversionFraccionario(numeroEntero, signo, value, false);
+                        //if (conversionFraccionario != null) lock (cerrojo) conversiones.Add(conversionFraccionario);
                     },
                     () =>
                     {
-                        var conversionMultiplicativo = ConversionMultiplicativo(numeroEntero, signo, value, false);
-                        if (conversionMultiplicativo != null) lock (cerrojo) conversiones.Add(conversionMultiplicativo);
+                        conversionMultiplicativo = ConversionMultiplicativo(numeroEntero, signo, value, false);
+                        //if (conversionMultiplicativo != null) lock (cerrojo) conversiones.Add(conversionMultiplicativo);
                     },
                     () =>
                     {
                         if (numero.Length <= 5)
                         {
-                            var conversionPoligono = ConversionPoligono(numeroEntero, signo, value, false);
-                            if (conversionPoligono != null) lock (cerrojo) conversiones.Add(conversionPoligono);
+                            conversionPoligono = ConversionPoligono(numeroEntero, signo, value, false);
+                            //if (conversionPoligono != null) lock (cerrojo) conversiones.Add(conversionPoligono);
                         }
                     }
                 );
+                foreach (var conversion in new[] { conversionCardinal, conversionOrdinal, conversionFraccionario, conversionMultiplicativo, conversionPoligono })
+                {
+                    if (conversion != null)
+                    {
+                        conversiones.Add(conversion);
+                    }
+                }
             }
 
 

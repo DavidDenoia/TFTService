@@ -110,7 +110,7 @@ namespace TFTService
         {
             StringBuilder resultado = new StringBuilder();
             string[] unidades = { "zero", "un", "dos", "tres", "quatre", "cinc", "sis", "set", "vuit", "nou" };
-            string[] decenas = { "trenta", "qauranta", "cinquanta", "seixanta", "setanta", "vuitanta", "noranta" };
+            string[] decenas = { "trenta", "quaranta", "cinquanta", "seixanta", "setanta", "vuitanta", "noranta" };
             string[] centenas = { "cent ", "dos-cents ", "tres-cents ", "quatre-cents ", "cinc-cents ", "sis-cents ", "set-cents ", "vuit-cents ", "nou-cents " };
             string[] decenasEspeciales = {"deu","onze","dotze","tretze","catorze", "quinze","setze","disset","divuit","dinou",
                 "vint","vint-i-un","vint-i-dos","vint-i-tres","vint-i-quatre","vint-i-cinc", "vint-i-sis","vint-i-set","vint-i-vuit","vint-i-nou"};

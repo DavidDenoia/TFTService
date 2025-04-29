@@ -1006,7 +1006,7 @@ namespace TFTService
                 Opcion FormFem = new Opcion(HttpContext.GetGlobalResourceObject("Resource", "FormFemOpcion").ToString());
                 FormFem.Opciones = new List<string>();
                 FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + "dues");
-                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + "dues");
+                FormFem.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + "dos");
                 resultado.MasOpciones.Add(FormFem);
             }
             else if (numCompletoLetras == "disset")

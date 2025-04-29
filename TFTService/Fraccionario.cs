@@ -103,7 +103,7 @@ namespace TFTService
             return resultado.ToString();
         }
 
-        public static string ConvertirNumEnteroFraccionario(string numero, string genero)
+        /*public static string ConvertirNumEnteroFraccionario(string numero, string genero)
         {
             int tamañoNumero = numero.Length;
             StringBuilder resultado = new StringBuilder();
@@ -211,7 +211,7 @@ namespace TFTService
             }
 
             return resultado.ToString();
-        }
+        }*/
 
         public static string ConvertirNumEnteroFracDenominadorVal(string numero, string genero)
         {
@@ -309,7 +309,7 @@ namespace TFTService
             return resultado.ToString();
         }
 
-        public static string ConvertirNumEnteroFraccionarioVal(string numero, string genero)
+        /*public static string ConvertirNumEnteroFraccionarioVal(string numero, string genero)
         {
             int tamañoNumero = numero.Length;
             StringBuilder resultado = new StringBuilder();
@@ -410,6 +410,218 @@ namespace TFTService
                 else if (numCard.EndsWith("mil"))
                 {
                     resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "·lèsim" : numCard.Substring(0, numCard.Length - 1) + "·lèsima");
+                }
+            }
+
+            return resultado.ToString();
+        }*/
+
+
+        public static string ConvertirNumEnteroFraccionario(string numero, string genero)
+        {
+            int tamañoNumero = numero.Length;
+            StringBuilder resultado = new StringBuilder();
+            if (Regex.IsMatch(numero, @"^10+$"))
+            {
+                string denominador = Cardinales.NuevoConvertirNumEnteroCardinal(numero, false);
+                if (denominador == "deu")
+                {
+
+                    denominador = "dècim";
+                }
+                else if (denominador == "cent")
+                {
+                    denominador = "centèsim";
+
+                }
+                else if (denominador == "mil")
+                {
+                    denominador = "mil·lèsim";
+                }
+                else
+                {
+                    denominador = Cardinales.ConvertirNumDecimalCardinal(numero);
+                }
+                resultado.Insert(0, genero == "M" ? denominador : denominador + "a");
+                return resultado.ToString();
+            }
+
+            if (tamañoNumero <= 2)
+            {
+
+                int numeroInt = int.Parse(numero);
+
+                if (numeroInt >= 0 && numeroInt <= 4)
+                {
+                    switch (numeroInt)
+                    {
+                        case 0: return null;
+                        case 1: resultado.Insert(0, genero == "M" ? "unitat" : "unitat"); break;
+                        case 2: resultado.Insert(0, genero == "M" ? "mig" : "mitja"); break;
+                        case 3: resultado.Insert(0, genero == "M" ? "terç" : " terça"); break;
+                        case 4: resultado.Insert(0, genero == "M" ? "quart" : "quarta"); break;
+                            //case 10: resultado.Insert(0, "dècim"); break;
+                    }
+                }
+                else
+                {
+                    if(genero == "M")
+                    {
+                        string numCard = Ordinales.ConvertirNumEnteroOrdinal(numero, "M", false);
+                        if (string.IsNullOrEmpty(numCard))
+                        {
+                            return null;
+                        }
+                        else
+                        {
+                            resultado.Insert(0, numCard);
+                        }
+                    }
+                    else
+                    {
+                        string numCard = Ordinales.ConvertirNumEnteroOrdinal(numero, "F", false);
+                        if (string.IsNullOrEmpty(numCard))
+                        {
+                            return null;
+                        }
+                        else
+                        {
+                            resultado.Insert(0, numCard);
+                        }
+                    }
+                }  
+            }
+            else
+            {
+                if (genero == "M")
+                {
+                    string numCard = Ordinales.ConvertirNumEnteroOrdinal(numero, "M", false);
+                    if (string.IsNullOrEmpty(numCard))
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        resultado.Insert(0, numCard);
+                    }
+                }
+                else
+                {
+                    string numCard = Ordinales.ConvertirNumEnteroOrdinal(numero, "F", false);
+                    if (string.IsNullOrEmpty(numCard))
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        resultado.Insert(0, numCard);
+                    }
+                }
+            }
+
+            return resultado.ToString();
+        }
+
+        public static string ConvertirNumEnteroFraccionarioVal(string numero, string genero)
+        {
+            int tamañoNumero = numero.Length;
+            StringBuilder resultado = new StringBuilder();
+            if (Regex.IsMatch(numero, @"^10+$"))
+            {
+                string denominador = Cardinales.NuevoConvertirNumEnteroCardinalVal(numero, false);
+                if (denominador == "deu")
+                {
+
+                    denominador = "dècim";
+                }
+                else if (denominador == "cent")
+                {
+                    denominador = "centèsim";
+
+                }
+                else if (denominador == "mil")
+                {
+                    denominador = "mil·lèsim";
+                }
+                else
+                {
+                    denominador = Cardinales.ConvertirNumDecimalCardinalVal(numero);
+                }
+                resultado.Insert(0, genero == "M" ? denominador : denominador + "a");
+                return resultado.ToString();
+            }
+
+            if (tamañoNumero <= 2)
+            {
+
+                int numeroInt = int.Parse(numero);
+
+                if (numeroInt >= 0 && numeroInt <= 4)
+                {
+                    switch (numeroInt)
+                    {
+                        case 0: return null;
+                        case 1: resultado.Insert(0, genero == "M" ? "unitat" : "unitat"); break;
+                        case 2: resultado.Insert(0, genero == "M" ? "mig" : "mitja"); break;
+                        case 3: resultado.Insert(0, genero == "M" ? "terç" : " terça"); break;
+                        case 4: resultado.Insert(0, genero == "M" ? "quart" : "quarta"); break;
+                            //case 10: resultado.Insert(0, "dècim"); break;
+                    }
+                }
+                else
+                {
+                    if (genero == "M")
+                    {
+                        string numCard = Ordinales.ConvertirNumEnteroOrdinalVal(numero, "M", false);
+                        if (string.IsNullOrEmpty(numCard))
+                        {
+                            return null;
+                        }
+                        else
+                        {
+                            resultado.Insert(0, numCard);
+                        }
+                    }
+                    else
+                    {
+                        string numCard = Ordinales.ConvertirNumEnteroOrdinalVal(numero, "F", false);
+                        if (string.IsNullOrEmpty(numCard))
+                        {
+                            return null;
+                        }
+                        else
+                        {
+                            resultado.Insert(0, numCard);
+                        }
+                    }
+
+                }
+            }
+            else
+            {
+                if (genero == "M")
+                {
+                    string numCard = Ordinales.ConvertirNumEnteroOrdinal(numero, "M", false);
+                    if (string.IsNullOrEmpty(numCard))
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        resultado.Insert(0, numCard);
+                    }
+                }
+                else
+                {
+                    string numCard = Ordinales.ConvertirNumEnteroOrdinal(numero, "F", false);
+                    if (string.IsNullOrEmpty(numCard))
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        resultado.Insert(0, numCard);
+                    }
                 }
             }
 

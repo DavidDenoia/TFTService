@@ -67,7 +67,7 @@ namespace TFTService
                     }
                     else if (numCard.EndsWith("ou"))
                     {
-                        resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 2) + "vè" : numCard.Substring(0, numCard.Length - 2) + "vena");
+                        resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "vè" : numCard.Substring(0, numCard.Length - 1) + "vena");
                     }
                     else if (numCard.EndsWith("s") || numCard.EndsWith("t") || numCard.EndsWith("n") || numCard.EndsWith("l"))
                     {
@@ -196,7 +196,7 @@ namespace TFTService
                     }
                     else if (numCard.EndsWith("ou"))
                     {
-                        resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 2) + "vé" : numCard.Substring(0, numCard.Length - 2) + "vena");
+                        resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "vé" : numCard.Substring(0, numCard.Length - 1) + "vena");
                     }
                     else if (numCard.EndsWith("s") || numCard.EndsWith("t") || numCard.EndsWith("n") || numCard.EndsWith("l"))
                     {

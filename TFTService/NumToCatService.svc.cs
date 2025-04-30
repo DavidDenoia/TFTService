@@ -677,7 +677,7 @@ namespace TFTService
             {
                 return null;
             }
-            string denominador = Fraccionario.ConvertirNumEnteroFracDenominador(pDenominador, "M");
+            string denominador = Fraccionario.ConvertirNumEnteroFraccionario(pDenominador, "M");
 
             string denominadorAdj = "";
             string numeradorAdj = "";
@@ -743,8 +743,11 @@ namespace TFTService
                 }
             }
 
+       
             string numCompletoLetras = numerador + " " + denominador;
-            string numCompletoAdj = numeradorAdj + " " + denominadorAdj;
+            string numCompletoAdj  = numerador + " " + denominador;
+         
+            
 
             string numeradorVal = Cardinales.NuevoConvertirNumEnteroCardinalVal(pNumerador, signo);
             string denominadorVal = Fraccionario.ConvertirNumEnteroFracDenominadorVal(pDenominador, "M");
@@ -816,7 +819,9 @@ namespace TFTService
             }
 
             string numCompletoLetrasVal = numeradorVal + " " + denominadorVal;
-            string numCompletoAdjVal = numeradorAdjVal + " " + denominadorAdjVal;
+            string numCompletoAdjVal = numeradorVal + " " + denominadorVal;
+
+
 
 
 

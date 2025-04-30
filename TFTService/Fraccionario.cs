@@ -421,7 +421,7 @@ namespace TFTService
         {
             int tamañoNumero = numero.Length;
             StringBuilder resultado = new StringBuilder();
-            if (Regex.IsMatch(numero, @"^10+$"))
+            if (Regex.IsMatch(numero, @"^10+$") )
             {
                 string denominador = Cardinales.NuevoConvertirNumEnteroCardinal(numero, false);
                 if (denominador == "deu")
@@ -438,9 +438,18 @@ namespace TFTService
                 {
                     denominador = "mil·lèsim";
                 }
-                else
+                else if(tamañoNumero > 4)
                 {
-                    denominador = Cardinales.ConvertirNumDecimalCardinal(numero);
+                    if (denominador.EndsWith("ó"))
+                    {
+                        denominador = denominador.Substring(0, denominador.Length - 1) + "onèsim";
+                    } else if (denominador.EndsWith("ns"))
+                    {
+                        denominador = denominador.Substring(0, denominador.Length - 1) + "èsim";
+                    } else if(denominador.EndsWith("l"))
+                    { 
+                            denominador = denominador + "·lèsim";
+                    }
                 }
                 resultado.Insert(0, genero == "M" ? denominador : denominador + "a");
                 return resultado.ToString();
@@ -543,9 +552,20 @@ namespace TFTService
                 {
                     denominador = "mil·lèsim";
                 }
-                else
+                else if (tamañoNumero > 4)
                 {
-                    denominador = Cardinales.ConvertirNumDecimalCardinalVal(numero);
+                    if (denominador.EndsWith("ó"))
+                    {
+                        denominador = denominador.Substring(0, denominador.Length - 1) + "onèsim";
+                    }
+                    else if (denominador.EndsWith("ns"))
+                    {
+                        denominador = denominador.Substring(0, denominador.Length - 1) + "èsim";
+                    }
+                    else if (denominador.EndsWith("l"))
+                    {
+                        denominador = denominador + "·lèsim";
+                    }
                 }
                 resultado.Insert(0, genero == "M" ? denominador : denominador + "a");
                 return resultado.ToString();
@@ -594,14 +614,13 @@ namespace TFTService
                             resultado.Insert(0, numCard);
                         }
                     }
-
                 }
             }
             else
             {
                 if (genero == "M")
                 {
-                    string numCard = Ordinales.ConvertirNumEnteroOrdinal(numero, "M", false);
+                    string numCard = Ordinales.ConvertirNumEnteroOrdinalVal(numero, "M", false);
                     if (string.IsNullOrEmpty(numCard))
                     {
                         return null;
@@ -613,7 +632,7 @@ namespace TFTService
                 }
                 else
                 {
-                    string numCard = Ordinales.ConvertirNumEnteroOrdinal(numero, "F", false);
+                    string numCard = Ordinales.ConvertirNumEnteroOrdinalVal(numero, "F", false);
                     if (string.IsNullOrEmpty(numCard))
                     {
                         return null;
@@ -627,5 +646,6 @@ namespace TFTService
 
             return resultado.ToString();
         }
+
     }
 }

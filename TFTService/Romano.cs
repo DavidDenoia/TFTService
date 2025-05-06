@@ -10,6 +10,7 @@ namespace TFTService
     {
         public static string ConvertirNumRomanoEntero(string numero)
         {
+
             StringBuilder resultado = new StringBuilder();
 
             Dictionary<char, int> numeroRomano = new Dictionary<char, int>
@@ -28,7 +29,7 @@ namespace TFTService
 
             string romano = numero.ToUpper();
 
-            for(int i = romano.Length - 1; i>=0; i--)
+            for (int i = romano.Length - 1; i>=0; i--)
             {
                 char c = romano[i];
 

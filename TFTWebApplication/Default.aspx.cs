@@ -24,15 +24,15 @@ namespace TFTWebApplication
             if (!IsPostBack)
             {
 
-               
 
-                rptResultados.DataSource = null;
-                rptResultados.DataBind();
-                
+
+              
                 panelBienvenida.Visible = true;
+                panelError.Visible = false;
+                rptResultados.Visible = false;
 
-                
-               
+
+
 
             }
 

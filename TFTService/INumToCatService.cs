@@ -24,26 +24,7 @@ namespace TFTService
 
 
     // Utilice un contrato de datos, como se ilustra en el ejemplo siguiente, para agregar tipos compuestos a las operaciones de servicio.
-    [DataContract]
-    public class PartesNumeros
-    {
-        string parteEntera = "";
-        string parteDecimal = "";
-
-        [DataMember]
-        public string ParteEntera
-        {
-            get { return parteEntera; }
-            set { parteEntera = value; }
-        }
-
-        [DataMember]
-        public string ParteDecimal
-        {
-            get { return parteDecimal; }
-            set { parteDecimal = value; }
-        }
-    }
+   
 
     [DataContract]
     public class Conversion

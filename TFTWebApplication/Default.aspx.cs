@@ -19,7 +19,7 @@ namespace TFTWebApplication
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            idioma = Session["idioma"] != null ? Session["idioma"].ToString() : "es-ES";
+            
 
             if (!IsPostBack)
             {
@@ -39,7 +39,7 @@ namespace TFTWebApplication
         }
         protected override void InitializeCulture()
         {
-            string idioma = Session["idioma"]?.ToString() ?? "es-ES";
+            idioma = Session["idioma"]?.ToString() ?? "es-ES";
             CultureInfo cultura = new CultureInfo(idioma);
             Thread.CurrentThread.CurrentCulture = cultura;
             Thread.CurrentThread.CurrentUICulture = cultura;

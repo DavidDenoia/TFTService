@@ -29,8 +29,8 @@ namespace TFTService
     {
 
         private CultureInfo language;
-        List<Conversion> conversiones = new List<Conversion>();//Aqui vamos a meter todas las conversiones
-        Cabecera cabecera;
+        private List<Conversion> conversiones = new List<Conversion>();//Aqui vamos a meter todas las conversiones
+        private Cabecera cabecera;
 
         public (Cabecera, List<Conversion>) MainTraducir(string value, string lenguaje)
         {

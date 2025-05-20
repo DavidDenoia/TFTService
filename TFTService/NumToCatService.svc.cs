@@ -231,14 +231,14 @@ namespace TFTService
                     {
                         cabecera = new Cabecera(numero, HttpContext.GetGlobalResourceObject("Resource", "NumeroFormateadoTitulo").ToString());
                         //conversiones.Add(ConversionDecimal(numeroExpandido, signo, value, true));
-                        var conversionDecimal = ConversionDecimal(numero, signo, value, true);
+                        var conversionDecimal = ConversionDecimal(numeroExpandido, signo, value, true);
                         if (conversionDecimal != null) conversiones.Add(conversionDecimal);
                     }
                     else if (signo == true)
                     {
                         cabecera = new Cabecera(numero, HttpContext.GetGlobalResourceObject("Resource", "NumeroFormateadoTitulo").ToString());
                         //conversiones.Add(ConversionNegativo(numeroExpandido, signo, value, true));
-                        var conversionNegativo = ConversionNegativo(numero, signo, value, true);
+                        var conversionNegativo = ConversionNegativo(numeroExpandido, signo, value, true);
                         if (conversionNegativo != null) conversiones.Add(conversionNegativo);
                     }
                     else
@@ -253,7 +253,7 @@ namespace TFTService
                             () =>
                             {
                                 //lock (cerrojo) conversiones.Add(ConversionCardinal(numeroExpandido, signo, value, true));
-                                conversionCardinal = ConversionCardinal(numero, signo, value, true);
+                                conversionCardinal = ConversionCardinal(numeroExpandido, signo, value, true);
                                 //if (conversionCardinal != null) lock (cerrojo) conversiones.Add(conversionCardinal);
                             },
                             () =>

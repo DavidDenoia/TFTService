@@ -221,10 +221,10 @@
     <value>euro</value>
   </data>
   <data name="Centimo" xml:space="preserve">
-    <value>céntimo</value>
+    <value>céntim</value>
   </data>
   <data name="Centimos" xml:space="preserve">
-    <value>céntimos</value>
+    <value>cèntims</value>
   </data>
   <data name="EurosTipo" xml:space="preserve">
     <value>Euros</value>
@@ -245,10 +245,10 @@
     <value>peso</value>
   </data>
   <data name="Centavos" xml:space="preserve">
-    <value>centavos</value>
+    <value>centaus</value>
   </data>
   <data name="Centavo" xml:space="preserve">
-    <value>centavo</value>
+    <value>centau</value>
   </data>
   <data name="PesoTipo" xml:space="preserve">
     <value>Peso</value>
@@ -257,7 +257,7 @@
     <value>dólar</value>
   </data>
   <data name="Dolares" xml:space="preserve">
-    <value>dólares</value>
+    <value>dòlars</value>
   </data>
   <data name="DolarTipo" xml:space="preserve">
     <value>Dólar</value>
@@ -469,7 +469,7 @@
     <value>Es va multiplicar el nombre d’usuaris fins a arribar a una xifra |.</value>
   </data>
   <data name="DeEuros" xml:space="preserve">
-    <value>de euros</value>
+    <value>d'euros</value>
   </data>
   <data name="EuroNota1" xml:space="preserve">
     <value>El símbolo del euro es € y se escribe detrás del número.</value>
@@ -520,7 +520,7 @@
     <value>Ens van ingressar | a la compta del projecte.</value>
   </data>
   <data name="DeDolares" xml:space="preserve">
-    <value>de dólares</value>
+    <value>de dòlars</value>
   </data>
   <data name="DolarNota1" xml:space="preserve">
     <value>El símbolo del dólar es $ y se escribe delante del número.</value>

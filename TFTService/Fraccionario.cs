@@ -27,6 +27,9 @@ namespace TFTService
                 }else if(denominador == "mil")
                 {
                     denominador = genero == "M" ? "mil·lèsim" : "mil·lèsima";
+                }else if (denominador=="un")
+                {
+                    denominador = genero == "M" ? "partit per un" : "partir per una";
                 }
                 else
                 {
@@ -232,6 +235,10 @@ namespace TFTService
                 else if (denominador == "mil")
                 {
                     denominador = genero == "M" ? "mil·lèsim" : "mil·lèsima";
+                }
+                else if (denominador == "un")
+                {
+                    denominador = genero == "M" ? "partit per un" : "partir per una";
                 }
                 else
                 {

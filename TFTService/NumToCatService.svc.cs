@@ -18,6 +18,7 @@ using System.Diagnostics.Eventing.Reader;
 using System.Runtime.InteropServices;
 using System.Security.Policy;
 using System.Threading.Tasks;
+using System.Net.NetworkInformation;
 
 
 
@@ -682,8 +683,8 @@ namespace TFTService
             {
                 return null;
             }
-            string denominador = Fraccionario.ConvertirNumEnteroFraccionario(pDenominador, "M");
-
+            string denominador = Fraccionario.ConvertirNumEnteroFracDenominador(pDenominador, "M");
+            string numCompletoLetras = numerador + " " + denominador;
             string denominadorAdj = "";
             string numeradorAdj = "";
             if (numerador == "un")
@@ -749,14 +750,14 @@ namespace TFTService
             }
 
        
-            string numCompletoLetras = numerador + " " + denominador;
+            
             string numCompletoAdj  = numerador + " " + denominador;
          
             
 
             string numeradorVal = Cardinales.NuevoConvertirNumEnteroCardinalVal(pNumerador, signo);
             string denominadorVal = Fraccionario.ConvertirNumEnteroFracDenominadorVal(pDenominador, "M");
-
+            string numCompletoLetrasVal = numeradorVal + " " + denominadorVal;
 
             string denominadorAdjVal = "";
             string numeradorAdjVal = "";
@@ -823,7 +824,7 @@ namespace TFTService
                 }
             }
 
-            string numCompletoLetrasVal = numeradorVal + " " + denominadorVal;
+           
             string numCompletoAdjVal = numeradorVal + " " + denominadorVal;
 
 

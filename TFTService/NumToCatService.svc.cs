@@ -891,12 +891,12 @@ namespace TFTService
             //System.Diagnostics.Debug.WriteLine("Valor de la parte entera: " + parteEntera.ToString());
             //System.Diagnostics.Debug.WriteLine("Valor de la parte decimal: " + parteDecimal.ToString());
 
-            string numCompletoLetras = parteEntera + " ambs " + parteDecimal;
+            string numCompletoLetras = parteEntera + " amb " + parteDecimal;
 
             string parteEnteraVal = Cardinales.NuevoConvertirNumEnteroCardinalVal(partes[0], signo);
             string parteDecimalVal = Cardinales.ConvertirNumDecimalCardinalVal(partes[1]);
 
-            string numCompletoLetrasVal = parteEnteraVal + " ambs " + parteDecimalVal;
+            string numCompletoLetrasVal = parteEnteraVal + " amb " + parteDecimalVal;
 
             //System.Diagnostics.Debug.WriteLine("Numero decimal: " + numCompletoLetras);
 
@@ -1411,8 +1411,8 @@ namespace TFTService
             SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + numCompletoLetrasVal);
             if (numero.Contains(".") || numero.Contains(","))
             {
-                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + numCompletoLetras.Replace(" i ", " ambs "));
-                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + numCompletoLetrasVal.Replace(" i ", " ambs "));
+                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString() + " " + numCompletoLetras.Replace(" i ", " amb "));
+                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + numCompletoLetrasVal.Replace(" i ", " amb "));
             }
 
 
@@ -1524,8 +1524,8 @@ namespace TFTService
 
             if (numero.Contains(".") || numero.Contains(","))
             {
-                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString()+ " " + numCompletoLetras.Replace(" i ", " ambs "));
-                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + numCompletoLetrasVal.Replace(" i ", " ambs "));
+                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString()+ " " + numCompletoLetras.Replace(" i ", " amb "));
+                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + numCompletoLetrasVal.Replace(" i ", " amb "));
             }
 
 
@@ -1636,8 +1636,8 @@ namespace TFTService
             SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + numCompletoLetrasVal);
             if (numero.Contains(".") || numero.Contains(","))
             {
-                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString()+ " " + numCompletoLetras.Replace(" i ", " ambs "));
-                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + numCompletoLetrasVal.Replace(" i ", " ambs "));
+                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "CatalanTipo").ToString()+ " " + numCompletoLetras.Replace(" i ", " amb "));
+                SintagmaNom.Opciones.Add(HttpContext.GetGlobalResourceObject("Resource", "ValencianoTipo").ToString() + " " + numCompletoLetrasVal.Replace(" i ", " amb "));
             }
 
 

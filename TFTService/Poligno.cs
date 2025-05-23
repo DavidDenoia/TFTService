@@ -39,7 +39,7 @@ namespace TFTService
 
             string[] decenas =
             {
-                 "", "", "icosa", "triaconta", "tetraconta", "pentaconta",
+                 "", "", "icosi", "triaconta", "tetraconta", "pentaconta",
                  "hexaconta", "heptaconta", "octaconta", "enneaconta"
             };
 

@@ -58,6 +58,10 @@ namespace TFTService
             else
             {
                 string NumCompletoCard = Cardinales.NuevoConvertirNumEnteroCardinal(numero, false);
+                if (string.IsNullOrEmpty(NumCompletoCard))
+                {
+                    return null;
+                }
                 resultado.Insert(0, NumCompletoCard + " de vegades mes");
             }
             return resultado.ToString();
@@ -113,6 +117,10 @@ namespace TFTService
             else
             {
                 string NumCompletoCard = Cardinales.NuevoConvertirNumEnteroCardinalVal(numero, false);
+                if (string.IsNullOrEmpty(NumCompletoCard))
+                {
+                    return null;
+                }
                 resultado.Insert(0, NumCompletoCard + " de vegades mes");
             }
             return resultado.ToString();

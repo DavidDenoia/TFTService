@@ -431,6 +431,9 @@ namespace TFTService
             if (Regex.IsMatch(numero, @"^10+$") )
             {
                 string denominador = Cardinales.NuevoConvertirNumEnteroCardinal(numero, false);
+                if (string.IsNullOrEmpty(denominador)) {
+                    return null;
+                }
                 if (denominador == "deu")
                 {
 

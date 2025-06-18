@@ -151,9 +151,10 @@ namespace TFTService
                 System.Diagnostics.Debug.WriteLine("BASENUM: " + baseNum);
                 int exponente = int.Parse(partes[1]); // Exponente
                 System.Diagnostics.Debug.WriteLine("EXPONENTE: " + exponente);
-                if (exponente < -128 || exponente > 128)
+                if (exponente <= -126 || exponente > 126)
                 {
-                    throw new ArgumentOutOfRangeException("Exponente fuera del rango");
+                    return (null,null);
+                    //throw new ArgumentOutOfRangeException("Exponente fuera del rango");
                 }
                 else if (exponente >= 0)
                 {

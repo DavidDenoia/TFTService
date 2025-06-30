@@ -10,101 +10,6 @@ namespace TFTService
 {
     public class Cardinales
     {
-        /*public static string ConvertirNumEnteroCardinal(string numero, bool signo)
-        {
-
-
-            int contadorSufijos = 0;
-            int contadorNumVeces = 0;
-            StringBuilder numCentena = new StringBuilder();
-            StringBuilder resultado = new StringBuilder();
-
-            string[] sufijos = { "milions", "bilions", "trilions", "quadrilions", "quintilions", "sextilions", "septilions", "octilions", "nonilions", "decilions",
-                "undecilions", "duodecilions", "tredecilions", "quatourdecilions", "quindecilions", "sexdecilions", "septendecilions", "octodecilions", "novendecilions",
-                "vigintilions" };
-
-            string[] sufijosEspeciales = { "milió", "bilió", "trilió", "quadrilió", "quintilió", "sextilió", "septilió", "octilió", "nonilió", "decilió",
-                "undecilió", "duodecilió", "tredecilió", "quatuordecilió", "quindecilió", "sexdecilió", "septendecilió", "octodecilió", "novendecilió", "vigintilió" };
-
-            for (int i = numero.Length - 1; i >= 0; i--)
-            {
-                numCentena.Insert(0, numero[i]);
-                contadorNumVeces++;
-
-                if (contadorNumVeces == 3 || i == 0)
-                {
-                    string numCentenaLetra = CentenaresALetras(numCentena.ToString());
-                    numCentena.Clear();
-                    contadorNumVeces = 0;
-
-                    if (!string.IsNullOrEmpty(numCentenaLetra) && !numCentenaLetra.Equals("zero"))
-                    {
-                        if (contadorSufijos == 0)
-                        {
-                            resultado.Insert(0, numCentenaLetra + " ");
-                        }
-                        else if (contadorSufijos % 2 != 0)
-                        {
-                            int sufijoIndice = (contadorSufijos / 2) - 1;
-                            if (sufijoIndice >= 0)
-                            {
-                                if (numCentenaLetra != "un")
-                                {
-                                    resultado.Insert(0, numCentenaLetra + " mil " + sufijos[sufijoIndice] + " ");
-                                }
-                                else
-                                {
-                                    resultado.Insert(0, " mil " + sufijos[sufijoIndice] + " ");
-                                }
-
-                            }
-                            else
-                            {
-                                if (numCentenaLetra != "un")
-                                {
-                                    resultado.Insert(0, numCentenaLetra + " mil ");
-                                }
-                                else
-                                {
-                                    resultado.Insert(0, " mil ");
-                                }
-
-                            }
-
-                        }
-                        else if (numCentenaLetra != "un")
-                        {
-                            int sufijoIndice = (contadorSufijos / 2) - 1;
-                            resultado.Insert(0, numCentenaLetra + " " + sufijos[sufijoIndice] + " ");
-                        }
-                        else
-                        {
-                            int sufijoIndice = (contadorSufijos / 2) - 1;
-                            resultado.Insert(0, numCentenaLetra + " " + sufijosEspeciales[sufijoIndice] + " ");
-                        }
-
-                    }
-                    contadorSufijos++;
-
-                }
-            }
-            if (string.IsNullOrEmpty(resultado.ToString()))
-            {
-                resultado.Insert(0, "zero");
-            }
-
-            if (signo == true)
-            {
-                resultado.Insert(0, "minus ");
-            }
-            return resultado.ToString().Trim();
-
-
-
-
-        }*/
-
-
 
         public static string CentenaresALetras(string numero)
         {
@@ -225,104 +130,13 @@ namespace TFTService
             return resultado.ToString();
         }
 
-        /*public static string ConvertirNumEnteroCardinalVal(string numero, bool signo)
-        {
-            int contadorSufijos = 0;
-            int contadorNumVeces = 0;
-            StringBuilder numCentena = new StringBuilder();
-            StringBuilder resultado = new StringBuilder();
-
-            string[] sufijos = { "milions", "bilions", "trilions", "quadrilions", "quintilions", "sextilions", "septilions", "octilions", "nonilions", "decilions",
-                "undecilions", "duodecilions", "tredecilions", "quatourdecilions", "quindecilions", "sexdecilions", "septendecilions", "octodecilions", "novendecilions",
-                "vigintilions" };
-
-            string[] sufijosEspeciales = { "milió", "bilió", "trilió", "quadrilió", "quintilió", "sextilió", "septilió", "octilió", "nonilió", "decilió",
-                "undecilió", "duodecilió", "tredecilió", "quatuordecilió", "quindecilió", "sexdecilió", "septendecilió", "octodecilió", "novendecilió", "vigintilió" };
-
-            for (int i = numero.Length - 1; i >= 0; i--)
-            {
-                numCentena.Insert(0, numero[i]);
-                contadorNumVeces++;
-
-                if (contadorNumVeces == 3 || i == 0)
-                {
-                    string numCentenaLetra = CentenaresALetrasVal(numCentena.ToString());
-                    numCentena.Clear();
-                    contadorNumVeces = 0;
-
-                    if (!string.IsNullOrEmpty(numCentenaLetra) && !numCentenaLetra.Equals("zero"))
-                    {
-                        if (contadorSufijos == 0)
-                        {
-                            resultado.Insert(0, numCentenaLetra + " ");
-                        }
-                        else if (contadorSufijos % 2 != 0)
-                        {
-                            int sufijoIndice = (contadorSufijos / 2) - 1;
-                            if (sufijoIndice >= 0)
-                            {
-                                if (numCentenaLetra != "un")
-                                {
-                                    resultado.Insert(0, numCentenaLetra + " mil " + sufijos[sufijoIndice] + " ");
-                                }
-                                else
-                                {
-                                    resultado.Insert(0, " mil " + sufijos[sufijoIndice] + " ");
-                                }
-
-                            }
-                            else
-                            {
-                                if (numCentenaLetra != "un")
-                                {
-                                    resultado.Insert(0, numCentenaLetra + " mil ");
-                                }
-                                else
-                                {
-                                    resultado.Insert(0, " mil ");
-                                }
-
-                            }
-
-                        }
-                        else if (numCentenaLetra != "un")
-                        {
-                            int sufijoIndice = (contadorSufijos / 2) - 1;
-                            resultado.Insert(0, numCentenaLetra + " " + sufijos[sufijoIndice] + " ");
-                        }
-                        else
-                        {
-                            int sufijoIndice = (contadorSufijos / 2) - 1;
-                            resultado.Insert(0, numCentenaLetra + " " + sufijosEspeciales[sufijoIndice] + " ");
-                        }
-
-                    }
-                    contadorSufijos++;
-
-                }
-            }
-            if (string.IsNullOrEmpty(resultado.ToString()))
-            {
-                resultado.Insert(0, "zero");
-            }
-
-            if (signo == true)
-            {
-                resultado.Insert(0, "minus ");
-            }
-            return resultado.ToString().Trim();
-
-
-
-
-        }*/
-
+        
         public static string CentenaresALetrasVal(string numero)
         {
             StringBuilder resultado = new StringBuilder();
             string[] unidades = { "zero", "un", "dos", "tres", "quatre", "cinc", "sis", "set", "huit", "nou" };
             string[] decenas = { "trenta", "qauranta", "cinquanta", "seixanta", "setanta", "huitanta", "noranta" };
-            string[] centenas = { "cent ", "dos-cents ", "tres-cents ", "quatre-cents ", "cinc-cents ", "sis-cents ", "set-cents ", "vuit-cents ", "nou-cents " };
+            string[] centenas = { "cent ", "dos-cents ", "tres-cents ", "quatre-cents ", "cinc-cents ", "sis-cents ", "set-cents ", "huit-cents ", "nou-cents " };
             string[] decenasEspeciales = {"deu","onze","dotze","tretze","catorze", "quinze","setze","dèsset","dihuit","dènou",
                 "vint","vint-i-un","vint-i-dos","vint-i-tres","vint-i-quatre","vint-i-cinc", "vint-i-sis","vint-i-set","vint-i-vuit","vint-i-nou"};
             int numInt = int.Parse(numero);

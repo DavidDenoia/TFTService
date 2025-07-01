@@ -39,6 +39,7 @@ namespace TFTWebApplication
         }
         protected override void InitializeCulture()
         {
+            
             idioma = Session["idioma"]?.ToString() ?? "es-ES";
             CultureInfo cultura = new CultureInfo(idioma);
             Thread.CurrentThread.CurrentCulture = cultura;

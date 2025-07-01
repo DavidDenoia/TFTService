@@ -54,8 +54,12 @@ namespace TFTService
                     resultado.Insert(0, NumCompletoCard + " vegades mes");
                 }   
 
+            }else if(tamañoNumero > 3 && tamañoNumero <= 6)
+            {
+                string NumCompletoCard = Cardinales.NuevoConvertirNumEnteroCardinal(numero, false);
+                resultado.Insert(0, NumCompletoCard + " vegades mes");
             }
-            else
+            else 
             {
                 string NumCompletoCard = Cardinales.NuevoConvertirNumEnteroCardinal(numero, false);
                 if (string.IsNullOrEmpty(NumCompletoCard))
@@ -113,6 +117,11 @@ namespace TFTService
                     resultado.Insert(0, NumCompletoCard + " vegades mes");
                 }
 
+            }
+            else if (tamañoNumero > 3 && tamañoNumero <= 6)
+            {
+                string NumCompletoCard = Cardinales.NuevoConvertirNumEnteroCardinal(numero, false);
+                resultado.Insert(0, NumCompletoCard + " vegades mes");
             }
             else
             {

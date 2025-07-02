@@ -266,14 +266,16 @@ namespace TFTService
             }
 
             Dictionary<int, (string plural, string singular)> sufijos = new Dictionary<int, (string, string)>()
-            {
-                { 1, ("milions", "milió") },{ 2, ("bilions", "bilió") },{ 3, ("trilions", "trilió") },{ 4, ("quadrilions", "quadrilió") },
-                { 5, ("quintilions", "quintilió") },{ 6, ("sextilions", "sextilió") },{ 7, ("septilions", "septilió") },
-                { 8, ("octilions", "octilió") },{ 9, ("nonilions", "nonilió") },{ 10, ("decilions", "decilió") },{ 11, ("undecilions", "undecilió") },
-                { 12, ("duodecilions", "duodecilió") },{ 13, ("tredecilions", "tredecilió") },{ 14, ("quatuordecilions", "quatuordecilió") },
-                { 15, ("quindecilions", "quindecilió") },{ 16, ("sexdecilions", "sexdecilió") },{ 17, ("septendecilions", "septendecilió") },
-                { 18, ("octodecilions", "octodecilió") },{ 19, ("novendecilions", "novendecilió") },{ 20, ("vigintilions", "vigintilió") }
-            };
+     {
+         { 1, ("milions", "milió") },{ 2, ("bilions", "bilió") },{ 3, ("trilions", "trilió") },{ 4, ("quadrilions", "quadrilió") },
+         { 5, ("quintilions", "quintilió") },{ 6, ("sextilions", "sextilió") },{ 7, ("septilions", "septilió") },
+         { 8, ("octilions", "octilió") },{ 9, ("nonilions", "nonilió") },{ 10, ("decilions", "decilió") },{ 11, ("undecilions", "undecilió") },
+         { 12, ("duodecilions", "duodecilió") },{ 13, ("tredecilions", "tredecilió") },{ 14, ("quatuordecilions", "quatuordecilió") },
+         { 15, ("quindecilions", "quindecilió") },{ 16, ("sexdecilions", "sexdecilió") },{ 17, ("septendecilions", "septendecilió") },
+         { 18, ("octodecilions", "octodecilió") },{ 19, ("novendecilions", "novendecilió") },{ 20, ("vigintilions", "vigintilió") }
+     };
+
+
 
             for (int i = numero.Length - 1; i >= 0; i--)
             {
@@ -298,7 +300,7 @@ namespace TFTService
 
                             if (contadorSufijos % 2 != 0)
                             {
-                               
+
                                 if (numCentenaLetra != "un")
                                 {
                                     resultado.Insert(0, numCentenaLetra + " mil ");
@@ -324,11 +326,14 @@ namespace TFTService
                                     resultado.Insert(0, numCentenaLetra + " ");
                                 }
                             }
+
+
+
                         }
                     }
                     else
                     {
-                        
+
                         int sufijoIndice = contadorSufijos / 2;
                         if (sufijos.ContainsKey(sufijoIndice))
                         {
@@ -340,7 +345,7 @@ namespace TFTService
 
                     System.Diagnostics.Debug.WriteLine($"grupo: {numCentenaLetra}, Sufijo #: {contadorSufijos}, Resultado parcial: {resultado}");
 
-                    contadorSufijos++; 
+                    contadorSufijos++;
                 }
             }
 
@@ -373,6 +378,7 @@ namespace TFTService
 
             return resultado.ToString().Trim();
         }
+
 
         public static string NuevoConvertirNumEnteroCardinalVal(string numero, bool signo)
         {

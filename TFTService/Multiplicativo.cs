@@ -51,13 +51,13 @@ namespace TFTService
                 else
                 {
                     string NumCompletoCard = Cardinales.NuevoConvertirNumEnteroCardinal(numero,false);
-                    resultado.Insert(0, NumCompletoCard + " vegades mes");
+                    resultado.Insert(0, NumCompletoCard + " vegades més");
                 }   
 
             }else if(tamañoNumero > 3 && tamañoNumero <= 6)
             {
                 string NumCompletoCard = Cardinales.NuevoConvertirNumEnteroCardinal(numero, false);
-                resultado.Insert(0, NumCompletoCard + " vegades mes");
+                resultado.Insert(0, NumCompletoCard + " vegades més");
             }
             else 
             {
@@ -66,7 +66,7 @@ namespace TFTService
                 {
                     return null;
                 }
-                resultado.Insert(0, NumCompletoCard + " de vegades mes");
+                resultado.Insert(0, NumCompletoCard + " de vegades més");
             }
             return resultado.ToString();
         }
@@ -114,14 +114,14 @@ namespace TFTService
                 else
                 {
                     string NumCompletoCard = Cardinales.NuevoConvertirNumEnteroCardinalVal(numero, false);
-                    resultado.Insert(0, NumCompletoCard + " vegades mes");
+                    resultado.Insert(0, NumCompletoCard + " vegades més");
                 }
 
             }
             else if (tamañoNumero > 3 && tamañoNumero <= 6)
             {
                 string NumCompletoCard = Cardinales.NuevoConvertirNumEnteroCardinal(numero, false);
-                resultado.Insert(0, NumCompletoCard + " vegades mes");
+                resultado.Insert(0, NumCompletoCard + " vegades més");
             }
             else
             {
@@ -130,7 +130,7 @@ namespace TFTService
                 {
                     return null;
                 }
-                resultado.Insert(0, NumCompletoCard + " de vegades mes");
+                resultado.Insert(0, NumCompletoCard + " de vegades més");
             }
             return resultado.ToString();
         }

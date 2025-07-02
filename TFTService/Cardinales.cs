@@ -250,7 +250,6 @@ namespace TFTService
             return resultado.ToString();
         }
 
-
         public static string NuevoConvertirNumEnteroCardinal(string numero, bool signo)
         {
             int contadorSufijos = 0;
@@ -266,14 +265,14 @@ namespace TFTService
             }
 
             Dictionary<int, (string plural, string singular)> sufijos = new Dictionary<int, (string, string)>()
-     {
-         { 1, ("milions", "milió") },{ 2, ("bilions", "bilió") },{ 3, ("trilions", "trilió") },{ 4, ("quadrilions", "quadrilió") },
-         { 5, ("quintilions", "quintilió") },{ 6, ("sextilions", "sextilió") },{ 7, ("septilions", "septilió") },
-         { 8, ("octilions", "octilió") },{ 9, ("nonilions", "nonilió") },{ 10, ("decilions", "decilió") },{ 11, ("undecilions", "undecilió") },
-         { 12, ("duodecilions", "duodecilió") },{ 13, ("tredecilions", "tredecilió") },{ 14, ("quatuordecilions", "quatuordecilió") },
-         { 15, ("quindecilions", "quindecilió") },{ 16, ("sexdecilions", "sexdecilió") },{ 17, ("septendecilions", "septendecilió") },
-         { 18, ("octodecilions", "octodecilió") },{ 19, ("novendecilions", "novendecilió") },{ 20, ("vigintilions", "vigintilió") }
-     };
+{
+    { 1, ("milions", "milió") },{ 2, ("bilions", "bilió") },{ 3, ("trilions", "trilió") },{ 4, ("quadrilions", "quadrilió") },
+    { 5, ("quintilions", "quintilió") },{ 6, ("sextilions", "sextilió") },{ 7, ("septilions", "septilió") },
+    { 8, ("octilions", "octilió") },{ 9, ("nonilions", "nonilió") },{ 10, ("decilions", "decilió") },{ 11, ("undecilions", "undecilió") },
+    { 12, ("duodecilions", "duodecilió") },{ 13, ("tredecilions", "tredecilió") },{ 14, ("quatuordecilions", "quatuordecilió") },
+    { 15, ("quindecilions", "quindecilió") },{ 16, ("sexdecilions", "sexdecilió") },{ 17, ("septendecilions", "septendecilió") },
+    { 18, ("octodecilions", "octodecilió") },{ 19, ("novendecilions", "novendecilió") },{ 20, ("vigintilions", "vigintilió") }
+};
 
 
 
@@ -288,9 +287,10 @@ namespace TFTService
                     numCentena.Clear();
                     contadorNumVeces = 0;
 
-                    if (!string.IsNullOrEmpty(numCentenaLetra) && numCentenaLetra != "zero")
+                    if (!string.IsNullOrEmpty(numCentenaLetra))
                     {
-                        if (contadorSufijos == 0)
+
+                        if (contadorSufijos == 0 && numCentenaLetra != "zero")
                         {
                             resultado.Insert(0, numCentenaLetra + " ");
                         }
@@ -300,30 +300,47 @@ namespace TFTService
 
                             if (contadorSufijos % 2 != 0)
                             {
-
-                                if (numCentenaLetra != "un")
+                                if (haySufijoZero)
                                 {
-                                    resultado.Insert(0, numCentenaLetra + " mil ");
+                                    if (numCentenaLetra == "un")
+                                        resultado.Insert(0, "mil " + ultimoSufijoZero + " ");
+                                    else if(numCentenaLetra != "zero")
+                                        resultado.Insert(0, numCentenaLetra + " mil " + ultimoSufijoZero + " ");
+
+                                    haySufijoZero = false;
                                 }
                                 else
                                 {
-                                    resultado.Insert(0, "mil ");
+                                    if (numCentenaLetra == "un")
+                                        resultado.Insert(0, "mil ");
+                                    else if(numCentenaLetra != "zero")
+                                        resultado.Insert(0, numCentenaLetra + " mil ");
                                 }
-
-
-
                             }
                             else
                             {
-                                if (sufijos.ContainsKey(sufijoIndice))
+                                if (numCentenaLetra == "zero")
                                 {
-                                    var sufijo = numCentenaLetra == "un" ? sufijos[sufijoIndice].singular : sufijos[sufijoIndice].plural;
-
-                                    resultado.Insert(0, numCentenaLetra + " " + sufijo + " ");
+                                    if (sufijos.ContainsKey(sufijoIndice))
+                                    {
+                                        ultimoSufijoZero = sufijos[sufijoIndice].plural;
+                                        haySufijoZero = true;
+                                    }
                                 }
                                 else
                                 {
-                                    resultado.Insert(0, numCentenaLetra + " ");
+
+
+                                    if (sufijos.ContainsKey(sufijoIndice))
+                                    {
+                                        var sufijo = numCentenaLetra == "un" ? sufijos[sufijoIndice].singular : sufijos[sufijoIndice].plural;
+
+                                        resultado.Insert(0, numCentenaLetra + " " + sufijo + " ");
+                                    }
+                                    else
+                                    {
+                                        resultado.Insert(0, numCentenaLetra + " ");
+                                    }
                                 }
                             }
 
@@ -352,10 +369,7 @@ namespace TFTService
 
             System.Diagnostics.Debug.WriteLine($"ULTIMO SUFIJO: {ultimoSufijoZero}");
 
-            /*if (!string.IsNullOrEmpty(ultimoSufijoZero) && resultado.ToString().Trim() != "zero")
-            {
-                resultado.Append(" " + ultimoSufijoZero);
-            }*/
+          
 
             int cerosFinales = 0;
             for (int i = numero.Length - 1; i >= 0 && numero[i] == '0'; i--)
@@ -363,12 +377,6 @@ namespace TFTService
                 cerosFinales++;
             }
 
-            /*string last = resultado.ToString().Trim().Split(' ').LastOrDefault();
-            System.Diagnostics.Debug.WriteLine($"LAST: {last}");
-            if (!sufijos.Values.Any(s => s.plural == last || s.singular == last) && cerosFinales >=6)
-            {
-                resultado.Append(" " + ultimoSufijoZero);
-            }*/
 
             if (resultado.Length == 0)
                 resultado.Append("zero");
@@ -378,6 +386,8 @@ namespace TFTService
 
             return resultado.ToString().Trim();
         }
+
+
 
 
         public static string NuevoConvertirNumEnteroCardinalVal(string numero, bool signo)
@@ -411,13 +421,14 @@ namespace TFTService
 
                 if (contadorNumVeces == 3 || i == 0)
                 {
-                    string numCentenaLetra = CentenaresALetrasVal(numCentena.ToString());
+                    string numCentenaLetra = CentenaresALetras(numCentena.ToString());
                     numCentena.Clear();
                     contadorNumVeces = 0;
 
-                    if (!string.IsNullOrEmpty(numCentenaLetra) && numCentenaLetra != "zero")
+                    if (!string.IsNullOrEmpty(numCentenaLetra))
                     {
-                        if (contadorSufijos == 0)
+
+                        if (contadorSufijos == 0 && numCentenaLetra != "zero")
                         {
                             resultado.Insert(0, numCentenaLetra + " ");
                         }
@@ -427,28 +438,52 @@ namespace TFTService
 
                             if (contadorSufijos % 2 != 0)
                             {
-                                if (numCentenaLetra != "un")
+                                if (haySufijoZero)
                                 {
-                                    resultado.Insert(0, numCentenaLetra + " mil ");
+                                    if (numCentenaLetra == "un")
+                                        resultado.Insert(0, "mil " + ultimoSufijoZero + " ");
+                                    else if (numCentenaLetra != "zero")
+                                        resultado.Insert(0, numCentenaLetra + " mil " + ultimoSufijoZero + " ");
+
+                                    haySufijoZero = false;
                                 }
                                 else
                                 {
-                                    resultado.Insert(0, "mil ");
+                                    if (numCentenaLetra == "un")
+                                        resultado.Insert(0, "mil ");
+                                    else if (numCentenaLetra != "zero")
+                                        resultado.Insert(0, numCentenaLetra + " mil ");
                                 }
                             }
                             else
                             {
-                                if (sufijos.ContainsKey(sufijoIndice))
+                                if (numCentenaLetra == "zero")
                                 {
-                                    var sufijo = numCentenaLetra == "un" ? sufijos[sufijoIndice].singular : sufijos[sufijoIndice].plural;
-
-                                    resultado.Insert(0, numCentenaLetra + " " + sufijo + " ");
+                                    if (sufijos.ContainsKey(sufijoIndice))
+                                    {
+                                        ultimoSufijoZero = sufijos[sufijoIndice].plural;
+                                        haySufijoZero = true;
+                                    }
                                 }
                                 else
                                 {
-                                    resultado.Insert(0, numCentenaLetra + " ");
+
+
+                                    if (sufijos.ContainsKey(sufijoIndice))
+                                    {
+                                        var sufijo = numCentenaLetra == "un" ? sufijos[sufijoIndice].singular : sufijos[sufijoIndice].plural;
+
+                                        resultado.Insert(0, numCentenaLetra + " " + sufijo + " ");
+                                    }
+                                    else
+                                    {
+                                        resultado.Insert(0, numCentenaLetra + " ");
+                                    }
                                 }
                             }
+
+
+
                         }
                     }
                     else

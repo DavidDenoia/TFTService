@@ -62,45 +62,21 @@ namespace TFTService
                 }
                 else
                 {
-                    string numCard = Cardinales.NuevoConvertirNumEnteroCardinal(numero,false);
-                    if (numCard.EndsWith("c"))
-                    {
-                        resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1)+"què" : numCard.Substring(0, numCard.Length - 1) + "quena");
-                    }
-                    else if (numCard.EndsWith("ou"))
-                    {
-                        resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "vè" : numCard.Substring(0, numCard.Length - 1) + "vena");
-                    }
-                    else if (numCard.EndsWith("s") || numCard.EndsWith("t") || numCard.EndsWith("n"))
-                    {
-                        resultado.Insert(0, genero == "M" ? numCard + "è" : numCard + "ena");
-                    }
-                    else if (numCard.EndsWith("a") || numCard.EndsWith("e"))
-                    {
-                        resultado.Insert(0, genero == "M" ? numCard.Substring(0, numCard.Length - 1) + "è" : numCard.Substring(0, numCard.Length - 1) + "ena");
-                    }
-
+                    string numOrd = Ordinales.ConvertirNumEnteroOrdinal(numero, genero, false);
+                    if (string.IsNullOrEmpty(numOrd))
+                        return null;
+                    resultado.Insert(0, numOrd);
+                    return resultado.ToString();
                 }
             }
             else
             {
-                string numCard = Cardinales.NuevoConvertirNumEnteroCardinal(numero, false);
-                if (numCard.EndsWith("c"))
-                {
-                    resultado.Insert(0, numCard.Substring(0, numCard.Length - 1));
-                }
-                else if (numCard.EndsWith("ou"))
-                {
-                    resultado.Insert(0, numCard.Substring(0, numCard.Length - 1) + "vè");
-                }
-                else if (numCard.EndsWith("s") || numCard.EndsWith("t") || numCard.EndsWith("n"))
-                {
-                    resultado.Insert(0, numCard + "è");
-                }
-                else if (numCard.EndsWith("a") || numCard.EndsWith("e"))
-                {
-                    resultado.Insert(0, numCard.Substring(0, numCard.Length - 1) + "è");
-                }
+                string numOrd = Ordinales.ConvertirNumEnteroOrdinal(numero, genero, false);
+                if (string.IsNullOrEmpty(numOrd))
+                    return null;
+                resultado.Insert(0, numOrd);
+                return resultado.ToString();
+
             }
 
             return resultado.ToString();

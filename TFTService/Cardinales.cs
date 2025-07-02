@@ -298,34 +298,18 @@ namespace TFTService
 
                             if (contadorSufijos % 2 != 0)
                             {
+                               
                                 if (numCentenaLetra != "un")
                                 {
-                                    //resultado.Insert(0, numCentenaLetra + " mil ");
-
-                                    if(haySufijoZero == true)
-                                    {
-                                        resultado.Insert(0, numCentenaLetra + " mil " + ultimoSufijoZero + " ");
-                                        haySufijoZero = false;
-                                    }
-                                    else
-                                    {
-                                        resultado.Insert(0, numCentenaLetra + " mil ");
-                                    }
+                                    resultado.Insert(0, numCentenaLetra + " mil ");
                                 }
                                 else
                                 {
-                                    //resultado.Insert(0, " mil ");
-
-                                    if (haySufijoZero == true)
-                                    {
-                                        resultado.Insert(0, " mil " + ultimoSufijoZero + " ");
-                                        haySufijoZero = false;
-                                    }
-                                    else
-                                    {
-                                        resultado.Insert(0, " mil ");
-                                    }
+                                    resultado.Insert(0, "mil ");
                                 }
+
+
+
                             }
                             else
                             {
@@ -374,12 +358,12 @@ namespace TFTService
                 cerosFinales++;
             }
 
-            string last = resultado.ToString().Trim().Split(' ').LastOrDefault();
+            /*string last = resultado.ToString().Trim().Split(' ').LastOrDefault();
             System.Diagnostics.Debug.WriteLine($"LAST: {last}");
             if (!sufijos.Values.Any(s => s.plural == last || s.singular == last) && cerosFinales >=6)
             {
                 resultado.Append(" " + ultimoSufijoZero);
-            }
+            }*/
 
             if (resultado.Length == 0)
                 resultado.Append("zero");
@@ -439,31 +423,11 @@ namespace TFTService
                             {
                                 if (numCentenaLetra != "un")
                                 {
-                                    //resultado.Insert(0, numCentenaLetra + " mil ");
-
-                                    if (haySufijoZero == true)
-                                    {
-                                        resultado.Insert(0, numCentenaLetra + " mil " + ultimoSufijoZero + " ");
-                                        haySufijoZero = false;
-                                    }
-                                    else
-                                    {
-                                        resultado.Insert(0, numCentenaLetra + " mil ");
-                                    }
+                                    resultado.Insert(0, numCentenaLetra + " mil ");
                                 }
                                 else
                                 {
-                                    //resultado.Insert(0, " mil ");
-
-                                    if (haySufijoZero == true)
-                                    {
-                                        resultado.Insert(0, " mil " + ultimoSufijoZero + " ");
-                                        haySufijoZero = false;
-                                    }
-                                    else
-                                    {
-                                        resultado.Insert(0, " mil ");
-                                    }
+                                    resultado.Insert(0, "mil ");
                                 }
                             }
                             else
@@ -513,12 +477,14 @@ namespace TFTService
                 cerosFinales++;
             }
 
-            string last = resultado.ToString().Trim().Split(' ').LastOrDefault();
+            /*string last = resultado.ToString().Trim().Split(' ').LastOrDefault();
             System.Diagnostics.Debug.WriteLine($"LAST: {last}");
             if (!sufijos.Values.Any(s => s.plural == last || s.singular == last) && cerosFinales >= 6)
             {
                 resultado.Append(" " + ultimoSufijoZero);
-            }
+            }*/
+          
+
 
             if (resultado.Length == 0)
                 resultado.Append("zero");

@@ -421,7 +421,7 @@ namespace TFTService
 
                 if (contadorNumVeces == 3 || i == 0)
                 {
-                    string numCentenaLetra = CentenaresALetras(numCentena.ToString());
+                    string numCentenaLetra = CentenaresALetrasVal(numCentena.ToString());
                     numCentena.Clear();
                     contadorNumVeces = 0;
 
